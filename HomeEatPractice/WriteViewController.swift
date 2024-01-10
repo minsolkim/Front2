@@ -7,6 +7,8 @@
 
 import UIKit
 class WriteViewController: UIViewController {
+    
+    var test : Int = 3;
 
     override func viewDidLoad() {
         super.viewDidLoad()
