@@ -39,7 +39,7 @@ final class TableViewCellOne: UITableViewCell {
         let label = UILabel()
         label.textColor = .gray
         label.font = .systemFont(ofSize: 10)
-        label.numberOfLines = 4
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     } ()
@@ -54,6 +54,7 @@ final class TableViewCellOne: UITableViewCell {
         let label = UILabel()
         label.textColor = UIColor(named: "locationfont")
         label.font = .systemFont(ofSize: 10)
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     } ()
@@ -67,6 +68,7 @@ final class TableViewCellOne: UITableViewCell {
     var chatLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(named: "locationfont")
+        label.numberOfLines = 0
         label.font = .systemFont(ofSize: 10)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -89,6 +91,7 @@ final class TableViewCellOne: UITableViewCell {
         contentView.layer.cornerRadius = 10.0
         contentView.layer.masksToBounds = true
         
+        //게시글 제목 , 날짜
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
@@ -99,24 +102,27 @@ final class TableViewCellOne: UITableViewCell {
             dateLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             
         ])
+        //게시글 사진
         NSLayoutConstraint.activate([
             PostImageView.leadingAnchor.constraint(equalTo: contentLabel.trailingAnchor, constant: 10),
             PostImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             PostImageView.widthAnchor.constraint(equalToConstant: 78),
             PostImageView.heightAnchor.constraint(equalToConstant: 73),
             ])
-            
+        //게시글 내용
         NSLayoutConstraint.activate([
             contentLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             contentLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6),
             contentLabel.widthAnchor.constraint(equalToConstant: 233),
             contentLabel.heightAnchor.constraint(equalToConstant: 56),
         ])
+        //좋아요, 댓글
         NSLayoutConstraint.activate([
             heartImage.leadingAnchor.constraint(equalTo: contentLabel.leadingAnchor),
             heartImage.topAnchor.constraint(equalTo: contentLabel.bottomAnchor, constant: 10),
             heartImage.widthAnchor.constraint(equalToConstant: 11.9),
             heartImage.heightAnchor.constraint(equalToConstant: 11),
+            
             heartLabel.leadingAnchor.constraint(equalTo: heartImage.trailingAnchor, constant: 5),
             heartLabel.centerYAnchor.constraint(equalTo: heartImage.centerYAnchor),
             
@@ -127,13 +133,20 @@ final class TableViewCellOne: UITableViewCell {
             
             chatLabel.leadingAnchor.constraint(equalTo: chatImage.trailingAnchor, constant: 5),
             chatLabel.centerYAnchor.constraint(equalTo: heartImage.centerYAnchor),
+            chatLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+
             ])
         
         }
     required init?(coder aDecoder: NSCoder) {
            fatalError("init(coder:) has not been implemented")
        }
+    //셀 사이 간격 설정
+    override func layoutSubviews() {
+        super.layoutSubviews()
 
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0))
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

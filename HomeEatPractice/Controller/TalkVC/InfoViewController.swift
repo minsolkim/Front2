@@ -13,6 +13,10 @@ class InfoViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(named: "searchtf")
+        if let borderColor = UIColor(named: "font3")?.cgColor {
+            view.layer.borderColor = borderColor
+        }
+        view.layer.borderWidth = 1
         view.layer.cornerRadius = 7
         view.layer.masksToBounds = true
         
@@ -67,9 +71,8 @@ class InfoViewController: UIViewController {
     private let tableView: UITableView = {
         let view = UITableView()
         view.allowsSelection = false
-        view.backgroundColor = .clear
         view.showsVerticalScrollIndicator = true
-        view.contentInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+        view.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 5)
         view.register(TableViewCellOne.self, forCellReuseIdentifier: TableViewCellOne.identifier)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -88,6 +91,7 @@ class InfoViewController: UIViewController {
         configure()
         addSubView()
         configUI()
+        tableView.reloadData()
         
         
     }
@@ -101,6 +105,7 @@ class InfoViewController: UIViewController {
         view.addSubview(tableView)
     }
     func configUI() {
+        tableView.backgroundColor = UIColor.black
         SearchView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         SearchView.widthAnchor.constraint(equalToConstant: 351).isActive = true
         NSLayoutConstraint.activate([
@@ -136,6 +141,7 @@ class InfoViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100 // 예상되는 높이를 설정합니다.
     }
 
 }
@@ -144,9 +150,7 @@ extension InfoViewController: UITableViewDataSource {
                   numberOfRowsInSection section: Int) -> Int {
       return items.count
   }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
-    }
+   
   func tableView(_ tableView: UITableView,
                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       
@@ -166,9 +170,9 @@ extension InfoViewController: UITableViewDataSource {
   }
 }
 extension InfoViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
-  }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return CGFloat(48 + )
+//    }
 }
     
 
