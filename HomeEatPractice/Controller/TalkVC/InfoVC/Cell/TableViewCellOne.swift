@@ -30,6 +30,7 @@ final class TableViewCellOne: UITableViewCell {
     var dateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 10)
+        label.textColor = UIColor(named: "font4")
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -76,7 +77,7 @@ final class TableViewCellOne: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        backgroundColor = UIColor.black
         contentView.addSubview(titleLabel)
         contentView.addSubview(dateLabel)
         contentView.addSubview(contentLabel)
@@ -85,7 +86,7 @@ final class TableViewCellOne: UITableViewCell {
         contentView.addSubview(heartLabel)
         contentView.addSubview(chatImage)
         contentView.addSubview(chatLabel)
-        contentView.layer.borderColor = UIColor.lightGray.cgColor
+        //contentView.layer.borderColor = UIColor.lightGray.cgColor
         contentView.backgroundColor = UIColor(named: "searchtf")
         contentView.layer.borderWidth = 1.0
         contentView.layer.cornerRadius = 10.0
@@ -93,19 +94,20 @@ final class TableViewCellOne: UITableViewCell {
         
         //게시글 제목 , 날짜
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 19),
             
             dateLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 10),
-            dateLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
+            dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 27),
             dateLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -10),
             dateLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             
         ])
         //게시글 사진
         NSLayoutConstraint.activate([
-            PostImageView.leadingAnchor.constraint(equalTo: contentLabel.trailingAnchor, constant: 10),
-            PostImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            //PostImageView.leadingAnchor.constraint(equalTo: contentLabel.trailingAnchor, constant: 7),
+            PostImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 43),
+            PostImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
             PostImageView.widthAnchor.constraint(equalToConstant: 78),
             PostImageView.heightAnchor.constraint(equalToConstant: 73),
             ])
@@ -119,14 +121,14 @@ final class TableViewCellOne: UITableViewCell {
         //좋아요, 댓글
         NSLayoutConstraint.activate([
             heartImage.leadingAnchor.constraint(equalTo: contentLabel.leadingAnchor),
-            heartImage.topAnchor.constraint(equalTo: contentLabel.bottomAnchor, constant: 10),
+            heartImage.topAnchor.constraint(equalTo: contentLabel.bottomAnchor, constant: 9),
             heartImage.widthAnchor.constraint(equalToConstant: 11.9),
             heartImage.heightAnchor.constraint(equalToConstant: 11),
             
             heartLabel.leadingAnchor.constraint(equalTo: heartImage.trailingAnchor, constant: 5),
             heartLabel.centerYAnchor.constraint(equalTo: heartImage.centerYAnchor),
             
-            chatImage.leadingAnchor.constraint(equalTo: heartLabel.trailingAnchor, constant: 10),
+            chatImage.leadingAnchor.constraint(equalTo: heartLabel.trailingAnchor, constant: 9),
             chatImage.centerYAnchor.constraint(equalTo: heartImage.centerYAnchor),
             chatImage.widthAnchor.constraint(equalToConstant: 11.9),
             chatImage.heightAnchor.constraint(equalToConstant:11),
@@ -145,7 +147,7 @@ final class TableViewCellOne: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 18, right: 0))
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

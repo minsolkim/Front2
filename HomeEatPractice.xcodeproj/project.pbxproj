@@ -104,10 +104,8 @@
 		588A092A2B4E987A00638D16 /* TalkVC */ = {
 			isa = PBXGroup;
 			children = (
-				588A092E2B4FF99100638D16 /* Model */,
-				588A092B2B4FB9C600638D16 /* Cell */,
+				588A09312B50EB5800638D16 /* InfoVC */,
 				409AA3412B43E9760096CDBB /* TalkViewController.swift */,
-				588A09282B4E6ED400638D16 /* InfoViewController.swift */,
 				588A09252B4E5BE200638D16 /* WriteViewController.swift */,
 			);
 			path = TalkVC;
@@ -127,6 +125,16 @@
 				588A092F2B4FF9A900638D16 /* MyItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		588A09312B50EB5800638D16 /* InfoVC */ = {
+			isa = PBXGroup;
+			children = (
+				588A09282B4E6ED400638D16 /* InfoViewController.swift */,
+				588A092B2B4FB9C600638D16 /* Cell */,
+				588A092E2B4FF99100638D16 /* Model */,
+			);
+			path = InfoVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

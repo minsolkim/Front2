@@ -8,6 +8,17 @@
 import UIKit
 
 class InfoViewController: UIViewController {
+    // 플로팅 버튼
+    private let floatingButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(x: 0, y: 0, width: 100, height: 57) // 버튼의 크기를 원하는 값으로 수정
+
+        // 이미지 설정
+        let buttonImage = UIImage(named: "writebtn")
+        button.setImage(buttonImage, for: .normal)
+
+        return button
+    }()
     //검색 뷰
     lazy var SearchView: UIView = {
         let view = UIView()
@@ -72,7 +83,7 @@ class InfoViewController: UIViewController {
         let view = UITableView()
         view.allowsSelection = false
         view.showsVerticalScrollIndicator = true
-        view.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 5)
+        view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         view.register(TableViewCellOne.self, forCellReuseIdentifier: TableViewCellOne.identifier)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -95,9 +106,10 @@ class InfoViewController: UIViewController {
         
         
     }
+    
     func addSubView() {
         view.addSubview(SearchView)
-        
+        view.addSubview(floatingButton)
         SearchView.addSubview(searchTextField)
         SearchView.addSubview(searchImageView)
         view.addSubview(locationButton)
@@ -110,7 +122,8 @@ class InfoViewController: UIViewController {
         SearchView.widthAnchor.constraint(equalToConstant: 351).isActive = true
         NSLayoutConstraint.activate([
             SearchView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            SearchView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
+            SearchView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 21),
+            SearchView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -21),
             
             searchTextField.leadingAnchor.constraint(equalTo: SearchView.leadingAnchor, constant: 10),
             searchTextField.centerYAnchor.constraint(equalTo: SearchView.centerYAnchor),
@@ -129,8 +142,8 @@ class InfoViewController: UIViewController {
             procedureButton.trailingAnchor.constraint(equalTo: locationButton.leadingAnchor, constant: -210),
             
             tableView.topAnchor.constraint(equalTo: locationButton.bottomAnchor, constant: 10),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
         
@@ -142,6 +155,20 @@ class InfoViewController: UIViewController {
         self.tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100 // 예상되는 높이를 설정합니다.
+        floatingButton.isHidden = false
+        floatingButton.addTarget(self, action: #selector(floatingButtonTapped), for: .touchUpInside)
+    }
+    // 플로팅 버튼을 눌렀을 때 실행될 액션
+    @objc func floatingButtonTapped() {
+        // 버튼이 눌렸을 때 수행할 동작을 여기에 추가합니다.
+        print("Floating button tapped!")
+    }
+    // 플로팅 버튼 자체의 레이아웃
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // 버튼의 위치와 높이를 조정하여 약간 위로 이동
+        let buttonYPosition = view.frame.size.height - 60 - 80 - 35 // 10은 위로 조정할 값입니다.
+        floatingButton.frame = CGRect(x: view.frame.size.width - 120, y: buttonYPosition, width: 100, height: 57) // 위치와 크기 조정
     }
 
 }
@@ -170,9 +197,9 @@ extension InfoViewController: UITableViewDataSource {
   }
 }
 extension InfoViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return CGFloat(48 + )
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
 }
     
 
