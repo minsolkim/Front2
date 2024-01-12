@@ -23,6 +23,7 @@
 		588A09292B4E6ED400638D16 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09282B4E6ED400638D16 /* InfoViewController.swift */; };
 		588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */; };
 		588A09302B4FF9A900638D16 /* MyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A092F2B4FF9A900638D16 /* MyItem.swift */; };
+		588A09342B50EC5900638D16 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09332B50EC5900638D16 /* PostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		588A09282B4E6ED400638D16 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellOne.swift; sourceTree = "<group>"; };
 		588A092F2B4FF9A900638D16 /* MyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItem.swift; sourceTree = "<group>"; };
+		588A09332B50EC5900638D16 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,16 +88,32 @@
 			path = HomeEatPractice;
 			sourceTree = "<group>";
 		};
+		5875D9C92B5169D600F484DF /* MypageVC */ = {
+			isa = PBXGroup;
+			children = (
+				409AA3432B43E98A0096CDBB /* MyPageViewController.swift */,
+			);
+			path = MypageVC;
+			sourceTree = "<group>";
+		};
+		5875D9CA2B51773200F484DF /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				409AA33D2B43E94B0096CDBB /* HomeViewController.swift */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
 		588A09272B4E680400638D16 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5875D9CA2B51773200F484DF /* HomeVC */,
+				5875D9C92B5169D600F484DF /* MypageVC */,
 				588A092A2B4E987A00638D16 /* TalkVC */,
-				409AA3432B43E98A0096CDBB /* MyPageViewController.swift */,
 				409AA33F2B43E9640096CDBB /* CashViewController.swift */,
 				409AA3472B467EFB0096CDBB /* PayAnalyzeViewController.swift */,
 				409AA3492B46815E0096CDBB /* PayCheckViewController.swift */,
 				409AA3452B453F3B0096CDBB /* PayAddViewController.swift */,
-				409AA33D2B43E94B0096CDBB /* HomeViewController.swift */,
 				409AA33B2B43A6B20096CDBB /* MainTabBarController.swift */,
 			);
 			path = Controller;
@@ -104,8 +122,8 @@
 		588A092A2B4E987A00638D16 /* TalkVC */ = {
 			isa = PBXGroup;
 			children = (
-				588A09312B50EB5800638D16 /* InfoVC */,
 				409AA3412B43E9760096CDBB /* TalkViewController.swift */,
+				588A09312B50EB5800638D16 /* InfoVC */,
 				588A09252B4E5BE200638D16 /* WriteViewController.swift */,
 			);
 			path = TalkVC;
@@ -130,11 +148,20 @@
 		588A09312B50EB5800638D16 /* InfoVC */ = {
 			isa = PBXGroup;
 			children = (
-				588A09282B4E6ED400638D16 /* InfoViewController.swift */,
+				588A09322B50EC0300638D16 /* Control */,
 				588A092B2B4FB9C600638D16 /* Cell */,
 				588A092E2B4FF99100638D16 /* Model */,
 			);
 			path = InfoVC;
+			sourceTree = "<group>";
+		};
+		588A09322B50EC0300638D16 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				588A09282B4E6ED400638D16 /* InfoViewController.swift */,
+				588A09332B50EC5900638D16 /* PostViewController.swift */,
+			);
+			path = Control;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +243,7 @@
 				409AA34A2B46815E0096CDBB /* PayCheckViewController.swift in Sources */,
 				409AA33E2B43E94B0096CDBB /* HomeViewController.swift in Sources */,
 				409AA33C2B43A6B20096CDBB /* MainTabBarController.swift in Sources */,
+				588A09342B50EC5900638D16 /* PostViewController.swift in Sources */,
 				409AA3462B453F3B0096CDBB /* PayAddViewController.swift in Sources */,
 				409AA32A2B43A0470096CDBB /* SceneDelegate.swift in Sources */,
 				588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */,

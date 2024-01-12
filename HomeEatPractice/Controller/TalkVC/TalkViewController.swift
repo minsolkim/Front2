@@ -40,6 +40,12 @@ class TalkViewController: UIViewController {
     var dataViewControllers: [UIViewController] {
         [firstViewController, secondViewController]
     }
+    private func createNavigationController(with rootViewController: UIViewController) -> UINavigationController {
+           let navigationController = UINavigationController(rootViewController: rootViewController)
+           navigationController.navigationBar.isHidden = true // 네비게이션 바를 숨기거나 표시할 수 있습니다.
+           return navigationController
+       }
+
     //현재 페이지 인덱스
     var currentPage: Int = 0 {
        didSet {
@@ -142,6 +148,11 @@ class TalkViewController: UIViewController {
         // 코드로 값을 변경하면 해당 메소드 호출 x
         self.currentPage = control.selectedSegmentIndex
       }
+    // 플로팅 버튼을 눌렀을 때 실행될 액션
+    @objc func floatingButtonTapped() {
+        // 버튼이 눌렸을 때 수행할 동작을 여기에 추가합니다.
+        print("Floating button tapped!")
+    }
     @objc private func changeSegmentedControlLinePosition() {
         let segmentIndex = CGFloat(segmentControl.selectedSegmentIndex)
         let segmentWidth = segmentControl.frame.width / CGFloat(segmentControl.numberOfSegments)
