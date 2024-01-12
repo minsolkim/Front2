@@ -8,17 +8,7 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-    // 플로팅 버튼
-    private let floatingButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 57) // 버튼의 크기를 원하는 값으로 수정
-
-        // 이미지 설정
-        let buttonImage = UIImage(named: "writebtn")
-        button.setImage(buttonImage, for: .normal)
-
-        return button
-    }()
+    
     //검색 뷰
     lazy var SearchView: UIView = {
         let view = UIView()
@@ -56,7 +46,7 @@ class InfoViewController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("최신순", for: .normal)
-        button.setTitleColor(UIColor(named: "locationfont"), for: .normal)
+        button.setTitleColor(UIColor(named: "green"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         button.setImage(UIImage(named: "Rectangle 2993"), for: .normal)
         button.semanticContentAttribute = .forceRightToLeft
@@ -70,7 +60,7 @@ class InfoViewController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("성북구 월복동", for: .normal)
-        button.setTitleColor(UIColor(named: "locationfont"), for: .normal)
+        button.setTitleColor(UIColor(named: "green"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         button.setImage(UIImage(named: "Group 5049"), for: .normal)
         let spacing: CGFloat = 3.6
@@ -81,7 +71,7 @@ class InfoViewController: UIViewController {
     //테이블 뷰
     private let tableView: UITableView = {
         let view = UITableView()
-        view.allowsSelection = false
+        view.allowsSelection = true //셀 클릭이 가능하게 하는거
         view.showsVerticalScrollIndicator = true
         view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         view.register(TableViewCellOne.self, forCellReuseIdentifier: TableViewCellOne.identifier)
@@ -99,6 +89,7 @@ class InfoViewController: UIViewController {
  //정보토크
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Navigation Controller: \(self.navigationController)")
         configure()
         addSubView()
         configUI()
@@ -109,7 +100,7 @@ class InfoViewController: UIViewController {
     
     func addSubView() {
         view.addSubview(SearchView)
-        view.addSubview(floatingButton)
+        
         SearchView.addSubview(searchTextField)
         SearchView.addSubview(searchImageView)
         view.addSubview(locationButton)
@@ -139,7 +130,8 @@ class InfoViewController: UIViewController {
             locationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             procedureButton.topAnchor.constraint(equalTo: SearchView.bottomAnchor, constant: 16),
-            procedureButton.trailingAnchor.constraint(equalTo: locationButton.leadingAnchor, constant: -210),
+            procedureButton.leadingAnchor.constraint(equalTo:view.leadingAnchor,constant: 21),
+            //procedureButton.trailingAnchor.constraint(equalTo: locationButton.leadingAnchor, constant: -210),
             
             tableView.topAnchor.constraint(equalTo: locationButton.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
@@ -155,23 +147,56 @@ class InfoViewController: UIViewController {
         self.tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100 // 예상되는 높이를 설정합니다.
-        floatingButton.isHidden = false
-        floatingButton.addTarget(self, action: #selector(floatingButtonTapped), for: .touchUpInside)
+        
+        procedureButton.addTarget(self, action: #selector(showActionSheet), for: .touchUpInside)
+        }
+    //'최신순'버튼 눌렀을 때 액션 리스너
+    @objc func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+       
+        let newestAction = UIAlertAction(title: "최신순", style: .default) { _ in
+            print("최신순 selected")
+        }
+        let likesAction = UIAlertAction(title: "공감순", style: .default) { _ in
+            print("공감순 selected")
+        }
+        let viewsAction = UIAlertAction(title: "조회순", style: .default) { _ in
+            print("조회순 selected")
+        }
+        let oldestAction = UIAlertAction(title: "오래된 순", style: .default) { _ in
+            print("오래된 순 selected")
+        }
+
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+
+        actionSheet.addAction(newestAction)
+        actionSheet.addAction(likesAction)
+        actionSheet.addAction(viewsAction)
+        actionSheet.addAction(oldestAction)
+        actionSheet.addAction(cancelAction)
+
+        present(actionSheet, animated: true, completion: nil)
     }
-    // 플로팅 버튼을 눌렀을 때 실행될 액션
-    @objc func floatingButtonTapped() {
-        // 버튼이 눌렸을 때 수행할 동작을 여기에 추가합니다.
-        print("Floating button tapped!")
+    //셀 각 인덱스 클릭시 게시물 화면으로 넘어가짐
+    //InfoViewController - > PostViewController
+    @objc func navigateToPostViewController() {
+        let postVC = PostViewController()
+        // 현재의 뷰 컨트롤러가 UINavigationController에 포함되어 있다면
+           if let navigationController = self.navigationController {
+               navigationController.pushViewController(postVC, animated: true)
+               print("present click")
+           } else {
+               // UINavigationController에 포함되어 있지 않다면 UINavigationController로 감싸서 추가
+               let navController = UINavigationController(rootViewController: postVC)
+               self.present(navController, animated: true, completion: nil)
+               print("click")
+           }
     }
-    // 플로팅 버튼 자체의 레이아웃
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        // 버튼의 위치와 높이를 조정하여 약간 위로 이동
-        let buttonYPosition = view.frame.size.height - 60 - 80 - 35 // 10은 위로 조정할 값입니다.
-        floatingButton.frame = CGRect(x: view.frame.size.width - 120, y: buttonYPosition, width: 100, height: 57) // 위치와 크기 조정
-    }
+    
 
 }
+
 extension InfoViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView,
                   numberOfRowsInSection section: Int) -> Int {
@@ -184,6 +209,8 @@ extension InfoViewController: UITableViewDataSource {
       guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellOne.identifier, for: indexPath) as? TableViewCellOne else {
                   return UITableViewCell()
               }
+      //셀 클릭 시 배경색 바뀌는거 방지
+      cell.selectionStyle = .none
       let item = items[indexPath.row]
           cell.titleLabel.text = item.title
           cell.dateLabel.text = item.date
@@ -197,6 +224,12 @@ extension InfoViewController: UITableViewDataSource {
   }
 }
 extension InfoViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            print("cell click")
+            //셀을 선택된 후에 셀의 선택상태를 즉시해제 !
+            tableView.deselectRow(at: indexPath, animated: true)
+            navigateToPostViewController()
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }

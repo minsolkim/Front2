@@ -53,7 +53,7 @@ final class TableViewCellOne: UITableViewCell {
     //좋아요 개수
     var heartLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(named: "locationfont")
+        label.textColor = UIColor(named: "green")
         label.font = .systemFont(ofSize: 10)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +68,7 @@ final class TableViewCellOne: UITableViewCell {
     //댓글 개수
     var chatLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(named: "locationfont")
+        label.textColor = UIColor(named: "green")
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 10)
         label.translatesAutoresizingMaskIntoConstraints = false
