@@ -18,15 +18,18 @@ class TalkViewController: UIViewController {
             return container
         }()
     //집밥토크
-    private lazy var firstViewController: WriteViewController = {
-            let viewController = WriteViewController() // 첫 번째 뷰 컨트롤러의 인스턴스 생성
-            return viewController
-        }()
+    private lazy var firstViewController: UIViewController = {
+        let writeViewController = WriteViewController()
+        let navigationWrite = UINavigationController(rootViewController: writeViewController)
+        return navigationWrite
+    }()
+
     //정보토크
-    private lazy var secondViewController: InfoViewController = {
-            let viewController = InfoViewController() // 두 번째 뷰 컨트롤러의 인스턴스 생성
-            return viewController
-        }()
+    private lazy var secondViewController: UIViewController = {
+        let infoViewController = InfoViewController()
+        let navigationInfo = UINavigationController(rootViewController: infoViewController)
+        return navigationInfo
+    }()
     //페이지 뷰 컨트롤러
     private lazy var pageViewController: UIPageViewController = {
         let vc = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -61,7 +64,7 @@ class TalkViewController: UIViewController {
        }
      }
     private lazy var segmentControl: UISegmentedControl = {
-            let segment = UISegmentedControl()
+            let segment = UISegmentedControl(items: ["집밥토크", "정보토크"])
             segment.selectedSegmentTintColor = .clear
         
             // 배경 색 제거
@@ -69,8 +72,8 @@ class TalkViewController: UIViewController {
             // Segment 구분 라인 제거
             segment.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
             
-            segment.insertSegment(withTitle: "집밥토크", at: 0, animated: true)
-            segment.insertSegment(withTitle: "정보토크", at: 1, animated: true)
+//            segment.insertSegment(withTitle: "집밥토크", at: 0, animated: true)
+//            segment.insertSegment(withTitle: "정보토크", at: 1, animated: true)
             
             segment.selectedSegmentIndex = 0
             
@@ -91,7 +94,6 @@ class TalkViewController: UIViewController {
             segment.translatesAutoresizingMaskIntoConstraints = false
             return segment
         }()
-
     private lazy var underLineView: UIView = {
             let view = UIView()
             view.backgroundColor = .white
@@ -111,6 +113,7 @@ class TalkViewController: UIViewController {
         self.view.backgroundColor = .black
         setConstraints()
     }
+    
     func setConstraints() {
         self.view.addSubview(self.containerView)
         self.containerView.addSubview(self.segmentControl)
@@ -133,9 +136,9 @@ class TalkViewController: UIViewController {
             leadingDistance,
             self.underLineView.widthAnchor.constraint(equalTo: segmentControl.widthAnchor, multiplier: 1 / CGFloat(segmentControl.numberOfSegments)),
             
-          self.pageViewController.view.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 4),
-          self.pageViewController.view.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -4),
-          self.pageViewController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -4),
+          self.pageViewController.view.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+          self.pageViewController.view.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+          self.pageViewController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
           self.pageViewController.view.topAnchor.constraint(equalTo: self.segmentControl.bottomAnchor, constant: 5),
             
                 
