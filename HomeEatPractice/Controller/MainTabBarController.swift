@@ -42,6 +42,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let navigationTalk = UINavigationController(rootViewController: TalkViewController())
         let talkTabBarItem = UITabBarItem(title: "홈잇토크", image: UIImage(systemName: "book.closed.fill"), tag: 2)
         navigationTalk.tabBarItem = talkTabBarItem
+        //집밥토크
+        //정보토크
         
         // 마이페이지
         let navigationMyPage = UINavigationController(rootViewController: MyPageViewController())

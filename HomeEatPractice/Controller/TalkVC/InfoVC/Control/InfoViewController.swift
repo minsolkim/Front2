@@ -58,14 +58,13 @@ class InfoViewController: UIViewController {
     //위치 버튼
     lazy var locationButton: UIButton = {
         let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("성북구 월복동", for: .normal)
         button.setTitleColor(UIColor(named: "green"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         button.setImage(UIImage(named: "Group 5049"), for: .normal)
         let spacing: CGFloat = 3.6
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -spacing, bottom: 0, right: spacing)
-
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     //테이블 뷰
@@ -89,7 +88,7 @@ class InfoViewController: UIViewController {
  //정보토크
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Navigation Controller: \(self.navigationController)")
+        //print("Navigation Controller: \(self.navigationController)")
         configure()
         addSubView()
         configUI()
@@ -97,7 +96,7 @@ class InfoViewController: UIViewController {
         
         
     }
-    
+   
     func addSubView() {
         view.addSubview(SearchView)
         
@@ -112,9 +111,9 @@ class InfoViewController: UIViewController {
         SearchView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         SearchView.widthAnchor.constraint(equalToConstant: 351).isActive = true
         NSLayoutConstraint.activate([
-            SearchView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            SearchView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 21),
-            SearchView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -21),
+            SearchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            SearchView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 21),
+            SearchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -21),
             
             searchTextField.leadingAnchor.constraint(equalTo: SearchView.leadingAnchor, constant: 10),
             searchTextField.centerYAnchor.constraint(equalTo: SearchView.centerYAnchor),
@@ -182,16 +181,8 @@ class InfoViewController: UIViewController {
     //InfoViewController - > PostViewController
     @objc func navigateToPostViewController() {
         let postVC = PostViewController()
-        // 현재의 뷰 컨트롤러가 UINavigationController에 포함되어 있다면
-           if let navigationController = self.navigationController {
-               navigationController.pushViewController(postVC, animated: true)
-               print("present click")
-           } else {
-               // UINavigationController에 포함되어 있지 않다면 UINavigationController로 감싸서 추가
-               let navController = UINavigationController(rootViewController: postVC)
-               self.present(navController, animated: true, completion: nil)
-               print("click")
-           }
+        self.navigationController?.pushViewController(postVC, animated: true)
+        print("present click")
     }
     
 
