@@ -9,6 +9,7 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
+    
     //검색 뷰
     lazy var SearchView: UIView = {
         let view = UIView()
