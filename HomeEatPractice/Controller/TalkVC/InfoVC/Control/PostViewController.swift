@@ -90,10 +90,10 @@ class PostViewController: UIViewController {
         configUI()
         view.backgroundColor = .black
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+//    }
 
     func addSubView() {
         view.addSubview(circleView)

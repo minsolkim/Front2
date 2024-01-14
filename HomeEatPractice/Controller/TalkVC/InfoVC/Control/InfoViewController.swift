@@ -88,7 +88,6 @@ class InfoViewController: UIViewController {
  //정보토크
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
         //print("Navigation Controller: \(self.navigationController)")
         configure()
         addSubView()
@@ -112,9 +111,9 @@ class InfoViewController: UIViewController {
         SearchView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         SearchView.widthAnchor.constraint(equalToConstant: 351).isActive = true
         NSLayoutConstraint.activate([
-            SearchView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            SearchView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 21),
-            SearchView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -21),
+            SearchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            SearchView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 21),
+            SearchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -21),
             
             searchTextField.leadingAnchor.constraint(equalTo: SearchView.leadingAnchor, constant: 10),
             searchTextField.centerYAnchor.constraint(equalTo: SearchView.centerYAnchor),
@@ -182,7 +181,6 @@ class InfoViewController: UIViewController {
     //InfoViewController - > PostViewController
     @objc func navigateToPostViewController() {
         let postVC = PostViewController()
-        postVC.hidesBottomBarWhenPushed = true  // 네비게이션 바 숨김 설정
         self.navigationController?.pushViewController(postVC, animated: true)
         print("present click")
     }
