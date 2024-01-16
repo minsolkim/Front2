@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import Then
+import SnapKit
 
 class MyPageViewController: UIViewController {
     //네비게이션 바 구분 선
@@ -80,6 +82,28 @@ class MyPageViewController: UIViewController {
         return button
     } ()
     
+    lazy var cashBtn : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("홈잇캐시", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = .clear
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.contentHorizontalAlignment = .left //글자 왼쪽 정렬
+        button.setImage(UIImage(systemName: "next"), for: .normal)
+        button.semanticContentAttribute = .forceRightToLeft
+        //button.contentHorizontalAlignment = .leading
+        
+        return button
+    } ()
+    
+    lazy var UnderlineBar : UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    } ()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +122,8 @@ class MyPageViewController: UIViewController {
         view.addSubview(profileIdView)
         profileIdView.addSubview(profileIdLabel)
         view.addSubview(profileEditBtn)
+        view.addSubview(cashBtn)
+        view.addSubview(UnderlineBar)
     }
     func configUI() {
         NSLayoutConstraint.activate([
@@ -132,6 +158,18 @@ class MyPageViewController: UIViewController {
             profileEditBtn.heightAnchor.constraint(equalToConstant: 51),
             profileEditBtn.topAnchor.constraint(equalTo: circleView.bottomAnchor,constant: 15),
             profileEditBtn.leadingAnchor.constraint(equalTo: circleView.leadingAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            cashBtn.widthAnchor.constraint(equalToConstant: 353),
+            cashBtn.heightAnchor.constraint(equalToConstant: 51),
+            cashBtn.topAnchor.constraint(equalTo: profileEditBtn.bottomAnchor, constant: 37),
+            cashBtn.leadingAnchor.constraint(equalTo: circleView.leadingAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            UnderlineBar.widthAnchor.constraint(equalToConstant: 353),
+            UnderlineBar.heightAnchor.constraint(equalToConstant: 1),
+            UnderlineBar.topAnchor.constraint(equalTo: cashBtn.bottomAnchor, constant: 22),
+            UnderlineBar.leadingAnchor.constraint(equalTo: cashBtn.leadingAnchor)
         ])
         }
 }

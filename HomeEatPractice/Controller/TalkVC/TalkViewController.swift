@@ -9,6 +9,7 @@ import Tabman
 import Pageboy
 
 class TalkViewController: TabmanViewController {
+    var talkNavigationBarHiddenState: Bool = false
     private lazy var tabbar: TMBar.ButtonBar = {
         let bar = TMBar.ButtonBar()
         bar.backgroundView.style = .clear
@@ -20,10 +21,11 @@ class TalkViewController: TabmanViewController {
         }
         bar.indicator.weight = .custom(value: 2)
         bar.indicator.tintColor = .white
+            
+            
         return bar
     }()
     var viewcontrollers: [UIViewController] = []
-    // 탭바를 담을 컨테이너
     private lazy var containerView: UIView = {
             let container = UIView()
             container.backgroundColor = .clear
@@ -49,20 +51,41 @@ class TalkViewController: TabmanViewController {
         self.title = "홈잇토크"
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .purple
         viewcontrollers = [firstViewController, secondViewController]
 
         setConstraints()
         tabbar.dataSource = self
-       
         dataSource = self
     }
     
     func setConstraints() {
-        addBar(tabbar, dataSource: self, at: .top)
-        NSLayoutConstraint.activate([
+        // Tabman 라이브러리에서 제공하는 bar.layout을 사용하여 레이아웃을 설정합니다.
+                // custom(view:layout:)를 사용하여 탭바를 설정합니다.
+        addBar(tabbar, dataSource: self, at: .custom(view: containerView, layout: nil))
                 
+        view.addSubview(containerView)
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            containerView.heightAnchor.constraint(equalToConstant: 40)
+
         ])
+        
+//        for viewController in viewcontrollers {
+//
+//                addChild(viewController)
+//                containerView.addSubview(viewController.view)
+//                viewController.didMove(toParent: self)
+//                viewController.view.translatesAutoresizingMaskIntoConstraints = false
+//                NSLayoutConstraint.activate([
+//                    viewController.view.topAnchor.constraint(equalTo: containerView.topAnchor),
+//                    viewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+//                    viewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+//                    viewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+//                ])
+//            }
 
     }
 }
@@ -84,7 +107,9 @@ extension TalkViewController: PageboyViewControllerDataSource, TMBarDataSource {
         let title = index == 0 ? "집밥토크" : "정보토크"
         return TMBarItem(title: title)
     }
+    
 }
+
     
 
 
