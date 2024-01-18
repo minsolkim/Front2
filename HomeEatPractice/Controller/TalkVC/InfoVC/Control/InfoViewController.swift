@@ -11,19 +11,16 @@ import SnapKit
 class InfoViewController: UIViewController {
     var talkNavigationBarHiddenState: Bool = false
     //검색 뷰
-    lazy var SearchView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "searchtf")
+    private let SearchView =  UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = UIColor(named: "searchtf")
         if let borderColor = UIColor(named: "font3")?.cgColor {
-            view.layer.borderColor = borderColor
+            $0.layer.borderColor = borderColor
         }
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 7
-        view.layer.masksToBounds = true
-        
-        return view
-    } ()
+        $0.layer.borderWidth = 1
+        $0.layer.cornerRadius = 7
+        $0.layer.masksToBounds = true
+    }
     // 텍스트 필드
     private let searchTextField =  UITextField().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -33,12 +30,12 @@ class InfoViewController: UIViewController {
         $0.attributedPlaceholder = NSAttributedString(string: "관심있는 집밥을 검색해보세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? UIColor.gray])
     }
     // 검색 이미지
-    lazy var searchImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "Group 5064"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
+    private let searchImageView = UIImageView().then {
+        $0.image = UIImage(named: "Group 5064")
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.contentMode = .scaleAspectFit
+       
+    }
     // 순서버튼
     private let procedureButton =  UIButton().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +67,9 @@ class InfoViewController: UIViewController {
     }
     //플로팅버튼
     private let floatingButton = UIButton().then {
+        
         $0.setImage(UIImage(named: "writebtn"), for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.addTarget(self, action: #selector(floatingButtonAction(_:)), for: .touchUpInside)
     }
     var items: [MyItem] = [
@@ -101,6 +100,8 @@ class InfoViewController: UIViewController {
         view.addSubview(procedureButton)
         view.addSubview(tableView)
         view.addSubview(floatingButton)
+        view.bringSubviewToFront(floatingButton)
+        floatingButton.isHidden = false
     }
     func configUI() {
         tableView.backgroundColor = UIColor.black
@@ -134,7 +135,12 @@ class InfoViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            //floatingButton.topAnchor.constraint
+            floatingButton.widthAnchor.constraint(equalToConstant: 51),
+            floatingButton.heightAnchor.constraint(equalToConstant: 51),
+            floatingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            floatingButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -12)
+            
+            
             ])
         
         
