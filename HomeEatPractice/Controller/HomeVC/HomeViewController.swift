@@ -10,11 +10,17 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    private let logo: UIImageView = {
+        let logo = UIImageView()
+        logo.image = UIImage(named: "logo")
+        return logo
+    }()
+    
     // 지출추가 버튼
     private let payAddButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.systemGreen
-        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        button.backgroundColor = UIColor(r: 7, g: 231, b: 149)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = .black
         button.setTitle("지출 추가", for: .normal)
@@ -33,8 +39,8 @@ class HomeViewController: UIViewController {
     // 지출확인 버튼
     private let payCheckButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.systemGreen
-        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        button.backgroundColor = UIColor(r: 7, g: 231, b: 149)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.setImage(UIImage(systemName: "checkmark"), for: .normal)
         button.tintColor = .black
         button.setTitle("지출 확인", for: .normal)
@@ -53,8 +59,8 @@ class HomeViewController: UIViewController {
     // 지출분석 버튼
     private let payAnalyzeButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.systemGreen
-        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        button.backgroundColor = UIColor(r: 7, g: 231, b: 149)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.setImage(UIImage(systemName: "chart.bar.fill"), for: .normal)
         button.tintColor = .black
         button.setTitle("지출 분석", for: .normal)
@@ -87,17 +93,25 @@ class HomeViewController: UIViewController {
         return view
     }()
     
-    private let infoLabel: UILabel = {
+    private let infoLabel1: UILabel = {
         let label = UILabel()
-//        label.text = "(OO)님 훌륭해요!\n 저번달보다 8% 절약하고 있어요"
-        let attributedString = NSMutableAttributedString(string: "(OO)님 훌륭해요!\n 저번달보다 8% 절약하고 있어요")
+        label.text = "OO 님 훌륭해요!"
+        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.textColor = .white
+        label.textAlignment = .left
+        label.numberOfLines = 1
+        return label
+    }()
+    
+    private let infoLabel2: UILabel = {
+        let label = UILabel()
+        let attributedString = NSMutableAttributedString(string: "저번주보다 8% 절약하고 있어요")
         let stringLength = attributedString.length
-        attributedString.addAttributes([.foregroundColor : UIColor.white, .font : UIFont.systemFont(ofSize: 25, weight: .bold)], range: NSRange(location: 0, length: 11))
-        attributedString.addAttributes([.foregroundColor : UIColor.white, .font : UIFont.systemFont(ofSize: 20, weight: .bold)], range: NSRange(location: 12, length: 6))
-        attributedString.addAttributes([.foregroundColor : UIColor.systemGreen, .font : UIFont.systemFont(ofSize: 20, weight: .bold)], range: NSRange(location: 18, length: 3))
-        attributedString.addAttributes([.foregroundColor : UIColor.white, .font : UIFont.systemFont(ofSize: 20, weight: .bold)], range: NSRange(location: 21, length: 9))
+        attributedString.addAttributes([.foregroundColor : UIColor.white, .font : UIFont.systemFont(ofSize: 18, weight: .bold)], range: NSRange(location: 0, length: 7))
+        attributedString.addAttributes([.foregroundColor : UIColor(r: 7, g: 231, b: 149), .font : UIFont.systemFont(ofSize: 18, weight: .bold)], range: NSRange(location: 6, length: 3))
+        attributedString.addAttributes([.foregroundColor : UIColor.white, .font : UIFont.systemFont(ofSize: 18, weight: .bold)], range: NSRange(location: 9, length: stringLength - 9))
         label.attributedText = attributedString
-        label.numberOfLines = 2
+        label.numberOfLines = 1
         label.textAlignment = .left
         return label
     }()
@@ -117,14 +131,18 @@ class HomeViewController: UIViewController {
         self.buttonContainer.addArrangedSubview(self.payCheckButton)
         self.buttonContainer.addArrangedSubview(self.payAnalyzeButton)
         self.view.addSubview(self.progressView)
-        self.view.addSubview(self.infoLabel)
+        self.view.addSubview(self.infoLabel1)
+        self.view.addSubview(self.infoLabel2)
+        self.view.addSubview(self.logo)
         
         self.buttonContainer.translatesAutoresizingMaskIntoConstraints = false
         self.payAddButton.translatesAutoresizingMaskIntoConstraints = false
         self.payCheckButton.translatesAutoresizingMaskIntoConstraints = false
         self.payAnalyzeButton.translatesAutoresizingMaskIntoConstraints = false
         self.progressView.translatesAutoresizingMaskIntoConstraints = false
-        self.infoLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.infoLabel1.translatesAutoresizingMaskIntoConstraints = false
+        self.infoLabel2.translatesAutoresizingMaskIntoConstraints = false
+        self.logo.translatesAutoresizingMaskIntoConstraints = false
         
     }
     
@@ -132,8 +150,8 @@ class HomeViewController: UIViewController {
         NSLayoutConstraint.activate([
             self.buttonContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             self.buttonContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-            self.buttonContainer.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            self.buttonContainer.heightAnchor.constraint(equalToConstant: 180),
+            self.buttonContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24),
+            self.buttonContainer.topAnchor.constraint(equalTo: self.progressView.bottomAnchor, constant: 27),
             
             self.payAddButton.leadingAnchor.constraint(equalTo: self.buttonContainer.leadingAnchor),
             self.payAddButton.trailingAnchor.constraint(equalTo: self.buttonContainer.trailingAnchor),
@@ -146,12 +164,23 @@ class HomeViewController: UIViewController {
             
             self.progressView.leadingAnchor.constraint(equalTo: self.buttonContainer.leadingAnchor),
             self.progressView.trailingAnchor.constraint(equalTo: self.buttonContainer.trailingAnchor),
-            self.progressView.bottomAnchor.constraint(equalTo: self.buttonContainer.topAnchor, constant: -20),
-            self.progressView.heightAnchor.constraint(equalTo: self.buttonContainer.heightAnchor, constant: 200),
+            self.progressView.topAnchor.constraint(equalTo: self.infoLabel2.bottomAnchor, constant: 20),
+            self.progressView.heightAnchor.constraint(equalToConstant: 333),
             
-            self.infoLabel.leadingAnchor.constraint(equalTo: buttonContainer.leadingAnchor),
-            self.infoLabel.trailingAnchor.constraint(equalTo: buttonContainer.trailingAnchor),
-            self.infoLabel.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -15)
+            self.infoLabel1.leadingAnchor.constraint(equalTo: buttonContainer.leadingAnchor),
+            self.infoLabel1.heightAnchor.constraint(equalToConstant: 28),
+            self.infoLabel1.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 27.1),
+            
+            self.infoLabel2.leadingAnchor.constraint(equalTo: buttonContainer.leadingAnchor),
+            self.infoLabel2.heightAnchor.constraint(equalToConstant: 21),
+            self.infoLabel2.topAnchor.constraint(equalTo: infoLabel1.bottomAnchor, constant: 10),
+            
+            self.logo.leadingAnchor.constraint(equalTo: self.buttonContainer.leadingAnchor),
+            self.logo.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 72),
+            self.logo.heightAnchor.constraint(equalToConstant: 15.9),
+            self.logo.widthAnchor.constraint(equalToConstant: 93.5),
+            
+            
             
         ])
     }

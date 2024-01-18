@@ -9,6 +9,8 @@ import Tabman
 import Pageboy
 
 class TalkViewController: TabmanViewController {
+   
+    private var viewcontrollers : Array<UIViewController> = []  //뷰컨트롤러의 뷰를 넣을 배열
     private lazy var tabbar: TMBar.ButtonBar = {
         let bar = TMBar.ButtonBar()
         bar.backgroundView.style = .clear
@@ -22,46 +24,37 @@ class TalkViewController: TabmanViewController {
         bar.indicator.tintColor = .white
         return bar
     }()
-    var viewcontrollers: [UIViewController] = []
-    // 탭바를 담을 컨테이너
     private lazy var containerView: UIView = {
             let container = UIView()
             container.backgroundColor = .clear
             container.translatesAutoresizingMaskIntoConstraints = false
             return container
         }()
-    //집밥토크
-    private lazy var firstViewController: UIViewController = {
-        let writeViewController = WriteViewController()
-        let navigationWrite = UINavigationController(rootViewController: writeViewController)
-        return navigationWrite
-    }()
-
-    //정보토크
-    private lazy var secondViewController: UIViewController = {
-        let infoViewController = InfoViewController()
-        let navigationInfo = UINavigationController(rootViewController: infoViewController)
-        return navigationInfo
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "홈잇토크"
-        
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        self.view.backgroundColor = .black
-        viewcontrollers = [firstViewController, secondViewController]
-
+        self.view.backgroundColor = .clear
         setConstraints()
+        setViewcontroller()
         tabbar.dataSource = self
-       
         dataSource = self
     }
-    
+    func setViewcontroller() {
+        let firstVC = WriteViewController()
+        let secondVC = InfoViewController()
+        viewcontrollers.append(contentsOf: [firstVC,secondVC])
+    }
     func setConstraints() {
-        addBar(tabbar, dataSource: self, at: .top)
+        addBar(tabbar, dataSource: self, at: .custom(view: containerView, layout: nil))
+    
+        view.addSubview(containerView)
         NSLayoutConstraint.activate([
-                
+            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            containerView.heightAnchor.constraint(equalToConstant: 40)
+
         ])
 
     }
@@ -84,7 +77,8 @@ extension TalkViewController: PageboyViewControllerDataSource, TMBarDataSource {
         let title = index == 0 ? "집밥토크" : "정보토크"
         return TMBarItem(title: title)
     }
-}
     
+}
 
+    
 

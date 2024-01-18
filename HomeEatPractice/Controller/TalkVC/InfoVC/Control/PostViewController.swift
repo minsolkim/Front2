@@ -8,6 +8,7 @@
 import UIKit
 //게시글 화면
 class PostViewController: UIViewController {
+    
     //프로필이미지 넣을 원형뷰
     lazy var circleView: UIView = {
         let view = UIView()

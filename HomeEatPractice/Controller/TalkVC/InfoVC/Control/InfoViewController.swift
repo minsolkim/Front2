@@ -6,78 +6,72 @@
 //
 
 import UIKit
-
+import Then
+import SnapKit
 class InfoViewController: UIViewController {
-    
-    
+    var talkNavigationBarHiddenState: Bool = false
     //검색 뷰
-    lazy var SearchView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "searchtf")
+    private let SearchView =  UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = UIColor(named: "searchtf")
         if let borderColor = UIColor(named: "font3")?.cgColor {
-            view.layer.borderColor = borderColor
+            $0.layer.borderColor = borderColor
         }
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 7
-        view.layer.masksToBounds = true
-        
-        return view
-    } ()
+        $0.layer.borderWidth = 1
+        $0.layer.cornerRadius = 7
+        $0.layer.masksToBounds = true
+    }
     // 텍스트 필드
-    lazy var searchTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "관심있는 집밥을 검색해보세요"
-        textField.font = UIFont.systemFont(ofSize: 13)
-        textField.textColor = UIColor(named: "searchfont")
-        textField.attributedPlaceholder = NSAttributedString(string: "관심있는 집밥을 검색해보세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? UIColor.gray])
-
-        return textField
-    }()
+    private let searchTextField =  UITextField().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.placeholder = "관심있는 집밥을 검색해보세요"
+        $0.font = UIFont.systemFont(ofSize: 13)
+        $0.textColor = UIColor(named: "searchfont")
+        $0.attributedPlaceholder = NSAttributedString(string: "관심있는 집밥을 검색해보세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? UIColor.gray])
+    }
     // 검색 이미지
-    lazy var searchImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "Group 5064"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
+    private let searchImageView = UIImageView().then {
+        $0.image = UIImage(named: "Group 5064")
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.contentMode = .scaleAspectFit
+       
+    }
     // 순서버튼
-    lazy var procedureButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("최신순", for: .normal)
-        button.setTitleColor(UIColor(named: "green"), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        button.setImage(UIImage(named: "Rectangle 2993"), for: .normal)
-        button.semanticContentAttribute = .forceRightToLeft
-        button.contentVerticalAlignment = .center
-        button.contentHorizontalAlignment = .leading
-
-        return button
-    }()
+    private let procedureButton =  UIButton().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setTitle("최신순", for: .normal)
+        $0.setTitleColor(UIColor(named: "green"), for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        $0.setImage(UIImage(named: "Rectangle 2993"), for: .normal)
+        $0.semanticContentAttribute = .forceRightToLeft
+        $0.contentVerticalAlignment = .center
+        $0.contentHorizontalAlignment = .leading
+    }
     //위치 버튼
-    lazy var locationButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("성북구 월복동", for: .normal)
-        button.setTitleColor(UIColor(named: "green"), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        button.setImage(UIImage(named: "Group 5049"), for: .normal)
+    private let locationButton =  UIButton().then {
+        $0.setTitle("성북구 월복동", for: .normal)
+        $0.setTitleColor(UIColor(named: "green"), for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        $0.setImage(UIImage(named: "Group 5049"), for: .normal)
         let spacing: CGFloat = 3.6
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -spacing, bottom: 0, right: spacing)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: -spacing, bottom: 0, right: spacing)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     //테이블 뷰
-    private let tableView: UITableView = {
-        let view = UITableView()
-        view.allowsSelection = true //셀 클릭이 가능하게 하는거
-        view.showsVerticalScrollIndicator = true
-        view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        view.register(TableViewCellOne.self, forCellReuseIdentifier: TableViewCellOne.identifier)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    } ()
+    private let tableView =  UITableView().then {
+        $0.allowsSelection = true //셀 클릭이 가능하게 하는거
+        $0.showsVerticalScrollIndicator = true
+        $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        $0.register(TableViewCellOne.self, forCellReuseIdentifier: TableViewCellOne.identifier)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    //플로팅버튼
+    private let floatingButton = UIButton().then {
+        
+        $0.setImage(UIImage(named: "writebtn"), for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.addTarget(self, action: #selector(floatingButtonAction(_:)), for: .touchUpInside)
+    }
     var items: [MyItem] = [
         MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "heart"),heartLabel: "8",chatImage: UIImage(named: "chat"),chatLabel: "15"),
         MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "heart"),heartLabel: "8",chatImage: UIImage(named: "chat"),chatLabel: "15"),
@@ -89,7 +83,6 @@ class InfoViewController: UIViewController {
  //정보토크
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print("Navigation Controller: \(self.navigationController)")
         configure()
         addSubView()
         configUI()
@@ -106,13 +99,17 @@ class InfoViewController: UIViewController {
         view.addSubview(locationButton)
         view.addSubview(procedureButton)
         view.addSubview(tableView)
+        view.addSubview(floatingButton)
+        view.bringSubviewToFront(floatingButton)
+        floatingButton.isHidden = false
     }
     func configUI() {
         tableView.backgroundColor = UIColor.black
         SearchView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         SearchView.widthAnchor.constraint(equalToConstant: 351).isActive = true
+        
         NSLayoutConstraint.activate([
-            SearchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            SearchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 59),
             SearchView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 21),
             SearchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -21),
             
@@ -136,7 +133,14 @@ class InfoViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: locationButton.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            floatingButton.widthAnchor.constraint(equalToConstant: 51),
+            floatingButton.heightAnchor.constraint(equalToConstant: 51),
+            floatingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            floatingButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -12)
+            
+            
             ])
         
         
@@ -178,17 +182,32 @@ class InfoViewController: UIViewController {
 
         present(actionSheet, animated: true, completion: nil)
     }
+    
     //셀 각 인덱스 클릭시 게시물 화면으로 넘어가짐
     //InfoViewController - > PostViewController
     @objc func navigateToPostViewController() {
+        
         let postVC = PostViewController()
-        self.navigationController?.pushViewController(postVC, animated: true)
+        tabBarController?.tabBar.isHidden = true //하단 탭바 안보이게 전환
+        
+        navigationController?.pushViewController(postVC, animated: true)
+        
         print("present click")
     }
+    
     
 
 }
 
+extension InfoViewController {
+    //글쓰기 버튼 
+    @objc private func floatingButtonAction(_ sender: UIButton) {
+        let nextVC = InfoWritingViewController()
+        navigationController?.pushViewController(nextVC, animated: true)
+        
+    }
+    
+}
 extension InfoViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView,
                   numberOfRowsInSection section: Int) -> Int {
