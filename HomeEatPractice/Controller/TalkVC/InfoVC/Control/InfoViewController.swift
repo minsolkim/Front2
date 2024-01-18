@@ -100,13 +100,15 @@ class InfoViewController: UIViewController {
         view.addSubview(locationButton)
         view.addSubview(procedureButton)
         view.addSubview(tableView)
+        view.addSubview(floatingButton)
     }
     func configUI() {
         tableView.backgroundColor = UIColor.black
         SearchView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         SearchView.widthAnchor.constraint(equalToConstant: 351).isActive = true
+        
         NSLayoutConstraint.activate([
-            SearchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            SearchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 59),
             SearchView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 21),
             SearchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -21),
             
@@ -130,7 +132,9 @@ class InfoViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: locationButton.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            //floatingButton.topAnchor.constraint
             ])
         
         
@@ -178,8 +182,8 @@ class InfoViewController: UIViewController {
     @objc func navigateToPostViewController() {
         
         let postVC = PostViewController()
-        tabBarController?.tabBar.isHidden = true
-        // 전환
+        tabBarController?.tabBar.isHidden = true //하단 탭바 안보이게 전환
+        
         navigationController?.pushViewController(postVC, animated: true)
         
         print("present click")
@@ -188,12 +192,15 @@ class InfoViewController: UIViewController {
     
 
 }
+
 extension InfoViewController {
+    //글쓰기 버튼 
     @objc private func floatingButtonAction(_ sender: UIButton) {
         let nextVC = InfoWritingViewController()
         navigationController?.pushViewController(nextVC, animated: true)
         
     }
+    
 }
 extension InfoViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView,

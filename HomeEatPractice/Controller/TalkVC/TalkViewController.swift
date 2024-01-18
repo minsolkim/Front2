@@ -9,7 +9,8 @@ import Tabman
 import Pageboy
 
 class TalkViewController: TabmanViewController {
-    var talkNavigationBarHiddenState: Bool = false
+   
+    private var viewcontrollers : Array<UIViewController> = []  //뷰컨트롤러의 뷰를 넣을 배열
     private lazy var tabbar: TMBar.ButtonBar = {
         let bar = TMBar.ButtonBar()
         bar.backgroundView.style = .clear
@@ -21,49 +22,32 @@ class TalkViewController: TabmanViewController {
         }
         bar.indicator.weight = .custom(value: 2)
         bar.indicator.tintColor = .white
-            
-            
         return bar
     }()
-    var viewcontrollers: [UIViewController] = []
     private lazy var containerView: UIView = {
             let container = UIView()
             container.backgroundColor = .clear
             container.translatesAutoresizingMaskIntoConstraints = false
             return container
         }()
-    //집밥토크
-    private lazy var firstViewController: UIViewController = {
-        let writeViewController = WriteViewController()
-        let navigationWrite = UINavigationController(rootViewController: writeViewController)
-        return navigationWrite
-    }()
-
-    //정보토크
-    private lazy var secondViewController: UIViewController = {
-        let infoViewController = InfoViewController()
-        let navigationInfo = UINavigationController(rootViewController: infoViewController)
-        return navigationInfo
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "홈잇토크"
-        
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        self.view.backgroundColor = .purple
-        viewcontrollers = [firstViewController, secondViewController]
-
+        self.view.backgroundColor = .clear
         setConstraints()
+        setViewcontroller()
         tabbar.dataSource = self
         dataSource = self
     }
-    
+    func setViewcontroller() {
+        let firstVC = WriteViewController()
+        let secondVC = InfoViewController()
+        viewcontrollers.append(contentsOf: [firstVC,secondVC])
+    }
     func setConstraints() {
-        // Tabman 라이브러리에서 제공하는 bar.layout을 사용하여 레이아웃을 설정합니다.
-                // custom(view:layout:)를 사용하여 탭바를 설정합니다.
         addBar(tabbar, dataSource: self, at: .custom(view: containerView, layout: nil))
-                
+    
         view.addSubview(containerView)
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -72,20 +56,6 @@ class TalkViewController: TabmanViewController {
             containerView.heightAnchor.constraint(equalToConstant: 40)
 
         ])
-        
-//        for viewController in viewcontrollers {
-//
-//                addChild(viewController)
-//                containerView.addSubview(viewController.view)
-//                viewController.didMove(toParent: self)
-//                viewController.view.translatesAutoresizingMaskIntoConstraints = false
-//                NSLayoutConstraint.activate([
-//                    viewController.view.topAnchor.constraint(equalTo: containerView.topAnchor),
-//                    viewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-//                    viewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-//                    viewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-//                ])
-//            }
 
     }
 }
@@ -111,5 +81,4 @@ extension TalkViewController: PageboyViewControllerDataSource, TMBarDataSource {
 }
 
     
-
 
