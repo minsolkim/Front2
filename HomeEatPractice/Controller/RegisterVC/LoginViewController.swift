@@ -16,7 +16,7 @@ class LoginViewController : UIViewController {
     
     private let homeatLogo : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "HomeatLogo")
+        imageView.image = UIImage(named: "logo")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

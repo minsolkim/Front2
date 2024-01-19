@@ -31,7 +31,7 @@ class InfoViewController: UIViewController {
     }
     // 검색 이미지
     private let searchImageView = UIImageView().then {
-        $0.image = UIImage(named: "Group 5064")
+        $0.image = UIImage(named: "Talk7")
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleAspectFit
        
@@ -42,7 +42,7 @@ class InfoViewController: UIViewController {
         $0.setTitle("최신순", for: .normal)
         $0.setTitleColor(UIColor(named: "green"), for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        $0.setImage(UIImage(named: "Rectangle 2993"), for: .normal)
+        $0.setImage(UIImage(named: "Talk5"), for: .normal)
         $0.semanticContentAttribute = .forceRightToLeft
         $0.contentVerticalAlignment = .center
         $0.contentHorizontalAlignment = .leading
@@ -52,7 +52,7 @@ class InfoViewController: UIViewController {
         $0.setTitle("성북구 월복동", for: .normal)
         $0.setTitleColor(UIColor(named: "green"), for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        $0.setImage(UIImage(named: "Group 5049"), for: .normal)
+        $0.setImage(UIImage(named: "Talk8"), for: .normal)
         let spacing: CGFloat = 3.6
         $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: -spacing, bottom: 0, right: spacing)
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -68,16 +68,16 @@ class InfoViewController: UIViewController {
     //플로팅버튼
     private let floatingButton = UIButton().then {
         
-        $0.setImage(UIImage(named: "writebtn"), for: .normal)
+        $0.setImage(UIImage(named: "Talk3"), for: .normal)
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.addTarget(self, action: #selector(floatingButtonAction(_:)), for: .touchUpInside)
     }
     var items: [MyItem] = [
-        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "heart"),heartLabel: "8",chatImage: UIImage(named: "chat"),chatLabel: "15"),
-        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "heart"),heartLabel: "8",chatImage: UIImage(named: "chat"),chatLabel: "15"),
-        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "heart"),heartLabel: "8",chatImage: UIImage(named: "chat"),chatLabel: "15"),
-        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "heart"),heartLabel: "8",chatImage: UIImage(named: "chat"),chatLabel: "15"),
-        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "heart"),heartLabel: "8",chatImage: UIImage(named: "chat"),chatLabel: "15"),
+        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),
+        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),
+        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),
+        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),
+        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),
 
         ]
  //정보토크
