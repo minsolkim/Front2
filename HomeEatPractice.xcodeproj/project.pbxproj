@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D8CFEAD2B5A2F1400FDE2E5 /* SelectMangeUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8CFEA62B5A2F1400FDE2E5 /* SelectMangeUnitViewController.swift */; };
+		2D8CFEAE2B5A2F1400FDE2E5 /* AddLocationInfromViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8CFEA72B5A2F1400FDE2E5 /* AddLocationInfromViewController.swift */; };
+		2D8CFEAF2B5A2F1400FDE2E5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8CFEA82B5A2F1400FDE2E5 /* RegisterViewController.swift */; };
+		2D8CFEB02B5A2F1400FDE2E5 /* RegisterDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8CFEA92B5A2F1400FDE2E5 /* RegisterDoneViewController.swift */; };
+		2D8CFEB12B5A2F1400FDE2E5 /* RegisterSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8CFEAA2B5A2F1400FDE2E5 /* RegisterSelectViewController.swift */; };
+		2D8CFEB22B5A2F1400FDE2E5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8CFEAB2B5A2F1400FDE2E5 /* LoginViewController.swift */; };
+		2D8CFEB32B5A2F1400FDE2E5 /* AddBirthInformViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8CFEAC2B5A2F1400FDE2E5 /* AddBirthInformViewController.swift */; };
+		2D8CFEB82B5A301000FDE2E5 /* HomeatIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */; };
+		2D8CFEB92B5A301000FDE2E5 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */; };
+		2D8CFEBA2B5A301000FDE2E5 /* HomeatLogo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */; };
 		409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3272B43A0470096CDBB /* AppDelegate.swift */; };
 		409AA32A2B43A0470096CDBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3292B43A0470096CDBB /* SceneDelegate.swift */; };
 		409AA3312B43A0480096CDBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409AA3302B43A0480096CDBB /* Assets.xcassets */; };
@@ -31,6 +41,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D8CFEA62B5A2F1400FDE2E5 /* SelectMangeUnitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMangeUnitViewController.swift; sourceTree = "<group>"; };
+		2D8CFEA72B5A2F1400FDE2E5 /* AddLocationInfromViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationInfromViewController.swift; sourceTree = "<group>"; };
+		2D8CFEA82B5A2F1400FDE2E5 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		2D8CFEA92B5A2F1400FDE2E5 /* RegisterDoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterDoneViewController.swift; sourceTree = "<group>"; };
+		2D8CFEAA2B5A2F1400FDE2E5 /* RegisterSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterSelectViewController.swift; sourceTree = "<group>"; };
+		2D8CFEAB2B5A2F1400FDE2E5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2D8CFEAC2B5A2F1400FDE2E5 /* AddBirthInformViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBirthInformViewController.swift; sourceTree = "<group>"; };
+		2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatIcon.pdf; sourceTree = "<group>"; };
+		2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
+		2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatLogo.pdf; sourceTree = "<group>"; };
 		409AA3242B43A0470096CDBB /* HomeEatPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeEatPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		409AA3272B43A0470096CDBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		409AA3292B43A0470096CDBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +90,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D8CFEA52B5A2EB400FDE2E5 /* RegisterVC */ = {
+			isa = PBXGroup;
+			children = (
+				2D8CFEAC2B5A2F1400FDE2E5 /* AddBirthInformViewController.swift */,
+				2D8CFEA72B5A2F1400FDE2E5 /* AddLocationInfromViewController.swift */,
+				2D8CFEAB2B5A2F1400FDE2E5 /* LoginViewController.swift */,
+				2D8CFEA92B5A2F1400FDE2E5 /* RegisterDoneViewController.swift */,
+				2D8CFEAA2B5A2F1400FDE2E5 /* RegisterSelectViewController.swift */,
+				2D8CFEA82B5A2F1400FDE2E5 /* RegisterViewController.swift */,
+				2D8CFEA62B5A2F1400FDE2E5 /* SelectMangeUnitViewController.swift */,
+			);
+			path = RegisterVC;
+			sourceTree = "<group>";
+		};
+		2D8CFEB42B5A301000FDE2E5 /* LaunchScreenImage */ = {
+			isa = PBXGroup;
+			children = (
+				2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */,
+				2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */,
+				2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */,
+			);
+			path = LaunchScreenImage;
+			sourceTree = "<group>";
+		};
 		409AA31B2B43A0470096CDBB = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +135,7 @@
 		409AA3262B43A0470096CDBB /* HomeEatPractice */ = {
 			isa = PBXGroup;
 			children = (
+				2D8CFEB42B5A301000FDE2E5 /* LaunchScreenImage */,
 				588A09272B4E680400638D16 /* Controller */,
 				409AA3272B43A0470096CDBB /* AppDelegate.swift */,
 				409AA3292B43A0470096CDBB /* SceneDelegate.swift */,
@@ -122,6 +167,7 @@
 		588A09272B4E680400638D16 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2D8CFEA52B5A2EB400FDE2E5 /* RegisterVC */,
 				5875D9CA2B51773200F484DF /* HomeVC */,
 				5875D9C92B5169D600F484DF /* MypageVC */,
 				588A092A2B4E987A00638D16 /* TalkVC */,
@@ -258,7 +304,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				409AA3342B43A0480096CDBB /* LaunchScreen.storyboard in Resources */,
+				2D8CFEBA2B5A301000FDE2E5 /* HomeatLogo.pdf in Resources */,
 				409AA3312B43A0480096CDBB /* Assets.xcassets in Resources */,
+				2D8CFEB92B5A301000FDE2E5 /* LaunchScreen.png in Resources */,
+				2D8CFEB82B5A301000FDE2E5 /* HomeatIcon.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,18 +363,25 @@
 				588A09302B4FF9A900638D16 /* MyItem.swift in Sources */,
 				409AA3402B43E9640096CDBB /* CashViewController.swift in Sources */,
 				588A09262B4E5BE200638D16 /* WriteViewController.swift in Sources */,
+				2D8CFEAD2B5A2F1400FDE2E5 /* SelectMangeUnitViewController.swift in Sources */,
 				409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */,
 				409AA3482B467EFB0096CDBB /* PayAnalyzeViewController.swift in Sources */,
+				2D8CFEB02B5A2F1400FDE2E5 /* RegisterDoneViewController.swift in Sources */,
 				409AA3422B43E9760096CDBB /* TalkViewController.swift in Sources */,
 				409AA34A2B46815E0096CDBB /* PayCheckViewController.swift in Sources */,
 				58A40D772B57DD730053E302 /* EditViewController.swift in Sources */,
+				2D8CFEAF2B5A2F1400FDE2E5 /* RegisterViewController.swift in Sources */,
 				409AA33E2B43E94B0096CDBB /* HomeViewController.swift in Sources */,
+				2D8CFEB22B5A2F1400FDE2E5 /* LoginViewController.swift in Sources */,
 				58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */,
+				2D8CFEB12B5A2F1400FDE2E5 /* RegisterSelectViewController.swift in Sources */,
 				409AA33C2B43A6B20096CDBB /* MainTabBarController.swift in Sources */,
 				58A40D732B56AF190053E302 /* InfoWritingViewController.swift in Sources */,
 				588A09342B50EC5900638D16 /* PostViewController.swift in Sources */,
 				409AA3462B453F3B0096CDBB /* PayAddViewController.swift in Sources */,
 				409AA32A2B43A0470096CDBB /* SceneDelegate.swift in Sources */,
+				2D8CFEAE2B5A2F1400FDE2E5 /* AddLocationInfromViewController.swift in Sources */,
+				2D8CFEB32B5A2F1400FDE2E5 /* AddBirthInformViewController.swift in Sources */,
 				588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */,
 				588A09292B4E6ED400638D16 /* InfoViewController.swift in Sources */,
 				409AA3442B43E98A0096CDBB /* MyPageViewController.swift in Sources */,
