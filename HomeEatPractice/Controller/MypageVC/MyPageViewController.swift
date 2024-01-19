@@ -32,7 +32,7 @@ class MyPageViewController: UIViewController {
     //프로필 이미지
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "profile") // 실제 프로필 이미지의 이름으로 변경
+        imageView.image = UIImage(named: "Mypage4") // 실제 프로필 이미지의 이름으로 변경
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +92,7 @@ class MyPageViewController: UIViewController {
     }
     //화살표 버튼
     private let arrowBtn = UIImageView().then {
-        $0.image = UIImage(named: "next")
+        $0.image = UIImage(named: "Mypage3")
         $0.contentMode = .scaleAspectFit
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -112,7 +112,7 @@ class MyPageViewController: UIViewController {
     }
     //화살표 버튼
     private let arrowBtn2 = UIImageView().then {
-        $0.image = UIImage(named: "next")
+        $0.image = UIImage(named: "Mypage3")
         $0.contentMode = .scaleAspectFit
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -132,7 +132,7 @@ class MyPageViewController: UIViewController {
     }
     //화살표 버튼
     private let arrowBtn3 = UIImageView().then {
-        $0.image = UIImage(named: "next")
+        $0.image = UIImage(named: "Mypage3")
         $0.contentMode = .scaleAspectFit
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -151,7 +151,7 @@ class MyPageViewController: UIViewController {
     }
     //화살표 버튼
     private let arrowBtn4 = UIImageView().then {
-        $0.image = UIImage(named: "next")
+        $0.image = UIImage(named: "Mypage3")
         $0.contentMode = .scaleAspectFit
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -170,7 +170,7 @@ class MyPageViewController: UIViewController {
     }
     //화살표 버튼
     private let arrowBtn5 = UIImageView().then {
-        $0.image = UIImage(named: "next")
+        $0.image = UIImage(named: "Mypage3")
         $0.contentMode = .scaleAspectFit
         $0.translatesAutoresizingMaskIntoConstraints = false
     }

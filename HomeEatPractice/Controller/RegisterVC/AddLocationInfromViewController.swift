@@ -60,7 +60,7 @@ class AddLocationInfromViewController : UIViewController {
     
     private let searchButton : UIButton = {
         let button = UIButton()
-        let image = UIImage(systemName: "magnifyingglass")
+        let image = UIImage(systemName: "Login1")
         image?.withTintColor(UIColor(named: "WarmGray") ?? .white)
         button.setImage(image, for: .normal)
         return button

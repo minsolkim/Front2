@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
     
     private let logo: UIImageView = {
         let logo = UIImageView()
-        logo.image = UIImage(named: "logo")
+        logo.image = UIImage(named: "Home2")
         return logo
     }()
     
