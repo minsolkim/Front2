@@ -54,7 +54,7 @@ class AddBirthInformViewController : UIViewController {
         birthTextField.attributedPlaceholder = NSAttributedString(string: "YYYY / MM / DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "WarmGray") ?? .white])
         self.registerContainer.addArrangedSubview(birthTextField)
         
-        let continueButton = makeCustomButton()
+        let continueButton = makeCustomButton(viewController: self, nextVC: RegisterViewController())
         self.registerContainer.addArrangedSubview(continueButton)
         registerContainer.setCustomSpacing(79, after: label1)
         registerContainer.setCustomSpacing(293, after: birthTextField)

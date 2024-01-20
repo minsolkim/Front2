@@ -89,7 +89,7 @@ class PostViewController: UIViewController {
         addSubView()
         navigationcontrol()
         configUI()
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor(named: "gray3")
     }
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)

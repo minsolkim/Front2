@@ -1,15 +1,14 @@
 //
-//  TalkViewController.swift
+//  PatAddViewController.swift
 //  HomeEatPractice
 //
-//  Created by 이지우 on 2024/01/02.
+//  Created by 이지우 on 2024/01/04.
 //
+
 import UIKit
 import Tabman
 import Pageboy
-
-class TalkViewController: TabmanViewController {
-   
+class PayCheckViewController: TabmanViewController {
     private var viewcontrollers : Array<UIViewController> = []  //뷰컨트롤러의 뷰를 넣을 배열
     private lazy var tabbar: TMBar.ButtonBar = {
         let bar = TMBar.ButtonBar()
@@ -32,7 +31,7 @@ class TalkViewController: TabmanViewController {
         }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "홈잇토크"
+        self.title = "지출 확인"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.view.backgroundColor = UIColor(named: "gray2")
         setConstraints()
@@ -41,15 +40,10 @@ class TalkViewController: TabmanViewController {
         dataSource = self
     }
     func setViewcontroller() {
-        let firstVC = WriteViewController()
-        let secondVC = InfoViewController()
+        let firstVC = CalendarCheckViewController()
+        let secondVC = StatisticsViewController()
         viewcontrollers.append(contentsOf: [firstVC,secondVC])
     }
-    override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            tabBarController?.tabBar.isHidden = false
-            tabBarController?.tabBar.isTranslucent = false
-        }
     func setConstraints() {
         addBar(tabbar, dataSource: self, at: .custom(view: containerView, layout: nil))
     
@@ -64,7 +58,8 @@ class TalkViewController: TabmanViewController {
 
     }
 }
-extension TalkViewController: PageboyViewControllerDataSource, TMBarDataSource {
+
+extension PayCheckViewController: PageboyViewControllerDataSource, TMBarDataSource {
     
     func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
         return viewcontrollers.count
@@ -79,11 +74,8 @@ extension TalkViewController: PageboyViewControllerDataSource, TMBarDataSource {
     }
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
-        let title = index == 0 ? "집밥토크" : "정보토크"
+        let title = index == 0 ? "캘린더" : "통계"
         return TMBarItem(title: title)
     }
     
 }
-
-    
-

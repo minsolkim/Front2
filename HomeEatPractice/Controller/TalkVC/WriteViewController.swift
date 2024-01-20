@@ -19,7 +19,7 @@ class WriteViewController: UIViewController {
         }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor(named: "gray2")
         view.addSubview(titleLabel)
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),

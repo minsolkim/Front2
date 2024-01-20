@@ -79,8 +79,8 @@ class AddLocationInfromViewController : UIViewController {
         self.registerContainer.addArrangedSubview(locationTextField)
 //        locationTextField.inputAccessoryView = searchButton
         
-        let continueButton = makeCustomButton()
-        self.registerContainer.addArrangedSubview(continueButton)
+//        let continueButton = makeCustomButton()
+//        self.registerContainer.addArrangedSubview(continueButton)
         registerContainer.setCustomSpacing(41, after: label2)
         registerContainer.setCustomSpacing(293, after: locationTextField)
 //        locationTextField.addSubview(searchButton)

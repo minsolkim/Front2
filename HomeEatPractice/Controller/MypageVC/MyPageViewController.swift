@@ -75,7 +75,7 @@ class MyPageViewController: UIViewController {
         $0.setTitleColor(UIColor.white, for: .normal)
         $0.layer.cornerRadius = 17
         $0.layer.masksToBounds = true
-        $0.backgroundColor = UIColor.init(named: "gray3")
+        $0.backgroundColor = UIColor.init(named: "gray4")
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.addTarget(self, action: #selector(navigateToEditViewController), for: .touchUpInside)
@@ -181,6 +181,7 @@ class MyPageViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         self.title = "마이페이지"
+        self.view.backgroundColor = UIColor(named: "gray2")
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
         addSubView()

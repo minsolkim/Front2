@@ -77,7 +77,7 @@ final class TableViewCellOne: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor.black
+        backgroundColor = UIColor.init(named: "gray3")
         contentView.addSubview(titleLabel)
         contentView.addSubview(dateLabel)
         contentView.addSubview(contentLabel)
@@ -86,7 +86,7 @@ final class TableViewCellOne: UITableViewCell {
         contentView.addSubview(heartLabel)
         contentView.addSubview(chatImage)
         contentView.addSubview(chatLabel)
-        //contentView.layer.borderColor = UIColor.lightGray.cgColor
+//        contentView.layer.borderColor = UIColor.lightGray.cgColor
         contentView.backgroundColor = UIColor(named: "searchtf")
         contentView.layer.borderWidth = 1.0
         contentView.layer.cornerRadius = 10.0

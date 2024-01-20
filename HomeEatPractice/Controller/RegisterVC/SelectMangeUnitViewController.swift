@@ -97,8 +97,8 @@ class SelectMangeUnitViewController : UIViewController {
         self.registerContainer.addArrangedSubview(Container)
         self.Container.addArrangedSubview(monthButton)
         self.Container.addArrangedSubview(weekButton)
-        let continueButton = makeCustomButton()
-        self.registerContainer.addArrangedSubview(continueButton)
+       // let continueButton = makeCustomButton(viewController: self, nextVC: )
+       // self.registerContainer.addArrangedSubview(continueButton)
 
         registerContainer.setCustomSpacing(80, after: label2)
         registerContainer.setCustomSpacing(293, after: Container)

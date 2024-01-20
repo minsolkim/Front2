@@ -104,7 +104,7 @@ class InfoViewController: UIViewController {
         floatingButton.isHidden = false
     }
     func configUI() {
-        tableView.backgroundColor = UIColor.black
+        tableView.backgroundColor = UIColor.init(named: "gray2")
         SearchView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         SearchView.widthAnchor.constraint(equalToConstant: 351).isActive = true
         
@@ -157,7 +157,9 @@ class InfoViewController: UIViewController {
     //'최신순'버튼 눌렀을 때 액션 리스너
     @objc func showActionSheet() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
+        if let actionSheetView = actionSheet.view.superview?.subviews.first {
+                actionSheetView.backgroundColor = UIColor.lightGray // 또는 원하는 색상으로 변경
+            }
        
         let newestAction = UIAlertAction(title: "최신순", style: .default) { _ in
             print("최신순 selected")

@@ -118,6 +118,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(named: "gray2")
         setView()
         setConstraints()
         self.payAddButton.addTarget(self, action: #selector(tabAddButton), for: .touchUpInside)
