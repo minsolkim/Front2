@@ -17,7 +17,7 @@ class AddLocationInfromViewController : UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
-        stackView.spacing = 1
+        stackView.spacing = 12
         stackView.axis = .vertical
         stackView.alignment = .fill
         
@@ -30,7 +30,7 @@ class AddLocationInfromViewController : UIViewController {
         label.text = "거주하고 있는 동네는\n어디인가요?"
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
+        label.backgroundColor = UIColor(named: "gray2")
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -41,8 +41,8 @@ class AddLocationInfromViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "게시판 사용에 필요해요!"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
-        label.textColor = UIColor(named: "WarmGray")
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "searchfont")
         label.textAlignment = .left
         return label
     }()
@@ -52,16 +52,16 @@ class AddLocationInfromViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "주소"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
-        label.textColor = UIColor(named: "Green")
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         return label
     }()
     
     private let searchButton : UIButton = {
         let button = UIButton()
-        let image = UIImage(systemName: "magnifyingglass")
-        image?.withTintColor(UIColor(named: "WarmGray") ?? .white)
+        let image = UIImage(systemName: "Login1")
+        image?.withTintColor(UIColor(named: "searchfont") ?? .white)
         button.setImage(image, for: .normal)
         return button
     }()
@@ -69,19 +69,20 @@ class AddLocationInfromViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "RegisterBackground")
+        self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
         self.registerContainer.addArrangedSubview(label1)
         self.registerContainer.addArrangedSubview(label2)
         self.registerContainer.addArrangedSubview(label3)
         let locationTextField = makeTextField()
-        locationTextField.attributedPlaceholder = NSAttributedString(string: "도로명, 지번, 건물명 검색", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "WarmGray") ?? .white])
+        locationTextField.attributedPlaceholder = NSAttributedString(string: "도로명, 지번, 건물명 검색", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         self.registerContainer.addArrangedSubview(locationTextField)
 //        locationTextField.inputAccessoryView = searchButton
         
-        let continueButton = makeCustomButton()
+        let continueButton = makeCustomButton(viewController: self, nextVC: AddIncomeViewController())
         self.registerContainer.addArrangedSubview(continueButton)
         registerContainer.setCustomSpacing(41, after: label2)
+        registerContainer.setCustomSpacing(5, after: label3)
         registerContainer.setCustomSpacing(293, after: locationTextField)
 //        locationTextField.addSubview(searchButton)
         

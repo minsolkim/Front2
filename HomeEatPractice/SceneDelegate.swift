@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 루트 네비게이션 컨트롤러 설정
         
         // 루트뷰 컨트롤러를 위에서 설정한 네비게이션 컨트롤러로 설정
-        window?.rootViewController = mainTC
+        window?.rootViewController = LoginViewController()
         
         // 설정한 윈도우를 보이게끔 설정
         window?.makeKeyAndVisible()

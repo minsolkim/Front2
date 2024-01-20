@@ -19,13 +19,13 @@ class EditViewController: UIViewController {
     }
     //프로필 이미지
     private let profileImageView = UIImageView().then {
-        $0.image = UIImage(named: "profile") // 실제 프로필 이미지의 이름으로 변경
+        $0.image = UIImage(named: "Mypage1") // 실제 프로필 이미지의 이름으로 변경
         $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     private let profileEditBtn = UIImageView().then {
-        $0.image = UIImage(named: "editBtn")
+        $0.image = UIImage(named: "Mypage5")
         $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
         $0.translatesAutoresizingMaskIntoConstraints = false
