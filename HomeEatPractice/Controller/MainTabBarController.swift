@@ -10,17 +10,8 @@ import UIKit
 import Tabman
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
-    // 플로팅 버튼
-    private let floatingButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 57) // 버튼의 크기를 원하는 값으로 수정
-        let buttonImage = UIImage(named: "writebtn")
-        button.setImage(buttonImage, for: .normal)
-        return button
-    }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(floatingButton)
         self.delegate = self
         setupTabBar()
     }
@@ -56,31 +47,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        if let selectedViewController = selectedViewController as? UINavigationController,
-           let topViewController = selectedViewController.topViewController {
-                
-            if let talkViewController = topViewController as? TalkViewController {
-                // 현재 선택된 뷰 컨트롤러가 TalkViewController이고, 최상위 뷰 컨트롤러가 TalkViewController인 경우에만 플로팅 버튼을 보이게 함
-                   
-                    print("floating button")
-                    floatingButton.isHidden = false
-                } else {
-                    floatingButton.removeFromSuperview()
-                    floatingButton.isHidden = true
-                }
-            } else {
-                floatingButton.removeFromSuperview()
-                floatingButton.isHidden = true
-            }
-
-        // 플로팅 버튼의 위치 조정
-        let buttonYPosition = view.frame.size.height - 60 - 80 - 35
-        floatingButton.frame = CGRect(x: view.frame.size.width - 120, y: buttonYPosition, width: 100, height: 57)
     }
 
-    
-    
     // 탭바 설정. 커스텀탭바 생성해야될듯.
     private func setupTabBar() {
         self.tabBar.tintColor = .green

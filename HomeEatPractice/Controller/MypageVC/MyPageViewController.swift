@@ -343,14 +343,15 @@ class MyPageViewController: UIViewController {
     //회원 정보 수정 으로 넘어감 
     @objc func navigateToEditViewController(_ sender: Any) {
         let editVC = EditViewController()
-        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isTranslucent = false
         self.navigationController?.pushViewController(editVC, animated: true)
         print("present click")
     }
-    @objc func backAddButton(_ sender:Any) {
-        self.navigationController?.popViewController(animated: true)
-        
-    }
+//    @objc func backAddButton(_ sender:Any) {
+//        self.navigationController?.popViewController(animated: true)
+//        
+//    }
 
    
 }
