@@ -1,17 +1,14 @@
 //
-//  AddLocationInfromViewController.swift
+//  AddAccountViewController.swift
 //  HomeEatPractice
 //
-//  Created by 강삼고 on 1/14/24.
+//  Created by 강삼고 on 1/21/24.
 //
 
-
-//돋보기부터
-//전체가 버튼인지 질문
 import Foundation
 import UIKit
 
-class AddLocationInfromViewController : UIViewController {
+class AddAccountViewController : UIViewController {
     
     private let registerContainer : UIStackView = {
         let stackView = UIStackView()
@@ -27,8 +24,7 @@ class AddLocationInfromViewController : UIViewController {
     private let label1 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "거주하고 있는 동네는\n어디인가요?"
-        label.numberOfLines = 2
+        label.text = "계좌번호를 입력해주세요."
         label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
         label.backgroundColor = UIColor(named: "gray2")
         label.textColor = .white
@@ -39,7 +35,7 @@ class AddLocationInfromViewController : UIViewController {
     private let label2 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "게시판 사용에 필요해요!"
+        label.text = "캐시를 받을 때 필요해요!"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.backgroundColor = UIColor(named: "gray2")
         label.textColor = UIColor(named: "searchfont")
@@ -50,7 +46,7 @@ class AddLocationInfromViewController : UIViewController {
     private let label3 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "주소"
+        label.text = "계좌번호"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.backgroundColor = UIColor(named: "gray2")
         label.textColor = UIColor(named: "green")
@@ -75,14 +71,14 @@ class AddLocationInfromViewController : UIViewController {
         self.registerContainer.addArrangedSubview(label2)
         self.registerContainer.addArrangedSubview(label3)
         let locationTextField = makeTextField()
-        locationTextField.attributedPlaceholder = NSAttributedString(string: "도로명, 지번, 건물명 검색", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        locationTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+
+        
         self.registerContainer.addArrangedSubview(locationTextField)
 //        locationTextField.inputAccessoryView = searchButton
         
-
         let continueButton = makeCustomButton(viewController: self, nextVC: AddIncomeViewController())
         self.registerContainer.addArrangedSubview(continueButton)
-
         registerContainer.setCustomSpacing(41, after: label2)
         registerContainer.setCustomSpacing(5, after: label3)
         registerContainer.setCustomSpacing(293, after: locationTextField)

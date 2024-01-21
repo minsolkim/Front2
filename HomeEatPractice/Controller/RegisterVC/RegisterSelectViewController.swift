@@ -7,9 +7,13 @@
 
 import Foundation
 import UIKit
-
+import Then
 class RegisterSelectViewController : UIViewController {
-    
+//    private let RegisterSelectViewController : UIViewController = {
+//
+//        return RegisterSelectViewController
+//        
+//    } ()
     private let registerContainer : UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -74,11 +78,19 @@ class RegisterSelectViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
+        let RegisterSelectViewController = UINavigationController(rootViewController: RegisterSelectViewController())
+//        let navigationHome = UINavigationController(rootViewController: RegisterSelectViewController())
+        RegisterSelectViewController.navigationController?.pushViewController(RegisterSelectViewController, animated: true)
+
         self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
         let registerButton1 = makeCustomButton(viewController: self ,nextVC: RegisterViewController() )
         registerButton1.setTitle("가입하기", for: .normal)
-//        registerButton1.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
+
+       registerButton1.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
+
         self.registerContainer.addArrangedSubview(tagLabel1)
         self.registerContainer.addArrangedSubview(tagLabel2)
         self.registerContainer.addArrangedSubview(registerButton1)

@@ -27,7 +27,7 @@ class AddBirthInformViewController : UIViewController {
         label.text = "생년월일을\n입력해주세요."
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
+        label.backgroundColor = UIColor(named: "gray2")
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -38,23 +38,25 @@ class AddBirthInformViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "생년월일"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
-        label.textColor = UIColor(named: "Green")
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         return label
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "RegisterBackground")
+        self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
         self.registerContainer.addArrangedSubview(label1)
         self.registerContainer.addArrangedSubview(label2)
         let birthTextField = makeTextField()
-        birthTextField.attributedPlaceholder = NSAttributedString(string: "YYYY / MM / DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "WarmGray") ?? .white])
+        birthTextField.attributedPlaceholder = NSAttributedString(string: "YYYY / MM / DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         self.registerContainer.addArrangedSubview(birthTextField)
         
-        let continueButton = makeCustomButton(viewController: self, nextVC: RegisterViewController())
+
+        let continueButton = makeCustomButton(viewController: self, nextVC: AddLocationInfromViewController())
+
         self.registerContainer.addArrangedSubview(continueButton)
         registerContainer.setCustomSpacing(79, after: label1)
         registerContainer.setCustomSpacing(293, after: birthTextField)

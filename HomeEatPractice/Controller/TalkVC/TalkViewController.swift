@@ -55,11 +55,7 @@ class TalkViewController: TabmanViewController {
         let secondVC = InfoViewController()
         viewcontrollers.append(contentsOf: [firstVC,secondVC])
     }
-    override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            tabBarController?.tabBar.isHidden = false
-            tabBarController?.tabBar.isTranslucent = false
-        }
+
     func setConstraints() {
         addBar(tabbar, dataSource: self, at: .custom(view: containerView, layout: nil))
     
