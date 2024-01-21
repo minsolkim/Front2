@@ -1,16 +1,17 @@
 //
-//  TalkViewController.swift
+//  CashViewController.swift
 //  HomeEatPractice
 //
 //  Created by 이지우 on 2024/01/02.
 //
+
 import UIKit
 import Tabman
 import Pageboy
 
-class TalkViewController: TabmanViewController {
-   
+class CashViewController: TabmanViewController {
     private var viewcontrollers : Array<UIViewController> = []  //뷰컨트롤러의 뷰를 넣을 배열
+
     private lazy var tabbar: TMBar.ButtonBar = {
         let bar = TMBar.ButtonBar()
         bar.backgroundView.style = .clear
@@ -24,45 +25,36 @@ class TalkViewController: TabmanViewController {
         bar.indicator.tintColor = .white
         return bar
     }()
+    
+    
+    // 탭바를 담을 컨테이너
     private lazy var containerView: UIView = {
             let container = UIView()
-            container.backgroundColor = UIColor(named: "gray2")
+            container.backgroundColor = .clear
             container.translatesAutoresizingMaskIntoConstraints = false
             return container
         }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "홈잇토크"
+        self.title = "홈잇러버 OO님"
+        
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        self.view.backgroundColor = UIColor(named: "gray2")
-        setConstraints()
+        self.view.backgroundColor = UIColor(r: 30, g: 32, b: 33)
         setViewcontroller()
+        setConstraints()
         tabbar.dataSource = self
+       
         dataSource = self
     }
-    
-    //HomeView가 나타날 때 tabBar 다시 띄우기 및 저장버튼 삭제
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = false
-        tabBarController?.tabBar.isTranslucent = false
-        
-        self.navigationItem.setRightBarButton(nil, animated: false)
-    }
-    
     func setViewcontroller() {
-        let firstVC = WriteViewController()
-        let secondVC = InfoViewController()
-        viewcontrollers.append(contentsOf: [firstVC,secondVC])
+        let badgeCheckViewController = BadgeCheckViewController()
+        let cashCheckViewController = CashCheckViewController()
+        viewcontrollers.append(contentsOf: [badgeCheckViewController,cashCheckViewController])
     }
-    override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            tabBarController?.tabBar.isHidden = false
-            tabBarController?.tabBar.isTranslucent = false
-        }
     func setConstraints() {
-        addBar(tabbar, dataSource: self, at: .custom(view: containerView, layout: nil))
-    
+        addBar(tabbar, dataSource: self,  at: .custom(view: containerView, layout: nil))
+        self.tabbar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -74,7 +66,8 @@ class TalkViewController: TabmanViewController {
 
     }
 }
-extension TalkViewController: PageboyViewControllerDataSource, TMBarDataSource {
+
+extension CashViewController: PageboyViewControllerDataSource, TMBarDataSource {
     
     func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
         return viewcontrollers.count
@@ -89,11 +82,7 @@ extension TalkViewController: PageboyViewControllerDataSource, TMBarDataSource {
     }
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
-        let title = index == 0 ? "집밥토크" : "정보토크"
+        let title = index == 0 ? "홈잇뱃지" : "홈잇캐시"
         return TMBarItem(title: title)
     }
-    
 }
-
-    
-
