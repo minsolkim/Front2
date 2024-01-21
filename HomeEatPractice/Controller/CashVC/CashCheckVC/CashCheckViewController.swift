@@ -41,8 +41,12 @@ class CashCheckViewController: UIViewController {
         $0.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    //계좌로 보내기
     private let sendBankLabel = UIButton().then {
-       
+        $0.setTitle("계좌로 보내기", for: .normal)
+        $0.setTitleColor(UIColor.init(named: "green"), for: .normal)
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +74,7 @@ class CashCheckViewController: UIViewController {
         view.addSubview(cashLabel)
         view.addSubview(cashView)
         cashView.addSubview(cashAmountLabel)
+        view.addSubview(sendBankLabel)
     }
     func configUI() {
         NSLayoutConstraint.activate([
@@ -99,6 +104,13 @@ class CashCheckViewController: UIViewController {
         NSLayoutConstraint.activate([
             cashAmountLabel.centerXAnchor.constraint(equalTo: cashView.centerXAnchor),
             cashAmountLabel.centerYAnchor.constraint(equalTo: cashView.centerYAnchor),
+            
+        ])
+        NSLayoutConstraint.activate([
+            sendBankLabel.topAnchor.constraint(equalTo: cashView.bottomAnchor ,constant: 16),
+            sendBankLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -18),
+            sendBankLabel.widthAnchor.constraint(equalToConstant: 104),
+            sendBankLabel.heightAnchor.constraint(equalToConstant: 26),
             
         ])
     }
