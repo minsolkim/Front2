@@ -1,0 +1,85 @@
+//
+//  CashCheckViewController.swift
+//  HomeEatPractice
+//
+//  Created by 김민솔 on 2024/01/20.
+//
+
+import UIKit
+import Then
+
+class CashCheckViewController: UIViewController {
+    //네비게이션 바 구분 선
+    private let borderView = UIView().then {
+        $0.backgroundColor = UIColor(named: "gray1")
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    //홈잇캐시 이미지
+    private let cashimageView = UIImageView().then {
+        $0.image = UIImage(named: "Cash15")
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        
+    }
+    //홈잇캐시 label
+    private let cashLabel = UILabel().then {
+        $0.text = "홈잇캐시"
+        $0.textColor = .white
+        $0.font = UIFont.boldSystemFont(ofSize: 30)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationControl()
+        addSubviews()
+        configUI()
+        view.backgroundColor = UIColor(named: "gray2")
+    }
+    
+    func navigationControl() {
+        let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
+        //간격을 배열로 설정
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        flexibleSpace.width = 5.0
+        navigationItem.leftBarButtonItem = backbutton
+        self.navigationItem.title = "홈잇캐시 내역"
+        //title 흰색으로 설정
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            }
+    }
+    func addSubviews() {
+        view.addSubview(borderView)
+        view.addSubview(cashimageView)
+        view.addSubview(cashLabel)
+    }
+    func configUI() {
+        NSLayoutConstraint.activate([
+            borderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 24),
+            borderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            borderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            borderView.heightAnchor.constraint(equalToConstant: 1)
+        ])
+        NSLayoutConstraint.activate([
+            cashimageView.topAnchor.constraint(equalTo: borderView.topAnchor ,constant: 34),
+            cashimageView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 21),
+            cashimageView.widthAnchor.constraint(equalToConstant: 31.6),
+            cashimageView.heightAnchor.constraint(equalToConstant: 33),
+        ])
+        NSLayoutConstraint.activate([
+            cashLabel.topAnchor.constraint(equalTo: borderView.topAnchor ,constant: 28),
+            cashLabel.leadingAnchor.constraint(equalTo: cashimageView.trailingAnchor,constant: 9.4),
+            cashLabel.widthAnchor.constraint(equalToConstant: 111),
+            cashLabel.heightAnchor.constraint(equalToConstant: 36),
+        ])
+    }
+    //뒤로가기
+    @objc func back(_ sender: Any) {
+         self.navigationController?.popViewController(animated: true)
+        print("back click")
+     }
+    //저장
+    @objc func save(_ sender: UIBarButtonItem) {
+        
+    }
+
+}

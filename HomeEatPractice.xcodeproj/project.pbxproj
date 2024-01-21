@@ -42,6 +42,7 @@
 		58A40D822B5C00D30053E302 /* TagPlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D812B5C00D30053E302 /* TagPlusViewController.swift */; };
 		58A40D852B5C05330053E302 /* CashCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D842B5C05330053E302 /* CashCheckViewController.swift */; };
 		58A40D872B5C054F0053E302 /* BadgeCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D862B5C054F0053E302 /* BadgeCheckViewController.swift */; };
+		58A40D8E2B5D01F70053E302 /* WeekCashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D8D2B5D01F70053E302 /* WeekCashViewController.swift */; };
 		8ECF68A20C6802496B2B5BE9 /* Pods_HomeEatPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827ED5B3B017327767649ADC /* Pods_HomeEatPractice.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		58A40D812B5C00D30053E302 /* TagPlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPlusViewController.swift; sourceTree = "<group>"; };
 		58A40D842B5C05330053E302 /* CashCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashCheckViewController.swift; sourceTree = "<group>"; };
 		58A40D862B5C054F0053E302 /* BadgeCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCheckViewController.swift; sourceTree = "<group>"; };
+		58A40D8D2B5D01F70053E302 /* WeekCashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCashViewController.swift; sourceTree = "<group>"; };
 		5CF3251AB730DFAD7043486D /* Pods-HomeEatPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeEatPractice.debug.xcconfig"; path = "Target Support Files/Pods-HomeEatPractice/Pods-HomeEatPractice.debug.xcconfig"; sourceTree = "<group>"; };
 		827ED5B3B017327767649ADC /* Pods_HomeEatPractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeEatPractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD28DEFC31B1BB454FB5CB1 /* Pods-HomeEatPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeEatPractice.release.xcconfig"; path = "Target Support Files/Pods-HomeEatPractice/Pods-HomeEatPractice.release.xcconfig"; sourceTree = "<group>"; };
@@ -266,9 +268,9 @@
 		58A40D832B5C04F40053E302 /* CashVC */ = {
 			isa = PBXGroup;
 			children = (
+				58A40D902B5D02110053E302 /* BadgeCheckVC */,
+				58A40D8F2B5D01FC0053E302 /* CashCheckVC */,
 				409AA33F2B43E9640096CDBB /* CashViewController.swift */,
-				58A40D842B5C05330053E302 /* CashCheckViewController.swift */,
-				58A40D862B5C054F0053E302 /* BadgeCheckViewController.swift */,
 			);
 			path = CashVC;
 			sourceTree = "<group>";
@@ -279,6 +281,23 @@
 				588A09252B4E5BE200638D16 /* WriteViewController.swift */,
 			);
 			path = MealVC;
+			sourceTree = "<group>";
+		};
+		58A40D8F2B5D01FC0053E302 /* CashCheckVC */ = {
+			isa = PBXGroup;
+			children = (
+				58A40D8D2B5D01F70053E302 /* WeekCashViewController.swift */,
+				58A40D842B5C05330053E302 /* CashCheckViewController.swift */,
+			);
+			path = CashCheckVC;
+			sourceTree = "<group>";
+		};
+		58A40D902B5D02110053E302 /* BadgeCheckVC */ = {
+			isa = PBXGroup;
+			children = (
+				58A40D862B5C054F0053E302 /* BadgeCheckViewController.swift */,
+			);
+			path = BadgeCheckVC;
 			sourceTree = "<group>";
 		};
 		677FA46ECB419986B9424595 /* Pods */ = {
@@ -424,6 +443,7 @@
 				409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */,
 				409AA3482B467EFB0096CDBB /* PayAnalyzeViewController.swift in Sources */,
 				2D8CFEB02B5A2F1400FDE2E5 /* RegisterDoneViewController.swift in Sources */,
+				58A40D8E2B5D01F70053E302 /* WeekCashViewController.swift in Sources */,
 				409AA3422B43E9760096CDBB /* TalkViewController.swift in Sources */,
 				409AA34A2B46815E0096CDBB /* PayCheckViewController.swift in Sources */,
 				58A40D772B57DD730053E302 /* EditViewController.swift in Sources */,
