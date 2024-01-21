@@ -8,11 +8,40 @@
 import UIKit
 
 class InfoWritingViewController: UIViewController {
+    //MARK: - container 파트
+    
+    private let hashContainer : UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillEqually
+        stackView.spacing = 20
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        return stackView
+    }()
+    
+    
+    //MARK: - UIButton 파트
+    private let addImageButton : UIButton = {
+        let button = UIButton()
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .light)
+        let image = UIImage(systemName: "camera.fill", withConfiguration: imageConfig)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("사진 추가", for: .normal)
+        button.setImage(image, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        button.setTitleColor(UIColor.lightGray, for: .normal)
+        button.backgroundColor = .darkGray
+        button.layer.cornerRadius = 14
+        button.clipsToBounds = true
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "gray3")
-        
+        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isTranslucent = true
         navigationControl()
     }
     func navigationControl() {

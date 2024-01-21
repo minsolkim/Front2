@@ -39,6 +39,9 @@
 		58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D782B5805520053E302 /* UIColor + Extension.swift */; };
 		58A40D7E2B5BEFAA0053E302 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D7D2B5BEFAA0053E302 /* StatisticsViewController.swift */; };
 		58A40D802B5BEFC40053E302 /* CalendarCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D7F2B5BEFC40053E302 /* CalendarCheckViewController.swift */; };
+		58A40D822B5C00D30053E302 /* TagPlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D812B5C00D30053E302 /* TagPlusViewController.swift */; };
+		58A40D852B5C05330053E302 /* CashCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D842B5C05330053E302 /* CashCheckViewController.swift */; };
+		58A40D872B5C054F0053E302 /* BadgeCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D862B5C054F0053E302 /* BadgeCheckViewController.swift */; };
 		8ECF68A20C6802496B2B5BE9 /* Pods_HomeEatPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827ED5B3B017327767649ADC /* Pods_HomeEatPractice.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +80,9 @@
 		58A40D782B5805520053E302 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		58A40D7D2B5BEFAA0053E302 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		58A40D7F2B5BEFC40053E302 /* CalendarCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCheckViewController.swift; sourceTree = "<group>"; };
+		58A40D812B5C00D30053E302 /* TagPlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPlusViewController.swift; sourceTree = "<group>"; };
+		58A40D842B5C05330053E302 /* CashCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashCheckViewController.swift; sourceTree = "<group>"; };
+		58A40D862B5C054F0053E302 /* BadgeCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCheckViewController.swift; sourceTree = "<group>"; };
 		5CF3251AB730DFAD7043486D /* Pods-HomeEatPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeEatPractice.debug.xcconfig"; path = "Target Support Files/Pods-HomeEatPractice/Pods-HomeEatPractice.debug.xcconfig"; sourceTree = "<group>"; };
 		827ED5B3B017327767649ADC /* Pods_HomeEatPractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeEatPractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD28DEFC31B1BB454FB5CB1 /* Pods-HomeEatPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeEatPractice.release.xcconfig"; path = "Target Support Files/Pods-HomeEatPractice/Pods-HomeEatPractice.release.xcconfig"; sourceTree = "<group>"; };
@@ -171,12 +177,12 @@
 		588A09272B4E680400638D16 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				58A40D832B5C04F40053E302 /* CashVC */,
 				58A40D7A2B5BEF060053E302 /* PayCheckVC */,
 				2D8CFEA52B5A2EB400FDE2E5 /* RegisterVC */,
 				5875D9CA2B51773200F484DF /* HomeVC */,
 				5875D9C92B5169D600F484DF /* MypageVC */,
 				588A092A2B4E987A00638D16 /* TalkVC */,
-				409AA33F2B43E9640096CDBB /* CashViewController.swift */,
 				409AA3472B467EFB0096CDBB /* PayAnalyzeViewController.swift */,
 				409AA3452B453F3B0096CDBB /* PayAddViewController.swift */,
 				409AA33B2B43A6B20096CDBB /* MainTabBarController.swift */,
@@ -226,6 +232,7 @@
 				588A09282B4E6ED400638D16 /* InfoViewController.swift */,
 				588A09332B50EC5900638D16 /* PostViewController.swift */,
 				58A40D722B56AF190053E302 /* InfoWritingViewController.swift */,
+				58A40D812B5C00D30053E302 /* TagPlusViewController.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -254,6 +261,16 @@
 				58A40D7D2B5BEFAA0053E302 /* StatisticsViewController.swift */,
 			);
 			path = StatisticsVC;
+			sourceTree = "<group>";
+		};
+		58A40D832B5C04F40053E302 /* CashVC */ = {
+			isa = PBXGroup;
+			children = (
+				409AA33F2B43E9640096CDBB /* CashViewController.swift */,
+				58A40D842B5C05330053E302 /* CashCheckViewController.swift */,
+				58A40D862B5C054F0053E302 /* BadgeCheckViewController.swift */,
+			);
+			path = CashVC;
 			sourceTree = "<group>";
 		};
 		677FA46ECB419986B9424595 /* Pods */ = {
@@ -391,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				588A09302B4FF9A900638D16 /* MyItem.swift in Sources */,
+				58A40D872B5C054F0053E302 /* BadgeCheckViewController.swift in Sources */,
 				409AA3402B43E9640096CDBB /* CashViewController.swift in Sources */,
 				588A09262B4E5BE200638D16 /* WriteViewController.swift in Sources */,
 				2D8CFEAD2B5A2F1400FDE2E5 /* SelectMangeUnitViewController.swift in Sources */,
@@ -411,10 +429,12 @@
 				588A09342B50EC5900638D16 /* PostViewController.swift in Sources */,
 				409AA3462B453F3B0096CDBB /* PayAddViewController.swift in Sources */,
 				409AA32A2B43A0470096CDBB /* SceneDelegate.swift in Sources */,
+				58A40D852B5C05330053E302 /* CashCheckViewController.swift in Sources */,
 				2D8CFEAE2B5A2F1400FDE2E5 /* AddLocationInfromViewController.swift in Sources */,
 				2D8CFEB32B5A2F1400FDE2E5 /* AddBirthInformViewController.swift in Sources */,
 				588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */,
 				588A09292B4E6ED400638D16 /* InfoViewController.swift in Sources */,
+				58A40D822B5C00D30053E302 /* TagPlusViewController.swift in Sources */,
 				409AA3442B43E98A0096CDBB /* MyPageViewController.swift in Sources */,
 				58A40D7E2B5BEFAA0053E302 /* StatisticsViewController.swift in Sources */,
 			);
