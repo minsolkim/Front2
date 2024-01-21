@@ -193,9 +193,9 @@
 		588A092A2B4E987A00638D16 /* TalkVC */ = {
 			isa = PBXGroup;
 			children = (
+				58A40D882B5CEA530053E302 /* MealVC */,
 				409AA3412B43E9760096CDBB /* TalkViewController.swift */,
 				588A09312B50EB5800638D16 /* InfoVC */,
-				588A09252B4E5BE200638D16 /* WriteViewController.swift */,
 			);
 			path = TalkVC;
 			sourceTree = "<group>";
@@ -271,6 +271,14 @@
 				58A40D862B5C054F0053E302 /* BadgeCheckViewController.swift */,
 			);
 			path = CashVC;
+			sourceTree = "<group>";
+		};
+		58A40D882B5CEA530053E302 /* MealVC */ = {
+			isa = PBXGroup;
+			children = (
+				588A09252B4E5BE200638D16 /* WriteViewController.swift */,
+			);
+			path = MealVC;
 			sourceTree = "<group>";
 		};
 		677FA46ECB419986B9424595 /* Pods */ = {
