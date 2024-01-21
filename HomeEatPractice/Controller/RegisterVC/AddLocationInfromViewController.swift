@@ -61,11 +61,7 @@ class AddLocationInfromViewController : UIViewController {
     private let searchButton : UIButton = {
         let button = UIButton()
         let image = UIImage(systemName: "Login1")
-<<<<<<< HEAD
-        image?.withTintColor(UIColor(named: "WarmGray") ?? .white)
-=======
         image?.withTintColor(UIColor(named: "searchfont") ?? .white)
->>>>>>> KSJ
         button.setImage(image, for: .normal)
         return button
     }()
