@@ -1,20 +1,20 @@
 //
-//  AddInformViewController.swift
+//  AddAccountViewController.swift
 //  HomeEatPractice
 //
-//  Created by 강삼고 on 1/14/24.
+//  Created by 강삼고 on 1/21/24.
 //
 
 import Foundation
 import UIKit
 
-class AddBirthInformViewController : UIViewController {
+class AddAccountViewController : UIViewController {
     
     private let registerContainer : UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
-        stackView.spacing = 1
+        stackView.spacing = 12
         stackView.axis = .vertical
         stackView.alignment = .fill
         
@@ -24,8 +24,7 @@ class AddBirthInformViewController : UIViewController {
     private let label1 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "생년월일을\n입력해주세요."
-        label.numberOfLines = 2
+        label.text = "계좌번호를 입력해주세요."
         label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
         label.backgroundColor = UIColor(named: "gray2")
         label.textColor = .white
@@ -36,7 +35,18 @@ class AddBirthInformViewController : UIViewController {
     private let label2 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "생년월일"
+        label.text = "캐시를 받을 때 필요해요!"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "searchfont")
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private let label3 : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "계좌번호"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.backgroundColor = UIColor(named: "gray2")
         label.textColor = UIColor(named: "green")
@@ -44,20 +54,35 @@ class AddBirthInformViewController : UIViewController {
         return label
     }()
     
+    private let searchButton : UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "Login1")
+        image?.withTintColor(UIColor(named: "searchfont") ?? .white)
+        button.setImage(image, for: .normal)
+        return button
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
         self.registerContainer.addArrangedSubview(label1)
         self.registerContainer.addArrangedSubview(label2)
-        let birthTextField = makeTextField()
-        birthTextField.attributedPlaceholder = NSAttributedString(string: "YYYY / MM / DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
-        self.registerContainer.addArrangedSubview(birthTextField)
+        self.registerContainer.addArrangedSubview(label3)
+        let locationTextField = makeTextField()
+        locationTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+
         
-        let continueButton = makeCustomButton(viewController: self, nextVC: AddLocationInfromViewController())
+        self.registerContainer.addArrangedSubview(locationTextField)
+//        locationTextField.inputAccessoryView = searchButton
+        
+        let continueButton = makeCustomButton(viewController: self, nextVC: AddIncomeViewController())
         self.registerContainer.addArrangedSubview(continueButton)
-        registerContainer.setCustomSpacing(79, after: label1)
-        registerContainer.setCustomSpacing(293, after: birthTextField)
+        registerContainer.setCustomSpacing(41, after: label2)
+        registerContainer.setCustomSpacing(5, after: label3)
+        registerContainer.setCustomSpacing(293, after: locationTextField)
+//        locationTextField.addSubview(searchButton)
         
         NSLayoutConstraint.activate([
             
@@ -65,6 +90,8 @@ class AddBirthInformViewController : UIViewController {
             self.registerContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             self.registerContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             self.registerContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -76),
+            
+        
         ])
     }
     

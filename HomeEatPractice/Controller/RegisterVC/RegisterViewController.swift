@@ -26,8 +26,8 @@ class RegisterViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "이메일"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.backgroundColor = .darkGray
-        label.textColor = .green
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         return label
     }()
@@ -37,8 +37,8 @@ class RegisterViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "비밀번호"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.backgroundColor = .darkGray
-        label.textColor = .green
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         return label
     }()
@@ -48,8 +48,8 @@ class RegisterViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "비밀번호 확인"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.backgroundColor = .darkGray
-        label.textColor = .green
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         return label
     }()
@@ -59,39 +59,41 @@ class RegisterViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "닉네임"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.backgroundColor = .darkGray
-        label.textColor = .green
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         return label
     }()
     
-    private let continueButton : UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("계속하기", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .green
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        button.heightAnchor.constraint(equalToConstant: 57).isActive = true
-
-
-        return button
-    }()
+//    private let continueButton : UIButton = {
+//        let button = UIButton()
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setTitle("계속하기", for: .normal)
+//        button.setTitleColor(.black, for: .normal)
+//        button.backgroundColor = UIColor(named: "green")
+//        button.layer.cornerRadius = 10
+//        button.clipsToBounds = true
+//        button.heightAnchor.constraint(equalToConstant: 57).isActive = true
+//
+//
+//        return button
+//    }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .darkGray
+        self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
         let emailTextField = makeTextField()
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력해 주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "WarmGray") ?? .white])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력해 주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         let pwTextField = makeTextField()
-        pwTextField.attributedPlaceholder = NSAttributedString(string: "최소 6자리로 입력해주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "WarmGray") ?? .white])
+        pwTextField.attributedPlaceholder = NSAttributedString(string: "최소 6자리로 입력해주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         let pwCheckTextField = makeTextField()
-        pwCheckTextField.attributedPlaceholder = NSAttributedString(string: "최소 6자리로 입력해주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "WarmGray") ?? .white])
+        pwCheckTextField.attributedPlaceholder = NSAttributedString(string: "최소 6자리로 입력해주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         let nickNameTextField = makeTextField()
-        nickNameTextField.attributedPlaceholder = NSAttributedString(string: "닉네임", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "WarmGray") ?? .white])
+        nickNameTextField.attributedPlaceholder = NSAttributedString(string: "영문, 한글 모두 가능해요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        let continueButton = makeCustomButton(viewController: self, nextVC: RegisterDoneViewController())
+        continueButton.configuration?.background.backgroundColor = UIColor(named: "searchfont")
         self.registerContainer.addArrangedSubview(tagLabel1)
         self.registerContainer.addArrangedSubview(emailTextField)
         self.registerContainer.addArrangedSubview(tagLabel2)
@@ -133,7 +135,7 @@ class RegisterViewController : UIViewController {
 func makeTextField() -> UITextField {
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.backgroundColor = UIColor(named: "RegisterTextField")
+    textField.backgroundColor = UIColor(named: "gray3")
     textField.font = UIFont.systemFont(ofSize: 16, weight: .bold)
     textField.layer.cornerRadius = 10
     textField.layer.masksToBounds = true
