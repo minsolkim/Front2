@@ -27,6 +27,23 @@ class CashCheckViewController: UIViewController {
         $0.font = UIFont.boldSystemFont(ofSize: 30)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    //금액 나오는 화면
+    private let cashView = UIView().then {
+        $0.backgroundColor = UIColor(named: "gray4")
+        $0.layer.cornerRadius = 17
+        $0.layer.masksToBounds = true
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    //현재 금액
+    private let cashAmountLabel = UILabel().then {
+        $0.text = "2,300 원"
+        $0.textColor = .white
+        $0.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let sendBankLabel = UIButton().then {
+       
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationControl()
@@ -51,6 +68,8 @@ class CashCheckViewController: UIViewController {
         view.addSubview(borderView)
         view.addSubview(cashimageView)
         view.addSubview(cashLabel)
+        view.addSubview(cashView)
+        cashView.addSubview(cashAmountLabel)
     }
     func configUI() {
         NSLayoutConstraint.activate([
@@ -70,6 +89,17 @@ class CashCheckViewController: UIViewController {
             cashLabel.leadingAnchor.constraint(equalTo: cashimageView.trailingAnchor,constant: 9.4),
             cashLabel.widthAnchor.constraint(equalToConstant: 111),
             cashLabel.heightAnchor.constraint(equalToConstant: 36),
+        ])
+        NSLayoutConstraint.activate([
+            cashView.topAnchor.constraint(equalTo: cashimageView.topAnchor ,constant: 55.5),
+            cashView.leadingAnchor.constraint(equalTo: cashimageView.leadingAnchor),
+            cashView.widthAnchor.constraint(equalToConstant: 351),
+            cashView.heightAnchor.constraint(equalToConstant: 93),
+        ])
+        NSLayoutConstraint.activate([
+            cashAmountLabel.centerXAnchor.constraint(equalTo: cashView.centerXAnchor),
+            cashAmountLabel.centerYAnchor.constraint(equalTo: cashView.centerYAnchor),
+            
         ])
     }
     //뒤로가기
