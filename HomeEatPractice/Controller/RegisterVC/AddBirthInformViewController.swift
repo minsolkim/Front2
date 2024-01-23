@@ -21,6 +21,17 @@ class AddBirthInformViewController : UIViewController {
         return stackView
     }()
     
+    private let inputContainer : UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 11
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        
+        return stackView
+    }()
+    
     private let label1 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,18 +59,34 @@ class AddBirthInformViewController : UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
+        self.view.addSubview(inputContainer)
         self.registerContainer.addArrangedSubview(label1)
         self.registerContainer.addArrangedSubview(label2)
-        let birthTextField = makeTextField()
-        birthTextField.attributedPlaceholder = NSAttributedString(string: "YYYY / MM / DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
-        self.registerContainer.addArrangedSubview(birthTextField)
+        let yearTextField = makeTextField()
+        yearTextField.attributedPlaceholder = NSAttributedString(string: "YYYY", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         
+        let rightPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: yearTextField.frame.size.height))
+            yearTextField.rightView = rightPaddingView
+            yearTextField.rightViewMode = .always
+        
+        
+        let monthTextField = makeTextField()
+        monthTextField.attributedPlaceholder = NSAttributedString(string: "MM", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        let dayTextField = makeTextField()
+        dayTextField.attributedPlaceholder = NSAttributedString(string: "DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        
+        self.inputContainer.addArrangedSubview(yearTextField)
+        self.inputContainer.addArrangedSubview(monthTextField)
+        self.inputContainer.addArrangedSubview(dayTextField)
+        
+        self.registerContainer.addArrangedSubview(inputContainer)
 
-        let continueButton = makeCustomButton(viewController: self, nextVC: AddLocationInfromViewController())
+        let continueButton = makeCustomButton(viewController: self, nextVC: AddSexViewController())
 
         self.registerContainer.addArrangedSubview(continueButton)
+        
         registerContainer.setCustomSpacing(79, after: label1)
-        registerContainer.setCustomSpacing(293, after: birthTextField)
+        registerContainer.setCustomSpacing(293, after: inputContainer)
         
         NSLayoutConstraint.activate([
             

@@ -14,7 +14,7 @@ class RegisterViewController : UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
-        stackView.spacing = 42
+        stackView.spacing = 11
         stackView.axis = .vertical
         stackView.alignment = .fill
         
@@ -35,7 +35,7 @@ class RegisterViewController : UIViewController {
     private let tagLabel2 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "비밀번호"
+        label.text = "이메일 인증"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.backgroundColor = UIColor(named: "gray2")
         label.textColor = UIColor(named: "green")
@@ -46,7 +46,7 @@ class RegisterViewController : UIViewController {
     private let tagLabel3 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "비밀번호 확인"
+        label.text = "비밀번호"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.backgroundColor = UIColor(named: "gray2")
         label.textColor = UIColor(named: "green")
@@ -57,7 +57,7 @@ class RegisterViewController : UIViewController {
     private let tagLabel4 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "닉네임"
+        label.text = "비밀번호 확인"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.backgroundColor = UIColor(named: "gray2")
         label.textColor = UIColor(named: "green")
@@ -65,6 +65,16 @@ class RegisterViewController : UIViewController {
         return label
     }()
     
+    private let tagLabel5 : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "닉네임"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
+        label.textAlignment = .left
+        return label
+    }()
 //    private let continueButton : UIButton = {
 //        let button = UIButton()
 //        button.translatesAutoresizingMaskIntoConstraints = false
@@ -85,33 +95,42 @@ class RegisterViewController : UIViewController {
         self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
         let emailTextField = makeTextField()
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력해 주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력해 주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        let emailCheckTextField = makeTextField()
+        emailCheckTextField.attributedPlaceholder = NSAttributedString(string: "이메일에 전송된 번호를 입력해주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         let pwTextField = makeTextField()
-        pwTextField.attributedPlaceholder = NSAttributedString(string: "최소 6자리로 입력해주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        pwTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호는 8~20자로 입력해주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         let pwCheckTextField = makeTextField()
-        pwCheckTextField.attributedPlaceholder = NSAttributedString(string: "최소 6자리로 입력해주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        pwCheckTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호를 한 번 더 입력해주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         let nickNameTextField = makeTextField()
-        nickNameTextField.attributedPlaceholder = NSAttributedString(string: "영문, 한글 모두 가능해요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        nickNameTextField.attributedPlaceholder = NSAttributedString(string: "한국어, 영어 모두 가능해요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         let continueButton = makeCustomButton(viewController: self, nextVC: RegisterDoneViewController())
         continueButton.configuration?.background.backgroundColor = UIColor(named: "searchfont")
+        
         self.registerContainer.addArrangedSubview(tagLabel1)
         self.registerContainer.addArrangedSubview(emailTextField)
         self.registerContainer.addArrangedSubview(tagLabel2)
-        self.registerContainer.addArrangedSubview(pwTextField)
+        self.registerContainer.addArrangedSubview(emailCheckTextField)
         self.registerContainer.addArrangedSubview(tagLabel3)
-        self.registerContainer.addArrangedSubview(pwCheckTextField)
+        self.registerContainer.addArrangedSubview(pwTextField)
         self.registerContainer.addArrangedSubview(tagLabel4)
+        self.registerContainer.addArrangedSubview(pwCheckTextField)
+        self.registerContainer.addArrangedSubview(tagLabel5)
         self.registerContainer.addArrangedSubview(nickNameTextField)
         self.registerContainer.addArrangedSubview(continueButton)
-        registerContainer.setCustomSpacing(90, after: nickNameTextField)
-        setupSpacing()
+        registerContainer.setCustomSpacing(21, after: emailTextField)
+        registerContainer.setCustomSpacing(21, after: emailCheckTextField)
+        registerContainer.setCustomSpacing(21, after: pwTextField)
+        registerContainer.setCustomSpacing(21, after: pwCheckTextField)
+        registerContainer.setCustomSpacing(38, after: nickNameTextField)
+
 
         
         
         
         
         NSLayoutConstraint.activate([
-            self.registerContainer.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 127),
+            self.registerContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             self.registerContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             self.registerContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             self.registerContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -76)
@@ -124,10 +143,11 @@ class RegisterViewController : UIViewController {
     }
     
     func setupSpacing() {
-        registerContainer.setCustomSpacing(1, after: tagLabel1)
-        registerContainer.setCustomSpacing(1, after: tagLabel2)
-        registerContainer.setCustomSpacing(1, after: tagLabel3)
-        registerContainer.setCustomSpacing(1, after: tagLabel4)
+        registerContainer.setCustomSpacing(11, after: tagLabel1)
+        registerContainer.setCustomSpacing(11, after: tagLabel2)
+        registerContainer.setCustomSpacing(11, after: tagLabel3)
+        registerContainer.setCustomSpacing(11, after: tagLabel4)
+        registerContainer.setCustomSpacing(11, after: tagLabel5)
         
     }
 }
@@ -135,7 +155,7 @@ class RegisterViewController : UIViewController {
 func makeTextField() -> UITextField {
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.backgroundColor = UIColor(named: "gray3")
+    textField.backgroundColor = UIColor(named: "gray4")
     textField.font = UIFont.systemFont(ofSize: 16, weight: .bold)
     textField.layer.cornerRadius = 10
     textField.layer.masksToBounds = true
