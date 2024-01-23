@@ -51,11 +51,11 @@ class WriteViewController: UIViewController {
         button.setTitle("최신순", for: .normal)
         button.setTitleColor(UIColor(named: "green"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        button.setImage(UIImage(named: "Rectangle 2993"), for: .normal)
+        button.setImage(UIImage(named: "Talk5"), for: .normal)
         button.semanticContentAttribute = .forceRightToLeft
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .leading
-
+        button.addTarget(self, action: #selector(listAction), for: .touchUpInside)
         return button
     }()
     
@@ -160,15 +160,52 @@ class WriteViewController: UIViewController {
         return button
     }()
     
-   
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.isScrollEnabled = true
+        view.showsHorizontalScrollIndicator = false
+        view.showsVerticalScrollIndicator = false
+        view.backgroundColor = .clear
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
+    private let writingButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "Talk3"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(writingButtonAction), for: .touchUpInside)
+        return button
+    }()
+    
+    var soruce: [MealSource] = [
+        MealSource(mealLabel: "샐러드", mealImage: UIImage(named: "example1")),
+        MealSource(mealLabel: "자취생 집밥", mealImage: UIImage(named: "example1")),
+        MealSource(mealLabel: "콩나물밥", mealImage: UIImage(named: "example1")),
+        MealSource(mealLabel: "사과잼", mealImage: UIImage(named: "example1")),
+        MealSource(mealLabel: "콩나물밥", mealImage: UIImage(named: "example1")),
+        MealSource(mealLabel: "콩나물밥", mealImage: UIImage(named: "example1")),
+    ]
+    
+    //MARK: - 화면설정
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         addViews()
         setConstraints()
+        initialize()
+        collectionView.reloadData()
     }
     
-    func addViews() {
+    func initialize() {
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        collectionView.register(MealViewCell.self, forCellWithReuseIdentifier: "\(MealViewCell.self)")
+    }
+    
+    private func addViews() {
         self.view.addSubview(searchView)
         self.searchView.addSubview(searchTextField)
         self.searchView.addSubview(searchImageView)
@@ -183,12 +220,15 @@ class WriteViewController: UIViewController {
         self.widthStackView.addArrangedSubview(contentbutton4)
         self.widthStackView.addArrangedSubview(contentbutton5)
         
+        self.view.addSubview(self.collectionView)
+        
+        self.view.addSubview(self.writingButton)
+        self.view.bringSubviewToFront(writingButton)
+        self.writingButton.isHidden = false
+        
     }
     
-    
-    func setConstraints() {
-        
-        
+    private func setConstraints() {
         self.searchView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         self.searchView.widthAnchor.constraint(equalToConstant: 351).isActive = true
         
@@ -241,12 +281,107 @@ class WriteViewController: UIViewController {
             contentbutton4.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentbutton4.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
-         
             contentbutton5.widthAnchor.constraint(equalToConstant: 56),
             contentbutton5.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentbutton5.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
-           
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            collectionView.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 19),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            writingButton.widthAnchor.constraint(equalToConstant: 51),
+            writingButton.heightAnchor.constraint(equalToConstant: 51),
+            writingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            writingButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -12)
+        
         ])
     }
+    
+    // 셀을 터치했을 때 발생하는 이벤트
+    @objc func navigateToPostViewController() {
+        let MealPostVC = MealPostViewController()
+        navigationController?.pushViewController(MealPostVC, animated: true)
+        print("present click")
+    }
+    
+    // 글쓰기 버튼을 눌렀을 때 발생하는 이벤트
+    @objc func writingButtonAction() {
+        let nextVC = MealWritingViewController()
+        navigationController?.pushViewController(nextVC, animated: true)
+    }
+
+    @objc func listAction() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+       
+        let newestAction = UIAlertAction(title: "최신순", style: .default) { _ in
+            print("최신순 selected")
+        }
+        let likesAction = UIAlertAction(title: "공감순", style: .default) { _ in
+            print("공감순 selected")
+        }
+        let viewsAction = UIAlertAction(title: "조회순", style: .default) { _ in
+            print("조회순 selected")
+        }
+        let oldestAction = UIAlertAction(title: "오래된 순", style: .default) { _ in
+            print("오래된 순 selected")
+        }
+
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+
+        actionSheet.addAction(newestAction)
+        actionSheet.addAction(likesAction)
+        actionSheet.addAction(viewsAction)
+        actionSheet.addAction(oldestAction)
+        actionSheet.addAction(cancelAction)
+
+        present(actionSheet, animated: true, completion: nil)
+    }
 }
+
+
+//MARK: - 프로토콜
+extension WriteViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return soruce.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MealViewCell.self)", for: indexPath) as? MealViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        let item = soruce[indexPath.row]
+        cell.mealLabel.text = item.mealLabel
+        cell.mealImage.image = item.mealImage
+        return cell
+    }
+}
+
+extension WriteViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigateToPostViewController()
+    }
+}
+
+// 여기서 cell의 크기를 결정
+extension WriteViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width = collectionView.bounds.width / 2 - 20
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16.0
+        }
+        
+        // CollectionView Cell의 옆 간격
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            return 30.0
+        }
+}
+
+    
+    

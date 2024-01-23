@@ -2,11 +2,12 @@
 //  BadgeCheckViewController.swift
 //  HomeEatPractice
 //
-//  Created by 이지우 on 2024/01/19.
+//  Created by 김민솔 on 2024/01/19.
 //
 
 import UIKit
-class BadgeCheckViewController: UIViewController {
+import Then
+class WeekCashViewController: UIViewController {
     
     private lazy var cashIcon: UIImageView = {
         let icon = UIImageView()
@@ -15,15 +16,13 @@ class BadgeCheckViewController: UIViewController {
         return icon
     }()
     
-    private lazy var badgeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "홈잇뱃지 4개"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        label.numberOfLines = 1
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let cashLabel = UIButton().then {
+        $0.setTitle("홈잇캐시 2100원", for: .normal)
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.addTarget(self, action: #selector(navigateToCashCheckViewController), for: .touchUpInside)
+        
+    }
     
     private lazy var badgeView: UIView = {
         let view = UIView()
@@ -43,7 +42,7 @@ class BadgeCheckViewController: UIViewController {
     
     func setConstraints() {
         self.view.addSubview(self.cashIcon)
-        self.view.addSubview(self.badgeLabel)
+        self.view.addSubview(self.cashLabel)
         self.view.addSubview(self.badgeView)
         
         NSLayoutConstraint.activate([
@@ -53,15 +52,20 @@ class BadgeCheckViewController: UIViewController {
             self.cashIcon.heightAnchor.constraint(equalToConstant: 15),
             self.cashIcon.widthAnchor.constraint(equalToConstant: 15),
             
-            self.badgeLabel.leadingAnchor.constraint(equalTo: cashIcon.trailingAnchor, constant: 6),
-            self.badgeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 59),
-            self.badgeLabel.heightAnchor.constraint(equalToConstant: 22),
+            self.cashLabel.leadingAnchor.constraint(equalTo: cashIcon.trailingAnchor, constant: 6),
+            self.cashLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 59),
+            self.cashLabel.heightAnchor.constraint(equalToConstant: 22),
             
             self.badgeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             self.badgeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            self.badgeView.topAnchor.constraint(equalTo: badgeLabel.bottomAnchor, constant: 21),
+            self.badgeView.topAnchor.constraint(equalTo: cashLabel.bottomAnchor, constant: 21),
             self.badgeView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-}
+    @objc func navigateToCashCheckViewController(_ sender: Any) {
+        let cashCheckVC = CashCheckViewController()
 
+        self.navigationController?.pushViewController(cashCheckVC, animated: true)
+        print("cashcheck click")
+    }
+}

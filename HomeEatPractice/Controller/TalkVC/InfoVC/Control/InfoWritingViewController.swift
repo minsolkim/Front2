@@ -6,14 +6,55 @@
 //
 
 import UIKit
-
+import Then
 class InfoWritingViewController: UIViewController {
+    //MARK: - container 파트
     
+    private let hashContainer : UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillEqually
+        stackView.spacing = 20
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        return stackView
+    }()
+    
+    
+    //MARK: - UIButton 파트
+    private let addImageButton : UIButton = {
+        let button = UIButton()
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .light)
+        let image = UIImage(systemName: "camera.fill", withConfiguration: imageConfig)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("사진 추가", for: .normal)
+        button.setImage(image, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        button.setTitleColor(UIColor.lightGray, for: .normal)
+        button.backgroundColor = UIColor(named: "searchtf")
+        button.layer.cornerRadius = 14
+        button.clipsToBounds = true
+        return button
+    }()
+    private let tagImage = UIImageView().then {
+        $0.image = UIImage(named: "talk11")
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "gray3")
         
         navigationControl()
+        addSubViews()
+        configUI()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            
+            tabBarController?.tabBar.isHidden = false
+            tabBarController?.tabBar.isTranslucent = false
     }
     func navigationControl() {
         let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
@@ -30,6 +71,28 @@ class InfoWritingViewController: UIViewController {
             navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             }
     }
+    func addSubViews() {
+        
+    }
+    func configUI() {
+        let customButton = makeCustomButton()
+        customButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(tagImage)
+        self.view.addSubview(customButton)
+        NSLayoutConstraint.activate([
+                tagImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 265),
+                tagImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+                tagImage.heightAnchor.constraint(equalToConstant: 42),
+                tagImage.widthAnchor.constraint(equalToConstant: 42)
+        ])
+        NSLayoutConstraint.activate([
+            customButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            customButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 108),
+            customButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -109),
+            customButton.heightAnchor.constraint(equalToConstant: 176),
+        ])
+    }
     //뒤로가기
     @objc func back(_ sender: Any) {
          self.navigationController?.popViewController(animated: true)
@@ -37,6 +100,48 @@ class InfoWritingViewController: UIViewController {
      }
     //저장
     @objc func save(_ sender: UIBarButtonItem) {
+        
+    }
+    func makeCustomButton() -> UIButton {
+        var config = UIButton.Configuration.plain()
+        var attributedTitle = AttributedString("사진 추가")
+        attributedTitle.font = .systemFont(ofSize: 18, weight: .bold)
+        config.attributedTitle = attributedTitle
+        let pointSize = CGFloat(30)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: pointSize)
+        config.image = UIImage.init(named: "Talk1")
+        config.preferredSymbolConfigurationForImage = imageConfig
+
+        config.imagePlacement = .top
+        config.background.backgroundColor = .darkGray
+        config.baseForegroundColor = .lightGray
+        config.cornerStyle = .small
+
+        // 이미지와 텍스트 간격 조절
+        config.imagePadding = 12.7
+        config.titlePadding = 10
+
+        let customButton = UIButton(configuration: config)
+        customButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+
+        return customButton
+    }
+    
+    @objc func buttonTapped(){
+        let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let firstAction = UIAlertAction(title: "사진 촬영", style: .default)
+        let secondAction = UIAlertAction(title: "앨범에서 사진 선택", style: .default)
+        let cancleAction = UIAlertAction(title: "취소", style: .cancel , handler: nil)
+        firstAction.setValue(UIColor.white, forKey: "titleTextColor")
+        secondAction.setValue(UIColor.white, forKey: "titleTextColor")
+        cancleAction.setValue(UIColor.red, forKey: "titleTextColor")
+        
+        
+        actionSheetController.addAction(firstAction)
+        actionSheetController.addAction(secondAction)
+        actionSheetController.addAction(cancleAction)
+        self.present(actionSheetController, animated: true, completion: nil)
+        
         
     }
 }
