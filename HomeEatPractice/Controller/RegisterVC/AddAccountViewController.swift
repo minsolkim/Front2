@@ -14,7 +14,7 @@ class AddAccountViewController : UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
-        stackView.spacing = 12
+        stackView.spacing = 5
         stackView.axis = .vertical
         stackView.alignment = .fill
         
@@ -46,6 +46,17 @@ class AddAccountViewController : UIViewController {
     private let label3 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "은행 선택"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private let label4 : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "계좌번호"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.backgroundColor = UIColor(named: "gray2")
@@ -70,19 +81,20 @@ class AddAccountViewController : UIViewController {
         self.registerContainer.addArrangedSubview(label1)
         self.registerContainer.addArrangedSubview(label2)
         self.registerContainer.addArrangedSubview(label3)
-        let locationTextField = makeTextField()
-        locationTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
-
+        let bankButton = makeCustomButton(viewController: self, nextVC: AddAccountViewController())
+        self.registerContainer.addArrangedSubview(bankButton)
+        self.registerContainer.addArrangedSubview(label4)
         
-        self.registerContainer.addArrangedSubview(locationTextField)
-//        locationTextField.inputAccessoryView = searchButton
+        let accountTextField = makeTextField()
+        accountTextField.attributedPlaceholder = NSAttributedString(string: "계좌 번호를 입력해주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         
+        registerContainer.addArrangedSubview(accountTextField)
         let continueButton = makeCustomButton(viewController: self, nextVC: AddIncomeViewController())
         self.registerContainer.addArrangedSubview(continueButton)
+        registerContainer.setCustomSpacing(51, after: label1)
         registerContainer.setCustomSpacing(41, after: label2)
-        registerContainer.setCustomSpacing(5, after: label3)
-        registerContainer.setCustomSpacing(293, after: locationTextField)
-//        locationTextField.addSubview(searchButton)
+        registerContainer.setCustomSpacing(44, after: bankButton)
+        registerContainer.setCustomSpacing(153, after: accountTextField)
         
         NSLayoutConstraint.activate([
             

@@ -1,5 +1,5 @@
 //
-//  AddFoodExpenseViewController.swift
+//  AddBudgetViewController.swift
 //  HomeEatPractice
 //
 //  Created by 강삼고 on 1/21/24.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AddFoodExpenseViewController : UIViewController {
+class AddBudgetViewController : UIViewController {
     
     private let registerContainer : UIStackView = {
         let stackView = UIStackView()
@@ -79,7 +79,7 @@ class AddFoodExpenseViewController : UIViewController {
         self.registerContainer.addArrangedSubview(locationTextField)
 //        locationTextField.inputAccessoryView = searchButton
         
-        let continueButton = makeCustomButton(viewController: self, nextVC: AddIncomeViewController())
+        let continueButton = makeCustomButton(viewController: self, nextVC: AddAccountViewController())
         self.registerContainer.addArrangedSubview(continueButton)
         registerContainer.setCustomSpacing(41, after: label2)
         registerContainer.setCustomSpacing(5, after: label3)

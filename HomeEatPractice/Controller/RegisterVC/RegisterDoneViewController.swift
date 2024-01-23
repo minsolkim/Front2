@@ -44,21 +44,6 @@ class RegisterDoneViewController : UIViewController {
         return label
     }()
     
-//    private let button : UIButton = {
-//        let button = UIButton()
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle("추가 정보 입력하기", for: .normal)
-//        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-//        button.setTitleColor(.black, for: .normal)
-//        button.backgroundColor = UIColor(named: "green")
-//        button.layer.cornerRadius = 10
-//        button.clipsToBounds = true
-//        button.heightAnchor.constraint(equalToConstant: 57).isActive = true
-//
-//
-//        return button
-//    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "gray2")
@@ -68,8 +53,9 @@ class RegisterDoneViewController : UIViewController {
         
         let button = makeCustomButton(viewController: self, nextVC: AddBirthInformViewController())
         self.registerContainer.addArrangedSubview(button)
+        button.configuration?.background.backgroundColor = UIColor(named: "green")
         button.setTitle("추가 정보 입력하기", for: .normal)
-        registerContainer.setCustomSpacing(263, after: label2)
+        registerContainer.setCustomSpacing(260, after: label2)
 
         
         

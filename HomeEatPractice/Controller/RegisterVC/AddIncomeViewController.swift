@@ -79,7 +79,7 @@ class AddIncomeViewController : UIViewController {
         self.registerContainer.addArrangedSubview(locationTextField)
 //        locationTextField.inputAccessoryView = searchButton
         
-        let continueButton = makeCustomButton(viewController: self, nextVC: AddIncomeViewController())
+        let continueButton = makeCustomButton(viewController: self, nextVC: AddBudgetViewController())
         self.registerContainer.addArrangedSubview(continueButton)
         registerContainer.setCustomSpacing(41, after: label2)
         registerContainer.setCustomSpacing(5, after: label3)

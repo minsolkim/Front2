@@ -9,11 +9,7 @@ import Foundation
 import UIKit
 import Then
 class RegisterSelectViewController : UIViewController {
-//    private let RegisterSelectViewController : UIViewController = {
-//
-//        return RegisterSelectViewController
-//        
-//    } ()
+    
     private let registerContainer : UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +27,7 @@ class RegisterSelectViewController : UIViewController {
         label.text = "1인 가구를 위한 식비 챌린지 커뮤니티"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.backgroundColor = UIColor(named: "gray2")
-        label.textColor = .green
+        label.textColor = UIColor(named: "green")
         label.textAlignment = .center
         return label
     }()
@@ -40,24 +36,11 @@ class RegisterSelectViewController : UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "가입하기를 누르면 이용약관 동의로 간주합니다."
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
         label.backgroundColor = UIColor(named: "gray2")
         label.textColor = .white
         label.textAlignment = .center
         return label
-    }()
-    
-    private let registerButton : UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("가입하기", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = UIColor(named: "green")
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
-
-        return button
     }()
     
     private let existButton: UIButton = {
@@ -71,29 +54,26 @@ class RegisterSelectViewController : UIViewController {
         button.layer.borderWidth = 2
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
-//        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+
 
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil) // title 부분 수정
+        backBarButtonItem.tintColor = .white
+        self.navigationItem.backBarButtonItem = backBarButtonItem
         
-        let RegisterSelectViewController = UINavigationController(rootViewController: RegisterSelectViewController())
-//        let navigationHome = UINavigationController(rootViewController: RegisterSelectViewController())
-        RegisterSelectViewController.navigationController?.pushViewController(RegisterSelectViewController, animated: true)
-
+        
         self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
-        let registerButton1 = makeCustomButton(viewController: self ,nextVC: RegisterViewController() )
-        registerButton1.setTitle("가입하기", for: .normal)
-
-       registerButton1.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
-
+        let registerButton = makeCustomButton(viewController: self ,nextVC: RegisterViewController() )
+        registerButton.setTitle("가입하기", for: .normal)
+        registerButton.configuration?.background.backgroundColor = UIColor(named: "green")
         self.registerContainer.addArrangedSubview(tagLabel1)
         self.registerContainer.addArrangedSubview(tagLabel2)
-        self.registerContainer.addArrangedSubview(registerButton1)
+        self.registerContainer.addArrangedSubview(registerButton)
         self.registerContainer.addArrangedSubview(existButton)
         
         
@@ -101,22 +81,13 @@ class RegisterSelectViewController : UIViewController {
         
         
         NSLayoutConstraint.activate([
-            self.registerContainer.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.registerContainer.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+            self.registerContainer.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 281),
+            self.registerContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -76),
+            self.registerContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            self.registerContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
         ])
     }
     
-    @objc func registerButtonTapped(){
-        let nextVC = RegisterViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
-        
-    }
-    @objc func tabAddButton(_ sender: Any) {
-        let nextVC = PayAddViewController()
-        present(nextVC, animated: true, completion: nil)
-        
-
-    }
     
 }
 
@@ -128,13 +99,12 @@ func makeCustomButton(viewController : UIViewController, nextVC : UIViewControll
     config.attributedTitle = attributedTitle
 
     config.imagePlacement = .top
-    config.background.backgroundColor = UIColor(named: "green")
+    config.background.backgroundColor = UIColor(named: "searchfont")
     config.baseForegroundColor = .black
     config.cornerStyle = .small
 
     let buttonAction = UIAction{ _ in
         viewController.navigationController?.pushViewController(nextVC, animated: true)
-        print("hello")
     }
     let customButton = UIButton(configuration: config, primaryAction: buttonAction)
     customButton.heightAnchor.constraint(equalToConstant: 57).isActive = true
