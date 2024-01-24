@@ -40,6 +40,7 @@ class TalkViewController: TabmanViewController {
         tabbar.dataSource = self
         dataSource = self
     }
+
     func setViewcontroller() {
         let firstVC = WriteViewController()
         let secondVC = InfoViewController()

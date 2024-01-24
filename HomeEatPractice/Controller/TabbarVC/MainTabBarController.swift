@@ -11,9 +11,9 @@ import Tabman
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     private let tabItems: [TabbarInfo] = [
-        TabbarInfo(title: "홈", imageName: "hometab", selectedImageName: "hometab2"),
-        TabbarInfo(title: "홈잇캐시", imageName: "cashtab", selectedImageName: "cashtab2"),
-        TabbarInfo(title: "홈잇토크", imageName: "talktab", selectedImageName: "talktab2"),
+        TabbarInfo(title: "     홈", imageName: "hometab", selectedImageName: "hometab2"),
+        TabbarInfo(title: " 홈잇캐시", imageName: "cashtab", selectedImageName: "cashtab2"),
+        TabbarInfo(title: " 홈잇토크", imageName: "talktab", selectedImageName: "talktab2"),
         TabbarInfo(title: "마이페이지", imageName: "profiletab", selectedImageName: "profiletab2"),
     ]
     private var newTabBarHeight: CGFloat = 89
@@ -83,9 +83,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             button.addTarget(self, action: #selector(tabBarItemTapped(_:)), for: .touchUpInside)
             button.setTitle(tabItem.title, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 10) // 적절한 크기로 변경
-            button.setTitleColor(UIColor.init(named: "searchfont"), for: .normal)
-            button.titleEdgeInsets = UIEdgeInsets(top: 25, left: -button.imageView!.frame.size.width, bottom: -button.imageView!.frame.size.height, right: 0)
-            button.contentVerticalAlignment = .center
+            button.titleEdgeInsets = UIEdgeInsets(top: 25, left: -button.imageView!.frame.size.width - 5, bottom: -button.imageView!.frame.size.height, right: 0)
+            button.contentHorizontalAlignment = .leading
+           // button.contentVerticalAlignment = .center
             customTabBar.addSubview(button)
         }
         // 탭바 아이템 타이틀 설정
@@ -106,6 +106,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                     let tabItem = tabItems[buttonIndex]
                     let imageName = isSelected ? tabItem.selectedImageName : tabItem.imageName
                     button.setImage(UIImage(named: imageName), for: .normal)
+                    button.setTitleColor(isSelected ? UIColor(named: "green") : UIColor(named: "searchfont"), for: .normal)
                 }
             }
         }
