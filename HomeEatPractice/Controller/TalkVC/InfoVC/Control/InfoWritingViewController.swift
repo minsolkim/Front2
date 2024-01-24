@@ -36,8 +36,58 @@ class InfoWritingViewController: UIViewController {
         button.clipsToBounds = true
         return button
     }()
-    private let tagImage = UIImageView().then {
-        $0.image = UIImage(named: "talk11")
+    //#해시태그
+    private let tagImage = UIButton().then {
+        $0.setImage(UIImage(named: "Talk11"), for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.addTarget(self, action: #selector(navigateToTagPlusViewController), for: .touchUpInside)
+
+    }
+   
+    //태그 문구
+    private let tagButton = UIButton().then {
+        $0.setTitle("#해시태그를 추가해 보세요!", for: .normal)
+        $0.setTitleColor(UIColor(named: "green"), for: .normal)
+        $0.layer.cornerRadius = 22.5
+        $0.clipsToBounds = true
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.init(named: "green")?.cgColor
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    //제목
+    private let titleLabel = UILabel().then {
+        $0.text = "제목"
+        $0.textColor = UIColor.init(named: "green")
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    //제목 입력 텍스트 필드
+    private let titleField = UITextField().then {
+        $0.placeholder = "제목을 입력하세요!"
+        $0.font = UIFont.systemFont(ofSize: 16)
+        $0.textColor = UIColor(named: "font5")
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
+        $0.backgroundColor = UIColor(named: "gray4")
+        $0.attributedPlaceholder = NSAttributedString(string: "     제목을 입력하세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "font5") ?? UIColor.gray])
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        
+    }
+    private let contentLabel = UILabel().then {
+        $0.text = "내용"
+        $0.textColor = UIColor.init(named: "green")
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let contentField = UITextField().then {
+        $0.placeholder = "질문이나 이야기를 해 보세요!"
+        $0.font = UIFont.systemFont(ofSize: 16)
+        $0.textColor = UIColor(named: "font5")
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
+        $0.backgroundColor = UIColor(named: "gray4")
+        $0.attributedPlaceholder = NSAttributedString(string: "     질문이나 이야기를 해 보세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "font5") ?? UIColor.gray])
         $0.translatesAutoresizingMaskIntoConstraints = false
         
     }
@@ -46,7 +96,6 @@ class InfoWritingViewController: UIViewController {
         view.backgroundColor = UIColor(named: "gray3")
         
         navigationControl()
-        addSubViews()
         configUI()
         
     }
@@ -71,20 +120,54 @@ class InfoWritingViewController: UIViewController {
             navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             }
     }
-    func addSubViews() {
-        
-    }
+    
     func configUI() {
         let customButton = makeCustomButton()
         customButton.translatesAutoresizingMaskIntoConstraints = false
-        
+        self.view.addSubview(tagButton)
         self.view.addSubview(tagImage)
+        self.view.addSubview(titleLabel)
+        self.view.addSubview(titleField)
+        self.view.addSubview(contentLabel)
+        self.view.addSubview(contentField)
         self.view.addSubview(customButton)
+        NSLayoutConstraint.activate([
+                tagButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
+                tagButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
+                tagButton.heightAnchor.constraint(equalToConstant: 40),
+                tagButton.widthAnchor.constraint(equalToConstant: 214)
+                //tagButton.trailingAnchor.constraint(equalTo: self.tagImage.leadingAnchor,constant: 95),
+                
+        ])
         NSLayoutConstraint.activate([
                 tagImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 265),
                 tagImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
                 tagImage.heightAnchor.constraint(equalToConstant: 42),
                 tagImage.widthAnchor.constraint(equalToConstant: 42)
+        ])
+        NSLayoutConstraint.activate([
+                titleLabel.topAnchor.constraint(equalTo: tagButton.bottomAnchor, constant: 41),
+                titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 21),
+                titleLabel.heightAnchor.constraint(equalToConstant: 34),
+                titleLabel.widthAnchor.constraint(equalToConstant: 34)
+        ])
+        NSLayoutConstraint.activate([
+                titleField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+                titleField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+                titleField.heightAnchor.constraint(equalToConstant: 50),
+                titleField.widthAnchor.constraint(equalToConstant: 353)
+        ])
+        NSLayoutConstraint.activate([
+                contentLabel.topAnchor.constraint(equalTo: titleField.bottomAnchor, constant: 27),
+                contentLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+                contentLabel.heightAnchor.constraint(equalToConstant: 50),
+                contentLabel.widthAnchor.constraint(equalToConstant: 353)
+        ])
+        NSLayoutConstraint.activate([
+                contentField.topAnchor.constraint(equalTo: contentLabel.bottomAnchor, constant: 5),
+                contentField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+                contentField.heightAnchor.constraint(equalToConstant: 50),
+                contentField.widthAnchor.constraint(equalToConstant: 353)
         ])
         NSLayoutConstraint.activate([
             customButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 48),
@@ -101,6 +184,12 @@ class InfoWritingViewController: UIViewController {
     //저장
     @objc func save(_ sender: UIBarButtonItem) {
         
+    }
+    @objc func navigateToTagPlusViewController(_ sender: Any) {
+        let tagplusVC = TagPlusViewController()
+
+        self.navigationController?.pushViewController(tagplusVC, animated: true)
+        print("tagplus click")
     }
     func makeCustomButton() -> UIButton {
         var config = UIButton.Configuration.plain()
@@ -144,4 +233,5 @@ class InfoWritingViewController: UIViewController {
         
         
     }
+    
 }

@@ -55,6 +55,7 @@ class MealPostViewController: UIViewController {
         button.setTitleColor(UIColor(r: 165, g: 165, b: 165), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 10, weight: .medium)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(delcareAction), for: .touchUpInside)
         return button
     }()
     
@@ -149,6 +150,11 @@ class MealPostViewController: UIViewController {
             
             
         ])
+    }
+    
+    @objc func delcareAction() {
+        let declareVC = DeclareViewController()
+        navigationController?.pushViewController(declareVC, animated: true)
     }
     
     
