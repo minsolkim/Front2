@@ -49,8 +49,9 @@ class TagPlusViewController: UIViewController {
         NSLayoutConstraint.activate([
             tagplusField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 23),
             tagplusField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            tagplusField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             tagplusField.heightAnchor.constraint(equalToConstant: 50),
-            tagplusField.widthAnchor.constraint(equalToConstant: 353)
+           // tagplusField.widthAnchor.constraint(equalToConstant: 353)
         ])
     }
     @objc func back(_ sender: Any) {

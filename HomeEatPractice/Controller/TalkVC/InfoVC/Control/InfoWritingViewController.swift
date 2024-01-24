@@ -154,8 +154,8 @@ class InfoWritingViewController: UIViewController {
         NSLayoutConstraint.activate([
                 titleField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
                 titleField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+                titleField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
                 titleField.heightAnchor.constraint(equalToConstant: 50),
-                titleField.widthAnchor.constraint(equalToConstant: 353)
         ])
         NSLayoutConstraint.activate([
                 contentLabel.topAnchor.constraint(equalTo: titleField.bottomAnchor, constant: 27),
@@ -166,8 +166,8 @@ class InfoWritingViewController: UIViewController {
         NSLayoutConstraint.activate([
                 contentField.topAnchor.constraint(equalTo: contentLabel.bottomAnchor, constant: 5),
                 contentField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+                contentField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
                 contentField.heightAnchor.constraint(equalToConstant: 50),
-                contentField.widthAnchor.constraint(equalToConstant: 353)
         ])
         NSLayoutConstraint.activate([
             customButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 48),
