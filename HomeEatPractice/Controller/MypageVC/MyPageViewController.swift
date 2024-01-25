@@ -159,13 +159,15 @@ class MyPageViewController: UIViewController {
         configUI()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            tabBarController?.tabBar.isHidden = false
-            tabBarController?.tabBar.isTranslucent = false
-    }
+>>>>>>> KMS
+=======
 >>>>>>> KMS
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        tabBarController?.tabBar.isHidden = true
+//        tabBarController?.tabBar.isTranslucent = false
+//    }
     func addSubView() {
         view.addSubview(borderView)
         view.addSubview(circleView)
