@@ -9,6 +9,7 @@ import UIKit
 
 class MealPostViewController: UIViewController {
     
+    // MARK: - 프로퍼티 생성
     lazy var profileView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 18
@@ -94,14 +95,28 @@ class MealPostViewController: UIViewController {
         return label
     }()
     
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "집밥토크"
         self.view.backgroundColor = UIColor(r: 30, g: 32, b: 33)
+        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isTranslucent = true
         addViews()
         setConstraints()
     }
     
+    // MARK: - 탭바제거
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 커스텀 탭바를 숨깁니다.
+        if let tabBarController = self.tabBarController as? MainTabBarController {
+            tabBarController.customTabBar.isHidden = true
+        }
+    }
+    
+    // MARK: - ViewSet
     private func addViews() {
         self.view.addSubview(self.profileView)
         self.profileView.addSubview(self.profileIcon)
@@ -152,6 +167,7 @@ class MealPostViewController: UIViewController {
         ])
     }
     
+    // MARK: - @objc 메서드
     @objc func delcareAction() {
         let declareVC = DeclareViewController()
         navigationController?.pushViewController(declareVC, animated: true)

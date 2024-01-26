@@ -79,7 +79,6 @@ class DeclareWriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "gray2")
-        declareTextField.delegate = self
         setAddViews()
         setConstraints()
         navigationcontrol()
@@ -143,18 +142,5 @@ class DeclareWriteViewController: UIViewController {
          self.navigationController?.popViewController(animated: true)
         print("back click")
      }
-}
 
-extension DeclareWriteViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        guard textView.textColor == .placeholderText else { return }
-        textView.textColor = .label
-        textView.text = nil
-    }
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "텍스트 입력"
-            textView.textColor = .placeholderText
-        }
-    }
 }

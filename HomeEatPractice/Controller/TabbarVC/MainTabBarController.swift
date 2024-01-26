@@ -67,11 +67,16 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             item.image = UIImage(named: imageName)
         }
     }
-    private func setupCustomTabBar() {
+    
+    lazy var customTabBar: UIView = {
         let customTabBar = UIView(frame: CGRect(x: 0, y: self.view.frame.maxY - newTabBarHeight, width: self.tabBar.frame.width, height: newTabBarHeight))
         customTabBar.backgroundColor = UIColor(named: "gray4")
         self.tabBar.tintColor = UIColor(named: "searchfont")
         customTabBar.layer.cornerRadius = 10
+        return customTabBar
+    }()
+    
+    private func setupCustomTabBar() {
 
         let buttonWidth = self.tabBar.frame.width / CGFloat(tabItems.count)
 
