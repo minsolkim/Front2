@@ -10,9 +10,9 @@ import Then
 import AVFoundation
 import Photos
 
-class InfoWritingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class InfoWritingViewController: UIViewController {
     //MARK: - container 파트
-    let imagePicker = UIImagePickerController()
+  //  let imagePicker = UIImagePickerController()
     private let hashContainer : UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,6 +39,11 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
         button.clipsToBounds = true
         return button
     }()
+    private let imageView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+      }()
     //#해시태그
     private let tagImage = UIButton().then {
         $0.setImage(UIImage(named: "Talk11"), for: .normal)
@@ -94,102 +99,76 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
         $0.translatesAutoresizingMaskIntoConstraints = false
         
     }
+    private var isCameraAuthorized: Bool {
+       AVCaptureDevice.authorizationStatus(for: .video) == .authorized
+     }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "gray3")
-        self.imagePicker.delegate = self
+        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isTranslucent = true
         navigationControl()
         configUI()
         
     }
+    // MARK: - 탭바제거
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = false
-        tabBarController?.tabBar.isTranslucent = false
-    }
-    func cameraAuth() {
-        AVCaptureDevice.requestAccess(for: .video) { granted in
-            if granted {
-                print("카메라 권한 허용")
-                self.openCamera()
-            } else {
-                print("카메라 권한 거부")
-                self.showAlertAuth("카메라")
-            }
+        // 커스텀 탭바를 숨깁니다.
+        if let tabBarController = self.tabBarController as? MainTabBarController {
+            tabBarController.customTabBar.isHidden = true
         }
     }
-
-    func albumAuth() {
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .denied:
-            print("거부")
-            self.showAlertAuth("앨범")
-        case .authorized:
-            print("허용")
-            self.openPhotoLibrary()
-        case .notDetermined, .restricted:
-            print("아직 결정하지 않은 상태")
-            PHPhotoLibrary.requestAuthorization { state in
-                if state == .authorized {
-                    self.openPhotoLibrary()
-                } else {
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-        default:
-            break
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 다른 화면으로 넘어갈 때 커스텀 탭바를 다시 보이게 합니다.
+        if let tabBarController = self.tabBarController as? MainTabBarController {
+            tabBarController.customTabBar.isHidden = false
         }
     }
-    private func openCamera() {
-        if(UIImagePickerController.isSourceTypeAvailable(.camera)) {
-            self.imagePicker.sourceType = .camera
-            self.imagePicker.modalPresentationStyle = .currentContext
-            self.present(self.imagePicker,animated: true,completion: nil)
-        } else {
-            print("카메라에 접근할 수 없습니다.")
-        }
-    }
-    private func openPhotoLibrary() {
-        if (UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
-            self.imagePicker.sourceType = .photoLibrary
-            self.imagePicker.modalPresentationStyle = .currentContext
-            self.present(self.imagePicker, animated: true, completion: nil)
-        } else {
-            print("앨범에 접근할 수 없습니다.")
-        }
-    }
-    func imagePickerController(
-        _ picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
-    ) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            print("image_info = \(image)")
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    func showAlertAuth(
-        _ type: String
-    ) {
-        if let appName = Bundle.main.infoDictionary!["CFBundleDisplayName"] as? String {
-            let alertVC = UIAlertController(
-                title: "설정",
-                message: "\(appName)이(가) \(type) 접근 허용되어 있지 않습니다. 설정화면으로 가시겠습니까?",
-                preferredStyle: .alert
-            )
-            let cancelAction = UIAlertAction(
-                title: "취소",
-                style: .cancel,
-                handler: nil
-            )
-            let confirmAction = UIAlertAction(title: "확인", style: .default) { _ in
-                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
-            }
-            alertVC.addAction(cancelAction)
-            alertVC.addAction(confirmAction)
-            self.present(alertVC, animated: true, completion: nil)
-        }
-    }
+    
+//    func albumAuth() {
+//        switch PHPhotoLibrary.authorizationStatus() {
+//        case .denied:
+//            print("거부")
+//            self.showAlertAuth("앨범")
+//        case .authorized:
+//            print("허용")
+//            self.openPhotoLibrary()
+//        case .notDetermined, .restricted:
+//            print("아직 결정하지 않은 상태")
+//            PHPhotoLibrary.requestAuthorization { state in
+//                if state == .authorized {
+//                    self.openPhotoLibrary()
+//                } else {
+//                    self.dismiss(animated: true, completion: nil)
+//                }
+//            }
+//        default:
+//            break
+//        }
+//    }
+//    private func openPhotoLibrary() {
+//        if (UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
+//            self.imagePicker.sourceType = .photoLibrary
+//            self.imagePicker.modalPresentationStyle = .currentContext
+//            self.present(self.imagePicker, animated: true, completion: nil)
+//        } else {
+//            print("앨범에 접근할 수 없습니다.")
+//        }
+//    }
+//    func imagePickerController(
+//        _ picker: UIImagePickerController,
+//        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+//    ) {
+//        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+//            print("image_info = \(image)")
+//        }
+//        dismiss(animated: true, completion: nil)
+//    }
+   
     func navigationControl() {
         let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
         //간격을 배열로 설정
@@ -209,6 +188,8 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
     func configUI() {
         let customButton = makeCustomButton()
         customButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.imageView)
+        view.bringSubviewToFront(self.imageView)
         self.view.addSubview(tagButton)
         self.view.addSubview(tagImage)
         self.view.addSubview(titleLabel)
@@ -216,6 +197,12 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
         self.view.addSubview(contentLabel)
         self.view.addSubview(contentField)
         self.view.addSubview(customButton)
+        NSLayoutConstraint.activate([
+              self.imageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+              self.imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+              self.imageView.heightAnchor.constraint(equalToConstant: 300),
+              self.imageView.widthAnchor.constraint(equalToConstant: 300),
+            ])
         NSLayoutConstraint.activate([
                 tagButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
                 tagButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
@@ -270,12 +257,6 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
     @objc func save(_ sender: UIBarButtonItem) {
         
     }
-    @objc func navigateToTagPlusViewController(_ sender: Any) {
-        let tagplusVC = TagPlusViewController()
-
-        self.navigationController?.pushViewController(tagplusVC, animated: true)
-        print("tagplus click")
-    }
     func makeCustomButton() -> UIButton {
         var config = UIButton.Configuration.plain()
         var attributedTitle = AttributedString("사진 추가")
@@ -297,19 +278,19 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
 
         let customButton = UIButton(configuration: config)
         customButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        customButton.translatesAutoresizingMaskIntoConstraints = false  // Add this line to set constraints programmatically
 
         return customButton
     }
-    
     @objc func buttonTapped() {
         let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         let takePhotoAction = UIAlertAction(title: "사진 촬영", style: .default) { _ in
-            self.cameraAuth()
+            self.openCamera()
         }
 
         let chooseFromLibraryAction = UIAlertAction(title: "앨범에서 사진 선택", style: .default) { _ in
-            self.albumAuth()
+           // self.albumAuth()
         }
 
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -324,8 +305,80 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
 
         self.present(actionSheetController, animated: true, completion: nil)
     }
+    @objc func navigateToTagPlusViewController(_ sender: Any) {
+        let tagplusVC = TagPlusViewController()
 
-    
+        self.navigationController?.pushViewController(tagplusVC, animated: true)
+        print("tagplus click")
+    }
+    @objc private func openCamera() {
+       #if targetEnvironment(simulator)
+       fatalError()
+       #endif
+       
+       AVCaptureDevice.requestAccess(for: .video) { [weak self] isAuthorized in
+         guard isAuthorized else {
+           self?.showAlertGoToSetting()
+           return
+         }
+           
+         
+         DispatchQueue.main.async {
+           let pickerController = UIImagePickerController()
+           pickerController.sourceType = .camera
+           pickerController.allowsEditing = false
+           pickerController.mediaTypes = ["public.image"]
+           pickerController.delegate = self
+           self?.present(pickerController, animated: true)
+         }
+       }
+     }
+    func showAlertGoToSetting() {
+        let alertController = UIAlertController(
+          title: "현재 카메라 사용에 대한 접근 권한이 없습니다.",
+          message: "설정 > {앱 이름}탭에서 접근을 활성화 할 수 있습니다.",
+          preferredStyle: .alert
+        )
+        let cancelAlert = UIAlertAction(
+          title: "취소",
+          style: .cancel
+        ) { _ in
+            alertController.dismiss(animated: true, completion: nil)
+          }
+        let goToSettingAlert = UIAlertAction(
+          title: "설정으로 이동하기",
+          style: .default) { _ in
+            guard
+              let settingURL = URL(string: UIApplication.openSettingsURLString),
+              UIApplication.shared.canOpenURL(settingURL)
+            else { return }
+            UIApplication.shared.open(settingURL, options: [:])
+          }
+        [cancelAlert, goToSettingAlert]
+          .forEach(alertController.addAction(_:))
+        DispatchQueue.main.async {
+          self.present(alertController, animated: true) // must be used from main thread only
+        }
+      }
+    }
+
+extension InfoWritingViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            picker.dismiss(animated: true)
+            return
+        }
+        
+        // 버튼을 숨기고 이미지 뷰를 표시하도록 설정
+        addImageButton.isHidden = true
+        imageView.isHidden = false
+        
+        self.imageView.image = image
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
 
 

@@ -205,6 +205,7 @@ extension InfoViewController {
     //글쓰기 버튼 
     @objc private func floatingButtonAction(_ sender: UIButton) {
         let nextVC = InfoWritingViewController()
+        tabBarController?.tabBar.isHidden = true //하단 탭바 안보이게 전환
         navigationController?.pushViewController(nextVC, animated: true)
         
     }

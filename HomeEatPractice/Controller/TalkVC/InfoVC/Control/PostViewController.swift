@@ -110,11 +110,6 @@ class PostViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         tabBarController?.tabBar.isTranslucent = true
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-//    }
-    
     // MARK: - ViewSet
     func addSubView() {
         view.addSubview(circleView)
