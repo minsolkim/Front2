@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import Then
 //게시글 화면
 class PostViewController: UIViewController {
     
+    // MARK: - 프로퍼티 생성
     //프로필이미지 넣을 원형뷰
     lazy var circleView: UIView = {
         let view = UIView()
@@ -52,26 +52,15 @@ class PostViewController: UIViewController {
         return label
     } ()
     // 신고하기
-    private let complainLabel = UIButton().then {
-        $0.setTitle("신고하기", for: .normal)
-        $0.setTitleColor(UIColor(r: 165, g: 165, b: 165), for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 10, weight: .medium)
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.addTarget(self, action: #selector(delcareAction), for: .touchUpInside)
-    }
-    
-    private let hashtagCategoty =  UIButton().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = UIColor(named: "gray2")
-        $0.layer.cornerRadius = 10
-        $0.clipsToBounds = true
-        $0.layer.borderWidth = 1.18
-        $0.layer.borderColor = UIColor(named: "green")?.cgColor
-        $0.setTitle("#할인", for: .normal)
-        $0.setTitleColor(UIColor(named: "green"), for: .normal)
-        $0.titleLabel?.font = UIFont(name: "폰트", size: 10) ?? .systemFont(ofSize: 10, weight: .medium)
-        
-    }
+    lazy var complainLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 10)
+        label.text = "신고하기"
+        label.textColor = UIColor(named: "font4")
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    } ()
     // 제목
     lazy var postTitleLabel: UILabel = {
         let label = UILabel()
@@ -92,79 +81,44 @@ class PostViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     } ()
-    // 게시글 사진
-    lazy var imageScrollView: UIScrollView = {
-            let scrollView = UIScrollView()
-            scrollView.isPagingEnabled = true
-            scrollView.showsHorizontalScrollIndicator = false
-            scrollView.delegate = self
-            scrollView.translatesAutoresizingMaskIntoConstraints = false
-            return scrollView
-        }()
 
-        // Page control for images
-        lazy var pageControl: UIPageControl = {
-            let pageControl = UIPageControl()
-            pageControl.currentPage = 0
-            pageControl.pageIndicatorTintColor = UIColor.gray
-            pageControl.currentPageIndicatorTintColor = UIColor(named: "green")
-            pageControl.translatesAutoresizingMaskIntoConstraints = false
-            return pageControl
-        }()
-    // 좋아요
-    // 댓글
-    let imageNames = ["example1", "example1", "example1"] 
+    // MARK: - 탭바제거
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 커스텀 탭바를 숨깁니다.
+        if let tabBarController = self.tabBarController as? MainTabBarController {
+            tabBarController.customTabBar.isHidden = true
+        }
+    }
+    
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubView()
         navigationcontrol()
         configUI()
-        setupImageScrollView()
         view.backgroundColor = UIColor(named: "gray3")
+        
+        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isTranslucent = true
     }
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
 //        self.navigationController?.setNavigationBarHidden(false, animated: animated)
 //    }
-    func setupImageScrollView() {
-        for (index, imageName) in imageNames.enumerated() {
-                    let imageView = UIImageView()
-                    imageView.image = UIImage(named: imageName)
-                    imageView.contentMode = .scaleAspectFit
-                    imageView.frame = CGRect(x: CGFloat(index) * view.frame.width, y: 0, width: view.frame.width, height: imageScrollView.frame.height)
-                    imageScrollView.addSubview(imageView)
-                }
-        // Set content size of scroll view
-                imageScrollView.contentSize = CGSize(width: CGFloat(imageNames.count) * view.frame.width, height: imageScrollView.frame.height)
-
-                // Set up page control
-                pageControl.numberOfPages = imageNames.count
-
-                // Add scroll view and page control to the view
-                view.addSubview(imageScrollView)
-                view.addSubview(pageControl)
-                
-                // Set constraints for scroll view and page control
-                NSLayoutConstraint.activate([
-                    imageScrollView.topAnchor.constraint(equalTo: postContentLabel.bottomAnchor, constant: 20),
-                    imageScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                    imageScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                    imageScrollView.heightAnchor.constraint(equalToConstant: 200),
-
-                    pageControl.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: 10),
-                    pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                ])
-            }
+    
+    // MARK: - ViewSet
     func addSubView() {
         view.addSubview(circleView)
         circleView.addSubview(profileImageView)
         view.addSubview(profileName)
         view.addSubview(dateLabel)
         view.addSubview(complainLabel)
-        view.addSubview(hashtagCategoty)
         view.addSubview(postTitleLabel)
         view.addSubview(postContentLabel)
     }
+    
     func configUI() {
         // 제약 조건 설정
         NSLayoutConstraint.activate([
@@ -188,12 +142,7 @@ class PostViewController: UIViewController {
             complainLabel.topAnchor.constraint(equalTo: dateLabel.topAnchor),
             complainLabel.leadingAnchor.constraint(equalTo:dateLabel.trailingAnchor,constant: 195),
             
-            hashtagCategoty.topAnchor.constraint(equalTo: circleView.bottomAnchor,constant: 20.2),
-            hashtagCategoty.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
-            hashtagCategoty.widthAnchor.constraint(equalToConstant: 41),
-            hashtagCategoty.heightAnchor.constraint(equalToConstant: 20),
-            
-            postTitleLabel.topAnchor.constraint(equalTo: hashtagCategoty.bottomAnchor,constant: 15.2),
+            postTitleLabel.topAnchor.constraint(equalTo: circleView.bottomAnchor,constant: 15.2),
             postTitleLabel.leadingAnchor.constraint(equalTo: circleView.leadingAnchor),
             
             postContentLabel.topAnchor.constraint(equalTo: postTitleLabel.bottomAnchor,constant: 8),
@@ -214,18 +163,10 @@ class PostViewController: UIViewController {
             navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             }
     }
-    @objc func delcareAction() {
-        let declareVC = DeclareViewController()
-        navigationController?.pushViewController(declareVC, animated: true)
-    }
+    
+    // MARK: - @objc 메서드
     @objc func back(_ sender: Any) {
          self.navigationController?.popViewController(animated: true)
         print("back click")
      }
     }
-extension PostViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let pageIndex = round(scrollView.contentOffset.x / view.frame.width)
-        pageControl.currentPage = Int(pageIndex)
-    }
-}
