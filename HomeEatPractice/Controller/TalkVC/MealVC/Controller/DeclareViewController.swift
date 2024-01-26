@@ -31,7 +31,7 @@ class DeclareViewController: UIViewController {
         button.layer.borderColor = UIColor(r: 187, g: 187, b: 187).cgColor
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        button.addTarget(self, action: #selector(option1Acttion), for: .touchUpInside)
+        button.addTarget(self, action: #selector(optionActtion), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -47,11 +47,11 @@ class DeclareViewController: UIViewController {
         button.layer.borderColor = UIColor(r: 187, g: 187, b: 187).cgColor
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        button.addTarget(self, action: #selector(option2Acttion), for: .touchUpInside)
+        button.addTarget(self, action: #selector(optionActtion), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
     
     private let optionButton3: UIButton = {
         let button = UIButton()
@@ -64,11 +64,11 @@ class DeclareViewController: UIViewController {
         button.layer.borderColor = UIColor(r: 187, g: 187, b: 187).cgColor
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        button.addTarget(self, action: #selector(option3Acttion), for: .touchUpInside)
+        button.addTarget(self, action: #selector(optionActtion), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
     
     private let optionButton4: UIButton = {
         let button = UIButton()
@@ -81,11 +81,11 @@ class DeclareViewController: UIViewController {
         button.layer.borderColor = UIColor(r: 187, g: 187, b: 187).cgColor
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        button.addTarget(self, action: #selector(option4Acttion), for: .touchUpInside)
+        button.addTarget(self, action: #selector(optionActtion), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
     
     private let optionButton5: UIButton = {
         let button = UIButton()
@@ -98,7 +98,7 @@ class DeclareViewController: UIViewController {
         button.layer.borderColor = UIColor(r: 187, g: 187, b: 187).cgColor
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        button.addTarget(self, action: #selector(option5Acttion), for: .touchUpInside)
+        button.addTarget(self, action: #selector(optionActtion), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -111,7 +111,7 @@ class DeclareViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,7 +148,7 @@ class DeclareViewController: UIViewController {
             
             self.optionButton2.leadingAnchor.constraint(equalTo: self.container.leadingAnchor),
             self.optionButton2.trailingAnchor.constraint(equalTo: self.container.trailingAnchor),
-
+            
             self.optionButton3.leadingAnchor.constraint(equalTo: self.container.leadingAnchor),
             self.optionButton3.trailingAnchor.constraint(equalTo: self.container.trailingAnchor),
             
@@ -162,30 +162,34 @@ class DeclareViewController: UIViewController {
         ])
     }
     
-    @objc func option1Acttion() {
-        let declareWriteVC = DeclareWriteViewController()
-        navigationController?.pushViewController(declareWriteVC, animated: true)
+    
+    @objc func optionActtion(_ sender: UIButton) {
+        switch sender {
+        case optionButton1:
+            let declareWriteVC = DeclareWriteViewController()
+            declareWriteVC.optionLabel = optionButton1.titleLabel?.text
+            navigationController?.pushViewController(declareWriteVC, animated: true)
+        case optionButton2:
+            let declareWriteVC = DeclareWriteViewController()
+            declareWriteVC.optionLabel = optionButton2.titleLabel?.text
+            navigationController?.pushViewController(declareWriteVC, animated: true)
+        case optionButton3:
+            let declareWriteVC = DeclareWriteViewController()
+            declareWriteVC.optionLabel = optionButton3.titleLabel?.text
+            navigationController?.pushViewController(declareWriteVC, animated: true)
+        case optionButton4:
+            let declareWriteVC = DeclareWriteViewController()
+            declareWriteVC.optionLabel = optionButton4.titleLabel?.text
+            navigationController?.pushViewController(declareWriteVC, animated: true)
+        case optionButton5:
+            let declareWriteVC = DeclareWriteViewController()
+            declareWriteVC.optionLabel = optionButton5.titleLabel?.text
+            navigationController?.pushViewController(declareWriteVC, animated: true)
+        default:
+            fatalError("Error")
+        }
     }
     
-    @objc func option2Acttion() {
-        let declareWriteVC = DeclareWriteViewController()
-        navigationController?.pushViewController(declareWriteVC, animated: true)
-    }
-    
-    @objc func option3Acttion() {
-        let declareWriteVC = DeclareWriteViewController()
-        navigationController?.pushViewController(declareWriteVC, animated: true)
-    }
-    
-    @objc func option4Acttion() {
-        let declareWriteVC = DeclareWriteViewController()
-        navigationController?.pushViewController(declareWriteVC, animated: true)
-    }
-    
-    @objc func option5Acttion() {
-        let declareWriteVC = DeclareWriteViewController()
-        navigationController?.pushViewController(declareWriteVC, animated: true)
-    }
     
     //네비게이션 바 설정
     func navigationcontrol() {
@@ -198,11 +202,14 @@ class DeclareViewController: UIViewController {
         //title 흰색으로 설정
         if let navigationBar = navigationController?.navigationBar {
             navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-            }
+        }
     }
     @objc func back(_ sender: Any) {
-         self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
         print("back click")
-     }
+    }
     
 }
+
+
+
