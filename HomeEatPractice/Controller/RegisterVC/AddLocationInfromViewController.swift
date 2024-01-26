@@ -91,7 +91,10 @@ class AddLocationInfromViewController : UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD
 
+=======
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
         let _ = currentLocationButton
         self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
@@ -100,12 +103,23 @@ class AddLocationInfromViewController : UIViewController, UITextFieldDelegate {
         self.registerContainer.addArrangedSubview(label3)
         let locationTextField = makeTextField()
         locationTextField.attributedPlaceholder = NSAttributedString(string: "도로명, 지번, 건물명 검색", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        locationTextField.delegate = self
         self.registerContainer.addArrangedSubview(locationTextField)
+<<<<<<< HEAD
 
         let continueButton = makeCustomButton(viewController: self, nextVC: AddIncomeViewController())
         
         
 >>>>>>> KMS
+=======
+//        locationTextField.inputAccessoryView = searchButton
+        
+        
+        
+        let continueButton = makeCustomButton(viewController: self, nextVC: AddIncomeViewController())
+        
+        
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
         self.registerContainer.addArrangedSubview(currentLocationButton)
         self.registerContainer.addArrangedSubview(continueButton)
 

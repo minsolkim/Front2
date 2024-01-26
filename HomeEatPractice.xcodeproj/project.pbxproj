@@ -42,8 +42,12 @@
 		2D5B573C2B5FCD4C00124BB9 /* AddSexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5B573B2B5FCD4C00124BB9 /* AddSexViewController.swift */; };
 		2D5B573E2B5FCDCC00124BB9 /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5B573D2B5FCDCC00124BB9 /* SearchLocationViewController.swift */; };
 		2D5B57402B5FD9A500124BB9 /* BankCertifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5B573F2B5FD9A500124BB9 /* BankCertifyViewController.swift */; };
+<<<<<<< HEAD
 =======
 >>>>>>> KMS
+=======
+		2D5B57502B60103700124BB9 /* BankSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5B574F2B60103700124BB9 /* BankSelectViewController.swift */; };
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
 		2D8CFEB82B5A301000FDE2E5 /* HomeatIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */; };
 		2D8CFEB92B5A301000FDE2E5 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */; };
 		2D8CFEBA2B5A301000FDE2E5 /* HomeatLogo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */; };
@@ -86,20 +90,6 @@
 		58A40D772B57DD730053E302 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D762B57DD730053E302 /* EditViewController.swift */; };
 >>>>>>> KMS
 		58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D782B5805520053E302 /* UIColor + Extension.swift */; };
-
-		58A40D7E2B5BEFAA0053E302 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D7D2B5BEFAA0053E302 /* StatisticsViewController.swift */; };
-		58A40D802B5BEFC40053E302 /* CalendarCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D7F2B5BEFC40053E302 /* CalendarCheckViewController.swift */; };
-		58A40D822B5C00D30053E302 /* TagPlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D812B5C00D30053E302 /* TagPlusViewController.swift */; };
-		58A40D852B5C05330053E302 /* CashCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D842B5C05330053E302 /* CashCheckViewController.swift */; };
-		58A40D872B5C054F0053E302 /* BadgeCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D862B5C054F0053E302 /* BadgeCheckViewController.swift */; };
-		58A40D8E2B5D01F70053E302 /* WeekCashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D8D2B5D01F70053E302 /* WeekCashViewController.swift */; };
-		58A40D952B5FAC1B0053E302 /* MealViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D942B5FAC1B0053E302 /* MealViewCell.swift */; };
-		58A40D972B5FAC490053E302 /* MealPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D962B5FAC490053E302 /* MealPostViewController.swift */; };
-		58A40D992B5FAC6A0053E302 /* MealWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D982B5FAC6A0053E302 /* MealWritingViewController.swift */; };
-		58A40D9B2B5FACAF0053E302 /* MealSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D9A2B5FACAF0053E302 /* MealSource.swift */; };
-		58A40D9E2B5FF1560053E302 /* TabbarInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D9D2B5FF1560053E302 /* TabbarInfo.swift */; };
-		58A40DA02B6120970053E302 /* DeclareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D9F2B6120970053E302 /* DeclareViewController.swift */; };
-		58A40DA22B6120B70053E302 /* DeclareWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40DA12B6120B70053E302 /* DeclareWriteViewController.swift */; };
 		8ECF68A20C6802496B2B5BE9 /* Pods_HomeEatPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827ED5B3B017327767649ADC /* Pods_HomeEatPractice.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,8 +129,12 @@
 		2D5B573B2B5FCD4C00124BB9 /* AddSexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSexViewController.swift; sourceTree = "<group>"; };
 		2D5B573D2B5FCDCC00124BB9 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchLocationViewController.swift; path = ../../../../../../Movies/SearchLocationViewController.swift; sourceTree = "<group>"; };
 		2D5B573F2B5FD9A500124BB9 /* BankCertifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCertifyViewController.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 =======
 >>>>>>> KMS
+=======
+		2D5B574F2B60103700124BB9 /* BankSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectViewController.swift; sourceTree = "<group>"; };
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
 		2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatIcon.pdf; sourceTree = "<group>"; };
 		2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatLogo.pdf; sourceTree = "<group>"; };
@@ -185,20 +179,6 @@
 		58A40D762B57DD730053E302 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 >>>>>>> KMS
 		58A40D782B5805520053E302 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
-
-		58A40D7D2B5BEFAA0053E302 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
-		58A40D7F2B5BEFC40053E302 /* CalendarCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCheckViewController.swift; sourceTree = "<group>"; };
-		58A40D812B5C00D30053E302 /* TagPlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPlusViewController.swift; sourceTree = "<group>"; };
-		58A40D842B5C05330053E302 /* CashCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashCheckViewController.swift; sourceTree = "<group>"; };
-		58A40D862B5C054F0053E302 /* BadgeCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCheckViewController.swift; sourceTree = "<group>"; };
-		58A40D8D2B5D01F70053E302 /* WeekCashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCashViewController.swift; sourceTree = "<group>"; };
-		58A40D942B5FAC1B0053E302 /* MealViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewCell.swift; sourceTree = "<group>"; };
-		58A40D962B5FAC490053E302 /* MealPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPostViewController.swift; sourceTree = "<group>"; };
-		58A40D982B5FAC6A0053E302 /* MealWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealWritingViewController.swift; sourceTree = "<group>"; };
-		58A40D9A2B5FACAF0053E302 /* MealSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSource.swift; sourceTree = "<group>"; };
-		58A40D9D2B5FF1560053E302 /* TabbarInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarInfo.swift; sourceTree = "<group>"; };
-		58A40D9F2B6120970053E302 /* DeclareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclareViewController.swift; sourceTree = "<group>"; };
-		58A40DA12B6120B70053E302 /* DeclareWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclareWriteViewController.swift; sourceTree = "<group>"; };
 		5CF3251AB730DFAD7043486D /* Pods-HomeEatPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeEatPractice.debug.xcconfig"; path = "Target Support Files/Pods-HomeEatPractice/Pods-HomeEatPractice.debug.xcconfig"; sourceTree = "<group>"; };
 		827ED5B3B017327767649ADC /* Pods_HomeEatPractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeEatPractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD28DEFC31B1BB454FB5CB1 /* Pods-HomeEatPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeEatPractice.release.xcconfig"; path = "Target Support Files/Pods-HomeEatPractice/Pods-HomeEatPractice.release.xcconfig"; sourceTree = "<group>"; };
@@ -341,12 +321,13 @@
 				2D2C55F22B5CBFE0000A9013 /* AddAccountViewController.swift */,
 				2D5B573B2B5FCD4C00124BB9 /* AddSexViewController.swift */,
 				2D5B573F2B5FD9A500124BB9 /* BankCertifyViewController.swift */,
+				2D5B574F2B60103700124BB9 /* BankSelectViewController.swift */,
 				2D5B573D2B5FCDCC00124BB9 /* SearchLocationViewController.swift */,
 				2D2C55F32B5CBFE0000A9013 /* RegisterSelectViewController.swift */,
 				2D2C55F82B5CBFE0000A9013 /* RegisterViewController.swift */,
 				2D2C55F42B5CBFE0000A9013 /* RegisterDoneViewController.swift */,
 				2D2C55F52B5CBFE0000A9013 /* LoginViewController.swift */,
-				2D2C55F62B5CBFE0000A9013 /* TermsOfUseViewController.swift */,
+				2D7870412B62F4A40098843C /* PolicyVC */,
 				2D2C55F72B5CBFE0000A9013 /* SelectMangeUnitViewController.swift */,
 			);
 			path = RegisterVC;
@@ -359,6 +340,14 @@
 				2D2C55FB2B5CBFE0000A9013 /* MyPageViewController.swift */,
 			);
 			path = MypageVC;
+			sourceTree = "<group>";
+		};
+		2D7870412B62F4A40098843C /* PolicyVC */ = {
+			isa = PBXGroup;
+			children = (
+				2D2C55F62B5CBFE0000A9013 /* TermsOfUseViewController.swift */,
+			);
+			path = PolicyVC;
 			sourceTree = "<group>";
 		};
 		2D8CFEB42B5A301000FDE2E5 /* LaunchScreenImage */ = {
@@ -415,6 +404,7 @@
 			path = HomeEatPractice;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -633,6 +623,8 @@
 			sourceTree = "<group>";
 		};
 >>>>>>> KMS
+=======
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
 		677FA46ECB419986B9424595 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -769,7 +761,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
 				409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */,
 				2D2C56072B5CBFE0000A9013 /* InfoWritingViewController.swift in Sources */,
 				2D2C56012B5CBFE0000A9013 /* CashViewController.swift in Sources */,
@@ -784,6 +775,7 @@
 				2D2C56042B5CBFE0000A9013 /* MyItem.swift in Sources */,
 				2D2C56132B5CBFE0000A9013 /* RegisterDoneViewController.swift in Sources */,
 				2D5B573E2B5FCDCC00124BB9 /* SearchLocationViewController.swift in Sources */,
+<<<<<<< HEAD
 				588A09302B4FF9A900638D16 /* MyItem.swift in Sources */,
 				58A40D872B5C054F0053E302 /* BadgeCheckViewController.swift in Sources */,
 				582A98A52B636F2F008F30CA /* SceneDelegate.swift in Sources */,
@@ -814,6 +806,8 @@
 <<<<<<< HEAD
 				2D8CFEB22B5A2F1400FDE2E5 /* LoginViewController.swift in Sources */,
 
+=======
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
 				58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */,
 				2D5B57402B5FD9A500124BB9 /* BankCertifyViewController.swift in Sources */,
 				2D2C560C2B5CBFE0000A9013 /* CalendarCheckViewController.swift in Sources */,
@@ -823,9 +817,8 @@
 				2D2C56102B5CBFE0000A9013 /* AddIncomeViewController.swift in Sources */,
 				2D2C56122B5CBFE0000A9013 /* RegisterSelectViewController.swift in Sources */,
 				2D2C560E2B5CBFE0000A9013 /* AddBirthInformViewController.swift in Sources */,
+				2D5B57502B60103700124BB9 /* BankSelectViewController.swift in Sources */,
 				409AA32A2B43A0470096CDBB /* SceneDelegate.swift in Sources */,
-<<<<<<< HEAD
-
 				2D2C560D2B5CBFE0000A9013 /* AddLocationInfromViewController.swift in Sources */,
 				2D2C56112B5CBFE0000A9013 /* AddAccountViewController.swift in Sources */,
 				2D2C561C2B5CBFE0000A9013 /* PayAnalyzeViewController.swift in Sources */,
@@ -838,6 +831,7 @@
 				2D2C561A2B5CBFE0000A9013 /* MainTabBarController.swift in Sources */,
 				2D2C560B2B5CBFE0000A9013 /* PayCheckViewController.swift in Sources */,
 				2D2C56062B5CBFE0000A9013 /* PostViewController.swift in Sources */,
+<<<<<<< HEAD
 
 =======
 				58A40DA02B6120970053E302 /* DeclareViewController.swift in Sources */,
@@ -864,6 +858,8 @@
 				58A40DA22B6120B70053E302 /* DeclareWriteViewController.swift in Sources */,
 				58A40D7E2B5BEFAA0053E302 /* StatisticsViewController.swift in Sources */,
 
+=======
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

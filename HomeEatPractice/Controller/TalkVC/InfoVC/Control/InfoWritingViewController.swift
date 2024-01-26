@@ -6,6 +6,7 @@
 //
 
 import UIKit
+<<<<<<< HEAD
 import Then
 import AVFoundation
 import Photos
@@ -94,11 +95,17 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
         $0.translatesAutoresizingMaskIntoConstraints = false
         
     }
+=======
+
+class InfoWritingViewController: UIViewController {
+    
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "gray3")
         self.imagePicker.delegate = self
         navigationControl()
+<<<<<<< HEAD
         configUI()
         
     }
@@ -189,6 +196,8 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
             alertVC.addAction(confirmAction)
             self.present(alertVC, animated: true, completion: nil)
         }
+=======
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
     }
     func navigationControl() {
         let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
@@ -205,62 +214,6 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
             navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             }
     }
-    
-    func configUI() {
-        let customButton = makeCustomButton()
-        customButton.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(tagButton)
-        self.view.addSubview(tagImage)
-        self.view.addSubview(titleLabel)
-        self.view.addSubview(titleField)
-        self.view.addSubview(contentLabel)
-        self.view.addSubview(contentField)
-        self.view.addSubview(customButton)
-        NSLayoutConstraint.activate([
-                tagButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
-                tagButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
-                tagButton.heightAnchor.constraint(equalToConstant: 40),
-                tagButton.widthAnchor.constraint(equalToConstant: 214)
-                //tagButton.trailingAnchor.constraint(equalTo: self.tagImage.leadingAnchor,constant: 95),
-                
-        ])
-        NSLayoutConstraint.activate([
-                tagImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 265),
-                tagImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-                tagImage.heightAnchor.constraint(equalToConstant: 42),
-                tagImage.widthAnchor.constraint(equalToConstant: 42)
-        ])
-        NSLayoutConstraint.activate([
-                titleLabel.topAnchor.constraint(equalTo: tagButton.bottomAnchor, constant: 41),
-                titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 21),
-                titleLabel.heightAnchor.constraint(equalToConstant: 34),
-                titleLabel.widthAnchor.constraint(equalToConstant: 34)
-        ])
-        NSLayoutConstraint.activate([
-                titleField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
-                titleField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-                titleField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
-                titleField.heightAnchor.constraint(equalToConstant: 50),
-        ])
-        NSLayoutConstraint.activate([
-                contentLabel.topAnchor.constraint(equalTo: titleField.bottomAnchor, constant: 27),
-                contentLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-                contentLabel.heightAnchor.constraint(equalToConstant: 50),
-                contentLabel.widthAnchor.constraint(equalToConstant: 353)
-        ])
-        NSLayoutConstraint.activate([
-                contentField.topAnchor.constraint(equalTo: contentLabel.bottomAnchor, constant: 5),
-                contentField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-                contentField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
-                contentField.heightAnchor.constraint(equalToConstant: 50),
-        ])
-        NSLayoutConstraint.activate([
-            customButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 48),
-            customButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 108),
-            customButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -109),
-            customButton.heightAnchor.constraint(equalToConstant: 176),
-        ])
-    }
     //뒤로가기
     @objc func back(_ sender: Any) {
          self.navigationController?.popViewController(animated: true)
@@ -270,6 +223,7 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
     @objc func save(_ sender: UIBarButtonItem) {
         
     }
+<<<<<<< HEAD
     @objc func navigateToTagPlusViewController(_ sender: Any) {
         let tagplusVC = TagPlusViewController()
 
@@ -326,6 +280,8 @@ class InfoWritingViewController: UIViewController, UIImagePickerControllerDelega
     }
 
     
+=======
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
 }
 
 

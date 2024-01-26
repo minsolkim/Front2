@@ -82,7 +82,10 @@ class AddAccountViewController : UIViewController {
         self.registerContainer.addArrangedSubview(label2)
         self.registerContainer.addArrangedSubview(label3)
         let bankButton = makeCustomButton(viewController: self, nextVC: BankSelectViewController())
+<<<<<<< HEAD
 >>>>>>> KMS
+=======
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
         self.registerContainer.addArrangedSubview(bankButton)
         self.registerContainer.addArrangedSubview(label4)
         
@@ -90,9 +93,13 @@ class AddAccountViewController : UIViewController {
         accountTextField.attributedPlaceholder = NSAttributedString(string: "계좌 번호를 입력해주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         
         registerContainer.addArrangedSubview(accountTextField)
+<<<<<<< HEAD
 
         let continueButton = makeCustomButton(viewController: self, nextVC: BankCertifyViewController())
 >>>>>>> KMS
+=======
+        let continueButton = makeCustomButton(viewController: self, nextVC: BankCertifyViewController())
+>>>>>>> 197acce5cc70835a7bc26a2d685c94690ca90af0
         self.registerContainer.addArrangedSubview(continueButton)
         registerContainer.setCustomSpacing(51, after: label1)
         registerContainer.setCustomSpacing(41, after: label2)
