@@ -55,6 +55,32 @@ class AddBirthInformViewController : UIViewController {
         return label
     }()
     
+    private let yearTextField : UITextField = {
+        let yearTextField = makeTextField()
+        yearTextField.attributedPlaceholder = NSAttributedString(string: "YYYY", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        
+        let rightPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: yearTextField.frame.size.height))
+            yearTextField.rightView = rightPaddingView
+            yearTextField.rightViewMode = .always
+        return yearTextField
+        
+    }()
+    
+    private let monthTextField : UITextField = {
+        let monthTextField = makeTextField()
+        monthTextField.attributedPlaceholder = NSAttributedString(string: "MM", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        return monthTextField
+        
+    }()
+    
+    private let dayTextField : UITextField = {
+        let dayTextField = makeTextField()
+        dayTextField.attributedPlaceholder = NSAttributedString(string: "DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        return dayTextField
+        
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "gray2")
@@ -62,19 +88,12 @@ class AddBirthInformViewController : UIViewController {
         self.view.addSubview(inputContainer)
         self.registerContainer.addArrangedSubview(label1)
         self.registerContainer.addArrangedSubview(label2)
-        let yearTextField = makeTextField()
-        yearTextField.attributedPlaceholder = NSAttributedString(string: "YYYY", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+ 
+        yearTextField.delegate = self
+        monthTextField.delegate = self
+        dayTextField.delegate = self
         
-        let rightPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: yearTextField.frame.size.height))
-            yearTextField.rightView = rightPaddingView
-            yearTextField.rightViewMode = .always
-        
-        
-        let monthTextField = makeTextField()
-        monthTextField.attributedPlaceholder = NSAttributedString(string: "MM", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
-        let dayTextField = makeTextField()
-        dayTextField.attributedPlaceholder = NSAttributedString(string: "DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
-        
+>>>>>>> KMS
         self.inputContainer.addArrangedSubview(yearTextField)
         self.inputContainer.addArrangedSubview(monthTextField)
         self.inputContainer.addArrangedSubview(dayTextField)
@@ -97,5 +116,64 @@ class AddBirthInformViewController : UIViewController {
         ])
     }
     
+    //키보드 관련 func
+    
+    //화면 터치해서 키패드 내리기
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+             self.view.endEditing(true)
+             }
+    
+    //done버튼 클릭해서 키패드 내리기
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+}
+
+
+
+//숫자 이외에 입력 안 되게 설정
+let charSet : CharacterSet = {
+    var cs = CharacterSet.decimalDigits
+    return cs.inverted
+}()
+
+
+extension AddBirthInformViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if string.count > 0 {
+            guard string.rangeOfCharacter(from: charSet) == nil else {
+                return false
+            }
+        
+            guard textField.text!.count < 4 else { return false }
+        }
+        
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // 키보드 업
+        textField.becomeFirstResponder()
+        // 입력 시 textField 를 강조하기 위한 테두리 설정
+        textField.layer.borderWidth = 2
+        textField.layer.borderColor = UIColor(named: "green")?.cgColor
+    }
+    
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            
+            //버튼 활성화 기능
+//            if yearTextField.hasText && monthTextField.hasText && dayTextField.hasText {
+//                NotificationCenter.default.post(name: .AddBirthInformViewController, object: false)
+//                    } else {
+//                        NotificationCenter.default.post(name: .frontCardtextFieldIsEmpty, object: true)
+//                    }
+            
+            //corner 색 없애기
+            textField.layer.borderWidth = 0
+        }
     
 }

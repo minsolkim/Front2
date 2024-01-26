@@ -122,14 +122,16 @@ class LoginViewController : UIViewController {
         self.view.addSubview(Container)
         
         let emailTextField = makeTextField()
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력해 주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         let pwTextField = makeTextField()
-        pwTextField.attributedPlaceholder = NSAttributedString(string: "최소 6자리로 입력해주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        pwTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호 입력", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+>>>>>>> KMS
         self.loginContainer.addArrangedSubview(tagLabel1)
         self.loginContainer.addArrangedSubview(emailTextField)
         self.loginContainer.addArrangedSubview(tagLabel2)
         self.loginContainer.addArrangedSubview(pwTextField)
-        let loginButton = makeCustomButton(viewController: self, nextVC: UIViewController())
+        let loginButton = makeCustomButton(viewController: self, nextVC: MainTabBarController())
+>>>>>>> KMS
         loginButton.setTitle("로그인", for: .normal)
         loginButton.configuration?.background.backgroundColor = UIColor(named: "searchfont")
         

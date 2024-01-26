@@ -11,7 +11,7 @@
 import Foundation
 import UIKit
 
-class AddLocationInfromViewController : UIViewController {
+class AddLocationInfromViewController : UIViewController, UITextFieldDelegate {
     
     private let registerContainer : UIStackView = {
         let stackView = UIStackView()
@@ -66,9 +66,33 @@ class AddLocationInfromViewController : UIViewController {
         return button
     }()
     
+    private lazy var currentLocationButton : UIButton = {
+        let currentLocationButton = makeCustomButton(viewController: self, nextVC: SearchLocationViewController())
+        currentLocationButton.setTitle("현재 위치로 찾기", for: .normal)
+        currentLocationButton.configuration?.image = UIImage(named: "gpsIcon")
+        currentLocationButton.configuration?.imagePadding = 9
+        currentLocationButton.configuration?.baseForegroundColor = UIColor(named: "green")
+        currentLocationButton.configuration?.background.backgroundColor = UIColor(named: "gray2")
+        currentLocationButton.configuration?.background.strokeColor = UIColor(named: "green")
+        currentLocationButton.configuration?.background.strokeWidth = 2
+        
+        return currentLocationButton
+    }()
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+             self.view.endEditing(true)
+             }
+    
+    //done버튼 클릭해서 키패드 내리기
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let _ = currentLocationButton
         self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
         self.registerContainer.addArrangedSubview(label1)
@@ -77,12 +101,11 @@ class AddLocationInfromViewController : UIViewController {
         let locationTextField = makeTextField()
         locationTextField.attributedPlaceholder = NSAttributedString(string: "도로명, 지번, 건물명 검색", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         self.registerContainer.addArrangedSubview(locationTextField)
-//        locationTextField.inputAccessoryView = searchButton
-        
-        let currentLocationButton = makeCustomButton(viewController: self, nextVC: SearchLocationViewController())
-        
+
         let continueButton = makeCustomButton(viewController: self, nextVC: AddIncomeViewController())
         
+        
+>>>>>>> KMS
         self.registerContainer.addArrangedSubview(currentLocationButton)
         self.registerContainer.addArrangedSubview(continueButton)
 

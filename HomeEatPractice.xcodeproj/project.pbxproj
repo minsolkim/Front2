@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		2D2C55FF2B5CBFE0000A9013 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C55D52B5CBFE0000A9013 /* HomeViewController.swift */; };
 		2D2C56002B5CBFE0000A9013 /* BadgeCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C55D72B5CBFE0000A9013 /* BadgeCheckViewController.swift */; };
 		2D2C56012B5CBFE0000A9013 /* CashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C55D82B5CBFE0000A9013 /* CashViewController.swift */; };
@@ -41,13 +42,49 @@
 		2D5B573C2B5FCD4C00124BB9 /* AddSexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5B573B2B5FCD4C00124BB9 /* AddSexViewController.swift */; };
 		2D5B573E2B5FCDCC00124BB9 /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5B573D2B5FCDCC00124BB9 /* SearchLocationViewController.swift */; };
 		2D5B57402B5FD9A500124BB9 /* BankCertifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5B573F2B5FD9A500124BB9 /* BankCertifyViewController.swift */; };
+=======
+>>>>>>> KMS
 		2D8CFEB82B5A301000FDE2E5 /* HomeatIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */; };
 		2D8CFEB92B5A301000FDE2E5 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */; };
 		2D8CFEBA2B5A301000FDE2E5 /* HomeatLogo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */; };
 		409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3272B43A0470096CDBB /* AppDelegate.swift */; };
-		409AA32A2B43A0470096CDBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3292B43A0470096CDBB /* SceneDelegate.swift */; };
 		409AA3312B43A0480096CDBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409AA3302B43A0480096CDBB /* Assets.xcassets */; };
 		409AA3342B43A0480096CDBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 409AA3322B43A0480096CDBB /* LaunchScreen.storyboard */; };
+<<<<<<< HEAD
+=======
+		409AA33C2B43A6B20096CDBB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA33B2B43A6B20096CDBB /* MainTabBarController.swift */; };
+		409AA33E2B43E94B0096CDBB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA33D2B43E94B0096CDBB /* HomeViewController.swift */; };
+		409AA3402B43E9640096CDBB /* CashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA33F2B43E9640096CDBB /* CashViewController.swift */; };
+		409AA3422B43E9760096CDBB /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3412B43E9760096CDBB /* TalkViewController.swift */; };
+		409AA3442B43E98A0096CDBB /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3432B43E98A0096CDBB /* MyPageViewController.swift */; };
+		409AA3462B453F3B0096CDBB /* PayAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3452B453F3B0096CDBB /* PayAddViewController.swift */; };
+		409AA3482B467EFB0096CDBB /* PayAnalyzeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3472B467EFB0096CDBB /* PayAnalyzeViewController.swift */; };
+		409AA34A2B46815E0096CDBB /* PayCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3492B46815E0096CDBB /* PayCheckViewController.swift */; };
+		582A98A12B636EA0008F30CA /* cameraIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 582A98A02B636EA0008F30CA /* cameraIcon.pdf */; };
+		582A98A52B636F2F008F30CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98A42B636F2F008F30CA /* SceneDelegate.swift */; };
+		582A98B62B637053008F30CA /* AddLocationInfromViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98A72B637053008F30CA /* AddLocationInfromViewController.swift */; };
+		582A98B72B637053008F30CA /* AddBirthInformViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98A82B637053008F30CA /* AddBirthInformViewController.swift */; };
+		582A98B82B637053008F30CA /* AddIncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98A92B637053008F30CA /* AddIncomeViewController.swift */; };
+		582A98B92B637053008F30CA /* AddAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98AA2B637053008F30CA /* AddAccountViewController.swift */; };
+		582A98BA2B637053008F30CA /* BankCertifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98AB2B637053008F30CA /* BankCertifyViewController.swift */; };
+		582A98BB2B637053008F30CA /* AddSexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98AC2B637053008F30CA /* AddSexViewController.swift */; };
+		582A98BC2B637053008F30CA /* RegisterSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98AD2B637053008F30CA /* RegisterSelectViewController.swift */; };
+		582A98BD2B637053008F30CA /* RegisterDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98AE2B637053008F30CA /* RegisterDoneViewController.swift */; };
+		582A98BE2B637053008F30CA /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98B02B637053008F30CA /* TermsOfUseViewController.swift */; };
+		582A98BF2B637053008F30CA /* AddBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98B12B637053008F30CA /* AddBudgetViewController.swift */; };
+		582A98C02B637053008F30CA /* BankSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98B22B637053008F30CA /* BankSelectViewController.swift */; };
+		582A98C12B637053008F30CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98B32B637053008F30CA /* LoginViewController.swift */; };
+		582A98C22B637053008F30CA /* SelectMangeUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98B42B637053008F30CA /* SelectMangeUnitViewController.swift */; };
+		582A98C32B637053008F30CA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98B52B637053008F30CA /* RegisterViewController.swift */; };
+		582A98C52B637080008F30CA /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98C42B637080008F30CA /* SearchLocationViewController.swift */; };
+		588A09262B4E5BE200638D16 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09252B4E5BE200638D16 /* WriteViewController.swift */; };
+		588A09292B4E6ED400638D16 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09282B4E6ED400638D16 /* InfoViewController.swift */; };
+		588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */; };
+		588A09302B4FF9A900638D16 /* MyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A092F2B4FF9A900638D16 /* MyItem.swift */; };
+		588A09342B50EC5900638D16 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09332B50EC5900638D16 /* PostViewController.swift */; };
+		58A40D732B56AF190053E302 /* InfoWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D722B56AF190053E302 /* InfoWritingViewController.swift */; };
+		58A40D772B57DD730053E302 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D762B57DD730053E302 /* EditViewController.swift */; };
+>>>>>>> KMS
 		58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D782B5805520053E302 /* UIColor + Extension.swift */; };
 
 		58A40D7E2B5BEFAA0053E302 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D7D2B5BEFAA0053E302 /* StatisticsViewController.swift */; };
@@ -67,6 +104,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
 		2D2C55D52B5CBFE0000A9013 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2D2C55D72B5CBFE0000A9013 /* BadgeCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeCheckViewController.swift; sourceTree = "<group>"; };
 		2D2C55D82B5CBFE0000A9013 /* CashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashViewController.swift; sourceTree = "<group>"; };
@@ -101,15 +139,51 @@
 		2D5B573B2B5FCD4C00124BB9 /* AddSexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSexViewController.swift; sourceTree = "<group>"; };
 		2D5B573D2B5FCDCC00124BB9 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchLocationViewController.swift; path = ../../../../../../Movies/SearchLocationViewController.swift; sourceTree = "<group>"; };
 		2D5B573F2B5FD9A500124BB9 /* BankCertifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCertifyViewController.swift; sourceTree = "<group>"; };
+=======
+>>>>>>> KMS
 		2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatIcon.pdf; sourceTree = "<group>"; };
 		2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatLogo.pdf; sourceTree = "<group>"; };
 		409AA3242B43A0470096CDBB /* HomeEatPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeEatPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		409AA3272B43A0470096CDBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		409AA3292B43A0470096CDBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		409AA3302B43A0480096CDBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		409AA3332B43A0480096CDBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		409AA3352B43A0480096CDBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		409AA33B2B43A6B20096CDBB /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		409AA33D2B43E94B0096CDBB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		409AA33F2B43E9640096CDBB /* CashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashViewController.swift; sourceTree = "<group>"; };
+		409AA3412B43E9760096CDBB /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
+		409AA3432B43E98A0096CDBB /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		409AA3452B453F3B0096CDBB /* PayAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayAddViewController.swift; sourceTree = "<group>"; };
+		409AA3472B467EFB0096CDBB /* PayAnalyzeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayAnalyzeViewController.swift; sourceTree = "<group>"; };
+		409AA3492B46815E0096CDBB /* PayCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayCheckViewController.swift; sourceTree = "<group>"; };
+		582A98A02B636EA0008F30CA /* cameraIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = cameraIcon.pdf; sourceTree = "<group>"; };
+		582A98A42B636F2F008F30CA /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		582A98A72B637053008F30CA /* AddLocationInfromViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationInfromViewController.swift; sourceTree = "<group>"; };
+		582A98A82B637053008F30CA /* AddBirthInformViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBirthInformViewController.swift; sourceTree = "<group>"; };
+		582A98A92B637053008F30CA /* AddIncomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIncomeViewController.swift; sourceTree = "<group>"; };
+		582A98AA2B637053008F30CA /* AddAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountViewController.swift; sourceTree = "<group>"; };
+		582A98AB2B637053008F30CA /* BankCertifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankCertifyViewController.swift; sourceTree = "<group>"; };
+		582A98AC2B637053008F30CA /* AddSexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSexViewController.swift; sourceTree = "<group>"; };
+		582A98AD2B637053008F30CA /* RegisterSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterSelectViewController.swift; sourceTree = "<group>"; };
+		582A98AE2B637053008F30CA /* RegisterDoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterDoneViewController.swift; sourceTree = "<group>"; };
+		582A98B02B637053008F30CA /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
+		582A98B12B637053008F30CA /* AddBudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBudgetViewController.swift; sourceTree = "<group>"; };
+		582A98B22B637053008F30CA /* BankSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankSelectViewController.swift; sourceTree = "<group>"; };
+		582A98B32B637053008F30CA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		582A98B42B637053008F30CA /* SelectMangeUnitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMangeUnitViewController.swift; sourceTree = "<group>"; };
+		582A98B52B637053008F30CA /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		582A98C42B637080008F30CA /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
+		588A09252B4E5BE200638D16 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		588A09282B4E6ED400638D16 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellOne.swift; sourceTree = "<group>"; };
+		588A092F2B4FF9A900638D16 /* MyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItem.swift; sourceTree = "<group>"; };
+		588A09332B50EC5900638D16 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		58A40D722B56AF190053E302 /* InfoWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoWritingViewController.swift; sourceTree = "<group>"; };
+		58A40D762B57DD730053E302 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+>>>>>>> KMS
 		58A40D782B5805520053E302 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 
 		58A40D7D2B5BEFAA0053E302 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +216,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+<<<<<<< HEAD
 		2D2C55D32B5CBFE0000A9013 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +365,12 @@
 			isa = PBXGroup;
 			children = (
 				2D5B57392B5CD57600124BB9 /* cameraIcon.pdf */,
+=======
+		2D8CFEB42B5A301000FDE2E5 /* LaunchScreenImage */ = {
+			isa = PBXGroup;
+			children = (
+				582A98A02B636EA0008F30CA /* cameraIcon.pdf */,
+>>>>>>> KMS
 				2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */,
 				2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */,
 				2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */,
@@ -320,8 +401,12 @@
 			children = (
 				2D8CFEB42B5A301000FDE2E5 /* LaunchScreenImage */,
 				409AA3272B43A0470096CDBB /* AppDelegate.swift */,
+<<<<<<< HEAD
 				409AA3292B43A0470096CDBB /* SceneDelegate.swift */,
 				2D2C55D32B5CBFE0000A9013 /* Controller */,
+=======
+				582A98A42B636F2F008F30CA /* SceneDelegate.swift */,
+>>>>>>> KMS
 				409AA3302B43A0480096CDBB /* Assets.xcassets */,
 				409AA3322B43A0480096CDBB /* LaunchScreen.storyboard */,
 				409AA3352B43A0480096CDBB /* Info.plist */,
@@ -330,7 +415,40 @@
 			path = HomeEatPractice;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 
+=======
+		582A98A62B637053008F30CA /* RegisterVC */ = {
+			isa = PBXGroup;
+			children = (
+				582A98A72B637053008F30CA /* AddLocationInfromViewController.swift */,
+				582A98A82B637053008F30CA /* AddBirthInformViewController.swift */,
+				582A98A92B637053008F30CA /* AddIncomeViewController.swift */,
+				582A98AA2B637053008F30CA /* AddAccountViewController.swift */,
+				582A98AB2B637053008F30CA /* BankCertifyViewController.swift */,
+				582A98AC2B637053008F30CA /* AddSexViewController.swift */,
+				582A98AD2B637053008F30CA /* RegisterSelectViewController.swift */,
+				582A98AE2B637053008F30CA /* RegisterDoneViewController.swift */,
+				582A98AF2B637053008F30CA /* PolicyVC */,
+				582A98B12B637053008F30CA /* AddBudgetViewController.swift */,
+				582A98B22B637053008F30CA /* BankSelectViewController.swift */,
+				582A98B32B637053008F30CA /* LoginViewController.swift */,
+				582A98B42B637053008F30CA /* SelectMangeUnitViewController.swift */,
+				582A98B52B637053008F30CA /* RegisterViewController.swift */,
+				582A98C42B637080008F30CA /* SearchLocationViewController.swift */,
+			);
+			path = RegisterVC;
+			sourceTree = "<group>";
+		};
+		582A98AF2B637053008F30CA /* PolicyVC */ = {
+			isa = PBXGroup;
+			children = (
+				582A98B02B637053008F30CA /* TermsOfUseViewController.swift */,
+			);
+			path = PolicyVC;
+			sourceTree = "<group>";
+		};
+>>>>>>> KMS
 		5875D9C92B5169D600F484DF /* MypageVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,10 +469,10 @@
 		588A09272B4E680400638D16 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				582A98A62B637053008F30CA /* RegisterVC */,
 				58A40D9C2B5FF13C0053E302 /* TabbarVC */,
 				58A40D832B5C04F40053E302 /* CashVC */,
 				58A40D7A2B5BEF060053E302 /* PayCheckVC */,
-				2D8CFEA52B5A2EB400FDE2E5 /* RegisterVC */,
 				5875D9CA2B51773200F484DF /* HomeVC */,
 				5875D9C92B5169D600F484DF /* MypageVC */,
 				588A092A2B4E987A00638D16 /* TalkVC */,
@@ -592,6 +710,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				582A98A12B636EA0008F30CA /* cameraIcon.pdf in Resources */,
 				409AA3342B43A0480096CDBB /* LaunchScreen.storyboard in Resources */,
 				2D8CFEBA2B5A301000FDE2E5 /* HomeatLogo.pdf in Resources */,
 				409AA3312B43A0480096CDBB /* Assets.xcassets in Resources */,
@@ -667,24 +786,32 @@
 				2D5B573E2B5FCDCC00124BB9 /* SearchLocationViewController.swift in Sources */,
 				588A09302B4FF9A900638D16 /* MyItem.swift in Sources */,
 				58A40D872B5C054F0053E302 /* BadgeCheckViewController.swift in Sources */,
+				582A98A52B636F2F008F30CA /* SceneDelegate.swift in Sources */,
 				409AA3402B43E9640096CDBB /* CashViewController.swift in Sources */,
 				588A09262B4E5BE200638D16 /* WriteViewController.swift in Sources */,
+				582A98BE2B637053008F30CA /* TermsOfUseViewController.swift in Sources */,
+				582A98B82B637053008F30CA /* AddIncomeViewController.swift in Sources */,
+				582A98BF2B637053008F30CA /* AddBudgetViewController.swift in Sources */,
 				58A40D972B5FAC490053E302 /* MealPostViewController.swift in Sources */,
-				2D8CFEAD2B5A2F1400FDE2E5 /* SelectMangeUnitViewController.swift in Sources */,
 				58A40D9B2B5FACAF0053E302 /* MealSource.swift in Sources */,
 				58A40D9E2B5FF1560053E302 /* TabbarInfo.swift in Sources */,
 				58A40D802B5BEFC40053E302 /* CalendarCheckViewController.swift in Sources */,
 				409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */,
 				58A40D992B5FAC6A0053E302 /* MealWritingViewController.swift in Sources */,
 				58A40D952B5FAC1B0053E302 /* MealViewCell.swift in Sources */,
+				582A98B62B637053008F30CA /* AddLocationInfromViewController.swift in Sources */,
 				409AA3482B467EFB0096CDBB /* PayAnalyzeViewController.swift in Sources */,
-				2D8CFEB02B5A2F1400FDE2E5 /* RegisterDoneViewController.swift in Sources */,
+				582A98BB2B637053008F30CA /* AddSexViewController.swift in Sources */,
+				582A98BA2B637053008F30CA /* BankCertifyViewController.swift in Sources */,
 				58A40D8E2B5D01F70053E302 /* WeekCashViewController.swift in Sources */,
 				409AA3422B43E9760096CDBB /* TalkViewController.swift in Sources */,
+				582A98BC2B637053008F30CA /* RegisterSelectViewController.swift in Sources */,
+				582A98C02B637053008F30CA /* BankSelectViewController.swift in Sources */,
 				409AA34A2B46815E0096CDBB /* PayCheckViewController.swift in Sources */,
 				58A40D772B57DD730053E302 /* EditViewController.swift in Sources */,
-				2D8CFEAF2B5A2F1400FDE2E5 /* RegisterViewController.swift in Sources */,
+				582A98BD2B637053008F30CA /* RegisterDoneViewController.swift in Sources */,
 				409AA33E2B43E94B0096CDBB /* HomeViewController.swift in Sources */,
+<<<<<<< HEAD
 				2D8CFEB22B5A2F1400FDE2E5 /* LoginViewController.swift in Sources */,
 
 				58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */,
@@ -715,12 +842,24 @@
 =======
 				58A40DA02B6120970053E302 /* DeclareViewController.swift in Sources */,
 >>>>>>> KMS
+=======
+				58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */,
+				409AA33C2B43A6B20096CDBB /* MainTabBarController.swift in Sources */,
+				582A98C52B637080008F30CA /* SearchLocationViewController.swift in Sources */,
+				582A98C22B637053008F30CA /* SelectMangeUnitViewController.swift in Sources */,
+				582A98B92B637053008F30CA /* AddAccountViewController.swift in Sources */,
+				58A40D732B56AF190053E302 /* InfoWritingViewController.swift in Sources */,
+				588A09342B50EC5900638D16 /* PostViewController.swift in Sources */,
+				409AA3462B453F3B0096CDBB /* PayAddViewController.swift in Sources */,
+				58A40DA02B6120970053E302 /* DeclareViewController.swift in Sources */,
+				582A98C12B637053008F30CA /* LoginViewController.swift in Sources */,
+				582A98C32B637053008F30CA /* RegisterViewController.swift in Sources */,
+>>>>>>> KMS
 				58A40D852B5C05330053E302 /* CashCheckViewController.swift in Sources */,
-				2D8CFEAE2B5A2F1400FDE2E5 /* AddLocationInfromViewController.swift in Sources */,
-				2D8CFEB32B5A2F1400FDE2E5 /* AddBirthInformViewController.swift in Sources */,
 				588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */,
 				588A09292B4E6ED400638D16 /* InfoViewController.swift in Sources */,
 				58A40D822B5C00D30053E302 /* TagPlusViewController.swift in Sources */,
+				582A98B72B637053008F30CA /* AddBirthInformViewController.swift in Sources */,
 				409AA3442B43E98A0096CDBB /* MyPageViewController.swift in Sources */,
 				58A40DA22B6120B70053E302 /* DeclareWriteViewController.swift in Sources */,
 				58A40D7E2B5BEFAA0053E302 /* StatisticsViewController.swift in Sources */,
@@ -864,14 +1003,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TSGF3YP7J3;
+				DEVELOPMENT_TEAM = G62DUX396A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HomeEatPractice/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근권한";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 접근권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -893,14 +1034,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TSGF3YP7J3;
+				DEVELOPMENT_TEAM = G62DUX396A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HomeEatPractice/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근권한";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 접근권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

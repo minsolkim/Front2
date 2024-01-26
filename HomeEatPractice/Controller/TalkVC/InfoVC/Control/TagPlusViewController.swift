@@ -127,7 +127,7 @@ class TagPlusViewController: UIViewController {
         button.layer.borderWidth = 2
         
         // 버튼이 선택되었을 때의 border 색상 및 title 색상
-        let selectedBorderColor = UIColor(named: "green")?.cgColor ?? UIColor.blue.cgColor
+        let selectedBorderColor = UIColor(named: "green")?.cgColor ?? UIColor.red.cgColor
         let selectedTitleColor = UIColor(named: "green") ?? UIColor.red
         button.setTitleColor(selectedTitleColor, for: .selected)
         
@@ -143,8 +143,8 @@ class TagPlusViewController: UIViewController {
         
         // 버튼의 선택 여부에 따라 border 색상 및 title 색상을 변경
         if sender.isSelected {
-            sender.layer.borderColor = UIColor(named: "green")?.cgColor ?? UIColor.blue.cgColor
-            sender.setTitleColor(UIColor(named: "green") ?? UIColor.red, for: .normal)
+            sender.layer.borderColor = UIColor(named: "green")?.cgColor ?? UIColor.red.cgColor
+            sender.setTitleColor(UIColor(named: "green") ?? UIColor.red, for: .selected)
         } else {
             sender.layer.borderColor = UIColor(named: "font5")?.cgColor ?? UIColor.gray.cgColor
             sender.setTitleColor(UIColor(named: "font5") ?? UIColor.gray, for: .normal)
