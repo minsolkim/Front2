@@ -10,14 +10,15 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var check : Int = 0
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        
+    
         // 윈도우의 씬을 가져온다.
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         // 윈도우의 크기 설정
@@ -26,10 +27,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 뷰컨트롤러 인스턴스 설정
         let mainTC = MainTabBarController()
         
+        let navigationController = UINavigationController(rootViewController: RegisterSelectViewController())
         // 루트 네비게이션 컨트롤러 설정
         
         // 루트뷰 컨트롤러를 위에서 설정한 네비게이션 컨트롤러로 설정
-        window?.rootViewController = mainTC
+        //rootView 투트랙으로 가야돼서 조건 임시 설정 *수정필요함
+        if check == 1 {
+            window?.rootViewController = mainTC
+            mainTC.tabBar.backgroundColor = .darkGray
+                } else {
+                    window?.rootViewController = navigationController
+                }
+        
+//        window?.rootViewController = mainTC
         
         // 설정한 윈도우를 보이게끔 설정
         window?.makeKeyAndVisible()
@@ -37,7 +47,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 윈도우 씬 설정
         window?.windowScene = windowScene
         
-        mainTC.tabBar.backgroundColor = .darkGray
         
     }
 

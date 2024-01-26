@@ -1,5 +1,5 @@
 //
-//  RegisterDoneViewController.swift
+//  SearchLocationViewController.swift
 //  HomeEatPractice
 //
 //  Created by 강삼고 on 1/14/24.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class RegisterDoneViewController : UIViewController {
+class SearchLocationViewController : UIViewController {
     
     private let registerContainer : UIStackView = {
         let stackView = UIStackView()
@@ -69,5 +69,6 @@ class RegisterDoneViewController : UIViewController {
         ])
     }
 }
+
 
 

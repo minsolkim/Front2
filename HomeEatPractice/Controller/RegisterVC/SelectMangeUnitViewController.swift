@@ -38,7 +38,7 @@ class SelectMangeUnitViewController : UIViewController {
         label.text = "식비 관리 단위를\n선택해주세요."
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
+        label.backgroundColor = UIColor(named: "gray2")
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -49,8 +49,8 @@ class SelectMangeUnitViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "식비 관리 분석에 필요해요!"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
-        label.textColor = UIColor(named: "WarmGray")
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "searchfont")
         label.textAlignment = .left
         return label
     }()
@@ -61,8 +61,8 @@ class SelectMangeUnitViewController : UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("월", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        button.setTitleColor(UIColor(named: "Green"), for: .normal)
-        button.backgroundColor = UIColor(named: "RegisterTextField")
+        button.setTitleColor(UIColor(named: "green"), for: .normal)
+        button.backgroundColor = UIColor(named: "searchfont")
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         button.heightAnchor.constraint(equalToConstant: 57).isActive = true
         button.widthAnchor.constraint(equalToConstant: 171).isActive = true
@@ -76,8 +76,8 @@ class SelectMangeUnitViewController : UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("주", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        button.setTitleColor(UIColor(named: "Green"), for: .normal)
-        button.backgroundColor = UIColor(named: "RegisterTextField")
+        button.setTitleColor(UIColor(named: "green"), for: .normal)
+        button.backgroundColor = UIColor(named: "searchfont")
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         button.heightAnchor.constraint(equalToConstant: 57).isActive = true
         button.widthAnchor.constraint(equalToConstant: 171).isActive = true
@@ -90,15 +90,16 @@ class SelectMangeUnitViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "RegisterBackground")
+        self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
         self.registerContainer.addArrangedSubview(label1)
         self.registerContainer.addArrangedSubview(label2)
         self.registerContainer.addArrangedSubview(Container)
         self.Container.addArrangedSubview(monthButton)
         self.Container.addArrangedSubview(weekButton)
-       // let continueButton = makeCustomButton(viewController: self, nextVC: )
-       // self.registerContainer.addArrangedSubview(continueButton)
+
+//        let continueButton = makeCustomButton()
+//        self.registerContainer.addArrangedSubview(continueButton)
 
         registerContainer.setCustomSpacing(80, after: label2)
         registerContainer.setCustomSpacing(293, after: Container)

@@ -1,17 +1,14 @@
 //
-//  AddLocationInfromViewController.swift
+//  AddBudgetViewController.swift
 //  HomeEatPractice
 //
-//  Created by 강삼고 on 1/14/24.
+//  Created by 강삼고 on 1/21/24.
 //
 
-
-//돋보기부터
-//전체가 버튼인지 질문
 import Foundation
 import UIKit
 
-class AddLocationInfromViewController : UIViewController, UITextFieldDelegate {
+class AddBudgetViewController : UIViewController {
     
     private let registerContainer : UIStackView = {
         let stackView = UIStackView()
@@ -27,7 +24,7 @@ class AddLocationInfromViewController : UIViewController, UITextFieldDelegate {
     private let label1 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "거주하고 있는 동네는\n어디인가요?"
+        label.text = "한 주 목표 식비는\n얼마인가요?"
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
         label.backgroundColor = UIColor(named: "gray2")
@@ -39,7 +36,7 @@ class AddLocationInfromViewController : UIViewController, UITextFieldDelegate {
     private let label2 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "게시판 사용에 필요해요!"
+        label.text = "외식, 배달비 모두 포함이에요!"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.backgroundColor = UIColor(named: "gray2")
         label.textColor = UIColor(named: "searchfont")
@@ -50,7 +47,7 @@ class AddLocationInfromViewController : UIViewController, UITextFieldDelegate {
     private let label3 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "주소"
+        label.text = "한 주 목표 식비"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.backgroundColor = UIColor(named: "gray2")
         label.textColor = UIColor(named: "green")
@@ -66,54 +63,27 @@ class AddLocationInfromViewController : UIViewController, UITextFieldDelegate {
         return button
     }()
     
-    private lazy var currentLocationButton : UIButton = {
-        let currentLocationButton = makeCustomButton(viewController: self, nextVC: SearchLocationViewController())
-        currentLocationButton.setTitle("현재 위치로 찾기", for: .normal)
-        currentLocationButton.configuration?.image = UIImage(named: "gpsIcon")
-        currentLocationButton.configuration?.imagePadding = 9
-        currentLocationButton.configuration?.baseForegroundColor = UIColor(named: "green")
-        currentLocationButton.configuration?.background.backgroundColor = UIColor(named: "gray2")
-        currentLocationButton.configuration?.background.strokeColor = UIColor(named: "green")
-        currentLocationButton.configuration?.background.strokeWidth = 2
-        
-        return currentLocationButton
-    }()
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-             self.view.endEditing(true)
-             }
-    
-    //done버튼 클릭해서 키패드 내리기
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-        textField.resignFirstResponder()
-        return true
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let _ = currentLocationButton
         self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
         self.registerContainer.addArrangedSubview(label1)
         self.registerContainer.addArrangedSubview(label2)
         self.registerContainer.addArrangedSubview(label3)
         let locationTextField = makeTextField()
-        locationTextField.attributedPlaceholder = NSAttributedString(string: "도로명, 지번, 건물명 검색", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
-        locationTextField.delegate = self
+        locationTextField.attributedPlaceholder = NSAttributedString(string: "원", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: locationTextField.frame.height))
+        locationTextField.leftView = leftPaddingView
+        
         self.registerContainer.addArrangedSubview(locationTextField)
 //        locationTextField.inputAccessoryView = searchButton
         
-        
-        
-        let continueButton = makeCustomButton(viewController: self, nextVC: AddIncomeViewController())
-        
-        
-        self.registerContainer.addArrangedSubview(currentLocationButton)
+        let continueButton = makeCustomButton(viewController: self, nextVC: AddAccountViewController())
         self.registerContainer.addArrangedSubview(continueButton)
-
         registerContainer.setCustomSpacing(41, after: label2)
         registerContainer.setCustomSpacing(5, after: label3)
-        registerContainer.setCustomSpacing(225, after: currentLocationButton)
+        registerContainer.setCustomSpacing(293, after: locationTextField)
 //        locationTextField.addSubview(searchButton)
         
         NSLayoutConstraint.activate([

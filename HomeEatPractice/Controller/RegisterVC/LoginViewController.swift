@@ -49,8 +49,8 @@ class LoginViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "이메일"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
-        label.textColor = .green
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         return label
     }()
@@ -60,8 +60,8 @@ class LoginViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "비밀번호"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
-        label.textColor = .green
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         return label
     }()
@@ -71,7 +71,7 @@ class LoginViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "|"
         label.font = UIFont.systemFont(ofSize: 13, weight: .bold)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
+        label.backgroundColor = UIColor(named: "gray2")
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -82,7 +82,7 @@ class LoginViewController : UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("회원가입", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(named: "RegisterBackground")
+        button.backgroundColor = UIColor(named: "gray2")
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
 
         return button
@@ -93,42 +93,46 @@ class LoginViewController : UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("비밀번호 찾기", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(named: "RegisterBackground")
+        button.backgroundColor = UIColor(named: "gray2")
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
 
         return button
     }()
     
-    private let loginButton : UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("로그인", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = UIColor(named: "WarmGray")
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        button.heightAnchor.constraint(equalToConstant: 57).isActive = true
-
-
-        return button
-    }()
+    //    private let loginButton : UIButton = {
+    //        let button = UIButton()
+    //        button.translatesAutoresizingMaskIntoConstraints = false
+    //        button.setTitle("로그인", for: .normal)
+    //        button.setTitleColor(.black, for: .normal)
+    //        button.backgroundColor = UIColor(named: "searchfont")
+    //        button.layer.cornerRadius = 10
+    //        button.clipsToBounds = true
+    //        button.heightAnchor.constraint(equalToConstant: 57).isActive = true
+    //
+    //
+    //        return button
+    //    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "RegisterBackground")
+        self.view.backgroundColor = UIColor(named: "gray2")
         
         self.view.addSubview(homeatLogo)
         self.view.addSubview(loginContainer)
         self.view.addSubview(Container)
         
         let emailTextField = makeTextField()
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력해 주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "WarmGray") ?? .white])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         let pwTextField = makeTextField()
-        pwTextField.attributedPlaceholder = NSAttributedString(string: "최소 6자리로 입력해주세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "WarmGray") ?? .white])
+        pwTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호 입력", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         self.loginContainer.addArrangedSubview(tagLabel1)
         self.loginContainer.addArrangedSubview(emailTextField)
         self.loginContainer.addArrangedSubview(tagLabel2)
         self.loginContainer.addArrangedSubview(pwTextField)
+        let loginButton = makeCustomButton(viewController: self, nextVC: MainTabBarController())
+        loginButton.setTitle("로그인", for: .normal)
+        loginButton.configuration?.background.backgroundColor = UIColor(named: "searchfont")
+        
         self.loginContainer.addArrangedSubview(loginButton)
         loginContainer.setCustomSpacing(41, after: emailTextField)
         loginContainer.setCustomSpacing(197, after: pwTextField)

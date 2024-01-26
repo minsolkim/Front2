@@ -21,13 +21,24 @@ class AddBirthInformViewController : UIViewController {
         return stackView
     }()
     
+    private let inputContainer : UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 11
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        
+        return stackView
+    }()
+    
     private let label1 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "생년월일을\n입력해주세요."
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
+        label.backgroundColor = UIColor(named: "gray2")
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -38,26 +49,62 @@ class AddBirthInformViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "생년월일"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.backgroundColor = UIColor(named: "RegisterBackground")
-        label.textColor = UIColor(named: "Green")
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         return label
     }()
     
+    private let yearTextField : UITextField = {
+        let yearTextField = makeTextField()
+        yearTextField.attributedPlaceholder = NSAttributedString(string: "YYYY", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        
+        let rightPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: yearTextField.frame.size.height))
+            yearTextField.rightView = rightPaddingView
+            yearTextField.rightViewMode = .always
+        return yearTextField
+        
+    }()
+    
+    private let monthTextField : UITextField = {
+        let monthTextField = makeTextField()
+        monthTextField.attributedPlaceholder = NSAttributedString(string: "MM", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        return monthTextField
+        
+    }()
+    
+    private let dayTextField : UITextField = {
+        let dayTextField = makeTextField()
+        dayTextField.attributedPlaceholder = NSAttributedString(string: "DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
+        return dayTextField
+        
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "RegisterBackground")
+        self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
+        self.view.addSubview(inputContainer)
         self.registerContainer.addArrangedSubview(label1)
         self.registerContainer.addArrangedSubview(label2)
-        let birthTextField = makeTextField()
-        birthTextField.attributedPlaceholder = NSAttributedString(string: "YYYY / MM / DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "WarmGray") ?? .white])
-        self.registerContainer.addArrangedSubview(birthTextField)
+ 
+        yearTextField.delegate = self
+        monthTextField.delegate = self
+        dayTextField.delegate = self
         
-        let continueButton = makeCustomButton(viewController: self, nextVC: RegisterViewController())
+        self.inputContainer.addArrangedSubview(yearTextField)
+        self.inputContainer.addArrangedSubview(monthTextField)
+        self.inputContainer.addArrangedSubview(dayTextField)
+        
+        self.registerContainer.addArrangedSubview(inputContainer)
+
+        let continueButton = makeCustomButton(viewController: self, nextVC: AddSexViewController())
+
         self.registerContainer.addArrangedSubview(continueButton)
+        
         registerContainer.setCustomSpacing(79, after: label1)
-        registerContainer.setCustomSpacing(293, after: birthTextField)
+        registerContainer.setCustomSpacing(293, after: inputContainer)
         
         NSLayoutConstraint.activate([
             
@@ -68,5 +115,64 @@ class AddBirthInformViewController : UIViewController {
         ])
     }
     
+    //키보드 관련 func
+    
+    //화면 터치해서 키패드 내리기
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+             self.view.endEditing(true)
+             }
+    
+    //done버튼 클릭해서 키패드 내리기
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+}
+
+
+
+//숫자 이외에 입력 안 되게 설정
+let charSet : CharacterSet = {
+    var cs = CharacterSet.decimalDigits
+    return cs.inverted
+}()
+
+
+extension AddBirthInformViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if string.count > 0 {
+            guard string.rangeOfCharacter(from: charSet) == nil else {
+                return false
+            }
+        
+            guard textField.text!.count < 4 else { return false }
+        }
+        
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // 키보드 업
+        textField.becomeFirstResponder()
+        // 입력 시 textField 를 강조하기 위한 테두리 설정
+        textField.layer.borderWidth = 2
+        textField.layer.borderColor = UIColor(named: "green")?.cgColor
+    }
+    
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            
+            //버튼 활성화 기능
+//            if yearTextField.hasText && monthTextField.hasText && dayTextField.hasText {
+//                NotificationCenter.default.post(name: .AddBirthInformViewController, object: false)
+//                    } else {
+//                        NotificationCenter.default.post(name: .frontCardtextFieldIsEmpty, object: true)
+//                    }
+            
+            //corner 색 없애기
+            textField.layer.borderWidth = 0
+        }
     
 }
