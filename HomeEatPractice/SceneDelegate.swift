@@ -36,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = mainTC
             mainTC.tabBar.backgroundColor = .darkGray
                 } else {
-                    window?.rootViewController = navigationController
+                    window?.rootViewController = SearchLocationViewController()
                 }
         
 //        window?.rootViewController = mainTC

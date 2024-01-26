@@ -242,6 +242,7 @@ class PayAddViewController : UIViewController, UITextFieldDelegate{
         
     }
     
+    //화면 터치해서 키패트 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
              self.view.endEditing(true)
              }
@@ -258,15 +259,6 @@ class PayAddViewController : UIViewController, UITextFieldDelegate{
 
 // 키보드 숨기기
 extension UIViewController {
-//    func hideKeyboardWhenTappedAround() {
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-//        tap.cancelsTouchesInView = false
-//        view.addGestureRecognizer(tap)
-//    }
-//    
-//    @objc func dismissKeyboard() {
-//        view.endEditing(true)
-//    }
     
     //키보드 올라갔다는 알림을 받으면 실행되는 메서드
     @objc func keyboardWillShow(_ sender:Notification){
