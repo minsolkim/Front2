@@ -38,6 +38,7 @@
 		582A98C22B637053008F30CA /* SelectMangeUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98B42B637053008F30CA /* SelectMangeUnitViewController.swift */; };
 		582A98C32B637053008F30CA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98B52B637053008F30CA /* RegisterViewController.swift */; };
 		582A98C52B637080008F30CA /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98C42B637080008F30CA /* SearchLocationViewController.swift */; };
+		582A98C72B653C61008F30CA /* PasswordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98C62B653C61008F30CA /* PasswordEditViewController.swift */; };
 		588A09262B4E5BE200638D16 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09252B4E5BE200638D16 /* WriteViewController.swift */; };
 		588A09292B4E6ED400638D16 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09282B4E6ED400638D16 /* InfoViewController.swift */; };
 		588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */; };
@@ -96,6 +97,7 @@
 		582A98B42B637053008F30CA /* SelectMangeUnitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMangeUnitViewController.swift; sourceTree = "<group>"; };
 		582A98B52B637053008F30CA /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		582A98C42B637080008F30CA /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
+		582A98C62B653C61008F30CA /* PasswordEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditViewController.swift; sourceTree = "<group>"; };
 		588A09252B4E5BE200638D16 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		588A09282B4E6ED400638D16 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellOne.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			children = (
 				409AA3432B43E98A0096CDBB /* MyPageViewController.swift */,
 				58A40D762B57DD730053E302 /* EditViewController.swift */,
+				582A98C62B653C61008F30CA /* PasswordEditViewController.swift */,
 			);
 			path = MypageVC;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				582A98BB2B637053008F30CA /* AddSexViewController.swift in Sources */,
 				582A98BA2B637053008F30CA /* BankCertifyViewController.swift in Sources */,
 				58A40D8E2B5D01F70053E302 /* WeekCashViewController.swift in Sources */,
+				582A98C72B653C61008F30CA /* PasswordEditViewController.swift in Sources */,
 				409AA3422B43E9760096CDBB /* TalkViewController.swift in Sources */,
 				582A98BC2B637053008F30CA /* RegisterSelectViewController.swift in Sources */,
 				582A98C02B637053008F30CA /* BankSelectViewController.swift in Sources */,

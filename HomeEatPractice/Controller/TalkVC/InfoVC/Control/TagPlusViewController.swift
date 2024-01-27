@@ -110,7 +110,7 @@ class TagPlusViewController: UIViewController {
             tagplusField.heightAnchor.constraint(equalToConstant: 50),
         ])
         NSLayoutConstraint.activate([
-            verticalStackView.bottomAnchor.constraint(equalTo: tagplusField.bottomAnchor, constant: -76),
+            verticalStackView.topAnchor.constraint(equalTo: tagplusField.bottomAnchor, constant: 33),
             verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             

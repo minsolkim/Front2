@@ -68,29 +68,6 @@ class MyPageViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.addTarget(self, action: #selector(navigateToEditViewController), for: .touchUpInside)
     }
-    //홈잇캐시
-    private let settingCash =  UIButton().then {
-        $0.setTitle("홈잇캐시", for: .normal)
-        $0.setTitleColor(UIColor.white, for: .normal)
-        $0.backgroundColor = .clear
-        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.semanticContentAttribute = .forceRightToLeft
-        $0.contentHorizontalAlignment = .left // 이미지 오른쪽 정렬
-        $0.addTarget(self, action: #selector(navigateToCashCheckViewController), for: .touchUpInside)
-    }
-    //화살표 버튼
-    private let arrowBtn = UIImageView().then {
-        $0.image = UIImage(named: "Mypage3")
-        $0.contentMode = .scaleAspectFit
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        
-    }
-    private let UnderlineBar = UIView().then {
-        $0.backgroundColor = .white
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
     //비밀번호 변경
     private let settingPassword =  UIButton().then {
         $0.setTitle("비밀번호 변경", for: .normal)
@@ -159,11 +136,7 @@ class MyPageViewController: UIViewController {
         configUI()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        tabBarController?.tabBar.isHidden = true
-//        tabBarController?.tabBar.isTranslucent = false
-//    }
+
     func addSubView() {
         view.addSubview(borderView)
         view.addSubview(circleView)
@@ -172,9 +145,6 @@ class MyPageViewController: UIViewController {
         view.addSubview(profileIdView)
         profileIdView.addSubview(profileIdLabel)
         view.addSubview(profileEditBtn)
-        view.addSubview(settingCash)
-        view.addSubview(arrowBtn)
-        view.addSubview(UnderlineBar)
         view.addSubview(settingPassword)
         view.addSubview(arrowBtn3)
         view.addSubview(UnderlineBar3)
@@ -219,36 +189,17 @@ class MyPageViewController: UIViewController {
             profileEditBtn.topAnchor.constraint(equalTo: circleView.bottomAnchor,constant: 15),
             profileEditBtn.leadingAnchor.constraint(equalTo: circleView.leadingAnchor)
         ])
-        NSLayoutConstraint.activate([
-            settingCash.widthAnchor.constraint(equalToConstant: 59),
-            settingCash.heightAnchor.constraint(equalToConstant: 17),
-            settingCash.topAnchor.constraint(equalTo: profileEditBtn.bottomAnchor, constant: 37),
-            settingCash.leadingAnchor.constraint(equalTo: circleView.leadingAnchor)
-        ])
-        NSLayoutConstraint.activate([
-            arrowBtn.widthAnchor.constraint(equalToConstant: 11.3),
-            arrowBtn.heightAnchor.constraint(equalToConstant: 11.3),
-            arrowBtn.topAnchor.constraint(equalTo: profileEditBtn.bottomAnchor, constant: 41.3),
-            arrowBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -27)
-        ])
-
-        NSLayoutConstraint.activate([
-            UnderlineBar.widthAnchor.constraint(equalToConstant: 354),
-            UnderlineBar.heightAnchor.constraint(equalToConstant: 1),
-            UnderlineBar.topAnchor.constraint(equalTo: settingCash.bottomAnchor, constant: 22),
-            UnderlineBar.leadingAnchor.constraint(equalTo: settingCash.leadingAnchor)
-        ])
         
         NSLayoutConstraint.activate([
             settingPassword.widthAnchor.constraint(equalToConstant: 92),
             settingPassword.heightAnchor.constraint(equalToConstant: 17),
-            settingPassword.topAnchor.constraint(equalTo: UnderlineBar.bottomAnchor, constant: 23),
-            settingPassword.leadingAnchor.constraint(equalTo: settingCash.leadingAnchor)
+            settingPassword.topAnchor.constraint(equalTo: profileEditBtn.bottomAnchor, constant: 48),
+            settingPassword.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 19)
         ])
         NSLayoutConstraint.activate([
             arrowBtn3.widthAnchor.constraint(equalToConstant: 11.3),
             arrowBtn3.heightAnchor.constraint(equalToConstant: 11.3),
-            arrowBtn3.topAnchor.constraint(equalTo: UnderlineBar.bottomAnchor, constant: 25.3),
+            arrowBtn3.topAnchor.constraint(equalTo: profileEditBtn.bottomAnchor, constant: 51),
             arrowBtn3.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -27)
         ])
 
@@ -263,7 +214,7 @@ class MyPageViewController: UIViewController {
             settingLogout.widthAnchor.constraint(equalToConstant: 59),
             settingLogout.heightAnchor.constraint(equalToConstant: 17),
             settingLogout.topAnchor.constraint(equalTo: UnderlineBar3.bottomAnchor, constant: 23),
-            settingLogout.leadingAnchor.constraint(equalTo: settingCash.leadingAnchor)
+            settingLogout.leadingAnchor.constraint(equalTo: settingPassword.leadingAnchor)
         ])
         NSLayoutConstraint.activate([
             arrowBtn4.widthAnchor.constraint(equalToConstant: 11.3),
@@ -283,7 +234,7 @@ class MyPageViewController: UIViewController {
             settingLeave.widthAnchor.constraint(equalToConstant: 59),
             settingLeave.heightAnchor.constraint(equalToConstant: 17),
             settingLeave.topAnchor.constraint(equalTo: UnderlineBar4.bottomAnchor, constant: 23),
-            settingLeave.leadingAnchor.constraint(equalTo: settingCash.leadingAnchor)
+            settingLeave.leadingAnchor.constraint(equalTo: settingPassword.leadingAnchor)
         ])
         NSLayoutConstraint.activate([
             arrowBtn5.widthAnchor.constraint(equalToConstant: 11.3),

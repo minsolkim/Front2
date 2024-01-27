@@ -157,10 +157,7 @@ class InfoViewController: UIViewController {
     //'최신순'버튼 눌렀을 때 액션 리스너
     @objc func showActionSheet() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if let actionSheetView = actionSheet.view.superview?.subviews.first {
-                actionSheetView.backgroundColor = UIColor.lightGray // 또는 원하는 색상으로 변경
-            }
-       
+
         let newestAction = UIAlertAction(title: "최신순", style: .default) { _ in
             print("최신순 selected")
         }
@@ -175,15 +172,28 @@ class InfoViewController: UIViewController {
         }
 
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-
+        newestAction.setValue(UIColor.white, forKey: "titleTextColor")
+        
+        likesAction.setValue(UIColor.white, forKey: "titleTextColor")
+        viewsAction.setValue(UIColor.white, forKey: "titleTextColor")
+        oldestAction.setValue(UIColor.white, forKey: "titleTextColor")
+        cancelAction.setValue(UIColor.red, forKey: "titleTextColor")
+        // 액션시트가 나타나기 전에 배경색 설정
+        if let actionSheetView = actionSheet.view.subviews.first,
+            let subview = actionSheetView.subviews.first {
+            subview.backgroundColor = UIColor.black
+        }
         actionSheet.addAction(newestAction)
         actionSheet.addAction(likesAction)
         actionSheet.addAction(viewsAction)
         actionSheet.addAction(oldestAction)
         actionSheet.addAction(cancelAction)
 
+        
+
         present(actionSheet, animated: true, completion: nil)
     }
+
     
     //셀 각 인덱스 클릭시 게시물 화면으로 넘어가짐
     //InfoViewController - > PostViewController
