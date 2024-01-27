@@ -41,12 +41,43 @@ class TagPlusViewController: UIViewController {
         $0.distribution = .fillEqually
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    private let saveButton = UIButton().then {
+        $0.setTitle("저장", for: .normal)
+        $0.setTitleColor(UIColor.white, for: .normal)
+        $0.layer.cornerRadius = 10
+        $0.layer.masksToBounds = true
+        $0.backgroundColor = UIColor.init(named: "gray4")
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.addTarget(self, action: #selector(navigatetToInfoWritingViewController), for: .touchUpInside)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationControl()
         addSubviews()
         configUI()
+        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isTranslucent = true
         view.backgroundColor = UIColor(named: "gray2")
+    }
+    // MARK: - 탭바제거
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 커스텀 탭바를 숨깁니다.
+        if let tabBarController = self.tabBarController as? MainTabBarController {
+            tabBarController.customTabBar.isHidden = true
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 다른 화면으로 넘어갈 때 커스텀 탭바를 다시 보이게 합니다.
+        if let tabBarController = self.tabBarController as? MainTabBarController {
+            tabBarController.customTabBar.isHidden = false
+        }
     }
     func navigationControl() {
         let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
@@ -63,6 +94,7 @@ class TagPlusViewController: UIViewController {
     func addSubviews() {
         view.addSubview(tagplusField)
         view.addSubview(verticalStackView)
+        view.addSubview(saveButton)
         // Vertical Stack View에 추가적인 Horizontal Stack View를 추가
         verticalStackView.addArrangedSubview(horizontalStackView)
         verticalStackView.addArrangedSubview(additionalHorizontalStackView)
@@ -78,9 +110,16 @@ class TagPlusViewController: UIViewController {
             tagplusField.heightAnchor.constraint(equalToConstant: 50),
         ])
         NSLayoutConstraint.activate([
-            verticalStackView.topAnchor.constraint(equalTo: tagplusField.bottomAnchor, constant: 33),
+            verticalStackView.bottomAnchor.constraint(equalTo: tagplusField.bottomAnchor, constant: -76),
             verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+        ])
+        NSLayoutConstraint.activate([
+            saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -76),
+            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            saveButton.heightAnchor.constraint(equalToConstant: 57)
         ])
         
     }
@@ -157,7 +196,14 @@ class TagPlusViewController: UIViewController {
          self.navigationController?.popViewController(animated: true)
         print("back click")
      }
-    
+    //게시글 작성으로 넘어감
+    @objc func navigatetToInfoWritingViewController(_ sender: Any) {
+        let InfoWriteVC = InfoWritingViewController()
+        tabBarController?.tabBar.isHidden = true //하단 탭바 안보이게 전환
+
+        self.navigationController?.pushViewController(InfoWriteVC, animated: true)
+        print("present click")
+    }
 
     
 
