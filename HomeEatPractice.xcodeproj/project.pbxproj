@@ -39,6 +39,8 @@
 		582A98C32B637053008F30CA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98B52B637053008F30CA /* RegisterViewController.swift */; };
 		582A98C52B637080008F30CA /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98C42B637080008F30CA /* SearchLocationViewController.swift */; };
 		582A98C72B653C61008F30CA /* PasswordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98C62B653C61008F30CA /* PasswordEditViewController.swift */; };
+		582A98CA2B66325D008F30CA /* ItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98C92B66325D008F30CA /* ItemData.swift */; };
+		582A98CC2B6632BB008F30CA /* GeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98CB2B6632BB008F30CA /* GeneralAPI.swift */; };
 		588A09262B4E5BE200638D16 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09252B4E5BE200638D16 /* WriteViewController.swift */; };
 		588A09292B4E6ED400638D16 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09282B4E6ED400638D16 /* InfoViewController.swift */; };
 		588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */; };
@@ -98,6 +100,8 @@
 		582A98B52B637053008F30CA /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		582A98C42B637080008F30CA /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		582A98C62B653C61008F30CA /* PasswordEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditViewController.swift; sourceTree = "<group>"; };
+		582A98C92B66325D008F30CA /* ItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemData.swift; sourceTree = "<group>"; };
+		582A98CB2B6632BB008F30CA /* GeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPI.swift; sourceTree = "<group>"; };
 		588A09252B4E5BE200638D16 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		588A09282B4E6ED400638D16 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellOne.swift; sourceTree = "<group>"; };
@@ -210,6 +214,15 @@
 			path = PolicyVC;
 			sourceTree = "<group>";
 		};
+		582A98C82B663248008F30CA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				582A98C92B66325D008F30CA /* ItemData.swift */,
+				582A98CB2B6632BB008F30CA /* GeneralAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		5875D9C92B5169D600F484DF /* MypageVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +286,7 @@
 		588A09312B50EB5800638D16 /* InfoVC */ = {
 			isa = PBXGroup;
 			children = (
+				582A98C82B663248008F30CA /* Network */,
 				588A09322B50EC0300638D16 /* Control */,
 				588A092B2B4FB9C600638D16 /* Cell */,
 				588A092E2B4FF99100638D16 /* Model */,
@@ -538,12 +552,14 @@
 				58A40D9B2B5FACAF0053E302 /* MealSource.swift in Sources */,
 				58A40D9E2B5FF1560053E302 /* TabbarInfo.swift in Sources */,
 				58A40D802B5BEFC40053E302 /* CalendarCheckViewController.swift in Sources */,
+				582A98CC2B6632BB008F30CA /* GeneralAPI.swift in Sources */,
 				409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */,
 				58A40D992B5FAC6A0053E302 /* MealWritingViewController.swift in Sources */,
 				58A40D952B5FAC1B0053E302 /* MealViewCell.swift in Sources */,
 				582A98B62B637053008F30CA /* AddLocationInfromViewController.swift in Sources */,
 				409AA3482B467EFB0096CDBB /* PayAnalyzeViewController.swift in Sources */,
 				582A98BB2B637053008F30CA /* AddSexViewController.swift in Sources */,
+				582A98CA2B66325D008F30CA /* ItemData.swift in Sources */,
 				582A98BA2B637053008F30CA /* BankCertifyViewController.swift in Sources */,
 				58A40D8E2B5D01F70053E302 /* WeekCashViewController.swift in Sources */,
 				582A98C72B653C61008F30CA /* PasswordEditViewController.swift in Sources */,

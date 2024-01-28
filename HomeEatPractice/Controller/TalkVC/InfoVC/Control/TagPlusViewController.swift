@@ -9,6 +9,7 @@ import UIKit
 import Then
 
 class TagPlusViewController: UIViewController {
+    var selectedTags: [String] = []
     //해시태그 수동 추가 필드
     private let tagplusField = UITextField().then {
         $0.placeholder = "다양한 해시태그를 추가해보세요!"
@@ -41,6 +42,7 @@ class TagPlusViewController: UIViewController {
         $0.distribution = .fillEqually
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    //저장 버튼
     private let saveButton = UIButton().then {
         $0.setTitle("저장", for: .normal)
         $0.setTitleColor(UIColor.white, for: .normal)
@@ -183,14 +185,31 @@ class TagPlusViewController: UIViewController {
         // 버튼의 선택 여부에 따라 border 색상 및 title 색상을 변경
         if sender.isSelected {
             sender.layer.borderColor = UIColor(named: "green")?.cgColor ?? UIColor.red.cgColor
+            sender.tintColor = .clear
             sender.setTitleColor(UIColor(named: "green") ?? UIColor.red, for: .selected)
+            // 선택된 경우, 저장 버튼의 배경색을 변경
+            saveButton.backgroundColor = UIColor(named: "green") ?? UIColor.red
+            saveButton.setTitleColor(UIColor.black, for: .selected)
+            selectedTags.append(sender.currentTitle ?? "")
+            print(selectedTags)
         } else {
             sender.layer.borderColor = UIColor(named: "font5")?.cgColor ?? UIColor.gray.cgColor
             sender.setTitleColor(UIColor(named: "font5") ?? UIColor.gray, for: .normal)
+            // 선택이 해제되면 해당 타이틀을 배열에서 제거
+            if let index = selectedTags.firstIndex(of: sender.currentTitle ?? "") {
+                selectedTags.remove(at: index)
+            }
+            // 다른 버튼이 선택되지 않은 경우, 저장 버튼의 배경색을 원래대로 변경
+            if !horizontalStackView.arrangedSubviews.contains(where: { ($0 as? UIButton)?.isSelected == true }) &&
+               !additionalHorizontalStackView.arrangedSubviews.contains(where: { ($0 as? UIButton)?.isSelected == true }) {
+                saveButton.backgroundColor = UIColor(named: "gray4") ?? UIColor.gray
+                saveButton.setTitleColor(UIColor.white, for: .normal)
+            }
         }
         
         print("Tag Button Tapped: \(sender.currentTitle ?? "")")
     }
+
 
     @objc func back(_ sender: Any) {
          self.navigationController?.popViewController(animated: true)
@@ -199,8 +218,9 @@ class TagPlusViewController: UIViewController {
     //게시글 작성으로 넘어감
     @objc func navigatetToInfoWritingViewController(_ sender: Any) {
         let InfoWriteVC = InfoWritingViewController()
+        InfoWriteVC.selectedTags = selectedTags
         tabBarController?.tabBar.isHidden = true //하단 탭바 안보이게 전환
-
+        print("Selected Tags: \(selectedTags)")
         self.navigationController?.pushViewController(InfoWriteVC, animated: true)
         print("present click")
     }

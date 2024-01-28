@@ -8,6 +8,8 @@ target 'HomeEatPractice' do
   # Pods for HomeEatPractice
 	pod 'Tabman', '~> 3.0'
 	pod 'Then'
+	pod 'Alamofire'
+
 	pod 'SnapKit'
 	pod 'Charts'
 end

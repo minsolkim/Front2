@@ -14,8 +14,9 @@ import PhotosUI
 class InfoWritingViewController: UIViewController {
     //MARK: - container 파트
   //  let imagePicker = UIImagePickerController()
+    var selectedTags : [String] = []
     private lazy var customButton: UIButton = makeCustomButton()
-
+    
     private let hashContainer : UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -25,8 +26,20 @@ class InfoWritingViewController: UIViewController {
         stackView.alignment = .fill
         return stackView
     }()
-    
-    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+                scrollView.translatesAutoresizingMaskIntoConstraints = false
+                return scrollView
+    }()
+    // 태그 버튼들을 담을 수평 스택 뷰
+    private let horizontalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     //MARK: - UIButton 파트
     private let addImageButton : UIButton = {
         let button = UIButton()
@@ -130,6 +143,8 @@ class InfoWritingViewController: UIViewController {
         view.backgroundColor = UIColor(named: "gray3")
         tabBarController?.tabBar.isHidden = true
         tabBarController?.tabBar.isTranslucent = true
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
         navigationControl()
         configUI()
         
@@ -151,8 +166,6 @@ class InfoWritingViewController: UIViewController {
             tabBarController.customTabBar.isHidden = false
         }
     }
-    
-
 
     func navigationControl() {
         let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
@@ -175,6 +188,8 @@ class InfoWritingViewController: UIViewController {
         customButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.imageView)
         view.bringSubviewToFront(self.imageView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(horizontalStackView)
         self.view.addSubview(tagButton)
         self.view.addSubview(tagImage)
         self.view.addSubview(titleLabel)
@@ -194,8 +209,18 @@ class InfoWritingViewController: UIViewController {
                 tagButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
                 tagButton.heightAnchor.constraint(equalToConstant: 40),
                 tagButton.widthAnchor.constraint(equalToConstant: 214)
-                //tagButton.trailingAnchor.constraint(equalTo: self.tagImage.leadingAnchor,constant: 95),
                 
+        ])
+        NSLayoutConstraint.activate([
+                   scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
+                   scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
+                   scrollView.trailingAnchor.constraint(equalTo: tagImage.leadingAnchor,constant: 10),
+                   scrollView.heightAnchor.constraint(equalToConstant: 40),
+                   
+                   horizontalStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+                   horizontalStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+                   horizontalStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+                   horizontalStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
         ])
         NSLayoutConstraint.activate([
                 tagImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 265),
@@ -241,7 +266,21 @@ class InfoWritingViewController: UIViewController {
      }
     //저장
     @objc func save(_ sender: UIBarButtonItem) {
-        
+        guard let title = titleField.text, let content = contentField.text else {
+            // title 또는 content가 nil이라면 에러 처리 또는 사용자에게 알림
+            return
+        }
+
+        GeneralAPI.saveInfoTalk(title: title, content: content) { result in
+            switch result {
+            case .success:
+                print("API 호출 성공")
+                // 성공 시 처리할 내용 추가
+            case .failure(let error):
+                print("API 호출 실패: \(error.localizedDescription)")
+                // 실패 시 처리할 내용 추가
+            }
+        }
     }
     // 버튼 액션 함수
     @objc func touchUpImageAddButton(button: UIButton) {
@@ -383,6 +422,12 @@ class InfoWritingViewController: UIViewController {
           self.present(alertController, animated: true)
         }
       }
+//    private func addTagButtonsToHorizontalStackView() {
+//        for tag in selectedTags {
+//            let tagButton = createTagButton(title: tag)
+//            horizontalStackView.addArrangedSubview(tagButton)
+//        }
+//    }
     }
 
 extension InfoWritingViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -451,6 +496,4 @@ extension InfoWritingViewController {
         present(alertController, animated: true, completion: nil)
     }
 }
-
-
 
