@@ -6,7 +6,6 @@
 //
 
 import UIKit
-<<<<<<< HEAD
 import Then
 import AVFoundation
 import Photos
@@ -153,9 +152,8 @@ class InfoWritingViewController: UIViewController {
         }
     }
     
- 
 
->>>>>>> KMS
+
     func navigationControl() {
         let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
         //간격을 배열로 설정
@@ -236,7 +234,6 @@ class InfoWritingViewController: UIViewController {
             customButton.heightAnchor.constraint(equalToConstant: 176),
         ])
     }
->>>>>>> KMS
     //뒤로가기
     @objc func back(_ sender: Any) {
          self.navigationController?.popViewController(animated: true)
@@ -246,12 +243,6 @@ class InfoWritingViewController: UIViewController {
     @objc func save(_ sender: UIBarButtonItem) {
         
     }
-    @objc func navigateToTagPlusViewController(_ sender: Any) {
-        let tagplusVC = TagPlusViewController()
-
-        self.navigationController?.pushViewController(tagplusVC, animated: true)
-        print("tagplus click")
-=======
     // 버튼 액션 함수
     @objc func touchUpImageAddButton(button: UIButton) {
         // 갤러리 접근 권한 허용 여부 체크
@@ -271,7 +262,6 @@ class InfoWritingViewController: UIViewController {
                 print("PHPhotoLibrary::execute - \"Unknown case\"")
             }
         }
->>>>>>> KMS
     }
     // 갤러리 불러오기
     func pickImage(){
@@ -340,7 +330,6 @@ class InfoWritingViewController: UIViewController {
     @objc func navigateToTagPlusViewController(_ sender: Any) {
         let tagplusVC = TagPlusViewController()
         tabBarController?.tabBar.isHidden = true //하단 탭바 안보이게 전환
-
 
         self.navigationController?.pushViewController(tagplusVC, animated: true)
         print("tagplus click")
@@ -461,8 +450,6 @@ extension InfoWritingViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
->>>>>>> KMS
 }
-
 
 

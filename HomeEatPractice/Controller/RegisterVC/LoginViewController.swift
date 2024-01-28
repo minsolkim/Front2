@@ -156,18 +156,11 @@ class LoginViewController : UIViewController {
         emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
         let pwTextField = makeTextField()
         pwTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호 입력", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont") ?? .white])
-
         self.loginContainer.addArrangedSubview(tagLabel1)
         self.loginContainer.addArrangedSubview(emailTextField)
         self.loginContainer.addArrangedSubview(tagLabel2)
         self.loginContainer.addArrangedSubview(pwTextField)
-
-
-        loginButton.setTitle("로그인", for: .normal)
-        loginButton.configuration?.background.backgroundColor = UIColor(named: "searchfont")
-=======
        
->>>>>>> KMS
         
         self.loginContainer.addArrangedSubview(loginButton)
         loginContainer.setCustomSpacing(41, after: emailTextField)
