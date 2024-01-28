@@ -13,7 +13,7 @@ class GeneralAPI {
         //post요청 생성
         AF.request(url, method: .post, parameters: infoItem, encoder: JSONParameterEncoder.default)
             .response { response in
-                //api호출에 대한 응답처리 
+                //api호출에 대한 응답처리
                 switch response.result {
                 
                 case .success:

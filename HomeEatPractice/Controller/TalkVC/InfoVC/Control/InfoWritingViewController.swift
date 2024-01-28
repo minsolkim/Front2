@@ -16,7 +16,8 @@ class InfoWritingViewController: UIViewController {
   //  let imagePicker = UIImagePickerController()
     var selectedTags : [String] = []
     private lazy var customButton: UIButton = makeCustomButton()
-    
+    //이미지 뷰 배열 추가
+    private var imageViews : [UIImageView] = []
     private let hashContainer : UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +81,13 @@ class InfoWritingViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
       }()
+    private let imageView4: UIImageView = {
+        let view = UIImageView()
+        view.layer.cornerRadius = 14
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+      }()
     //#해시태그
     private let tagImage = UIButton().then {
         $0.setImage(UIImage(named: "Talk11"), for: .normal)
@@ -124,31 +132,59 @@ class InfoWritingViewController: UIViewController {
         $0.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    private let contentField = UITextField().then {
-        $0.placeholder = "질문이나 이야기를 해 보세요!"
-        $0.font = UIFont.systemFont(ofSize: 16)
-        $0.textColor = UIColor(named: "font5")
-        $0.layer.cornerRadius = 10
-        $0.clipsToBounds = true
-        $0.backgroundColor = UIColor(named: "gray4")
-        $0.attributedPlaceholder = NSAttributedString(string: "     질문이나 이야기를 해 보세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "font5") ?? UIColor.gray])
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        
-    }
+    private let contentField: UITextView = {
+        let textView = UITextView()
+        textView.text = "질문이나 이야기를 해 보세요!"
+        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.textColor = UIColor(named: "font5")
+        textView.layer.cornerRadius = 10
+        textView.clipsToBounds = true
+        textView.backgroundColor = UIColor(named: "gray4")
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) // 내용 여백 조절
+        return textView
+    }()
+
+
     private var isCameraAuthorized: Bool {
        AVCaptureDevice.authorizationStatus(for: .video) == .authorized
      }
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 화면의 다른 곳을 누려면 키보드가 내려가는 메서드.
+       let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
+       // view에 탭 제스처를 추가.
+       self.view.addGestureRecognizer(tapGesture)
+        contentField.delegate = self
+        imageViews = [imageView2,imageView3,imageView4]
         view.backgroundColor = UIColor(named: "gray3")
         tabBarController?.tabBar.isHidden = true
         tabBarController?.tabBar.isTranslucent = true
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
         navigationControl()
         configUI()
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            // NotificationCenter에 관찰자를 등록하는 행위.
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+            
+        }
+        
+        // 관찰자 분리.
+        override func viewDidDisappear(_ animated: Bool) {
+            super.viewDidDisappear(animated)
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        }
+        
+        @objc func viewDidTap(gesture: UITapGestureRecognizer) {
+            // 뷰를 탭하면 에디팅을 멈추게함.
+            // 에디팅이 멈추므로 키보드가 내려감.
+            view.endEditing(true)
+        }
     // MARK: - 탭바제거
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -258,6 +294,20 @@ class InfoWritingViewController: UIViewController {
             customButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -109),
             customButton.heightAnchor.constraint(equalToConstant: 176),
         ])
+        contentField.addObserver(self, forKeyPath: "contentSize", options: [.new], context: nil)
+
+    }
+    // contentSize의 변경을 관찰하여 동적으로 높이 조정
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize", let newSize = change?[.newKey] as? CGSize {
+            let newHeight = max(newSize.height, 50) // 최소 높이 제약 조건 설정
+            contentField.constraints.filter { $0.firstAttribute == .height }.first?.constant = newHeight
+            view.layoutIfNeeded()
+        }
+    }
+    deinit {
+        // 뷰 컨트롤러가 할당 해제될 때 옵저버를 제거
+        contentField.removeObserver(self, forKeyPath: "contentSize")
     }
     //뒤로가기
     @objc func back(_ sender: Any) {
@@ -480,20 +530,37 @@ extension InfoWritingViewController: PHPickerViewControllerDelegate {
            itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
                 guard let image = image as? UIImage else { return }
-                // code...
+                //
+                if let emptyImageView = self.imageViews.first(where: { $0.image == nil }) {
+                    emptyImageView.image = image
+                    emptyImageView.isHidden = false
+                }
             }
+            
+            // 갤러리뷰 닫기
+            picker.dismiss(animated: true, completion: nil)
         }
-        
-        // 갤러리뷰 닫기
-        picker.dismiss(animated: true, completion: nil)
     }
 }
 extension InfoWritingViewController {
-    func showAlert(message: String) {
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
+        func showAlert(message: String) {
+            let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+extension InfoWritingViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "질문이나 이야기를 해 보세요!" {
+            textView.text = ""
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "질문이나 이야기를 해 보세요!"
+        }
     }
 }
 
