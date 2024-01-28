@@ -91,7 +91,14 @@ class PostViewController: UIViewController {
             tabBarController.customTabBar.isHidden = true
         }
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 다른 화면으로 넘어갈 때 커스텀 탭바를 다시 보이게 합니다.
+        if let tabBarController = self.tabBarController as? MainTabBarController {
+            tabBarController.customTabBar.isHidden = false
+        }
+    }
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,11 +110,6 @@ class PostViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         tabBarController?.tabBar.isTranslucent = true
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-//    }
-    
     // MARK: - ViewSet
     func addSubView() {
         view.addSubview(circleView)

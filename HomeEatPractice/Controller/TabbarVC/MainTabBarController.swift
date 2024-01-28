@@ -46,7 +46,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             navigationViewController.tabBarItem = tabBarItem
             viewControllers.append(navigationViewController)
         }
-        
+
         self.viewControllers = viewControllers
     }
 
