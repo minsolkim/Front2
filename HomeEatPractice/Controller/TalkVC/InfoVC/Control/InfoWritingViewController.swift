@@ -11,13 +11,19 @@ import AVFoundation
 import Photos
 import PhotosUI
 
-class InfoWritingViewController: UIViewController {
+class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     //MARK: - container 파트
-  //  let imagePicker = UIImagePickerController()
     var selectedTags : [String] = []
     private lazy var customButton: UIButton = makeCustomButton()
-    //이미지 뷰 배열 추가
-    private var imageViews : [UIImageView] = []
+    //MARK: - 사진과 앨범 파트
+    private var selectedImages: [UIImage] = []
+    //MARK: - 사진과 앨범 파트
+    private enum Mode {
+            case camera
+            case album
+    }
+    //MARK: - 사진과 앨범 파트
+    private var currentMode: Mode = .camera
     private let hashContainer : UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -27,10 +33,28 @@ class InfoWritingViewController: UIViewController {
         stackView.alignment = .fill
         return stackView
     }()
+    //MARK: - 사진과 앨범 파트
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        //셀 만들어야 함
+        collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCell")
+        
+        return collectionView
+    }()
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-                scrollView.translatesAutoresizingMaskIntoConstraints = false
-                return scrollView
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
     }()
     // 태그 버튼들을 담을 수평 스택 뷰
     private let horizontalStackView: UIStackView = {
@@ -59,29 +83,6 @@ class InfoWritingViewController: UIViewController {
     //MARK: - UIImage 파트
     //첫번째 이미지 뷰
     private let imageView: UIImageView = {
-        let view = UIImageView()
-        view.layer.cornerRadius = 14
-        view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-      }()
-    //두번째 이미지 뷰
-    private let imageView2: UIImageView = {
-        let view = UIImageView()
-        view.layer.cornerRadius = 14
-        view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-      }()
-    //세번째 이미지 뷰
-    private let imageView3: UIImageView = {
-        let view = UIImageView()
-        view.layer.cornerRadius = 14
-        view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-      }()
-    private let imageView4: UIImageView = {
         let view = UIImageView()
         view.layer.cornerRadius = 14
         view.clipsToBounds = true
@@ -145,18 +146,18 @@ class InfoWritingViewController: UIViewController {
         return textView
     }()
 
-
+    //MARK: - 사진과 앨범 파트
     private var isCameraAuthorized: Bool {
        AVCaptureDevice.authorizationStatus(for: .video) == .authorized
      }
     override func viewDidLoad() {
         super.viewDidLoad()
         // 화면의 다른 곳을 누려면 키보드가 내려가는 메서드.
-       let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
        // view에 탭 제스처를 추가.
-       self.view.addGestureRecognizer(tapGesture)
+        self.view.addGestureRecognizer(tapGesture)
         contentField.delegate = self
-        imageViews = [imageView2,imageView3,imageView4]
+       // imageViews = [imageView2,imageView3,imageView4]
         view.backgroundColor = UIColor(named: "gray3")
         tabBarController?.tabBar.isHidden = true
         tabBarController?.tabBar.isTranslucent = true
@@ -168,7 +169,6 @@ class InfoWritingViewController: UIViewController {
             super.viewDidAppear(animated)
             // NotificationCenter에 관찰자를 등록하는 행위.
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-            
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
             
         }
@@ -179,7 +179,6 @@ class InfoWritingViewController: UIViewController {
             NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         }
-        
         @objc func viewDidTap(gesture: UITapGestureRecognizer) {
             // 뷰를 탭하면 에디팅을 멈추게함.
             // 에디팅이 멈추므로 키보드가 내려감.
@@ -224,6 +223,9 @@ class InfoWritingViewController: UIViewController {
         customButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.imageView)
         view.bringSubviewToFront(self.imageView)
+        //MARK: - 사진과 앨범 파트
+        view.addSubview(collectionView)
+        //
         view.addSubview(scrollView)
         scrollView.addSubview(horizontalStackView)
         self.view.addSubview(tagButton)
@@ -240,6 +242,15 @@ class InfoWritingViewController: UIViewController {
             self.imageView.heightAnchor.constraint(equalToConstant: 176),
             
         ])
+        //MARK: - 사진과 앨범 파트
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,constant: 51),
+            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            collectionView.heightAnchor.constraint(equalToConstant: 176),
+        ])
+                
+        
         NSLayoutConstraint.activate([
                 tagButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
                 tagButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
@@ -297,6 +308,12 @@ class InfoWritingViewController: UIViewController {
         contentField.addObserver(self, forKeyPath: "contentSize", options: [.new], context: nil)
 
     }
+    //MARK: - 사진과 앨범 파트
+    // sizeForItemAt 메서드 추가
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // 셀 크기 설정
+        return CGSize(width: 176, height: 176)
+    }
     // contentSize의 변경을 관찰하여 동적으로 높이 조정
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentSize", let newSize = change?[.newKey] as? CGSize {
@@ -318,9 +335,10 @@ class InfoWritingViewController: UIViewController {
     @objc func save(_ sender: UIBarButtonItem) {
         guard let title = titleField.text, let content = contentField.text else {
             // title 또는 content가 nil이라면 에러 처리 또는 사용자에게 알림
+            
             return
         }
-
+        
         GeneralAPI.saveInfoTalk(title: title, content: content) { result in
             switch result {
             case .success:
@@ -332,6 +350,7 @@ class InfoWritingViewController: UIViewController {
             }
         }
     }
+    //MARK: - 사진과 앨범 파트
     // 버튼 액션 함수
     @objc func touchUpImageAddButton(button: UIButton) {
         // 갤러리 접근 권한 허용 여부 체크
@@ -352,6 +371,7 @@ class InfoWritingViewController: UIViewController {
             }
         }
     }
+    //MARK: - 사진과 앨범 파트
     // 갤러리 불러오기
     func pickImage(){
         let photoLibrary = PHPhotoLibrary.shared()
@@ -393,14 +413,19 @@ class InfoWritingViewController: UIViewController {
 
         return customButton
     }
+    //MARK: - 사진과 앨범 파트
     @objc func buttonTapped() {
         let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         let takePhotoAction = UIAlertAction(title: "사진 촬영", style: .default) { _ in
+            self.currentMode = .camera
             self.openCamera()
         }
 
         let chooseFromLibraryAction = UIAlertAction(title: "앨범에서 사진 선택", style: .default) { _ in
+            self.currentMode = .album
+            self.customButton.isHidden = true
+            self.collectionView.isHidden = false
             self.touchUpImageAddButton(button: self.customButton)
         }
 
@@ -423,6 +448,7 @@ class InfoWritingViewController: UIViewController {
         self.navigationController?.pushViewController(tagplusVC, animated: true)
         print("tagplus click")
     }
+    //MARK: - 사진과 앨범 파트
     @objc private func openCamera() {
        #if targetEnvironment(simulator)
        fatalError()
@@ -445,6 +471,7 @@ class InfoWritingViewController: UIViewController {
          }
        }
      }
+    
     func showAlertGoToSetting() {
         let alertController = UIAlertController(
           title: "현재 카메라 사용에 대한 접근 권한이 없습니다.",
@@ -472,12 +499,7 @@ class InfoWritingViewController: UIViewController {
           self.present(alertController, animated: true)
         }
       }
-//    private func addTagButtonsToHorizontalStackView() {
-//        for tag in selectedTags {
-//            let tagButton = createTagButton(title: tag)
-//            horizontalStackView.addArrangedSubview(tagButton)
-//        }
-//    }
+
     }
 
 extension InfoWritingViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -506,50 +528,83 @@ extension InfoWritingViewController: UINavigationControllerDelegate, UIImagePick
         ])
     }
 }
+//MARK: - 사진과 앨범 파트
 extension InfoWritingViewController: PHPickerViewControllerDelegate {
-    // 사진 선택이 끝났을때 들어오는 함수
+    // 사진 선택이 끝났을 때 호출되는 함수
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         let identifiers = results.compactMap(\.assetIdentifier)
         let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
-        
-        // asset - 메타데이터 들어있음
+
+        let group = DispatchGroup()
         fetchResult.enumerateObjects { asset, index, pointer in
-            // 사진 위치 정보
-            print("위도: \(asset.location?.coordinate.latitude)")
-            print("경도: \(asset.location?.coordinate.longitude)")
-            // 위도, 경도를 CLGeocoder를 사용하여 주소로 바꿀 수 있다. (이건 생략)
-            
-            // 사진 시간 정보
-            print("시간: \(asset.location?.timestamp)")
+//            print("위도: \(asset.location?.coordinate.latitude)")
+//            print("경도: \(asset.location?.coordinate.longitude)")
+//            print("시간: \(asset.location?.timestamp)")
         }
-        
-        let itemProvider = results.first?.itemProvider
-        
-        // UIImage로 추출
-        if let itemProvider = itemProvider,
-           itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
-                guard let image = image as? UIImage else { return }
-                //
-                if let emptyImageView = self.imageViews.first(where: { $0.image == nil }) {
-                    emptyImageView.image = image
-                    emptyImageView.isHidden = false
+        for result in results {
+            group.enter()
+            let itemProvider = result.itemProvider
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
+                    guard let self = self else { return }
+
+                    if let error = error {
+                        print("Error loading image: \(error)")
+                        group.leave()
+                        return
+                    }
+
+                    if let image = image as? UIImage {
+                        selectedImages.append(image)
+                    }
+
+                    group.leave()
+                }
+            } else {
+                group.leave()
+            }
+        }
+        group.notify(queue: .main) {
+            // 모든 이미지가 로드되었을 때 실행되는 부분
+            DispatchQueue.main.async { [self] in
+                if self.currentMode == .album {
+                    // 앨범 모드일 경우의 처리
+                    self.customButton.isHidden = true
+                    self.collectionView.isHidden = false
+                    self.selectedImages = selectedImages
+
+                    // 이미지가 추가되었을 때 디버깅 정보 출력
+                    print("selectedImages contents: \(self.selectedImages)")
+
+                    self.collectionView.reloadData() // collectionView 갱신
                 }
             }
-            
-            // 갤러리뷰 닫기
+            // 이미지 피커를 닫음
             picker.dismiss(animated: true, completion: nil)
         }
     }
 }
-extension InfoWritingViewController {
-        func showAlert(message: String) {
-            let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            present(alertController, animated: true, completion: nil)
-        }
+
+//MARK: - 사진과 앨범 파트
+extension InfoWritingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func showAlert(message: String) {
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return selectedImages.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
+        let image = selectedImages[indexPath.item]
+        cell.imageView.image = image
+        return cell
+    }
+}
+
 extension InfoWritingViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "질문이나 이야기를 해 보세요!" {

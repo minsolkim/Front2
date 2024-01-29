@@ -41,6 +41,7 @@
 		582A98C72B653C61008F30CA /* PasswordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98C62B653C61008F30CA /* PasswordEditViewController.swift */; };
 		582A98CA2B66325D008F30CA /* ItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98C92B66325D008F30CA /* ItemData.swift */; };
 		582A98CC2B6632BB008F30CA /* GeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98CB2B6632BB008F30CA /* GeneralAPI.swift */; };
+		582A98CE2B678AD5008F30CA /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98CD2B678AD5008F30CA /* PhotoCollectionViewCell.swift */; };
 		588A09262B4E5BE200638D16 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09252B4E5BE200638D16 /* WriteViewController.swift */; };
 		588A09292B4E6ED400638D16 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09282B4E6ED400638D16 /* InfoViewController.swift */; };
 		588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */; };
@@ -102,6 +103,7 @@
 		582A98C62B653C61008F30CA /* PasswordEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditViewController.swift; sourceTree = "<group>"; };
 		582A98C92B66325D008F30CA /* ItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemData.swift; sourceTree = "<group>"; };
 		582A98CB2B6632BB008F30CA /* GeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPI.swift; sourceTree = "<group>"; };
+		582A98CD2B678AD5008F30CA /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		588A09252B4E5BE200638D16 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		588A09282B4E6ED400638D16 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellOne.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */,
+				582A98CD2B678AD5008F30CA /* PhotoCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				582A98BD2B637053008F30CA /* RegisterDoneViewController.swift in Sources */,
 				409AA33E2B43E94B0096CDBB /* HomeViewController.swift in Sources */,
 				58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */,
+				582A98CE2B678AD5008F30CA /* PhotoCollectionViewCell.swift in Sources */,
 				409AA33C2B43A6B20096CDBB /* MainTabBarController.swift in Sources */,
 				582A98C52B637080008F30CA /* SearchLocationViewController.swift in Sources */,
 				582A98C22B637053008F30CA /* SelectMangeUnitViewController.swift in Sources */,
