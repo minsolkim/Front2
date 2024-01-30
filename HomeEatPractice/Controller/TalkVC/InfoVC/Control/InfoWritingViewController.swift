@@ -51,6 +51,8 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
         
         return collectionView
     }()
+   
+    
     //MARK: - UIButton 파트
     private let addImageButton : UIButton = {
         let button = UIButton()
@@ -75,6 +77,23 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
       }()
+    //MARK: -- Tagbutton 파트
+    private lazy var TagcollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        //셀 만들어야 함
+        collectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "TagCell")
+        
+        return collectionView
+    }()
     //#해시태그
     private let tagImage = UIButton().then {
         $0.setImage(UIImage(named: "Talk11"), for: .normal)
@@ -84,16 +103,16 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
     }
     
     //태그 문구
-    private let tagButton = UIButton().then {
-        $0.setTitle("#해시태그를 추가해 보세요!", for: .normal)
-        $0.setTitleColor(UIColor(named: "green"), for: .normal)
-        $0.layer.cornerRadius = 20
-        $0.clipsToBounds = true
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.init(named: "green")?.cgColor
-        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
+//    private let tagButton = UIButton().then {
+//        $0.setTitle("#해시태그를 추가해 보세요!", for: .normal)
+//        $0.setTitleColor(UIColor(named: "green"), for: .normal)
+//        $0.layer.cornerRadius = 20
+//        $0.clipsToBounds = true
+//        $0.layer.borderWidth = 1
+//        $0.layer.borderColor = UIColor.init(named: "green")?.cgColor
+//        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//        $0.translatesAutoresizingMaskIntoConstraints = false
+//    }
     //제목
     private let titleLabel = UILabel().then {
         $0.text = "제목"
@@ -210,7 +229,8 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
         view.bringSubviewToFront(self.imageView)
         //MARK: - 사진과 앨범 파트
         view.addSubview(collectionView)
-        self.view.addSubview(tagButton)
+        view.addSubview(TagcollectionView)
+//        self.view.addSubview(tagButton)
         self.view.addSubview(tagImage)
         self.view.addSubview(titleLabel)
         self.view.addSubview(titleField)
@@ -231,15 +251,20 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
             collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 176),
         ])
-                
-        
         NSLayoutConstraint.activate([
-                tagButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
-                tagButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
-                tagButton.heightAnchor.constraint(equalToConstant: 40),
-                tagButton.widthAnchor.constraint(equalToConstant: 214)
-                
+            TagcollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,constant: 267),
+            TagcollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 22),
+            TagcollectionView.trailingAnchor.constraint(equalTo: tagImage.leadingAnchor,constant: 40),
+            TagcollectionView.heightAnchor.constraint(equalToConstant: 40),
         ])
+        
+//        NSLayoutConstraint.activate([
+//                tagButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
+//                tagButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
+//                tagButton.heightAnchor.constraint(equalToConstant: 40),
+//                tagButton.widthAnchor.constraint(equalToConstant: 214)
+//
+//        ])
         NSLayoutConstraint.activate([
                 tagImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 265),
                 tagImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
@@ -247,7 +272,7 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
                 tagImage.widthAnchor.constraint(equalToConstant: 42)
         ])
         NSLayoutConstraint.activate([
-                titleLabel.topAnchor.constraint(equalTo: tagButton.bottomAnchor, constant: 41),
+                titleLabel.topAnchor.constraint(equalTo: tagImage.bottomAnchor, constant: 41),
                 titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 21),
                 titleLabel.heightAnchor.constraint(equalToConstant: 34),
                 titleLabel.widthAnchor.constraint(equalToConstant: 34)
@@ -283,7 +308,15 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
     // sizeForItemAt 메서드 추가
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 셀 크기 설정
-        return CGSize(width: 176, height: 176)
+        if collectionView == self.collectionView {
+            return CGSize(width: 176, height: 176)
+        } else if collectionView == TagcollectionView {
+            let tag = selectedTags[indexPath.item]
+            let tagWidth = tag.width(withConstrainedHeight: 40, font: UIFont.systemFont(ofSize: 15))
+            return CGSize(width: tagWidth + 20, height: 40)
+        }
+
+        return CGSize.zero
     }
     // contentSize의 변경을 관찰하여 동적으로 높이 조정
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -556,7 +589,7 @@ extension InfoWritingViewController: PHPickerViewControllerDelegate {
     }
 }
 
-//MARK: - 사진과 앨범 파트
+//MARK: - 사진과 앨범 파트 and 태그 파트
 extension InfoWritingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func showAlert(message: String) {
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -564,16 +597,33 @@ extension InfoWritingViewController: UICollectionViewDelegate, UICollectionViewD
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
+    // 셀 개수 카운팅
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return selectedImages.count
-    }
-
+            if collectionView == self.collectionView { //사진과 앨범 부분
+                return selectedImages.count
+            } else if collectionView == TagcollectionView { //태그 부분
+                return selectedTags.count
+            }
+            return 0
+        }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
-        let image = selectedImages[indexPath.item]
-        cell.imageView.image = image
-        return cell
+            
+            if collectionView == self.collectionView {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
+                let image = selectedImages[indexPath.item]
+                cell.imageView.image = image
+                return cell
+           
+            } else if collectionView == TagcollectionView {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCollectionViewCell
+                let tag = selectedTags[indexPath.item]
+                cell.configure(with: tag)
+                return cell
+            }
+
+            return UICollectionViewCell()
     }
+    
 }
 
 extension InfoWritingViewController: UITextViewDelegate {
@@ -587,6 +637,17 @@ extension InfoWritingViewController: UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = "질문이나 이야기를 해 보세요!"
         }
+    }
+}
+//string 동적 계산
+extension String {
+    func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect,
+                                            options: [.usesLineFragmentOrigin, .usesFontLeading],
+                                            attributes: [NSAttributedString.Key.font: font],
+                                            context: nil)
+        return ceil(boundingBox.width)
     }
 }
 

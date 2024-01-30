@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//MARK: - 앨범 사진 셀 
+//MARK: - 앨범 사진 셀
 class PhotoCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "PhotoCell"
 
