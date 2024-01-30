@@ -51,20 +51,6 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
         
         return collectionView
     }()
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    // 태그 버튼들을 담을 수평 스택 뷰
-    private let horizontalStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 10
-        stackView.distribution = .fill
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
     //MARK: - UIButton 파트
     private let addImageButton : UIButton = {
         let button = UIButton()
@@ -157,7 +143,6 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
        // view에 탭 제스처를 추가.
         self.view.addGestureRecognizer(tapGesture)
         contentField.delegate = self
-       // imageViews = [imageView2,imageView3,imageView4]
         view.backgroundColor = UIColor(named: "gray3")
         tabBarController?.tabBar.isHidden = true
         tabBarController?.tabBar.isTranslucent = true
@@ -166,24 +151,24 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
         
     }
     override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
-            // NotificationCenter에 관찰자를 등록하는 행위.
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        super.viewDidAppear(animated)
+        // NotificationCenter에 관찰자를 등록하는 행위.
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
             
-        }
+    }
         
-        // 관찰자 분리.
-        override func viewDidDisappear(_ animated: Bool) {
-            super.viewDidDisappear(animated)
-            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        }
-        @objc func viewDidTap(gesture: UITapGestureRecognizer) {
-            // 뷰를 탭하면 에디팅을 멈추게함.
-            // 에디팅이 멈추므로 키보드가 내려감.
-            view.endEditing(true)
-        }
+    // 관찰자 분리.
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc func viewDidTap(gesture: UITapGestureRecognizer) {
+        // 뷰를 탭하면 에디팅을 멈추게함.
+        // 에디팅이 멈추므로 키보드가 내려감.
+        view.endEditing(true)
+    }
     // MARK: - 탭바제거
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -225,9 +210,6 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
         view.bringSubviewToFront(self.imageView)
         //MARK: - 사진과 앨범 파트
         view.addSubview(collectionView)
-        //
-        view.addSubview(scrollView)
-        scrollView.addSubview(horizontalStackView)
         self.view.addSubview(tagButton)
         self.view.addSubview(tagImage)
         self.view.addSubview(titleLabel)
@@ -257,17 +239,6 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
                 tagButton.heightAnchor.constraint(equalToConstant: 40),
                 tagButton.widthAnchor.constraint(equalToConstant: 214)
                 
-        ])
-        NSLayoutConstraint.activate([
-                   scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
-                   scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
-                   scrollView.trailingAnchor.constraint(equalTo: tagImage.leadingAnchor,constant: 10),
-                   scrollView.heightAnchor.constraint(equalToConstant: 40),
-                   
-                   horizontalStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-                   horizontalStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-                   horizontalStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-                   horizontalStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
         ])
         NSLayoutConstraint.activate([
                 tagImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 265),
@@ -409,7 +380,7 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
 
         let customButton = UIButton(configuration: config)
         customButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        customButton.translatesAutoresizingMaskIntoConstraints = false  // Add this line to set constraints programmatically
+        customButton.translatesAutoresizingMaskIntoConstraints = false
 
         return customButton
     }
