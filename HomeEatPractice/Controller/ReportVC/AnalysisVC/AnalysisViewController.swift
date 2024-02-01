@@ -1,12 +1,12 @@
 //
-//  BadgeCheckViewController.swift
+//  AnalysisViewController.swift
 //  HomeEatPractice
 //
-//  Created by 이지우 on 2024/01/19.
+//  Created by 김민솔 on 2024/02/01.
 //
 
 import UIKit
-class BadgeCheckViewController: UIViewController {
+class AnalysisViewController: UIViewController {
     
     private lazy var cashIcon: UIImageView = {
         let icon = UIImageView()

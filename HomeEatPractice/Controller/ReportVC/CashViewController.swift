@@ -48,9 +48,9 @@ class CashViewController: TabmanViewController {
         dataSource = self
     }
     func setViewcontroller() {
-        let badgeCheckViewController = BadgeCheckViewController()
+        let analysisViewController = AnalysisViewController()
         let weekCashViewController = WeekCashViewController()
-        viewcontrollers.append(contentsOf: [badgeCheckViewController,weekCashViewController])
+        viewcontrollers.append(contentsOf: [analysisViewController,weekCashViewController])
     }
     func setConstraints() {
         addBar(tabbar, dataSource: self,  at: .custom(view: containerView, layout: nil))
