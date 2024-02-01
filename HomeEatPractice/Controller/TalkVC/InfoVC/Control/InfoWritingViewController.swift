@@ -15,6 +15,8 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
     //MARK: - container 파트
     var selectedTags : [String] = []
     private lazy var customButton: UIButton = makeCustomButton()
+    let talk12Image: UIImage? = UIImage(named: "Talk12")
+
     //MARK: - 사진과 앨범 파트
     private var selectedImages: [UIImage] = []
     //MARK: - 사진과 앨범 파트
@@ -103,16 +105,16 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
     }
     
     //태그 문구
-//    private let tagButton = UIButton().then {
-//        $0.setTitle("#해시태그를 추가해 보세요!", for: .normal)
-//        $0.setTitleColor(UIColor(named: "green"), for: .normal)
-//        $0.layer.cornerRadius = 20
-//        $0.clipsToBounds = true
-//        $0.layer.borderWidth = 1
-//        $0.layer.borderColor = UIColor.init(named: "green")?.cgColor
-//        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//        $0.translatesAutoresizingMaskIntoConstraints = false
-//    }
+    private let tagButton = UIButton().then {
+        $0.setTitle("#해시태그를 추가해 보세요!", for: .normal)
+        $0.setTitleColor(UIColor(named: "green"), for: .normal)
+        $0.layer.cornerRadius = 20
+        $0.clipsToBounds = true
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.init(named: "green")?.cgColor
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     //제목
     private let titleLabel = UILabel().then {
         $0.text = "제목"
@@ -304,7 +306,7 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
         contentField.addObserver(self, forKeyPath: "contentSize", options: [.new], context: nil)
 
     }
-    //MARK: - 사진과 앨범 파트
+    //MARK: - 사진과 앨범 파트 and 태그파트
     // sizeForItemAt 메서드 추가
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 셀 크기 설정
@@ -312,8 +314,8 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
             return CGSize(width: 176, height: 176)
         } else if collectionView == TagcollectionView {
             let tag = selectedTags[indexPath.item]
-            let tagWidth = tag.width(withConstrainedHeight: 40, font: UIFont.systemFont(ofSize: 15))
-            return CGSize(width: tagWidth + 20, height: 40)
+            let tagWidth = tag.width(withConstrainedHeight: 40, font: UIFont.systemFont(ofSize: 15), margin: 50)
+            return CGSize(width: tagWidth, height: 40)
         }
 
         return CGSize.zero
@@ -617,7 +619,7 @@ extension InfoWritingViewController: UICollectionViewDelegate, UICollectionViewD
             } else if collectionView == TagcollectionView {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCollectionViewCell
                 let tag = selectedTags[indexPath.item]
-                cell.configure(with: tag)
+                cell.configure(with: tag, image: talk12Image)
                 return cell
             }
 
@@ -641,13 +643,13 @@ extension InfoWritingViewController: UITextViewDelegate {
 }
 //string 동적 계산
 extension String {
-    func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
+    func width(withConstrainedHeight height: CGFloat, font: UIFont, margin: CGFloat) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
         let boundingBox = self.boundingRect(with: constraintRect,
                                             options: [.usesLineFragmentOrigin, .usesFontLeading],
                                             attributes: [NSAttributedString.Key.font: font],
                                             context: nil)
-        return ceil(boundingBox.width)
+        return ceil(boundingBox.width) + margin
     }
 }
 

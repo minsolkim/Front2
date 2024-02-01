@@ -77,6 +77,8 @@ class MyPageViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.semanticContentAttribute = .forceRightToLeft
         $0.contentHorizontalAlignment = .left // 이미지 오른쪽 정렬
+        $0.addTarget(self, action: #selector(navigateToPasswordEditViewController), for: .touchUpInside)
+
     }
     //화살표 버튼
     private let arrowBtn3 = UIImageView().then {
@@ -115,6 +117,8 @@ class MyPageViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.semanticContentAttribute = .forceRightToLeft
         $0.contentHorizontalAlignment = .left // 이미지 오른쪽 정렬
+        $0.addTarget(self, action: #selector(navigateToLeaveViewController), for: .touchUpInside)
+
     }
     //화살표 버튼
     private let arrowBtn5 = UIImageView().then {
@@ -251,11 +255,17 @@ class MyPageViewController: UIViewController {
         self.navigationController?.pushViewController(editVC, animated: true)
         print("present click")
     }
-    @objc func navigateToCashCheckViewController(_ sender: Any) {
-        let cashCheckVC = CashCheckViewController()
+    @objc func navigateToPasswordEditViewController(_ sender: Any) {
+        let passwordEditVC = PasswordEditViewController()
 
-        self.navigationController?.pushViewController(cashCheckVC, animated: true)
-        print("cashcheck click")
+        self.navigationController?.pushViewController(passwordEditVC, animated: true)
+        print("passwordedit click")
+    }
+    @objc func navigateToLeaveViewController(_ sender: Any) {
+        let leaveVC = LeaveViewController()
+
+        self.navigationController?.pushViewController(leaveVC, animated: true)
+        print("leave click")
     }
 //    @objc func backAddButton(_ sender:Any) {
 //        self.navigationController?.popViewController(animated: true)

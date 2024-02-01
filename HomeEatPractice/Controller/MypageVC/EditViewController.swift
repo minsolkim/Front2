@@ -30,7 +30,63 @@ class EditViewController: UIViewController {
         $0.clipsToBounds = true
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    
+    //닉네임
+    private let ProfileNickname = UILabel().then {
+        $0.text = "닉네임"
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let NicknameLabel = UILabel().then {
+        $0.text = "아리"
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let UnderlineBar = UIView().then {
+        $0.backgroundColor = .white
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    //아이디
+    private let ProfileID = UILabel().then {
+        $0.text = "아이디"
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let IDLabel = UILabel().then {
+        $0.text = "yejin_woo"
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let UnderlineBar2 = UIView().then {
+        $0.backgroundColor = .white
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    //이메일 주소
+    private let ProfileEmailAdress = UILabel().then {
+        $0.text = "이메일 주소"
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let EmailAdressLabel = UILabel().then {
+        $0.text = "yejin09071@gmail.com"
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let UnderlineBar3 = UIView().then {
+        $0.backgroundColor = .white
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +117,15 @@ class EditViewController: UIViewController {
         view.addSubview(circleView)
         circleView.addSubview(profileImageView)
         view.addSubview(profileEditBtn)
+        view.addSubview(ProfileNickname)
+        view.addSubview(NicknameLabel)
+        view.addSubview(UnderlineBar)
+        view.addSubview(ProfileID)
+        view.addSubview(IDLabel)
+        view.addSubview(UnderlineBar2)
+        view.addSubview(ProfileEmailAdress)
+        view.addSubview(EmailAdressLabel)
+        view.addSubview(UnderlineBar3)
     }
     func configUI() {
         NSLayoutConstraint.activate([
@@ -79,6 +144,58 @@ class EditViewController: UIViewController {
            profileEditBtn.topAnchor.constraint(equalTo:circleView.topAnchor, constant:72),
            profileEditBtn.leadingAnchor.constraint(equalTo:view.leadingAnchor,constant:217)
            ])
+        NSLayoutConstraint.activate([
+            ProfileNickname.widthAnchor.constraint(equalToConstant: 45),
+            ProfileNickname.heightAnchor.constraint(equalToConstant: 17),
+            ProfileNickname.topAnchor.constraint(equalTo: view.topAnchor, constant: 290),
+            ProfileNickname.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 25)
+        ])
+        NSLayoutConstraint.activate([
+            NicknameLabel.heightAnchor.constraint(equalToConstant: 17),
+            NicknameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 290),
+            NicknameLabel.leadingAnchor.constraint(equalTo: ProfileNickname.trailingAnchor,constant: 80)
+        ])
+        NSLayoutConstraint.activate([
+            UnderlineBar.widthAnchor.constraint(equalToConstant: 354),
+            UnderlineBar.heightAnchor.constraint(equalToConstant: 1),
+            UnderlineBar.topAnchor.constraint(equalTo: ProfileNickname.bottomAnchor, constant: 19),
+            UnderlineBar.leadingAnchor.constraint(equalTo: ProfileNickname.leadingAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            ProfileID.widthAnchor.constraint(equalToConstant: 45),
+            ProfileID.heightAnchor.constraint(equalToConstant: 17),
+            ProfileID.topAnchor.constraint(equalTo: UnderlineBar.bottomAnchor, constant: 23),
+            ProfileID.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 25)
+        ])
+        NSLayoutConstraint.activate([
+            IDLabel.heightAnchor.constraint(equalToConstant: 17),
+            IDLabel.topAnchor.constraint(equalTo: UnderlineBar.bottomAnchor, constant: 19),
+            IDLabel.leadingAnchor.constraint(equalTo: ProfileID.trailingAnchor,constant: 80)
+        ])
+        NSLayoutConstraint.activate([
+            UnderlineBar2.widthAnchor.constraint(equalToConstant: 354),
+            UnderlineBar2.heightAnchor.constraint(equalToConstant: 1),
+            UnderlineBar2.topAnchor.constraint(equalTo: ProfileID.bottomAnchor, constant: 19),
+            UnderlineBar2.leadingAnchor.constraint(equalTo: ProfileID.leadingAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            ProfileEmailAdress.widthAnchor.constraint(equalToConstant: 78),
+            ProfileEmailAdress.heightAnchor.constraint(equalToConstant: 17),
+            ProfileEmailAdress.topAnchor.constraint(equalTo: UnderlineBar2.bottomAnchor, constant: 23),
+            ProfileEmailAdress.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 25)
+        ])
+        NSLayoutConstraint.activate([
+            EmailAdressLabel.heightAnchor.constraint(equalToConstant: 17),
+            EmailAdressLabel.topAnchor.constraint(equalTo: UnderlineBar2.bottomAnchor, constant: 19),
+            EmailAdressLabel.leadingAnchor.constraint(equalTo: IDLabel.leadingAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            UnderlineBar3.widthAnchor.constraint(equalToConstant: 354),
+            UnderlineBar3.heightAnchor.constraint(equalToConstant: 1),
+            UnderlineBar3.topAnchor.constraint(equalTo: ProfileEmailAdress.bottomAnchor, constant: 19),
+            UnderlineBar3.leadingAnchor.constraint(equalTo: ProfileEmailAdress.leadingAnchor)
+        ])
+        
     }
     //뒤로가기
     @objc func back(_ sender: Any) {
