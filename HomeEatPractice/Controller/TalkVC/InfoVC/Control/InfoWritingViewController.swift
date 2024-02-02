@@ -130,9 +130,10 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
         $0.backgroundColor = UIColor(named: "gray4")
-        $0.attributedPlaceholder = NSAttributedString(string: "     제목을 입력하세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "font5") ?? UIColor.gray])
+        $0.attributedPlaceholder = NSAttributedString(string: "제목을 입력하세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "font5") ?? UIColor.gray])
         $0.translatesAutoresizingMaskIntoConstraints = false
-        
+        $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: $0.frame.height))
+        $0.leftViewMode = .always
     }
     private let contentLabel = UILabel().then {
         $0.text = "내용"
@@ -150,6 +151,9 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
         textView.backgroundColor = UIColor(named: "gray4")
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) // 내용 여백 조절
+        
+        let verticalOffset = (textView.bounds.size.height - textView.contentSize.height * textView.zoomScale) / 2
+        textView.contentInset = UIEdgeInsets(top: max(0, verticalOffset), left: 0, bottom: 0, right: 0)
         return textView
     }()
 
