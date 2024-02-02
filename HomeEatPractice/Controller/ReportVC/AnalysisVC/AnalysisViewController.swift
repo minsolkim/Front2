@@ -8,10 +8,15 @@
 import UIKit
 import Then
 import Charts
+import SnapKit
+
 class AnalysisViewController: UIViewController {
     //스크롤 뷰
     private let scrollView = UIScrollView().then {
-            $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let contentView = UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     //원 차트
     private let pieChartView = PieChartView().then {
@@ -93,9 +98,15 @@ class AnalysisViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    private let weakView = UIView().then {
+        $0.layer.cornerRadius = 14
+        $0.layer.masksToBounds = true
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = UIColor(named: "searchtf")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = UIColor(named: "gray2")
         let fullText = label.text ?? ""
         let attributedString = NSMutableAttributedString(string: fullText)
@@ -108,52 +119,67 @@ class AnalysisViewController: UIViewController {
         
     }
     func addSubviews() {
-        view.addSubview(deliveryIcon)
-        view.addSubview(deliveryLabel)
-        view.addSubview(mealIcon)
-        view.addSubview(mealLabel)
-        view.addSubview(MonthView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(deliveryIcon)
+        contentView.addSubview(deliveryLabel)
+        contentView.addSubview(mealIcon)
+        contentView.addSubview(mealLabel)
+        contentView.addSubview(MonthView)
         MonthView.addSubview(BackIcon)
         MonthView.addSubview(YearMonthLabel)
         MonthView.addSubview(NextIcon)
         MonthView.addSubview(label)
         MonthView.addSubview(pieChartView)
         MonthView.addSubview(barChartView)
+        //weakview
+        contentView.addSubview(weakView)
     }
     func configUI() {
         NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 48),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView.frameLayoutGuide)
+            make.height.equalTo(950)
+        }
+        NSLayoutConstraint.activate([
             deliveryIcon.widthAnchor.constraint(equalToConstant: 14),
             deliveryIcon.heightAnchor.constraint(equalToConstant: 11),
-            deliveryIcon.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 75),
-            deliveryIcon.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 302),
+            deliveryIcon.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 20),
+            deliveryIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 302),
             
         ])
         NSLayoutConstraint.activate([
             deliveryLabel.widthAnchor.constraint(equalToConstant: 50),
             deliveryLabel.heightAnchor.constraint(equalToConstant: 15),
-            deliveryLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 75),
+            deliveryLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             deliveryLabel.leadingAnchor.constraint(equalTo: deliveryIcon.trailingAnchor,constant: 6),
-            deliveryLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -21)
+            deliveryLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -21)
         ])
         NSLayoutConstraint.activate([
             mealIcon.widthAnchor.constraint(equalToConstant: 14),
             mealIcon.heightAnchor.constraint(equalToConstant: 11),
             mealIcon.topAnchor.constraint(equalTo:deliveryIcon.bottomAnchor , constant: 9),
-            mealIcon.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 302),
+            mealIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 302),
         ])
         NSLayoutConstraint.activate([
             mealLabel.widthAnchor.constraint(equalToConstant: 50),
             mealLabel.heightAnchor.constraint(equalToConstant: 15),
             mealLabel.topAnchor.constraint(equalTo: deliveryLabel.bottomAnchor, constant: 4),
             mealLabel.leadingAnchor.constraint(equalTo: deliveryLabel.leadingAnchor),
-            mealLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -21),
+            mealLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -21),
 
         ])
         NSLayoutConstraint.activate([
             MonthView.heightAnchor.constraint(equalToConstant: 345),
             MonthView.topAnchor.constraint(equalTo: mealIcon.bottomAnchor, constant: 20),
-            MonthView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 19),
-            MonthView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -18),
+            MonthView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 19),
+            MonthView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -18),
         ])
         NSLayoutConstraint.activate([
             BackIcon.heightAnchor.constraint(equalToConstant: 14.6),
@@ -187,6 +213,12 @@ class AnalysisViewController: UIViewController {
             barChartView.leadingAnchor.constraint(equalTo: pieChartView.trailingAnchor, constant: 20),
             barChartView.trailingAnchor.constraint(equalTo: MonthView.trailingAnchor, constant: -45.7),
             barChartView.bottomAnchor.constraint(equalTo: MonthView.bottomAnchor,constant: -62) // 적절
+        ])
+        NSLayoutConstraint.activate([
+            weakView.heightAnchor.constraint(equalToConstant: 345),
+            weakView.topAnchor.constraint(equalTo: MonthView.bottomAnchor, constant: 95),
+            weakView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 19),
+            weakView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -18),
         ])
         
     }
@@ -235,8 +267,6 @@ class AnalysisViewController: UIViewController {
         }
        
         barChartView.drawGridBackgroundEnabled = false // 격자 선 제거
-        barChartView.leftAxis.drawGridLinesEnabled = false // 왼쪽 Y축의 수직 격자선 제거
-        barChartView.rightAxis.drawGridLinesEnabled = false // 오른쪽 Y축의 수직 격자선 제거
         // BarChartData 설정
         let barData = BarChartData(dataSet: barDataSet)
         // BarChart에 대한 추가 설정
@@ -244,10 +274,16 @@ class AnalysisViewController: UIViewController {
         // X축의 격자선 설정
         let xAxis = barChartView.xAxis
         xAxis.drawGridLinesEnabled = false // 수평 격자 선 제거
+        xAxis.drawLabelsEnabled = false
+        xAxis.drawAxisLineEnabled = false
+        
         barChartView.leftAxis.gridColor = UIColor.clear
         barChartView.rightAxis.gridColor = UIColor.clear
-           
-        xAxis.gridColor = UIColor.clear
+        let leftYAxis = barChartView.leftYAxisRenderer
+        let rightYAxis = barChartView.rightYAxisRenderer
+        
+        
+        
         barDataSet.drawValuesEnabled = false
         barDataSet.drawIconsEnabled = false
         // BarChart에 데이터 설정
