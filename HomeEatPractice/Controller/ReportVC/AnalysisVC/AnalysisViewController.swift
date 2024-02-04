@@ -280,9 +280,9 @@ class AnalysisViewController: UIViewController {
         barChartView.leftAxis.gridColor = UIColor.clear
         barChartView.rightAxis.gridColor = UIColor.clear
         let leftYAxis = barChartView.leftYAxisRenderer
-        let rightYAxis = barChartView.rightYAxisRenderer
+        let rightYAxis = barChartView.rightAxis
         
-        
+        rightYAxis.drawGridLinesEnabled = false
         
         barDataSet.drawValuesEnabled = false
         barDataSet.drawIconsEnabled = false
