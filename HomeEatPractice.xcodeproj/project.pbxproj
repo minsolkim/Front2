@@ -10,6 +10,8 @@
 		2D8CFEB82B5A301000FDE2E5 /* HomeatIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */; };
 		2D8CFEB92B5A301000FDE2E5 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */; };
 		2D8CFEBA2B5A301000FDE2E5 /* HomeatLogo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */; };
+		40852A292B6F371300150395 /* FoodItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40852A282B6F371300150395 /* FoodItemData.swift */; };
+		40852A2B2B6F374900150395 /* FoodGeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40852A2A2B6F374900150395 /* FoodGeneralAPI.swift */; };
 		409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3272B43A0470096CDBB /* AppDelegate.swift */; };
 		409AA3312B43A0480096CDBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409AA3302B43A0480096CDBB /* Assets.xcassets */; };
 		409AA3342B43A0480096CDBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 409AA3322B43A0480096CDBB /* LaunchScreen.storyboard */; };
@@ -78,6 +80,8 @@
 		2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatIcon.pdf; sourceTree = "<group>"; };
 		2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatLogo.pdf; sourceTree = "<group>"; };
+		40852A282B6F371300150395 /* FoodItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemData.swift; sourceTree = "<group>"; };
+		40852A2A2B6F374900150395 /* FoodGeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGeneralAPI.swift; sourceTree = "<group>"; };
 		409AA3242B43A0470096CDBB /* HomeEatPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeEatPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		409AA3272B43A0470096CDBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		409AA3302B43A0480096CDBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -167,6 +171,15 @@
 				2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */,
 			);
 			path = LaunchScreenImage;
+			sourceTree = "<group>";
+		};
+		40852A272B6F36F100150395 /* FoodNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				40852A282B6F371300150395 /* FoodItemData.swift */,
+				40852A2A2B6F374900150395 /* FoodGeneralAPI.swift */,
+			);
+			path = FoodNetwork;
 			sourceTree = "<group>";
 		};
 		409AA31B2B43A0470096CDBB = {
@@ -387,6 +400,7 @@
 		58A40D882B5CEA530053E302 /* MealVC */ = {
 			isa = PBXGroup;
 			children = (
+				40852A272B6F36F100150395 /* FoodNetwork */,
 				58A40D932B5FABF60053E302 /* Model */,
 				58A40D922B5FABEB0053E302 /* Controller */,
 				58A40D912B5FABE10053E302 /* Cell */,
@@ -618,6 +632,7 @@
 				582A98CE2B678AD5008F30CA /* PhotoCollectionViewCell.swift in Sources */,
 				582A992A2B6F31C0008F30CA /* AddSexViewController.swift in Sources */,
 				582A99242B6F31C0008F30CA /* AddLocationInfromViewController.swift in Sources */,
+				40852A292B6F371300150395 /* FoodItemData.swift in Sources */,
 				409AA33C2B43A6B20096CDBB /* MainTabBarController.swift in Sources */,
 				58A40D732B56AF190053E302 /* InfoWritingViewController.swift in Sources */,
 				582A99332B6F31C0008F30CA /* AddBudgetViewController.swift in Sources */,
@@ -625,6 +640,7 @@
 				409AA3462B453F3B0096CDBB /* PayAddViewController.swift in Sources */,
 				582A992F2B6F31C0008F30CA /* MapViewController.swift in Sources */,
 				58A40DA02B6120970053E302 /* DeclareViewController.swift in Sources */,
+				40852A2B2B6F374900150395 /* FoodGeneralAPI.swift in Sources */,
 				582A98D42B6B819E008F30CA /* AnalysisViewController.swift in Sources */,
 				582A99302B6F31C0008F30CA /* MapView.swift in Sources */,
 				58A40D852B5C05330053E302 /* CashCheckViewController.swift in Sources */,
