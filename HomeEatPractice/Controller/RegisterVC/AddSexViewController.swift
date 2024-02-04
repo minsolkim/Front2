@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AddSexViewController : UIViewController {
+class AddSexViewController : CustomProgressViewController {
     
     private let registerContainer : UIStackView = {
         let stackView = UIStackView()
@@ -55,24 +55,43 @@ class AddSexViewController : UIViewController {
         config.background.strokeColor = UIColor(r: 83, g: 85, b: 86)
         config.background.strokeWidth = 2
         
-        //테두리 변경
-        let buttonAction = UIAction{ _ in
-            if config.background.strokeColor == UIColor(r: 83, g: 85, b: 86) {
-                config.background.strokeColor = UIColor(named: "green")
-                config.baseForegroundColor = UIColor(named: "green")
-            }
-            else
-            {
-                config.background.strokeColor = UIColor(r: 83, g: 85, b: 86)
-                config.baseForegroundColor = .white
+        let buttonAction = UIAction { _ in
+            self.maleButton.isSelected.toggle()
+            if self.femaleButton.isSelected{
+                self.femaleButton.isSelected.toggle()
             }
             
-            self.maleButton.configuration = config
-        }
+            //continueButton 활성화 비활성화 구문
+            if self.maleButton.isSelected || self.femaleButton.isSelected{
+                self.continueButton.isEnabled = true
+                self.continueButton.configuration?.background.backgroundColor = UIColor(named: "green")
+            }
+            else{
+                self.continueButton.isEnabled = false
+                self.continueButton.configuration?.background.backgroundColor = UIColor(named: "searchfont")
+            }
+            
+            
+         }
         
         let button = UIButton(configuration: config, primaryAction: buttonAction )
-
-    
+        
+        button.configurationUpdateHandler = { button in
+            
+            switch button.state{
+            case .selected:
+                button.configuration?.baseForegroundColor = UIColor(named: "green")
+                button.configuration?.background.strokeColor = UIColor(named: "green")
+                
+                
+            default:
+                button.configuration = config
+                
+                
+            }
+            
+        }
+        
         return button
     }()
     
@@ -87,30 +106,85 @@ class AddSexViewController : UIViewController {
         config.background.strokeColor = UIColor(r: 83, g: 85, b: 86)
         config.background.strokeWidth = 2
         
-        //테두리 변경
-        let buttonAction = UIAction{ _ in
-            if config.background.strokeColor == UIColor(r: 83, g: 85, b: 86) {
-                config.background.strokeColor = UIColor(named: "green")
-                config.baseForegroundColor = UIColor(named: "green")
-            }
-            else
-            {
-                config.background.strokeColor = UIColor(r: 83, g: 85, b: 86)
-                config.baseForegroundColor = .white
+        let buttonAction = UIAction { _ in
+            self.femaleButton.isSelected.toggle()
+            if self.maleButton.isSelected{
+                self.maleButton.isSelected.toggle()
             }
             
-            self.femaleButton.configuration = config
+            if self.maleButton.isSelected || self.femaleButton.isSelected{
+                self.continueButton.isEnabled = true
+                self.continueButton.configuration?.background.backgroundColor = UIColor(named: "green")
+            }
+            else{
+                self.continueButton.isEnabled = false
+                self.continueButton.configuration?.background.backgroundColor = UIColor(named: "searchfont")
+            }
+            
         }
         
         let button = UIButton(configuration: config, primaryAction: buttonAction )
+        
+        
+        button.configurationUpdateHandler = { button in
+            
+            switch button.state{
+            case .selected:
+                button.configuration?.baseForegroundColor = UIColor(named: "green")
+                button.configuration?.background.strokeColor = UIColor(named: "green")
+                
+                
+            default:
+                button.configuration = config
 
-    
+                
+            }
+            
+        }
+        
         return button
+    }()
+    
+    lazy var continueButton : UIButton = {
+        var config = UIButton.Configuration.plain()
+        var attributedTitle = AttributedString("계속하기")
+        attributedTitle.font = .systemFont(ofSize: 18, weight: .medium)
+        config.attributedTitle = attributedTitle
+        config.background.backgroundColor = UIColor(named: "searchfont")
+        config.baseForegroundColor = .black
+        config.cornerStyle = .small
+        
+
+        let buttonAction = UIAction{ _ in
+            self.navigationController?.pushViewController(AddLocationInfromViewController(), animated: true)
+            
+            //sever에 성별 정보 보낼 부분
+            if self.maleButton.isSelected{
+                print("남")
+            }else if self.femaleButton.isSelected{
+                print("여")
+            }
+            
+        }
+        let customButton = UIButton(configuration: config, primaryAction: buttonAction)
+        customButton.heightAnchor.constraint(equalToConstant: 57).isActive = true
+        customButton.isEnabled = false
+        return customButton
     }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let _ = continueButton
+        updateProgressBar(progress: 2/6)
+        
+        //navigationBar 바꾸는 부분
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil) // title 부분 수정
+        backBarButtonItem.tintColor = .white
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        self.navigationItem.title = "정보 입력"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
         self.view.backgroundColor = UIColor(named: "gray2")
         self.view.addSubview(registerContainer)
         self.view.addSubview(selectContainer)
@@ -120,9 +194,6 @@ class AddSexViewController : UIViewController {
         self.view.addSubview(selectContainer)
         self.selectContainer.addArrangedSubview(maleButton)
         self.selectContainer.addArrangedSubview(femaleButton)
-        
-        let continueButton = makeCustomButton(viewController: self, nextVC: AddLocationInfromViewController())
-
         self.registerContainer.addArrangedSubview(continueButton)
 //        registerContainer.setCustomSpacing(279, after: selectContainer)
         
