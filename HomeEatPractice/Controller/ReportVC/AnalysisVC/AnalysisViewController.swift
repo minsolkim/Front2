@@ -91,7 +91,7 @@ class AnalysisViewController: UIViewController {
     }
     lazy var label: UILabel = {
         let label = UILabel()
-        label.text = "저번달 보다 8% 절약하고 있어요"
+        label.text = "저번달 보다 8% 절약 했어요"
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -116,6 +116,7 @@ class AnalysisViewController: UIViewController {
         addSubviews()
         configUI()
         setupPieChart()
+        setupBarChart()
         
     }
     func addSubviews() {
@@ -248,6 +249,11 @@ class AnalysisViewController: UIViewController {
         pieChartView.legend.enabled = false
         
         
+        
+
+    }
+    func setupBarChart() {
+        var names = ["집밥","배달/외식"]
         // BarChart에 표시할 데이터 설정
         var barEntries = [BarChartDataEntry]()
         
@@ -270,7 +276,7 @@ class AnalysisViewController: UIViewController {
         // BarChartData 설정
         let barData = BarChartData(dataSet: barDataSet)
         // BarChart에 대한 추가 설정
-        
+        //barDataSet.barWidth = 0.5 // 예시로 0.5로 설정
         // X축의 격자선 설정
         let xAxis = barChartView.xAxis
         xAxis.drawGridLinesEnabled = false // 수평 격자 선 제거
@@ -279,7 +285,11 @@ class AnalysisViewController: UIViewController {
         
         barChartView.leftAxis.gridColor = UIColor.clear
         barChartView.rightAxis.gridColor = UIColor.clear
+        //barchart animation
+        //barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+        //barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
         let leftYAxis = barChartView.leftYAxisRenderer
+        
         let rightYAxis = barChartView.rightAxis
         
         rightYAxis.drawGridLinesEnabled = false
@@ -291,7 +301,6 @@ class AnalysisViewController: UIViewController {
         barChartView.data = barData
         barChartView.notifyDataSetChanged()
         barChartView.legend.enabled = false
-
     }
     
 }
