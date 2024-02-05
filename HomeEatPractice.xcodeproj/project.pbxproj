@@ -53,6 +53,8 @@
 		582A99362B6F31C0008F30CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99212B6F31C0008F30CA /* LoginViewController.swift */; };
 		582A99372B6F31C0008F30CA /* SelectMangeUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99222B6F31C0008F30CA /* SelectMangeUnitViewController.swift */; };
 		582A99382B6F31C0008F30CA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99232B6F31C0008F30CA /* RegisterViewController.swift */; };
+		582A993A2B6F89F5008F30CA /* TagPlusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99392B6F89F5008F30CA /* TagPlusCollectionViewCell.swift */; };
+		582A993C2B6F8C70008F30CA /* TagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A993B2B6F8C70008F30CA /* TagItem.swift */; };
 		588A09262B4E5BE200638D16 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09252B4E5BE200638D16 /* WriteViewController.swift */; };
 		588A09292B4E6ED400638D16 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09282B4E6ED400638D16 /* InfoViewController.swift */; };
 		588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */; };
@@ -125,6 +127,8 @@
 		582A99212B6F31C0008F30CA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		582A99222B6F31C0008F30CA /* SelectMangeUnitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMangeUnitViewController.swift; sourceTree = "<group>"; };
 		582A99232B6F31C0008F30CA /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		582A99392B6F89F5008F30CA /* TagPlusCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPlusCollectionViewCell.swift; sourceTree = "<group>"; };
+		582A993B2B6F8C70008F30CA /* TagItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagItem.swift; sourceTree = "<group>"; };
 		588A09252B4E5BE200638D16 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		588A09282B4E6ED400638D16 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellOne.swift; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 				588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */,
 				582A98CD2B678AD5008F30CA /* PhotoCollectionViewCell.swift */,
 				582A98CF2B68CCAE008F30CA /* TagCollectionViewCell.swift */,
+				582A99392B6F89F5008F30CA /* TagPlusCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				588A092F2B4FF9A900638D16 /* MyItem.swift */,
+				582A993B2B6F8C70008F30CA /* TagItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -614,7 +620,9 @@
 				58A40D992B5FAC6A0053E302 /* MealWritingViewController.swift in Sources */,
 				582A99252B6F31C0008F30CA /* AddBirthInformViewController.swift in Sources */,
 				582A992C2B6F31C0008F30CA /* RegisterSelectViewController.swift in Sources */,
+				582A993C2B6F8C70008F30CA /* TagItem.swift in Sources */,
 				58A40D952B5FAC1B0053E302 /* MealViewCell.swift in Sources */,
+				582A993A2B6F89F5008F30CA /* TagPlusCollectionViewCell.swift in Sources */,
 				409AA3482B467EFB0096CDBB /* PayAnalyzeViewController.swift in Sources */,
 				582A98CA2B66325D008F30CA /* ItemData.swift in Sources */,
 				582A99292B6F31C0008F30CA /* SearchLocationViewController.swift in Sources */,

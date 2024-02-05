@@ -4,6 +4,7 @@ PODS:
     - Charts/Core (= 4.1.0)
   - Charts/Core (4.1.0):
     - SwiftAlgorithms (~> 1.0)
+  - FSCalendar (2.8.4)
   - Pageboy (4.0.2)
   - SnapKit (5.6.0)
   - SwiftAlgorithms (1.0.0)
@@ -14,6 +15,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Charts
+  - FSCalendar
   - SnapKit
   - Tabman (~> 3.0)
   - Then
@@ -22,6 +24,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Charts
+    - FSCalendar
     - Pageboy
     - SnapKit
     - SwiftAlgorithms
@@ -31,12 +34,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   Charts: ce0768268078eee0336f122c3c4ca248e4e204c5
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   Pageboy: 34ff11e8d1041b81769d5bcde9b19a0cb7218bd9
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   Tabman: 6326ec3a792da1c2a6e79c7eddb56af7b591c9d6
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: d0529c9d306c8146004c036768f7516011166afc
+PODFILE CHECKSUM: 6654a686a712057795f9da216bf7068737996a9b
 
 COCOAPODS: 1.8.4
