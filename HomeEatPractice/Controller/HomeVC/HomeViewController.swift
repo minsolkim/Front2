@@ -43,7 +43,7 @@ class HomeViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = UIColor(r: 7, g: 231, b: 149)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.setImage(UIImage(named: "Home3"), for: .normal)
         button.tintColor = .black
         button.setTitle("지출 추가", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -63,7 +63,7 @@ class HomeViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = UIColor(r: 7, g: 231, b: 149)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
-        button.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        button.setImage(UIImage(named: "Home4"), for: .normal)
         button.tintColor = .black
         button.setTitle("지출 확인", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -106,7 +106,7 @@ class HomeViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     private let circleView2 = UIImageView().then {
-        let circleSize: CGFloat = 16 
+        let circleSize: CGFloat = 16
         $0.frame.size = CGSize(width: circleSize, height: circleSize)
         $0.backgroundColor = UIColor(named: "gray2")
         $0.layer.cornerRadius = circleSize / 2
