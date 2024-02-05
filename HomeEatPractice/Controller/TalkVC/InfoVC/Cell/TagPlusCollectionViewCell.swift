@@ -28,6 +28,19 @@ class TagPlusCollectionViewCell: UICollectionViewCell {
         $0.layer.borderWidth = 2
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
     }
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                // 선택된 상태일 때의 스타일
+                tagButton.layer.borderColor = UIColor(named: "green")?.cgColor ?? UIColor.red.cgColor
+                tagButton.setTitleColor(UIColor(named: "green") ?? UIColor.red, for: .selected)
+            } else {
+                // 선택이 해제된 상태일 때의 스타일
+                tagButton.layer.borderColor = UIColor(named: "font5")?.cgColor ?? UIColor.gray.cgColor
+                tagButton.setTitleColor(UIColor(named: "font5") ?? UIColor.gray, for: .normal)
+            }
+        }
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(tagButton)
