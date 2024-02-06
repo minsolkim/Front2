@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct ItemData: Codable {
+struct ItemData: Encodable {
     let title: String
     let content: String
+    let tags: [String]?
+    let imgUrl: [URL]?
 }
 

@@ -349,16 +349,16 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
             return
         }
         
-        GeneralAPI.saveInfoTalk(title: title, content: content) { result in
-            switch result {
-            case .success:
-                print("API 호출 성공")
-                // 성공 시 처리할 내용 추가
-            case .failure(let error):
-                print("API 호출 실패: \(error.localizedDescription)")
-                // 실패 시 처리할 내용 추가
-            }
-        }
+//        GeneralAPI.saveInfoTalk(title: title, content: content,tags:selectedTags,imgUrl: selectedImages) { result in
+//            switch result {
+//            case .success:
+//                print("API 호출 성공")
+//                // 성공 시 처리할 내용 추가
+//            case .failure(let error):
+//                print("API 호출 실패: \(error.localizedDescription)")
+//                // 실패 시 처리할 내용 추가
+//            }
+//        }
     }
     //MARK: - 사진과 앨범 파트
     // 버튼 액션 함수

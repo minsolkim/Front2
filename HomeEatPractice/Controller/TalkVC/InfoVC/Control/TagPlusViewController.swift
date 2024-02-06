@@ -10,6 +10,8 @@ import Then
 
 class TagPlusViewController: UIViewController {
     var selectedTags: [String] = []
+    var selectedCellCount = 0
+    var selectedCellIndexPath: IndexPath?
     var tags: [TagItem] = defaultTags
     //해시태그 수동 추가 필드
     private let tagplusField = UITextField().then {
@@ -61,7 +63,7 @@ class TagPlusViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
-        self.view.addGestureRecognizer(tapGesture)
+        self.collectionView.addGestureRecognizer(tapGesture)
         //기본 태그 데이터를 초기화
         tags = defaultTags
         navigationControl()
@@ -69,6 +71,10 @@ class TagPlusViewController: UIViewController {
         configUI()
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.isUserInteractionEnabled = true
+        collectionView.allowsSelection = true // 셀 선택 허용 여부
+        collectionView.allowsMultipleSelection = false // 다중 선택 허용 여부 (필요에 따라 설정)
+
         collectionView.register(TagPlusCollectionViewCell.self, forCellWithReuseIdentifier: TagPlusCollectionViewCell.reuseIdentifier)
         
         tabBarController?.tabBar.isHidden = true
@@ -97,8 +103,6 @@ class TagPlusViewController: UIViewController {
             tabBarController.customTabBar.isHidden = false
         }
     }
-   
-
     func navigationControl() {
         let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
         //간격을 배열로 설정
@@ -126,7 +130,7 @@ class TagPlusViewController: UIViewController {
         ])
         NSLayoutConstraint.activate([
             plusButton.topAnchor.constraint(equalTo: tagplusField.topAnchor, constant: 5),
-            plusButton.trailingAnchor.constraint(equalTo: tagplusField.trailingAnchor, constant: -10),
+            plusButton.trailingAnchor.constraint(equalTo: tagplusField.trailingAnchor, constant: -20),
             plusButton.heightAnchor.constraint(equalToConstant: 40),
         ])
         NSLayoutConstraint.activate([
@@ -146,7 +150,17 @@ class TagPlusViewController: UIViewController {
                 layout.minimumLineSpacing = 17
             }
     }
-    
+    func updateSaveButtonAppearance() {
+        if let selectedIndexPaths = collectionView.indexPathsForSelectedItems, !selectedIndexPaths.isEmpty {
+            // 선택된 셀이 있는 경우
+            saveButton.backgroundColor = UIColor(named: "green") ?? UIColor.red
+            saveButton.setTitleColor(UIColor.black, for: .selected)
+        } else {
+            // 선택된 셀이 없는 경우
+            saveButton.backgroundColor = UIColor(named: "gray4") ?? UIColor.gray
+            saveButton.setTitleColor(UIColor.white, for: .normal)
+        }
+    }
     @objc private func plusButtonTapped() {
         // 텍스트 필드에 입력된 텍스트 가져오기
         if let newTag = tagplusField.text, !newTag.isEmpty {
@@ -156,16 +170,6 @@ class TagPlusViewController: UIViewController {
             collectionView.reloadData()
             // 텍스트 필드 초기화
             tagplusField.text = nil
-        }
-    }
-    @objc private func tagButtonTapped(isSelected: Bool) {
-        // isSelected 값에 따라 원하는 동작을 수행합니다.
-        // 예: 선택되었을 때와 선택이 해제되었을 때의 동작을 분기하여 처리합니다.
-        if isSelected {
-            print("셀이 선택되었습니다.")
-
-        } else {
-            print("셀의 선택이 해제되었습니다.")
         }
     }
 //    @objc private func tagButtonTapped(_ sender: UIButton) {
@@ -188,12 +192,8 @@ class TagPlusViewController: UIViewController {
 //            if let index = selectedTags.firstIndex(of: sender.currentTitle ?? "") {
 //                selectedTags.remove(at: index)
 //            }
-//            // 다른 버튼이 선택되지 않은 경우, 저장 버튼의 배경색을 원래대로 변경
-////            if !horizontalStackView.arrangedSubviews.contains(where: { ($0 as? UIButton)?.isSelected == true }) &&
-////               !additionalHorizontalStackView.arrangedSubviews.contains(where: { ($0 as? UIButton)?.isSelected == true }) {
-////                saveButton.backgroundColor = UIColor(named: "gray4") ?? UIColor.gray
-////                saveButton.setTitleColor(UIColor.white, for: .normal)
-////            }
+//        }
+//    }
 //        }
 //
 //        print("Tag Button Tapped: \(sender.currentTitle ?? "")")
@@ -211,7 +211,6 @@ class TagPlusViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true //하단 탭바 안보이게 전환
         print("Selected Tags: \(selectedTags)")
         self.navigationController?.pushViewController(InfoWriteVC, animated: true)
-        print("present click")
     }
     
     
@@ -226,17 +225,35 @@ extension TagPlusViewController: UICollectionViewDelegate, UICollectionViewDataS
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagPlusCollectionViewCell.reuseIdentifier, for: indexPath) as? TagPlusCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
         let tagItem = tags[indexPath.item]
         cell.configure(with: tagItem.tagTitle)
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+           return true // 항상 true를 반환하여 모든 셀이 선택 가능하도록 설정합니다.
+       }
+
+//   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//       // 셀이 선택될 때 실행되는 코드
+//       if let cell = collectionView.cellForItem(at: indexPath) as? TagPlusCollectionViewCell {
+//           // 셀의 선택 상태를 토글하지 않고, 항상 선택되도록 설정
+//           cell.isSelected = true
+//           selectedCellCount += 1 // 선택된 셀의 수를 증가시킵니다.
+//           print("\(indexPath.item)번 Cell 클릭")
+//           updateSaveButtonAppearance() // saveButton의 외관을 업데이트합니다.
+//       }
+//   }
+   
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-           if let cell = collectionView.cellForItem(at: indexPath) as? TagPlusCollectionViewCell {
-               cell.isSelected.toggle()
-               tagButtonTapped(isSelected: cell.isSelected)
-        }
+        // 셀이 선택될 때 호출되는 코드
+        updateSaveButtonAppearance()
     }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        // 셀이 선택 해제될 때 호출되는 코드
+        updateSaveButtonAppearance()
+    }
+    
 }
 extension TagPlusViewController: UICollectionViewDelegateFlowLayout {
    
@@ -245,11 +262,10 @@ extension TagPlusViewController: UICollectionViewDelegateFlowLayout {
         let titleSize = NSString(string: tagItem.tagTitle).size(withAttributes: [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
         ])
-        let cellWidth = titleSize.width + 40 // 여유 공간을 더해 원하는 여백을 확보합니다.
+        let cellWidth = titleSize.width + 40
         
         return CGSize(width: cellWidth, height: 45)
     }
-
     
 
 }
