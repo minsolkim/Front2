@@ -8,7 +8,7 @@
 import UIKit
 
 class WriteViewController: UIViewController {
-    
+    //MARK: - 게시글 검색
     //검색 뷰
     lazy var searchView: UIView = {
         let view = UIView()
@@ -58,7 +58,7 @@ class WriteViewController: UIViewController {
         button.addTarget(self, action: #selector(listAction), for: .touchUpInside)
         return button
     }()
-    
+    //MARK: - 해시태그 선택
     lazy var scrollView: UIScrollView = {
         var view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -91,12 +91,12 @@ class WriteViewController: UIViewController {
         button.layer.cornerRadius = 15
         button.clipsToBounds = true
         button.layer.borderWidth = 1.56
-        button.layer.borderColor = UIColor(named: "green")?.cgColor
+        button.layer.borderColor = UIColor(r: 204, g: 204, b: 204).cgColor
         button.setTitle("#전체글", for: .normal)
-        button.setTitleColor(UIColor.gray, for: .normal)
+        button.setTitleColor(UIColor(r: 204, g: 204, b: 204), for: .normal)
         button.titleLabel?.font = UIFont(name: "폰트", size: 13) ?? .systemFont(ofSize: 13, weight: .medium)
         button.isSelected = true
-        button.setTitleColor(UIColor(named: "green"), for: .selected)
+        button.addTarget(self, action: #selector(tagClicked(_ :)), for: .touchUpInside)
         return button
     }()
     
@@ -107,11 +107,11 @@ class WriteViewController: UIViewController {
         button.layer.cornerRadius = 15
         button.clipsToBounds = true
         button.layer.borderWidth = 1.56
-        button.layer.borderColor = UIColor.gray.cgColor
+        button.layer.borderColor = UIColor(r: 204, g: 204, b: 204).cgColor
         button.setTitle("#주간_BEST", for: .normal)
-        button.setTitleColor(UIColor.gray, for: .normal)
+        button.setTitleColor(UIColor(r: 204, g: 204, b: 204), for: .normal)
         button.titleLabel?.font = UIFont(name: "폰트", size: 13) ?? .systemFont(ofSize: 13, weight: .medium)
-        button.setTitleColor(UIColor(named: "green"), for: .selected)
+        button.addTarget(self, action: #selector(tagClicked(_ :)), for: .touchUpInside)
         return button
     }()
     
@@ -122,11 +122,11 @@ class WriteViewController: UIViewController {
         button.layer.cornerRadius = 15
         button.clipsToBounds = true
         button.layer.borderWidth = 1.56
-        button.layer.borderColor = UIColor.gray.cgColor
+        button.layer.borderColor = UIColor(r: 204, g: 204, b: 204).cgColor
         button.setTitle("#아침", for: .normal)
-        button.setTitleColor(UIColor.gray, for: .normal)
+        button.setTitleColor(UIColor(r: 204, g: 204, b: 204), for: .normal)
         button.titleLabel?.font = UIFont(name: "폰트", size: 13) ?? .systemFont(ofSize: 13, weight: .medium)
-        button.setTitleColor(UIColor(named: "green"), for: .selected)
+        button.addTarget(self, action: #selector(tagClicked(_ :)), for: .touchUpInside)
         return button
     }()
     
@@ -137,11 +137,11 @@ class WriteViewController: UIViewController {
         button.layer.cornerRadius = 15
         button.clipsToBounds = true
         button.layer.borderWidth = 1.56
-        button.layer.borderColor = UIColor.gray.cgColor
+        button.layer.borderColor = UIColor(r: 204, g: 204, b: 204).cgColor
         button.setTitle("#점심", for: .normal)
-        button.setTitleColor(UIColor.gray, for: .normal)
+        button.setTitleColor(UIColor(r: 204, g: 204, b: 204), for: .normal)
         button.titleLabel?.font = UIFont(name: "폰트", size: 13) ?? .systemFont(ofSize: 13, weight: .medium)
-        button.setTitleColor(UIColor(named: "green"), for: .selected)
+        button.addTarget(self, action: #selector(tagClicked(_ :)), for: .touchUpInside)
         return button
     }()
     
@@ -152,11 +152,11 @@ class WriteViewController: UIViewController {
         button.layer.cornerRadius = 15
         button.clipsToBounds = true
         button.layer.borderWidth = 1.56
-        button.layer.borderColor = UIColor.gray.cgColor
+        button.layer.borderColor = UIColor(r: 204, g: 204, b: 204).cgColor
         button.setTitle("#저녁", for: .normal)
-        button.setTitleColor(UIColor.gray, for: .normal)
+        button.setTitleColor(UIColor(r: 204, g: 204, b: 204), for: .normal)
         button.titleLabel?.font = UIFont(name: "폰트", size: 13) ?? .systemFont(ofSize: 13, weight: .medium)
-        button.setTitleColor(UIColor(named: "green"), for: .selected)
+        button.addTarget(self, action: #selector(tagClicked(_ :)), for: .touchUpInside)
         return button
     }()
     
@@ -298,6 +298,28 @@ class WriteViewController: UIViewController {
         ])
     }
     
+    // 해시태그 버튼을 클릭했을 때 발생하는 이벤트
+    @objc func tagClicked(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        
+        // 모든 버튼에 대해서 선택된 상태를 업데이트합니다.
+        for button in [contentbutton, contentbutton2, contentbutton3, contentbutton4, contentbutton5] {
+            if button == sender {
+                // 선택된 버튼인 경우, 선택된 색상으로 변경합니다.
+                button.layer.borderWidth = 1.56
+                button.layer.borderColor = UIColor(named: "green")?.cgColor
+                button.setTitleColor(UIColor(named: "green"), for: .normal)
+            } else {
+                // 선택되지 않은 버튼인 경우, 선택되지 않은 색상으로 변경합니다.
+                button.layer.borderWidth = 1.56
+                button.layer.borderColor = UIColor(r: 204, g: 204, b: 204).cgColor
+                button.setTitleColor(UIColor(r: 204, g: 204, b: 204), for: .normal)
+            }
+            button.isHidden = false // 모든 버튼을 보이도록 설정합니다.
+        
+        }
+    }
+    
     // 셀을 터치했을 때 발생하는 이벤트
     @objc func navigateToPostViewController() {
         let MealPostVC = MealPostViewController()
@@ -385,3 +407,4 @@ extension WriteViewController: UICollectionViewDelegateFlowLayout {
 
     
     
+
