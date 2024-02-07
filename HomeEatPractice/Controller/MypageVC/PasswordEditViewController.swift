@@ -22,6 +22,7 @@ class PasswordEditViewController: UIViewController {
         $0.textColor = UIColor(named: "font5")
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
+        $0.isSecureTextEntry = true
         $0.backgroundColor = UIColor(named: "gray4")
         $0.attributedPlaceholder = NSAttributedString(string: "현재 비밀번호를 입력해주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "font5") ?? UIColor.gray])
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -41,6 +42,7 @@ class PasswordEditViewController: UIViewController {
         $0.textColor = UIColor(named: "font5")
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
+        $0.isSecureTextEntry = true
         $0.backgroundColor = UIColor(named: "gray4")
         $0.attributedPlaceholder = NSAttributedString(string: "현재 비밀번호를 입력해주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "font5") ?? UIColor.gray])
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -60,6 +62,7 @@ class PasswordEditViewController: UIViewController {
         $0.textColor = UIColor(named: "font5")
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
+        $0.isSecureTextEntry = true
         $0.backgroundColor = UIColor(named: "gray4")
         $0.attributedPlaceholder = NSAttributedString(string: "비밀번호를 한 번 더 입력해주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "font5") ?? UIColor.gray])
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -68,12 +71,54 @@ class PasswordEditViewController: UIViewController {
     }
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "gray2")
+        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isTranslucent = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
+       // view에 탭 제스처를 추가.
+        self.view.addGestureRecognizer(tapGesture)
         super.viewDidLoad()
         navigationControl()
         addSubviews()
         configUI()
         
     }
+    // MARK: - 키보드 탭
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // NotificationCenter에 관찰자를 등록하는 행위.
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+            
+    }
+    // 관찰자 분리.
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc func viewDidTap(gesture: UITapGestureRecognizer) {
+        // 뷰를 탭하면 에디팅을 멈추게함.
+        // 에디팅이 멈추므로 키보드가 내려감.
+        view.endEditing(true)
+    }
+    // MARK: - 탭바제거
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 커스텀 탭바를 숨깁니다.
+        if let tabBarController = self.tabBarController as? MainTabBarController {
+            tabBarController.customTabBar.isHidden = true
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 다른 화면으로 넘어갈 때 커스텀 탭바를 다시 보이게 합니다.
+        if let tabBarController = self.tabBarController as? MainTabBarController {
+            tabBarController.customTabBar.isHidden = false
+        }
+    }
+
     func navigationControl() {
         let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
         //간격을 배열로 설정
@@ -81,7 +126,7 @@ class PasswordEditViewController: UIViewController {
         flexibleSpace.width = 5.0
         navigationItem.leftBarButtonItem = backbutton
         let rightBarButton = UIBarButtonItem(title: "수정", style: .plain, target: self, action: #selector(save(_:)))
-        rightBarButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        rightBarButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(named: "green")], for: .normal)
         navigationItem.rightBarButtonItem = rightBarButton
         self.navigationItem.title = "비밀번호 변경"
         //title 흰색으로 설정

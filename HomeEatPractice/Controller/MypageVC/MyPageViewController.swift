@@ -162,7 +162,7 @@ class MyPageViewController: UIViewController {
     }
     func configUI() {
         NSLayoutConstraint.activate([
-            borderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            borderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 24),
             borderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             borderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             borderView.heightAnchor.constraint(equalToConstant: 1)
@@ -175,6 +175,9 @@ class MyPageViewController: UIViewController {
            
            profileImageView.topAnchor.constraint(equalTo: circleView.topAnchor,constant: 16.5),
            profileImageView.leadingAnchor.constraint(equalTo: circleView.leadingAnchor,constant: 9),
+           profileImageView.trailingAnchor.constraint(equalTo: circleView.trailingAnchor,constant: -9),
+           profileImageView.heightAnchor.constraint(equalToConstant: 52.7),
+
            
            profileName.topAnchor.constraint(equalTo: circleView.topAnchor,constant: 8),
            profileName.leadingAnchor.constraint(equalTo: circleView.trailingAnchor,constant: 18)
@@ -189,10 +192,10 @@ class MyPageViewController: UIViewController {
             profileIdLabel.centerXAnchor.constraint(equalTo: profileIdView.centerXAnchor),
             profileIdLabel.centerYAnchor.constraint(equalTo: profileIdView.centerYAnchor),
             
-            profileEditBtn.widthAnchor.constraint(equalToConstant: 353),
             profileEditBtn.heightAnchor.constraint(equalToConstant: 51),
             profileEditBtn.topAnchor.constraint(equalTo: circleView.bottomAnchor,constant: 15),
-            profileEditBtn.leadingAnchor.constraint(equalTo: circleView.leadingAnchor)
+            profileEditBtn.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
+            profileEditBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -22),
         ])
         
         NSLayoutConstraint.activate([
@@ -209,10 +212,10 @@ class MyPageViewController: UIViewController {
         ])
 
         NSLayoutConstraint.activate([
-            UnderlineBar3.widthAnchor.constraint(equalToConstant: 354),
             UnderlineBar3.heightAnchor.constraint(equalToConstant: 1),
             UnderlineBar3.topAnchor.constraint(equalTo: settingPassword.bottomAnchor, constant: 22),
-            UnderlineBar3.leadingAnchor.constraint(equalTo: settingPassword.leadingAnchor)
+            UnderlineBar3.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
+            UnderlineBar3.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -19),
         ])
         
         NSLayoutConstraint.activate([
@@ -229,10 +232,10 @@ class MyPageViewController: UIViewController {
         ])
 
         NSLayoutConstraint.activate([
-            UnderlineBar4.widthAnchor.constraint(equalToConstant: 354),
             UnderlineBar4.heightAnchor.constraint(equalToConstant: 1),
             UnderlineBar4.topAnchor.constraint(equalTo: settingLogout.bottomAnchor, constant: 22),
-            UnderlineBar4.leadingAnchor.constraint(equalTo: settingLogout.leadingAnchor)
+            UnderlineBar4.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
+            UnderlineBar4.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -19),
         ])
         
         NSLayoutConstraint.activate([

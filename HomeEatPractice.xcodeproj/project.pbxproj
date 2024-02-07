@@ -60,6 +60,9 @@
 		588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */; };
 		588A09302B4FF9A900638D16 /* MyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A092F2B4FF9A900638D16 /* MyItem.swift */; };
 		588A09342B50EC5900638D16 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09332B50EC5900638D16 /* PostViewController.swift */; };
+		58A1E7872B7351BF00C45CEA /* EmailEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A1E7862B7351BF00C45CEA /* EmailEditViewController.swift */; };
+		58A1E78A2B7351ED00C45CEA /* MonthMoneyEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A1E7892B7351ED00C45CEA /* MonthMoneyEditViewController.swift */; };
+		58A1E78D2B735D5400C45CEA /* FinalLeaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A1E78C2B735D5400C45CEA /* FinalLeaveViewController.swift */; };
 		58A40D732B56AF190053E302 /* InfoWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D722B56AF190053E302 /* InfoWritingViewController.swift */; };
 		58A40D772B57DD730053E302 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D762B57DD730053E302 /* EditViewController.swift */; };
 		58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D782B5805520053E302 /* UIColor + Extension.swift */; };
@@ -134,6 +137,9 @@
 		588A092C2B4FB9F200638D16 /* TableViewCellOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellOne.swift; sourceTree = "<group>"; };
 		588A092F2B4FF9A900638D16 /* MyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItem.swift; sourceTree = "<group>"; };
 		588A09332B50EC5900638D16 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		58A1E7862B7351BF00C45CEA /* EmailEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEditViewController.swift; sourceTree = "<group>"; };
+		58A1E7892B7351ED00C45CEA /* MonthMoneyEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthMoneyEditViewController.swift; sourceTree = "<group>"; };
+		58A1E78C2B735D5400C45CEA /* FinalLeaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalLeaveViewController.swift; sourceTree = "<group>"; };
 		58A40D722B56AF190053E302 /* InfoWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoWritingViewController.swift; sourceTree = "<group>"; };
 		58A40D762B57DD730053E302 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		58A40D782B5805520053E302 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
@@ -283,10 +289,10 @@
 		5875D9C92B5169D600F484DF /* MypageVC */ = {
 			isa = PBXGroup;
 			children = (
+				58A1E78B2B7352CC00C45CEA /* LeaveVC */,
+				58A1E7882B7351CD00C45CEA /* EditVC */,
 				409AA3432B43E98A0096CDBB /* MyPageViewController.swift */,
-				58A40D762B57DD730053E302 /* EditViewController.swift */,
 				582A98C62B653C61008F30CA /* PasswordEditViewController.swift */,
-				582A98D12B6B7BB0008F30CA /* LeaveViewController.swift */,
 			);
 			path = MypageVC;
 			sourceTree = "<group>";
@@ -365,6 +371,25 @@
 				58A40D812B5C00D30053E302 /* TagPlusViewController.swift */,
 			);
 			path = Control;
+			sourceTree = "<group>";
+		};
+		58A1E7882B7351CD00C45CEA /* EditVC */ = {
+			isa = PBXGroup;
+			children = (
+				58A1E7862B7351BF00C45CEA /* EmailEditViewController.swift */,
+				58A40D762B57DD730053E302 /* EditViewController.swift */,
+				58A1E7892B7351ED00C45CEA /* MonthMoneyEditViewController.swift */,
+			);
+			path = EditVC;
+			sourceTree = "<group>";
+		};
+		58A1E78B2B7352CC00C45CEA /* LeaveVC */ = {
+			isa = PBXGroup;
+			children = (
+				582A98D12B6B7BB0008F30CA /* LeaveViewController.swift */,
+				58A1E78C2B735D5400C45CEA /* FinalLeaveViewController.swift */,
+			);
+			path = LeaveVC;
 			sourceTree = "<group>";
 		};
 		58A40D7A2B5BEF060053E302 /* PayCheckVC */ = {
@@ -615,9 +640,12 @@
 				58A40D9E2B5FF1560053E302 /* TabbarInfo.swift in Sources */,
 				58A40D802B5BEFC40053E302 /* CalendarCheckViewController.swift in Sources */,
 				582A98CC2B6632BB008F30CA /* GeneralAPI.swift in Sources */,
+				58A1E7872B7351BF00C45CEA /* EmailEditViewController.swift in Sources */,
 				582A99342B6F31C0008F30CA /* CustomProgressViewController.swift in Sources */,
 				409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */,
+				58A1E78D2B735D5400C45CEA /* FinalLeaveViewController.swift in Sources */,
 				58A40D992B5FAC6A0053E302 /* MealWritingViewController.swift in Sources */,
+				58A1E78A2B7351ED00C45CEA /* MonthMoneyEditViewController.swift in Sources */,
 				582A99252B6F31C0008F30CA /* AddBirthInformViewController.swift in Sources */,
 				582A992C2B6F31C0008F30CA /* RegisterSelectViewController.swift in Sources */,
 				582A993C2B6F8C70008F30CA /* TagItem.swift in Sources */,
