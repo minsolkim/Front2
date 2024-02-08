@@ -72,6 +72,13 @@ class InfoViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.addTarget(self, action: #selector(floatingButtonAction(_:)), for: .touchUpInside)
     }
+    //컬렉션 뷰
+    private let actionSheetCollectionView: UICollectionView = {
+            let layout = UICollectionViewFlowLayout()
+            let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+            // collectionView 설정
+            return collectionView
+    }()
     var items: [MyItem] = [
         MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),
         MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),

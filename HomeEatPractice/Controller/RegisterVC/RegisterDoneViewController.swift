@@ -47,6 +47,11 @@ class RegisterDoneViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "gray2")
+        
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil) // title 부분 수정
+        backBarButtonItem.tintColor = .white
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        
         self.view.addSubview(registerContainer)
         self.registerContainer.addArrangedSubview(label1)
         self.registerContainer.addArrangedSubview(label2)
@@ -62,7 +67,7 @@ class RegisterDoneViewController : UIViewController {
         NSLayoutConstraint.activate([
             
             self.registerContainer.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 326),
-            self.registerContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -76),
+//            self.registerContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -76),
             self.registerContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             self.registerContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             

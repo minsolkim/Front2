@@ -1,5 +1,4 @@
 //
-//
 //  RegisterViewController.swift
 //  HomeEatPractice
 //
@@ -21,6 +20,18 @@ class RegisterViewController : UIViewController ,UITextFieldDelegate{
         
         return stackView
     }()
+    
+    private let emailContainer : UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.spacing = 11
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        
+        return stackView
+    }()
+    
     
     private let tagLabel1 : UILabel = {
         let label = UILabel()
@@ -137,17 +148,82 @@ class RegisterViewController : UIViewController ,UITextFieldDelegate{
         
     }()
     
+    private lazy var certifyButton : UIButton = {
+        var config = UIButton.Configuration.plain()
+        var attributedTitle = AttributedString("인증")
+        attributedTitle.font = .systemFont(ofSize: 16, weight: .medium)
+        config.attributedTitle = attributedTitle
+        config.cornerStyle = .small
+        config.background.backgroundColor = UIColor(named: "searchfont")
+        config.baseForegroundColor = .black
+        
+        let buttonAction = UIAction { _ in
+        
+         }
+        
+        let button = UIButton(configuration: config, primaryAction: buttonAction )
+        button.widthAnchor.constraint(equalToConstant: 79).isActive = true
+        return button
+    }()
+    
+    private lazy var continueButton : UIButton = {
+        var config = UIButton.Configuration.plain()
+        var attributedTitle = AttributedString("계속하기")
+        attributedTitle.font = .systemFont(ofSize: 18, weight: .medium)
+        config.attributedTitle = attributedTitle
+        config.background.backgroundColor = UIColor(named: "searchfont")
+        config.baseForegroundColor = .black
+        config.cornerStyle = .small
+
+        let buttonAction = UIAction{ _ in
+            
+            guard let email = self.emailTextField.text, let password = self.pwTextField.text, let nickname = self.nickNameTextField.text else {
+                // title 또는 content가 nil이라면 에러 처리 또는 사용자에게 알림
+                
+                
+                
+                return
+            }
+            
+//            MemberAPI.saveMemberInfo(email: email, password: password, nickname: nickname) { result in
+//                switch result {
+//                case .success:
+//                    print("API 호출 성공")
+//                    // 성공 시 처리할 내용 추가
+//                case .failure(let error):
+//                    print("API 호출 실패: \(error.localizedDescription)")
+//                    // 실패 시 처리할 내용 추가
+//                }
+//            }
+            
+            self.navigationController?.pushViewController(RegisterDoneViewController(), animated: true)
+            
+        }
+        let customButton = UIButton(configuration: config, primaryAction: buttonAction)
+        customButton.heightAnchor.constraint(equalToConstant: 57).isActive = true
+        
+        return customButton
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "gray2")
+        let _ = continueButton
         
+        //navigationBar 바꾸는 부분
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil) // title 부분 수정
+        backBarButtonItem.tintColor = .white
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        self.navigationItem.title = "회원가입"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        //keyboard 유무 인식 notificationCenter
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         self.view.addSubview(registerContainer)
-        let continueButton = makeCustomButton(viewController: self, nextVC: RegisterDoneViewController())
-        continueButton.configuration?.background.backgroundColor = UIColor(named: "searchfont")
+        self.view.addSubview(emailContainer)
         
         //return 입력시 키보드 사라지게 하기 위한 delegate 위임
         emailTextField.delegate = self
@@ -163,9 +239,11 @@ class RegisterViewController : UIViewController ,UITextFieldDelegate{
         pwCheckTextField.addTarget(self, action: #selector(didTextFieldChanged), for: .editingChanged)
         emailCheckTextField.addTarget(self, action: #selector(didTextFieldChanged), for: .editingChanged)
         nickNameTextField.addTarget(self, action: #selector(didTextFieldChanged), for: .editingChanged)
+        self.emailContainer.addArrangedSubview(emailTextField)
+        self.emailContainer.addArrangedSubview(certifyButton)
         
         self.registerContainer.addArrangedSubview(tagLabel1)
-        self.registerContainer.addArrangedSubview(emailTextField)
+        self.registerContainer.addArrangedSubview(emailContainer)
         self.registerContainer.addArrangedSubview(notiLabel1)
         
         self.registerContainer.addArrangedSubview(tagLabel2)
@@ -200,7 +278,6 @@ class RegisterViewController : UIViewController ,UITextFieldDelegate{
             self.registerContainer.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 127),
             self.registerContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             self.registerContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-            self.registerContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -76)
             
         ])
         
@@ -219,17 +296,19 @@ class RegisterViewController : UIViewController ,UITextFieldDelegate{
         return pwPredicate.evaluate(with: pw)
     }
     
+    //notilabel 띄우는 함수
     @objc func didTextFieldChanged(_ sender: UITextField){
         if sender == emailTextField{
-            if isValidEmail(emailTextField.text ?? ""){
+            if isValidEmail(emailTextField.text ?? "") || emailTextField.text == ""{
                 notiLabel1.text = " "
             }
             else{
                 notiLabel1.text = "이메일은 yejin09071@gmail.com의 형태로 입력해주세요."
             }
         }
-        else if sender == emailCheckTextField{
-            if (sender.text ?? "").count >= 5{
+        //인증번호 조건 설정 필요
+        else if sender == emailCheckTextField {
+            if (sender.text ?? "").count >= 5 || emailCheckTextField.text == ""{
                 notiLabel2.text = " "
             }
             else{
@@ -237,7 +316,7 @@ class RegisterViewController : UIViewController ,UITextFieldDelegate{
             }
         }
         else if sender == pwTextField{
-            if isValidPw(pwTextField.text ?? ""){
+            if isValidPw(pwTextField.text ?? "") || pwTextField.text == ""{
                 notiLabel3.text = " "
             }
             else{
@@ -245,8 +324,8 @@ class RegisterViewController : UIViewController ,UITextFieldDelegate{
             }
         }
         
-        else if sender == pwCheckTextField{
-            if pwCheckTextField.text == pwTextField.text{
+        else if sender == pwCheckTextField {
+            if pwCheckTextField.text == pwTextField.text || pwCheckTextField.text == ""{
                 notiLabel4.text = " "
             }
             else{
@@ -254,8 +333,14 @@ class RegisterViewController : UIViewController ,UITextFieldDelegate{
             }
         }
         
-        else if sender == nickNameTextField{
-            notiLabel5.text = "멋진 닉네임이네요:)"
+        else if sender == nickNameTextField {
+            if nickNameTextField.text == ""{
+                notiLabel5.text = " "
+            }
+            else{
+                notiLabel5.text = "멋진 닉네임이네요:)"
+            }
+            
         }
         
     }

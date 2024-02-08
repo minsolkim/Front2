@@ -20,13 +20,30 @@ class HomeViewController: UIViewController {
         logo.image = UIImage(named: "Home2")
         return logo
     }()
-    
+    private let GoalLabel = UILabel().then {
+        $0.text = "목표 70,000원"
+        $0.textColor = .white
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        $0.textAlignment = .center
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let IngLabel = UILabel().then {
+        $0.text = "43,800원"
+        $0.textColor = UIColor.init(named: "green")
+        $0.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        $0.textAlignment = .center
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let characterImg = UIImageView().then {
+        $0.image = UIImage(named: "Home1")
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     // 지출추가 버튼
     private let payAddButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(r: 7, g: 231, b: 149)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.setImage(UIImage(named: "Home3"), for: .normal)
         button.tintColor = .black
         button.setTitle("지출 추가", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -46,7 +63,7 @@ class HomeViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = UIColor(r: 7, g: 231, b: 149)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
-        button.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        button.setImage(UIImage(named: "Home4"), for: .normal)
         button.tintColor = .black
         button.setTitle("지출 확인", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -61,23 +78,7 @@ class HomeViewController: UIViewController {
         return button
     }()
     
-    // 지출분석 버튼
-    private let payAnalyzeButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(r: 7, g: 231, b: 149)
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
-        button.setImage(UIImage(systemName: "chart.bar.fill"), for: .normal)
-        button.tintColor = .black
-        button.setTitle("지출 분석", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        
-        let spacing: CGFloat = 8.0 // 원하는 간격 값으로 조절
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: spacing)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: 0)
-        return button
-    }()
+    
     
     // 버튼을 포함하는 스택뷰
     private let buttonContainer: UIStackView = {
@@ -89,18 +90,33 @@ class HomeViewController: UIViewController {
         return container
     }()
     
-    // 진행상황 이미지뷰
-    private let progressView: UIImageView = {
-        let view = UIImageView()
-        view.backgroundColor = .darkGray
-        view.layer.cornerRadius = 10
+    private lazy var progressView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "searchtf")?.withAlphaComponent(0.5)
+        view.layer.cornerRadius = 13.2
         view.clipsToBounds = true
         return view
     }()
-    
+    private let circleView = UIImageView().then {
+        let circleSize: CGFloat = 16
+        $0.frame.size = CGSize(width: circleSize, height: circleSize)
+        $0.backgroundColor = UIColor(named: "gray2")
+        $0.layer.cornerRadius = circleSize / 2
+        $0.clipsToBounds = true
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let circleView2 = UIImageView().then {
+        let circleSize: CGFloat = 16
+        $0.frame.size = CGSize(width: circleSize, height: circleSize)
+        $0.backgroundColor = UIColor(named: "gray2")
+        $0.layer.cornerRadius = circleSize / 2
+        $0.clipsToBounds = true
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+
     private let infoLabel1: UILabel = {
         let label = UILabel()
-        label.text = "OO 님 훌륭해요!"
+        label.text = "예진 님 훌륭해요!"
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.textColor = .white
         label.textAlignment = .left
@@ -123,14 +139,21 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //이름 재설정
+        if let name = UserDefaults.standard.string(forKey: "userNickname") {
+            infoLabel1.text = "\(name) 님 훌륭해요!"
+        } else {
+            // UserDefaults에서 값이 없는 경우에 대한 처리
+            infoLabel1.text = "닉네임이 설정되지 않았습니다."
+        }
+    
         view.backgroundColor = UIColor(named: "gray2")
+        
         setView()
         setConstraints()
         setupPieChart() 
         self.payAddButton.addTarget(self, action: #selector(tabAddButton), for: .touchUpInside)
-        self.payCheckButton.addTarget(self, action: #selector(tabCheckButton), for: .touchUpInside)
-        self.payAnalyzeButton.addTarget(self, action: #selector(tabAnalyzeButton), for: .touchUpInside)
-    }
+        self.payCheckButton.addTarget(self, action: #selector(tabCheckButton), for: .touchUpInside)    }
     
     
     //HomeView가 나타날 때 tabBar 다시 띄우기 및 저장버튼 삭제
@@ -146,9 +169,13 @@ class HomeViewController: UIViewController {
         self.view.addSubview(self.buttonContainer)
         self.buttonContainer.addArrangedSubview(self.payAddButton)
         self.buttonContainer.addArrangedSubview(self.payCheckButton)
-        self.buttonContainer.addArrangedSubview(self.payAnalyzeButton)
         self.view.addSubview(self.progressView)
+        progressView.addSubview(circleView)
+        progressView.addSubview(circleView2)
+        progressView.addSubview(GoalLabel)
+        progressView.addSubview(IngLabel)
         progressView.addSubview(pieChartView)
+        progressView.addSubview(characterImg)
         self.view.addSubview(self.infoLabel1)
         self.view.addSubview(self.infoLabel2)
         self.view.addSubview(self.logo)
@@ -156,7 +183,6 @@ class HomeViewController: UIViewController {
         self.buttonContainer.translatesAutoresizingMaskIntoConstraints = false
         self.payAddButton.translatesAutoresizingMaskIntoConstraints = false
         self.payCheckButton.translatesAutoresizingMaskIntoConstraints = false
-        self.payAnalyzeButton.translatesAutoresizingMaskIntoConstraints = false
         self.progressView.translatesAutoresizingMaskIntoConstraints = false
         self.infoLabel1.translatesAutoresizingMaskIntoConstraints = false
         self.infoLabel2.translatesAutoresizingMaskIntoConstraints = false
@@ -180,8 +206,8 @@ class HomeViewController: UIViewController {
         dataSet.drawIconsEnabled = false
 
         let data = PieChartData(dataSet: dataSet)
-        pieChartView.holeRadiusPercent = 0.75 // 0%로 설정하면 외곽선이 없어집니다.
-        pieChartView.holeColor = UIColor.gray // hole 색을 그레이로 설정
+        pieChartView.holeRadiusPercent = 0.8 // 0%로 설정하면 외곽선이 없어집니다.
+        pieChartView.holeColor = UIColor.init(named: "searchtf")?.withAlphaComponent(0.4) // hole 색을 그레이로 설정
 
         pieChartView.data = data
         pieChartView.legend.enabled = false
@@ -189,17 +215,48 @@ class HomeViewController: UIViewController {
     }
     func setConstraints() {
         NSLayoutConstraint.activate([
-            pieChartView.centerXAnchor.constraint(equalTo: progressView.centerXAnchor),
-            pieChartView.centerYAnchor.constraint(equalTo: progressView.centerYAnchor),
-            pieChartView.heightAnchor.constraint(equalToConstant: 206),
-            pieChartView.widthAnchor.constraint(equalToConstant: 206),
+            GoalLabel.topAnchor.constraint(equalTo: progressView.topAnchor,constant: 42),
+            GoalLabel.centerXAnchor.constraint(equalTo: progressView.centerXAnchor),
+            GoalLabel.heightAnchor.constraint(equalToConstant: 17),
                     
+        ])
+        NSLayoutConstraint.activate([
+            IngLabel.topAnchor.constraint(equalTo: GoalLabel.bottomAnchor,constant: 8),
+            IngLabel.centerXAnchor.constraint(equalTo: progressView.centerXAnchor),
+            IngLabel.heightAnchor.constraint(equalToConstant: 36),
+                    
+        ])
+        NSLayoutConstraint.activate([
+            characterImg.topAnchor.constraint(equalTo: IngLabel.bottomAnchor,constant: 95),
+            characterImg.centerXAnchor.constraint(equalTo: progressView.centerXAnchor),
+            characterImg.heightAnchor.constraint(equalToConstant: 78),
+                    
+        ])
+        NSLayoutConstraint.activate([
+            pieChartView.topAnchor.constraint(equalTo: IngLabel.bottomAnchor,constant: 22),
+            pieChartView.centerXAnchor.constraint(equalTo: progressView.centerXAnchor),
+            pieChartView.heightAnchor.constraint(equalToConstant: 230),
+            pieChartView.widthAnchor.constraint(equalToConstant: 230),
+                    
+        ])
+        NSLayoutConstraint.activate([
+            circleView.topAnchor.constraint(equalTo: progressView.topAnchor,constant: 15),
+            circleView.leadingAnchor.constraint(equalTo: progressView.leadingAnchor,constant: 15),
+            circleView.heightAnchor.constraint(equalToConstant: 15.1),
+            circleView.widthAnchor.constraint(equalToConstant: 15.1),
+                    
+        ])
+        NSLayoutConstraint.activate([
+            circleView2.topAnchor.constraint(equalTo: progressView.topAnchor,constant: 15),
+            circleView2.trailingAnchor.constraint(equalTo: progressView.trailingAnchor,constant: -15),
+            circleView2.heightAnchor.constraint(equalToConstant: 15.1),
+            circleView2.widthAnchor.constraint(equalToConstant: 15.1),
         ])
         NSLayoutConstraint.activate([
             self.buttonContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             self.buttonContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             self.buttonContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24),
-            self.buttonContainer.topAnchor.constraint(equalTo: self.progressView.bottomAnchor, constant: 27),
+            self.buttonContainer.topAnchor.constraint(equalTo: self.progressView.bottomAnchor, constant: 37),
             
             self.payAddButton.leadingAnchor.constraint(equalTo: self.buttonContainer.leadingAnchor),
             self.payAddButton.trailingAnchor.constraint(equalTo: self.buttonContainer.trailingAnchor),
@@ -207,13 +264,10 @@ class HomeViewController: UIViewController {
             self.payCheckButton.leadingAnchor.constraint(equalTo: self.buttonContainer.leadingAnchor),
             self.payCheckButton.trailingAnchor.constraint(equalTo: self.buttonContainer.trailingAnchor),
             
-            self.payAnalyzeButton.leadingAnchor.constraint(equalTo: self.buttonContainer.leadingAnchor),
-            self.payAnalyzeButton.trailingAnchor.constraint(equalTo: self.buttonContainer.trailingAnchor),
-            
             self.progressView.leadingAnchor.constraint(equalTo: self.buttonContainer.leadingAnchor),
             self.progressView.trailingAnchor.constraint(equalTo: self.buttonContainer.trailingAnchor),
             self.progressView.topAnchor.constraint(equalTo: self.infoLabel2.bottomAnchor, constant: 20),
-            self.progressView.heightAnchor.constraint(equalToConstant: 333),
+            self.progressView.heightAnchor.constraint(equalToConstant: 379),
             
             self.infoLabel1.leadingAnchor.constraint(equalTo: buttonContainer.leadingAnchor),
             self.infoLabel1.heightAnchor.constraint(equalToConstant: 28),
@@ -257,20 +311,6 @@ class HomeViewController: UIViewController {
     }
     // 지출확인 뷰에서 back 버튼을 눌렀을 때
     @objc func backCheckButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    // 지출분석 버튼을 클릭했을 때
-    @objc func tabAnalyzeButton(_ sender: Any) {
-        let nextVC = self
-        self.navigationController?.pushViewController(nextVC, animated: true)
-        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil) // title 부분 수정
-            backBarButtonItem.tintColor = .white
-            self.navigationItem.backBarButtonItem = backBarButtonItem
-    }
-    
-    // 지출분석 뷰에서 back 버튼을 눌렀을 때
-    @objc func backAnalyzeButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
 }

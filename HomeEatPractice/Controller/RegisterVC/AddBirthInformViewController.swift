@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-class AddBirthInformViewController : UIViewController {
-    
+class AddBirthInformViewController : CustomProgressViewController{
+
     private let registerContainer : UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,6 +84,15 @@ class AddBirthInformViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "gray2")
+        updateProgressBar(progress: 1/6)
+        
+        //navigationBar 바꾸는 부분
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil) // title 부분 수정
+        backBarButtonItem.tintColor = .white
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        self.navigationItem.title = "정보 입력"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
         self.view.addSubview(registerContainer)
         self.view.addSubview(inputContainer)
         self.registerContainer.addArrangedSubview(label1)
@@ -111,7 +120,7 @@ class AddBirthInformViewController : UIViewController {
             self.registerContainer.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 178),
             self.registerContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             self.registerContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-            self.registerContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -76),
+//            self.registerContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -76),
         ])
     }
     
@@ -140,15 +149,33 @@ let charSet : CharacterSet = {
 }()
 
 
+//입력숫자제한 + 숫자 이외 입력 제한
 extension AddBirthInformViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        //백스페이스 처리
+        if string.isEmpty {
+            return true
+        }
         
         if string.count > 0 {
             guard string.rangeOfCharacter(from: charSet) == nil else {
                 return false
             }
         
+        }
+        if textField == yearTextField {
             guard textField.text!.count < 4 else { return false }
+        }
+        
+        // monthTextField에 대한 처리
+        if textField == monthTextField {
+            guard textField.text!.count < 2 else { return false }
+        }
+        
+        // dayTextField에 대한 처리
+        if textField == dayTextField {
+            guard textField.text!.count < 2 else { return false }
         }
         
         return true

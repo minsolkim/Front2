@@ -9,6 +9,9 @@ import UIKit
 import Then
 
 class TagPlusViewController: UIViewController {
+    var selectedTags: [String] = []
+    var selectedCellCount = 0
+    var tags: [TagItem] = defaultTags
     //해시태그 수동 추가 필드
     private let tagplusField = UITextField().then {
         $0.placeholder = "다양한 해시태그를 추가해보세요!"
@@ -17,30 +20,34 @@ class TagPlusViewController: UIViewController {
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
         $0.backgroundColor = UIColor(named: "gray4")
-        $0.attributedPlaceholder = NSAttributedString(string: "     다양한 해시태그를 추가해보세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "font5") ?? UIColor.gray])
+        $0.attributedPlaceholder = NSAttributedString(string: "다양한 해시태그를 추가해보세요!", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "font5") ?? UIColor.gray])
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: $0.frame.height))
+        $0.leftViewMode = .always
+         
+    }
+    private let plusButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        // 이미지 설정
+        let plusImage = UIImage(named: "Home3") // "plus_icon"은 사용할 이미지의 이름입니다.
+        button.setImage(plusImage, for: .normal)
+        // 이미지 크기 조정
+        button.imageView?.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = UIColor(named: "gray2")
         
-    }
-    //해시태그 vertical 스택 뷰
-    private let verticalStackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.spacing = 17
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
-    //해시태그 horizontal 스택 뷰
-    private let horizontalStackView = UIStackView().then {
-        $0.axis = .horizontal
-        $0.spacing = 10
-        $0.distribution = .fillEqually
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
-    //해시태그 horizontal 스택 뷰 2
-    private let additionalHorizontalStackView = UIStackView().then {
-        $0.axis = .horizontal
-        $0.spacing = 10
-        $0.distribution = .fillEqually
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
+        
+
+        return collectionView
+    }()
     //저장 버튼
     private let saveButton = UIButton().then {
         $0.setTitle("저장", for: .normal)
@@ -51,17 +58,30 @@ class TagPlusViewController: UIViewController {
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.addTarget(self, action: #selector(navigatetToInfoWritingViewController), for: .touchUpInside)
-        
+        //$0.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
+        self.view.addGestureRecognizer(tapGesture)
+        //기본 태그 데이터를 초기화
+        tags = defaultTags
         navigationControl()
         addSubviews()
         configUI()
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        collectionView.register(TagPlusCollectionViewCell.self, forCellWithReuseIdentifier: TagPlusCollectionViewCell.reuseIdentifier)
         tabBarController?.tabBar.isHidden = true
         tabBarController?.tabBar.isTranslucent = true
         view.backgroundColor = UIColor(named: "gray2")
+    }
+    @objc func viewDidTap(gesture: UITapGestureRecognizer) {
+        // 뷰를 탭하면 에디팅을 멈추게함.
+        // 에디팅이 멈추므로 키보드가 내려감.
+        view.endEditing(true)
     }
     // MARK: - 탭바제거
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +100,7 @@ class TagPlusViewController: UIViewController {
             tabBarController.customTabBar.isHidden = false
         }
     }
+    // MARK: - 네비게이션
     func navigationControl() {
         let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
         //간격을 배열로 설정
@@ -94,14 +115,9 @@ class TagPlusViewController: UIViewController {
     }
     func addSubviews() {
         view.addSubview(tagplusField)
-        view.addSubview(verticalStackView)
+        tagplusField.addSubview(plusButton)
+        view.addSubview(collectionView)
         view.addSubview(saveButton)
-        // Vertical Stack View에 추가적인 Horizontal Stack View를 추가
-        verticalStackView.addArrangedSubview(horizontalStackView)
-        verticalStackView.addArrangedSubview(additionalHorizontalStackView)
-        // 각 Horizontal Stack View에 버튼 추가
-        addTagButtonsToHorizontalStackView()
-        addAdditionalTagButtonsToHorizontalStackView()
     }
     func configUI() {
         NSLayoutConstraint.activate([
@@ -111,99 +127,82 @@ class TagPlusViewController: UIViewController {
             tagplusField.heightAnchor.constraint(equalToConstant: 50),
         ])
         NSLayoutConstraint.activate([
-            verticalStackView.topAnchor.constraint(equalTo: tagplusField.bottomAnchor, constant: 33),
-            verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
+            plusButton.topAnchor.constraint(equalTo: tagplusField.topAnchor, constant: 5),
+            plusButton.trailingAnchor.constraint(equalTo: tagplusField.trailingAnchor, constant: -20),
+            plusButton.heightAnchor.constraint(equalToConstant: 40),
         ])
         NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: tagplusField.bottomAnchor, constant: 20),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 20),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -20),
+            collectionView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -20)
+        ])
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor,constant: 20),
             saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -76),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             saveButton.heightAnchor.constraint(equalToConstant: 57)
         ])
-        
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.minimumInteritemSpacing = 5
+                layout.minimumLineSpacing = 17
+            }
     }
-    // 해시태그 버튼을 수동으로 추가하는 함수
-    private func addTagButtonsToHorizontalStackView() {
-        let tag1Button = createTagButton(title: "#할인")
-        let tag2Button = createTagButton(title: "#마트")
-        let tag3Button = createTagButton(title: "#과일")
-        let tag4Button = createTagButton(title: "#음료")
-
-        // 버튼을 가로 스택뷰에 추가
-        horizontalStackView.addArrangedSubview(tag1Button)
-        horizontalStackView.addArrangedSubview(tag2Button)
-        horizontalStackView.addArrangedSubview(tag3Button)
-        horizontalStackView.addArrangedSubview(tag4Button)
-    }
-    // 2번째 스택 뷰
-    private func addAdditionalTagButtonsToHorizontalStackView() {
-        let additionalTag1Button = createTagButton(title: "#고기")
-        let additionalTag2Button = createTagButton(title: "#튀김")
-        let additionalTag3Button = createTagButton(title: "#야식")
-        let additionalTag4Button = createTagButton(title: "#공구")
-        
-        additionalHorizontalStackView.addArrangedSubview(additionalTag1Button)
-        additionalHorizontalStackView.addArrangedSubview(additionalTag2Button)
-        additionalHorizontalStackView.addArrangedSubview(additionalTag3Button)
-        additionalHorizontalStackView.addArrangedSubview(additionalTag4Button)
-
-    }
-    // 해시태그 버튼 생성 함수
-    private func createTagButton(title: String) -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        
-        // 버튼의 원래 border 색상 및 title 색상
-        let normalBorderColor = UIColor(named: "font5")?.cgColor ?? UIColor.gray.cgColor
-        let normalTitleColor = UIColor(named: "font5") ?? UIColor.gray
-        button.setTitleColor(normalTitleColor, for: .normal)
-        
-        button.layer.cornerRadius = 22.5
-        button.clipsToBounds = true
-        button.layer.borderColor = normalBorderColor
-        button.layer.borderWidth = 2
-        
-        // 버튼이 선택되었을 때의 border 색상 및 title 색상
-        let selectedBorderColor = UIColor(named: "green")?.cgColor ?? UIColor.red.cgColor
-        let selectedTitleColor = UIColor(named: "green") ?? UIColor.red
-        button.setTitleColor(selectedTitleColor, for: .selected)
-        
-        button.backgroundColor = UIColor(named: "gray4") ?? UIColor.gray
-        button.addTarget(self, action: #selector(tagButtonTapped(_:)), for: .touchUpInside)
-        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-
-        return button
-    }
-
-    @objc private func tagButtonTapped(_ sender: UIButton) {
-        sender.isSelected.toggle()
-        
-        // 버튼의 선택 여부에 따라 border 색상 및 title 색상을 변경
-        if sender.isSelected {
-            sender.layer.borderColor = UIColor(named: "green")?.cgColor ?? UIColor.red.cgColor
-            sender.tintColor = .clear
-            sender.setTitleColor(UIColor(named: "green") ?? UIColor.red, for: .selected)
-            // 선택된 경우, 저장 버튼의 배경색을 변경
+    func updateSaveButtonAppearance() {
+        if let selectedIndexPaths = collectionView.indexPathsForSelectedItems, !selectedIndexPaths.isEmpty {
+            // 선택된 셀이 있는 경우
             saveButton.backgroundColor = UIColor(named: "green") ?? UIColor.red
             saveButton.setTitleColor(UIColor.black, for: .selected)
         } else {
-            sender.layer.borderColor = UIColor(named: "font5")?.cgColor ?? UIColor.gray.cgColor
-            sender.setTitleColor(UIColor(named: "font5") ?? UIColor.gray, for: .normal)
-            
-            // 다른 버튼이 선택되지 않은 경우, 저장 버튼의 배경색을 원래대로 변경
-            if !horizontalStackView.arrangedSubviews.contains(where: { ($0 as? UIButton)?.isSelected == true }) &&
-               !additionalHorizontalStackView.arrangedSubviews.contains(where: { ($0 as? UIButton)?.isSelected == true }) {
-                saveButton.backgroundColor = UIColor(named: "gray4") ?? UIColor.gray
-                saveButton.setTitleColor(UIColor.white, for: .normal)
-            }
+            // 선택된 셀이 없는 경우
+            saveButton.backgroundColor = UIColor(named: "gray4") ?? UIColor.gray
+            saveButton.setTitleColor(UIColor.white, for: .normal)
         }
-        
-        print("Tag Button Tapped: \(sender.currentTitle ?? "")")
     }
-
+    @objc private func plusButtonTapped() {
+        // 텍스트 필드에 입력된 텍스트 가져오기
+        if let newTag = tagplusField.text, !newTag.isEmpty {
+            // 입력된 텍스트가 비어있지 않으면 태그 배열에 추가
+            tags.append(TagItem(tagTitle: newTag))
+            // 콜렉션 뷰 리로드
+            collectionView.reloadData()
+            // 텍스트 필드 초기화
+            tagplusField.text = nil
+        }
+    }
+//    @objc private func tagButtonTapped(_ sender: UIButton) {
+//        sender.isSelected.toggle()
+//
+//        // 버튼의 선택 여부에 따라 border 색상 및 title 색상을 변경
+//        if sender.isSelected {
+//            sender.layer.borderColor = UIColor(named: "green")?.cgColor ?? UIColor.red.cgColor
+//            sender.tintColor = .clear
+//            sender.setTitleColor(UIColor(named: "green") ?? UIColor.red, for: .selected)
+//            // 선택된 경우, 저장 버튼의 배경색을 변경
+//            saveButton.backgroundColor = UIColor(named: "green") ?? UIColor.red
+//            saveButton.setTitleColor(UIColor.black, for: .selected)
+//            selectedTags.append(sender.currentTitle ?? "")
+//            print(selectedTags)
+//        } else {
+//            sender.layer.borderColor = UIColor(named: "font5")?.cgColor ?? UIColor.gray.cgColor
+//            sender.setTitleColor(UIColor(named: "font5") ?? UIColor.gray, for: .normal)
+//            // 선택이 해제되면 해당 타이틀을 배열에서 제거
+//            if let index = selectedTags.firstIndex(of: sender.currentTitle ?? "") {
+//                selectedTags.remove(at: index)
+//            }
+//        }
+//    }
+//        }
+//
+//        print("Tag Button Tapped: \(sender.currentTitle ?? "")")
+//    }
+    // 셀을 터치했을 때 발생하는 이벤트
+    @objc func navigateToPostViewController() {
+        let MealPostVC = MealPostViewController()
+        navigationController?.pushViewController(MealPostVC, animated: true)
+        print("present click")
+    }
 
     @objc func back(_ sender: Any) {
          self.navigationController?.popViewController(animated: true)
@@ -212,12 +211,52 @@ class TagPlusViewController: UIViewController {
     //게시글 작성으로 넘어감
     @objc func navigatetToInfoWritingViewController(_ sender: Any) {
         let InfoWriteVC = InfoWritingViewController()
+        InfoWriteVC.selectedTags = selectedTags
         tabBarController?.tabBar.isHidden = true //하단 탭바 안보이게 전환
-
+        print("Selected Tags: \(selectedTags)")
         self.navigationController?.pushViewController(InfoWriteVC, animated: true)
-        print("present click")
     }
 
+}
+extension TagPlusViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.item + 1)
+        print("셀이 선택되었습니다. IndexPath: \(indexPath)")
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? TagPlusCollectionViewCell {
+            cell.updateTagButtonAppearance(selected: true)
+            // 저장 버튼의 배경색을 변경
+            updateSaveButtonAppearance()
+            selectedTags.append(cell.tagButton.currentTitle ?? "")
+            print(selectedTags)
+        }
+    }
+}
+extension TagPlusViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tags.count
+    }
 
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagPlusCollectionViewCell.reuseIdentifier, for: indexPath) as? TagPlusCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        let tagItem = tags[indexPath.item]
+        cell.configure(with: tagItem.tagTitle)
+        return cell
+    }
+    
+}
+extension TagPlusViewController: UICollectionViewDelegateFlowLayout {
+   
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let tagItem = tags[indexPath.item]
+        let titleSize = NSString(string: tagItem.tagTitle).size(withAttributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
+        ])
+        let cellWidth = titleSize.width + 40
+        
+        return CGSize(width: cellWidth, height: 45)
+    }
 }
