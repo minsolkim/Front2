@@ -10,24 +10,6 @@ class MealWritingViewController: UIViewController{
     
     private lazy var customButton: UIButton = makeCustomButton()
     
-    // MARK: - ScrollView 생성
-    private let scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.showsVerticalScrollIndicator = false
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "gray2")
-        view.isUserInteractionEnabled = true
-        view.isScrollEnabled = true
-        return view
-    }()
-    
-    private let mainView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isUserInteractionEnabled = true
-        return view
-    }()
-    
     // MARK: - 버튼 스텍뷰
     private let container: UIStackView = {
         let view = UIStackView()
@@ -44,7 +26,7 @@ class MealWritingViewController: UIViewController{
         button.setTitle("#아침", for: .normal)
         button.setTitleColor(UIColor(named: "green"), for: .normal)
         button.backgroundColor = UIColor(r: 54, g: 56, b: 57)
-        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        button.titleLabel?.font = UIFont(name: "NotoSansKR-Medium", size: 15)
         button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(hashtagTapped(_ :)), for: .touchUpInside)
         button.clipsToBounds = true
@@ -61,7 +43,7 @@ class MealWritingViewController: UIViewController{
         button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(hashtagTapped(_ :)), for: .touchUpInside)
         button.clipsToBounds = true
-        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        button.titleLabel?.font = UIFont(name: "NotoSansKR-Medium", size: 15)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = true
         return button
@@ -72,7 +54,7 @@ class MealWritingViewController: UIViewController{
         button.setTitle("#저녁", for: .normal)
         button.setTitleColor(UIColor(named: "green"), for: .normal)
         button.backgroundColor = UIColor(r: 54, g: 56, b: 57)
-        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        button.titleLabel?.font = UIFont(name: "NotoSansKR-Medium", size: 15)
         button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(hashtagTapped(_ :)), for: .touchUpInside)
         button.clipsToBounds = true
@@ -103,7 +85,7 @@ class MealWritingViewController: UIViewController{
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("사진 추가", for: .normal)
         button.setImage(image, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        button.titleLabel?.font = UIFont(name: "NotoSansKR-Medium", size: 18)
         button.setTitleColor(UIColor.lightGray, for: .normal)
         button.backgroundColor = UIColor(named: "searchtf")
         button.layer.cornerRadius = 14
@@ -119,6 +101,7 @@ class MealWritingViewController: UIViewController{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
       }()
+    
     //두번째 이미지 뷰
     private let imageView2: UIImageView = {
         let view = UIImageView()
@@ -127,6 +110,7 @@ class MealWritingViewController: UIViewController{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
       }()
+    
     //세번째 이미지 뷰
     private let imageView3: UIImageView = {
         let view = UIImageView()
@@ -140,7 +124,7 @@ class MealWritingViewController: UIViewController{
     private let mealNameLabel: UILabel = {
         let label = UILabel()
         label.text = "음식이름"
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont(name: "NotoSansKR-Medium", size: 18)
         label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         label.numberOfLines = 1
@@ -150,6 +134,7 @@ class MealWritingViewController: UIViewController{
     
     private let nameTextField: UITextField = {
         let textField = UITextField()
+        textField.font = UIFont(name: "NotoSansKR-Medium", size: 16)
         textField.attributedPlaceholder = NSAttributedString(string: "오늘 먹은 음식 이름은?", attributes: [NSAttributedString.Key.foregroundColor : UIColor(r: 204, g: 204, b: 204)])
         textField.backgroundColor = UIColor(r: 54, g: 56, b: 57)
         textField.textColor = UIColor(r: 204, g: 204, b: 204)
@@ -164,7 +149,7 @@ class MealWritingViewController: UIViewController{
     private let memoLabel: UILabel = {
         let label = UILabel()
         label.text = "메모"
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont(name: "NotoSansKR-Medium", size: 18)
         label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         label.numberOfLines = 1
@@ -181,26 +166,11 @@ class MealWritingViewController: UIViewController{
         textView.clipsToBounds = true
         textView.backgroundColor = UIColor(named: "gray4")
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) // 내용 여백 조절
+        textView.textContainerInset = UIEdgeInsets(top: 17, left: 13, bottom: 17, right: 0)
         return textView
 
     }()
     
-    private let recipeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "레시피"
-        label.font = .systemFont(ofSize: 18, weight: .medium)
-        label.textColor = UIColor(named: "green")
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let borderLine: UIView = {
-        let line = UIView()
-        line.backgroundColor = UIColor(r: 102, g: 102, b: 102)
-        line.translatesAutoresizingMaskIntoConstraints = false
-        return line
-    }()
     private var isCameraAuthorized: Bool {
        AVCaptureDevice.authorizationStatus(for: .video) == .authorized
      }
@@ -233,8 +203,6 @@ class MealWritingViewController: UIViewController{
             tabBarController.customTabBar.isHidden = false
         }
     }
-    
-
 
     func navigationControl() {
         let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
@@ -260,46 +228,29 @@ class MealWritingViewController: UIViewController{
     func configUI() {
         //let customButton = makeCustomButton()
         customButton.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(self.scrollView)
-        self.scrollView.addSubview(self.mainView)
-        self.mainView.addSubview(self.customButton)
-        self.mainView.addSubview(self.container)
+        self.view.addSubview(self.customButton)
+        self.view.addSubview(self.container)
         self.container.addArrangedSubview(self.breackfastButton)
         self.container.addArrangedSubview(self.lunchButton)
         self.container.addArrangedSubview(self.dinnerButton)
-        self.mainView.addSubview(self.mealNameLabel)
-        self.mainView.addSubview(self.nameTextField)
-        self.mainView.addSubview(self.memoLabel)
-        self.mainView.addSubview(self.memoTextView)
+        self.view.addSubview(self.mealNameLabel)
+        self.view.addSubview(self.nameTextField)
+        self.view.addSubview(self.memoLabel)
+        self.view.addSubview(self.memoTextView)
         memoTextView.addObserver(self, forKeyPath: "contentSize", options: [.new], context: nil)
-        self.mainView.addSubview(self.recipeLabel)
-        self.mainView.addSubview(self.borderLine)
+        
         
         NSLayoutConstraint.activate([
-            self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            
-            self.mainView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
-            self.mainView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
-            self.mainView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
-            self.mainView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
-            self.mainView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
-            self.mainView.heightAnchor.constraint(equalToConstant: 1000)
-        ])
-        
-        NSLayoutConstraint.activate([
-            self.customButton.topAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.topAnchor, constant: 48),
-            self.customButton.leadingAnchor.constraint(equalTo: self.mainView.leadingAnchor, constant: 108),
-            self.customButton.trailingAnchor.constraint(equalTo: self.mainView.trailingAnchor, constant: -108),
+            self.customButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            self.customButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 108),
+            self.customButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -108),
             self.customButton.heightAnchor.constraint(equalToConstant: 176),
         ])
         
         NSLayoutConstraint.activate([
             self.container.topAnchor.constraint(equalTo: self.customButton.bottomAnchor, constant: 44),
-            self.container.leadingAnchor.constraint(equalTo: self.mainView.leadingAnchor, constant: 47),
-            self.container.trailingAnchor.constraint(equalTo: self.mainView.trailingAnchor, constant: -47),
+            self.container.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 47),
+            self.container.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -47),
             self.container.heightAnchor.constraint(equalToConstant: 40),
 
             
@@ -316,14 +267,14 @@ class MealWritingViewController: UIViewController{
         ])
         
         NSLayoutConstraint.activate([
-            self.mealNameLabel.leadingAnchor.constraint(equalTo: self.mainView.leadingAnchor, constant: 21),
+            self.mealNameLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 21),
             self.mealNameLabel.topAnchor.constraint(equalTo: self.container.bottomAnchor, constant: 44),
             self.mealNameLabel.heightAnchor.constraint(equalToConstant: 26)
         ])
         
         NSLayoutConstraint.activate([
             self.nameTextField.leadingAnchor.constraint(equalTo: self.mealNameLabel.leadingAnchor),
-            self.nameTextField.trailingAnchor.constraint(equalTo: self.mainView.trailingAnchor,constant: -20),
+            self.nameTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
             self.nameTextField.topAnchor.constraint(equalTo: self.mealNameLabel.bottomAnchor, constant: 9),
             self.nameTextField.heightAnchor.constraint(equalToConstant: 50)
         ])
@@ -339,20 +290,6 @@ class MealWritingViewController: UIViewController{
             self.memoTextView.trailingAnchor.constraint(equalTo: self.nameTextField.trailingAnchor),
             self.memoTextView.topAnchor.constraint(equalTo: self.memoLabel.bottomAnchor, constant: 9),
             self.memoTextView.heightAnchor.constraint(equalToConstant: 50),
-        ])
-        
-        NSLayoutConstraint.activate([
-            self.recipeLabel.leadingAnchor.constraint(equalTo: self.mealNameLabel.leadingAnchor),
-            self.recipeLabel.topAnchor.constraint(equalTo: self.memoTextView.bottomAnchor, constant: 31),
-            self.recipeLabel.heightAnchor.constraint(equalToConstant: 26)
-        ])
-        
-        NSLayoutConstraint.activate([
-            self.borderLine.leadingAnchor.constraint(equalTo: self.mealNameLabel.leadingAnchor),
-            self.borderLine.trailingAnchor.constraint(equalTo: self.nameTextField.trailingAnchor),
-            self.borderLine.heightAnchor.constraint(equalToConstant: 1),
-            self.borderLine.topAnchor.constraint(equalTo: self.recipeLabel.bottomAnchor, constant: 16.6)
-            
         ])
         
     }
@@ -380,7 +317,10 @@ class MealWritingViewController: UIViewController{
                     // 실패 시 처리할 내용 추가
                 }
             }
-        }
+        let nextVC = RecipeViewController()
+        tabBarController?.tabBar.isHidden = true //하단 탭바 안보이게 전환
+        navigationController?.pushViewController(nextVC, animated: true)
+    }
     // 버튼 액션 함수
     @objc func touchUpImageAddButton(button: UIButton) {
         // 갤러리 접근 권한 허용 여부 체크
@@ -481,8 +421,26 @@ class MealWritingViewController: UIViewController{
         self.present(actionSheetController, animated: true, completion: nil)
     }
     
+    private var selectedButton: UIButton? = nil
+    // 해시태그 버튼을 클릭했을 때 이벤트
     @objc func hashtagTapped(_ sender: UIButton) {
-        print("click")
+        if let selectedButton = selectedButton {
+                // 이전에 선택된 버튼이 있는 경우, 선택 해제
+                selectedButton.setTitleColor(UIColor(named: "green"), for: .normal)
+                selectedButton.layer.borderColor = UIColor(named: "green")?.cgColor
+            selectedButton.layer.borderWidth = 0
+            }
+            
+            if selectedButton === sender {
+                // 이미 선택된 버튼을 다시 클릭한 경우, 선택 해제
+                selectedButton = nil
+            } else {
+                // 새로운 버튼을 선택한 경우, 선택 처리
+                sender.setTitleColor(UIColor(named: "green"), for: .normal)
+                sender.layer.borderColor = UIColor(named: "green")?.cgColor
+                sender.layer.borderWidth = 2
+                selectedButton = sender
+            }
     }
     
     @objc func navigateToTagPlusViewController(_ sender: Any) {
@@ -626,6 +584,7 @@ extension MealWritingViewController: UITextViewDelegate {
         }
     }
 }
+
 
 
 

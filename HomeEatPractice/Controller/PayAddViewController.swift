@@ -24,54 +24,152 @@ import Photos
 
 
 class PayAddViewController : UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
     let imagePicker = UIImagePickerController()
-    //MARK: - UIlabel 관리
-    private let tagLabel1 : UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "#장보기"
-        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 20
-        label.backgroundColor = .darkGray
-        label.textColor = .green
-        label.textAlignment = .center
-        return label
-    }()
     
-    private let tagLabel2 : UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "#외식비"
-        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 20
-        label.backgroundColor = .darkGray
-        label.textColor = .green
-        label.textAlignment = .center
-        return label
-    }()
+    private lazy var tagButton1: UIButton = {
+        var config = UIButton.Configuration.plain()
+        var attributedTitle = AttributedString("#장보기")
+        attributedTitle.font = .systemFont(ofSize: 15, weight: .bold)
+        config.attributedTitle = attributedTitle
+        config.background.backgroundColor = UIColor(named: "gray4")
+        config.baseForegroundColor = UIColor(named: "green")
+        
+        let buttonAction = UIAction { _ in
+            self.tagButton1.isSelected.toggle()
+            if self.tagButton2.isSelected{
+                self.tagButton2.isSelected.toggle()
+            }
+            if self.tagButton3.isSelected{
+                self.tagButton3.isSelected.toggle()
+            }
+
+            
+            //continueButton 활성화 비활성화 구문
+//            if self.maleButton.isSelected || self.femaleButton.isSelected{
+//                self.continueButton.isEnabled = true
+//                self.continueButton.configuration?.background.backgroundColor = UIColor(named: "green")
+//            }
+//            else{
+//                self.continueButton.isEnabled = false
+//                self.continueButton.configuration?.background.backgroundColor = UIColor(named: "searchfont")
+            }
+        let button = UIButton(configuration: config, primaryAction: buttonAction )
+        
+        button.configurationUpdateHandler = { button in
+            
+            switch button.state{
+            case .selected:
+                button.layer.borderColor = UIColor(named: "green")?.cgColor
+            default:
+                button.layer.borderColor = UIColor(named: "gray2")?.cgColor
+            }
+        }
+        button.layer.cornerRadius = 20
+        button.clipsToBounds = true
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor(named: "gray2")?.cgColor
+        return button
+         }()
     
-    private let tagLabel3 : UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "#배달비"
-        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 20
-        label.backgroundColor = .darkGray
-        label.textColor = .green
-        label.textAlignment = .center
-        return label
-    }()
+    private lazy var tagButton2: UIButton = {
+        var config = UIButton.Configuration.plain()
+        var attributedTitle = AttributedString("#외식비")
+        attributedTitle.font = .systemFont(ofSize: 15, weight: .bold)
+        config.attributedTitle = attributedTitle
+        config.background.backgroundColor = UIColor(named: "gray4")
+        config.baseForegroundColor = UIColor(named: "green")
+        
+        let buttonAction = UIAction { _ in
+            self.tagButton2.isSelected.toggle()
+            if self.tagButton1.isSelected{
+                self.tagButton1.isSelected.toggle()
+            }
+            if self.tagButton3.isSelected{
+                self.tagButton3.isSelected.toggle()
+            }
+
+            
+            //continueButton 활성화 비활성화 구문
+//            if self.maleButton.isSelected || self.femaleButton.isSelected{
+//                self.continueButton.isEnabled = true
+//                self.continueButton.configuration?.background.backgroundColor = UIColor(named: "green")
+//            }
+//            else{
+//                self.continueButton.isEnabled = false
+//                self.continueButton.configuration?.background.backgroundColor = UIColor(named: "searchfont")
+            }
+        let button = UIButton(configuration: config, primaryAction: buttonAction )
+        
+        button.configurationUpdateHandler = { button in
+            
+            switch button.state{
+            case .selected:
+                button.layer.borderColor = UIColor(named: "green")?.cgColor
+            default:
+                button.layer.borderColor = UIColor(named: "gray2")?.cgColor
+            }
+        }
+        button.layer.cornerRadius = 20
+        button.clipsToBounds = true
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor(named: "gray2")?.cgColor
+        return button
+         }()
+    
+    private lazy var tagButton3: UIButton = {
+        var config = UIButton.Configuration.plain()
+        var attributedTitle = AttributedString("#배달비")
+        attributedTitle.font = .systemFont(ofSize: 15, weight: .bold)
+        config.attributedTitle = attributedTitle
+        config.background.backgroundColor = UIColor(named: "gray4")
+        config.baseForegroundColor = UIColor(named: "green")
+        
+        let buttonAction = UIAction { _ in
+            self.tagButton3.isSelected.toggle()
+            if self.tagButton2.isSelected{
+                self.tagButton2.isSelected.toggle()
+            }
+            if self.tagButton1.isSelected{
+                self.tagButton1.isSelected.toggle()
+            }
+
+            //continueButton 활성화 비활성화 구문
+//            if self.maleButton.isSelected || self.femaleButton.isSelected{
+//                self.continueButton.isEnabled = true
+//                self.continueButton.configuration?.background.backgroundColor = UIColor(named: "green")
+//            }
+//            else{
+//                self.continueButton.isEnabled = false
+//                self.continueButton.configuration?.background.backgroundColor = UIColor(named: "searchfont")
+            }
+        let button = UIButton(configuration: config, primaryAction: buttonAction )
+        
+        button.configurationUpdateHandler = { button in
+            
+            switch button.state{
+            case .selected:
+                button.layer.borderColor = UIColor(named: "green")?.cgColor
+            default:
+                button.layer.borderColor = UIColor(named: "gray2")?.cgColor
+            }
+        }
+        button.layer.cornerRadius = 20
+        button.clipsToBounds = true
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor(named: "gray2")?.cgColor
+        return button
+         }()
+        
+        
     
     private let postLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "메모"
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        label.backgroundColor = .black
-        label.textColor = .green
+        label.backgroundColor = UIColor(named: "gray2")
+        label.textColor = UIColor(named: "green")
         label.textAlignment = .left
         return label
     }()
@@ -96,9 +194,9 @@ class PayAddViewController : UIViewController, UITextFieldDelegate, UIImagePicke
     private let postTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = .darkGray
+        textField.backgroundColor = UIColor(named: "gray4")
         textField.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        textField.attributedPlaceholder = NSAttributedString(string: "오늘의 지출이 담고 있는 이야기는?", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        textField.attributedPlaceholder = NSAttributedString(string: "오늘의 지출이 담고 있는 이야기는?", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "searchfont")])
         textField.layer.cornerRadius = 10
         textField.layer.masksToBounds = true
         textField.textColor = .white
@@ -144,9 +242,9 @@ class PayAddViewController : UIViewController, UITextFieldDelegate, UIImagePicke
 //MARK: - 뷰에 추가
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor(named: "gray2")
         //현재 뷰에서는 tabBar 사용 안 함
-        
-        
         tabBarController?.tabBar.isHidden = true
         tabBarController?.tabBar.isTranslucent = true
         self.imagePicker.delegate = self
@@ -164,12 +262,11 @@ class PayAddViewController : UIViewController, UITextFieldDelegate, UIImagePicke
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
         postTextField.delegate = self
-        
-        self.view.backgroundColor = .black
+    
         self.view.addSubview(self.hashContainer)
-        self.hashContainer.addArrangedSubview(tagLabel1)
-        self.hashContainer.addArrangedSubview(tagLabel2)
-        self.hashContainer.addArrangedSubview(tagLabel3)
+        self.hashContainer.addArrangedSubview(tagButton1)
+        self.hashContainer.addArrangedSubview(tagButton2)
+        self.hashContainer.addArrangedSubview(tagButton3)
         self.view.addSubview(postLabel)
         self.view.addSubview(postTextField)
         self.view.addSubview(priceLabel)
@@ -390,6 +487,5 @@ extension UIViewController {
     
     
 }
-
 
 

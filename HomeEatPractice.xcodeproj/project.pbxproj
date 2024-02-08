@@ -10,6 +10,7 @@
 		2D8CFEB82B5A301000FDE2E5 /* HomeatIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */; };
 		2D8CFEB92B5A301000FDE2E5 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */; };
 		2D8CFEBA2B5A301000FDE2E5 /* HomeatLogo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */; };
+		4060C4192B74B2EA0012F06D /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4060C4182B74B2EA0012F06D /* RecipeViewController.swift */; };
 		40852A292B6F371300150395 /* FoodItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40852A282B6F371300150395 /* FoodItemData.swift */; };
 		40852A2B2B6F374900150395 /* FoodGeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40852A2A2B6F374900150395 /* FoodGeneralAPI.swift */; };
 		409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3272B43A0470096CDBB /* AppDelegate.swift */; };
@@ -85,6 +86,7 @@
 		2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatIcon.pdf; sourceTree = "<group>"; };
 		2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatLogo.pdf; sourceTree = "<group>"; };
+		4060C4182B74B2EA0012F06D /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		40852A282B6F371300150395 /* FoodItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemData.swift; sourceTree = "<group>"; };
 		40852A2A2B6F374900150395 /* FoodGeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGeneralAPI.swift; sourceTree = "<group>"; };
 		409AA3242B43A0470096CDBB /* HomeEatPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeEatPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -472,6 +474,7 @@
 				58A40D982B5FAC6A0053E302 /* MealWritingViewController.swift */,
 				58A40D9F2B6120970053E302 /* DeclareViewController.swift */,
 				58A40DA12B6120B70053E302 /* DeclareWriteViewController.swift */,
+				4060C4182B74B2EA0012F06D /* RecipeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				582A99282B6F31C0008F30CA /* BankCertifyViewController.swift in Sources */,
 				58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */,
 				582A98CE2B678AD5008F30CA /* PhotoCollectionViewCell.swift in Sources */,
+				4060C4192B74B2EA0012F06D /* RecipeViewController.swift in Sources */,
 				582A992A2B6F31C0008F30CA /* AddSexViewController.swift in Sources */,
 				582A99242B6F31C0008F30CA /* AddLocationInfromViewController.swift in Sources */,
 				40852A292B6F371300150395 /* FoodItemData.swift in Sources */,
@@ -832,7 +836,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G62DUX396A;
+				DEVELOPMENT_TEAM = TSGF3YP7J3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HomeEatPractice/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근권한";
@@ -849,7 +853,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ST.HomeEatPractice;
+				PRODUCT_BUNDLE_IDENTIFIER = ST.HomeEatPractice1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -865,7 +869,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G62DUX396A;
+				DEVELOPMENT_TEAM = TSGF3YP7J3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HomeEatPractice/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근권한";
@@ -882,7 +886,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ST.HomeEatPractice;
+				PRODUCT_BUNDLE_IDENTIFIER = ST.HomeEatPractice1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
