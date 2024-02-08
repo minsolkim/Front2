@@ -134,6 +134,17 @@ class EditViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //userData불러와서 설정
+        if let name = UserDefaults.standard.string(forKey: "userNickname"), let email = UserDefaults.standard.string(forKey: "userEmail") {
+            NicknameLabel.text = name
+            EmailAdressLabel.text = email
+        } else {
+            // UserDefaults에서 값이 없는 경우에 대한 처리
+            NicknameLabel.text = "설정되지 않았습니다."
+            EmailAdressLabel.text = "설정되지 않았습니다."
+            
+        }
         view.backgroundColor = UIColor(named: "gray2")
         tabBarController?.tabBar.isHidden = true
         tabBarController?.tabBar.isTranslucent = true

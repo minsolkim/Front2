@@ -139,7 +139,16 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //이름 재설정
+        if let name = UserDefaults.standard.string(forKey: "userNickname") {
+            infoLabel1.text = "\(name) 님 훌륭해요!"
+        } else {
+            // UserDefaults에서 값이 없는 경우에 대한 처리
+            infoLabel1.text = "닉네임이 설정되지 않았습니다."
+        }
+    
         view.backgroundColor = UIColor(named: "gray2")
+        
         setView()
         setConstraints()
         setupPieChart() 
