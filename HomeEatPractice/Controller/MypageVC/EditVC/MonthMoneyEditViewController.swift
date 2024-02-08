@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Then
 
 class MonthMoneyEditViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "gray2")

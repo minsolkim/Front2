@@ -11,7 +11,6 @@ import Then
 class TagPlusViewController: UIViewController {
     var selectedTags: [String] = []
     var selectedCellCount = 0
-    var selectedCellIndexPath: IndexPath?
     var tags: [TagItem] = defaultTags
     //해시태그 수동 추가 필드
     private let tagplusField = UITextField().then {
@@ -38,12 +37,15 @@ class TagPlusViewController: UIViewController {
         button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         return button
     }()
-    private let collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor(named: "gray2")
+        
+        
+
         return collectionView
     }()
     //저장 버튼
@@ -63,20 +65,15 @@ class TagPlusViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
-        self.collectionView.addGestureRecognizer(tapGesture)
+        self.view.addGestureRecognizer(tapGesture)
         //기본 태그 데이터를 초기화
         tags = defaultTags
         navigationControl()
         addSubviews()
         configUI()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.isUserInteractionEnabled = true
-        collectionView.allowsSelection = true // 셀 선택 허용 여부
-        collectionView.allowsMultipleSelection = false // 다중 선택 허용 여부 (필요에 따라 설정)
-
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
         collectionView.register(TagPlusCollectionViewCell.self, forCellWithReuseIdentifier: TagPlusCollectionViewCell.reuseIdentifier)
-        
         tabBarController?.tabBar.isHidden = true
         tabBarController?.tabBar.isTranslucent = true
         view.backgroundColor = UIColor(named: "gray2")
@@ -103,6 +100,7 @@ class TagPlusViewController: UIViewController {
             tabBarController.customTabBar.isHidden = false
         }
     }
+    // MARK: - 네비게이션
     func navigationControl() {
         let backbutton = UIBarButtonItem(image: UIImage(named: "back2"), style: .plain, target: self, action: #selector(back(_:)))
         //간격을 배열로 설정
@@ -135,11 +133,12 @@ class TagPlusViewController: UIViewController {
         ])
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: tagplusField.bottomAnchor, constant: 20),
-            collectionView.leadingAnchor.constraint(equalTo: tagplusField.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: tagplusField.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 20),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -20),
             collectionView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -20)
         ])
         NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor,constant: 20),
             saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -76),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -198,7 +197,12 @@ class TagPlusViewController: UIViewController {
 //
 //        print("Tag Button Tapped: \(sender.currentTitle ?? "")")
 //    }
-
+    // 셀을 터치했을 때 발생하는 이벤트
+    @objc func navigateToPostViewController() {
+        let MealPostVC = MealPostViewController()
+        navigationController?.pushViewController(MealPostVC, animated: true)
+        print("present click")
+    }
 
     @objc func back(_ sender: Any) {
          self.navigationController?.popViewController(animated: true)
@@ -212,11 +216,24 @@ class TagPlusViewController: UIViewController {
         print("Selected Tags: \(selectedTags)")
         self.navigationController?.pushViewController(InfoWriteVC, animated: true)
     }
-    
-    
 
 }
-extension TagPlusViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension TagPlusViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.item + 1)
+        print("셀이 선택되었습니다. IndexPath: \(indexPath)")
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? TagPlusCollectionViewCell {
+            cell.updateTagButtonAppearance(selected: true)
+            // 저장 버튼의 배경색을 변경
+            updateSaveButtonAppearance()
+            selectedTags.append(cell.tagButton.currentTitle ?? "")
+            print(selectedTags)
+        }
+    }
+}
+extension TagPlusViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tags.count
     }
@@ -228,30 +245,6 @@ extension TagPlusViewController: UICollectionViewDelegate, UICollectionViewDataS
         let tagItem = tags[indexPath.item]
         cell.configure(with: tagItem.tagTitle)
         return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-           return true // 항상 true를 반환하여 모든 셀이 선택 가능하도록 설정합니다.
-       }
-
-//   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//       // 셀이 선택될 때 실행되는 코드
-//       if let cell = collectionView.cellForItem(at: indexPath) as? TagPlusCollectionViewCell {
-//           // 셀의 선택 상태를 토글하지 않고, 항상 선택되도록 설정
-//           cell.isSelected = true
-//           selectedCellCount += 1 // 선택된 셀의 수를 증가시킵니다.
-//           print("\(indexPath.item)번 Cell 클릭")
-//           updateSaveButtonAppearance() // saveButton의 외관을 업데이트합니다.
-//       }
-//   }
-   
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // 셀이 선택될 때 호출되는 코드
-        updateSaveButtonAppearance()
-    }
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        // 셀이 선택 해제될 때 호출되는 코드
-        updateSaveButtonAppearance()
     }
     
 }
@@ -266,6 +259,4 @@ extension TagPlusViewController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: cellWidth, height: 45)
     }
-    
-
 }

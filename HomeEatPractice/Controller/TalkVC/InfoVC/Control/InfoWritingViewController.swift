@@ -235,8 +235,8 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
         view.bringSubviewToFront(self.imageView)
         //MARK: - 사진과 앨범 파트
         view.addSubview(collectionView)
-        view.addSubview(TagcollectionView)
-//        self.view.addSubview(tagButton)
+        //view.addSubview(TagcollectionView)
+        self.view.addSubview(tagButton)
         self.view.addSubview(tagImage)
         self.view.addSubview(titleLabel)
         self.view.addSubview(titleField)
@@ -257,20 +257,20 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
             collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 176),
         ])
-        NSLayoutConstraint.activate([
-            TagcollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,constant: 267),
-            TagcollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 22),
-            TagcollectionView.trailingAnchor.constraint(equalTo: tagImage.leadingAnchor,constant: 40),
-            TagcollectionView.heightAnchor.constraint(equalToConstant: 40),
-        ])
-        
 //        NSLayoutConstraint.activate([
-//                tagButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
-//                tagButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
-//                tagButton.heightAnchor.constraint(equalToConstant: 40),
-//                tagButton.widthAnchor.constraint(equalToConstant: 214)
-//
+//            TagcollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,constant: 267),
+//            TagcollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 22),
+//            TagcollectionView.trailingAnchor.constraint(equalTo: tagImage.leadingAnchor,constant: 40),
+//            TagcollectionView.heightAnchor.constraint(equalToConstant: 40),
 //        ])
+//
+        NSLayoutConstraint.activate([
+                tagButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
+                tagButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
+                tagButton.heightAnchor.constraint(equalToConstant: 40),
+                tagButton.widthAnchor.constraint(equalToConstant: 214)
+
+        ])
         NSLayoutConstraint.activate([
                 tagImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 265),
                 tagImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),

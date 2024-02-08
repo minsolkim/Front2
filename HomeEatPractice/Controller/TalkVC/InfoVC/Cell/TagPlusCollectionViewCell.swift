@@ -11,8 +11,8 @@ class TagPlusCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "TagPlusCell"
     let talk12Image = UIImage(named: "Talk12")
     var onSelectStatusChange: ((Bool) -> Void)?
-
-    private let tagButton =  UIButton().then {
+    var selectedTags: [String] = []
+    let tagButton = UIButton().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("#할인", for: .normal)
         $0.layer.cornerRadius = 22.5
@@ -25,46 +25,31 @@ class TagPlusCollectionViewCell: UICollectionViewCell {
         $0.layer.borderColor = normalBorderColor
         $0.layer.borderWidth = 2
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-    }
-    override var isSelected: Bool {
-        didSet {
-            setSelected(isSelected)
-            onSelectStatusChange?(isSelected)
-
-        }
-    }
-    func setSelected(_ selected: Bool) {
-        if isSelected {
-            // 선택된 상태일 때의 스타일
-            tagButton.layer.borderColor = UIColor(named: "green")?.cgColor ?? UIColor.red.cgColor
-            tagButton.tintColor = .clear
-            tagButton.setTitleColor(UIColor(named: "green") ?? UIColor.red, for: .selected)
-            tagButton.isSelected = true // tagButton의 isSelected 속성 설정
-            print("셀 선택 ")
-        } else {
-            // 선택이 해제된 상태일 때의 스타일
-            tagButton.layer.borderColor = UIColor(named: "font5")?.cgColor ?? UIColor.gray.cgColor
-            tagButton.setTitleColor(UIColor(named: "font5") ?? UIColor.gray, for: .normal)
-            tagButton.isSelected = false // tagButton의 isSelected 속성 설정
-        }
+        
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         contentView.addSubview(tagButton)
-        tagButton.isUserInteractionEnabled = true
         NSLayoutConstraint.activate([
+            // contentView에 대한 제약 조건
             tagButton.topAnchor.constraint(equalTo: contentView.topAnchor),
             tagButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             tagButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             tagButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
-        tagButton.addTarget(self, action: #selector(tagButtonTapped), for: .touchUpInside)
+
 
     }
-    @objc private func tagButtonTapped() {
-        // 현재 선택 상태를 확인하여 반대로 변경합니다.
-        isSelected = !isSelected
-    }
+    func updateTagButtonAppearance(selected: Bool) {
+            if selected {
+                tagButton.layer.borderColor = UIColor(named: "green")?.cgColor ?? UIColor.red.cgColor
+                tagButton.setTitleColor(UIColor(named: "green") ?? UIColor.red, for: .selected)
+            } else {
+                tagButton.layer.borderColor = UIColor(named: "font5")?.cgColor ?? UIColor.gray.cgColor
+                tagButton.setTitleColor(UIColor(named: "font5") ?? UIColor.gray, for: .normal)
+            }
+        }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -75,7 +60,7 @@ class TagPlusCollectionViewCell: UICollectionViewCell {
             let titleSize = NSString(string: tag).size(withAttributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
             ])
-            let buttonWidth = titleSize.width + 20 // 여유 공간을 더해 원하는 여백을 확보합니다.
+            let buttonWidth = titleSize.width + 40 // 여유 공간을 더해 원하는 여백을 확보합니다.
 
             tagButton.widthAnchor.constraint(equalToConstant: buttonWidth).isActive = true
         }
