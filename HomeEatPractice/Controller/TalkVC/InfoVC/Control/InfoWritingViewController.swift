@@ -263,7 +263,6 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
 //            TagcollectionView.trailingAnchor.constraint(equalTo: tagImage.leadingAnchor,constant: 40),
 //            TagcollectionView.heightAnchor.constraint(equalToConstant: 40),
 //        ])
-//
         NSLayoutConstraint.activate([
                 tagButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
                 tagButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
@@ -349,7 +348,7 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
             return
         }
         
-        GeneralAPI.saveInfoTalk(title: title, content: content,tags:selectedTags,images: selectedImages) { result in
+        GeneralAPI.saveInfoTalk(title: title, content: content,tags:selectedTags) { result in
             switch result {
             case .success:
                 print("API 호출 성공")
