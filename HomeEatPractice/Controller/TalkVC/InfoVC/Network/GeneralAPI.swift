@@ -37,7 +37,8 @@ class GeneralAPI {
         AF.upload(multipartFormData: { multipartFormData in
             for (index, image) in images.enumerated() {
                 guard let imageData = image.jpegData(compressionQuality: 0.2) else { return }
-                multipartFormData.append(imageData, withName: "imgUrl[\(index)]", fileName: "image\(index).jpg", mimeType: "image/jpeg")
+                // "imgUrl" 키에 대한 배열 형식으로 이미지 데이터를 전송
+                multipartFormData.append(imageData, withName: "imgUrl", fileName: "image\(index).jpg", mimeType: "image/jpeg")
             }
         }, to: url, method: .post, headers: headers)
         .validate()
@@ -50,4 +51,5 @@ class GeneralAPI {
             }
         }
     }
+
 }

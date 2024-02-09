@@ -11,6 +11,6 @@ struct ItemData: Codable {
     let title: String
     let content: String
     let tags: [String]?
-    let imgUrl: [String]?
+    let imgUrl: [String]
 }
 
