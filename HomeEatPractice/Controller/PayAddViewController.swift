@@ -242,6 +242,11 @@ class PayAddViewController : UIViewController, UITextFieldDelegate, UIImagePicke
 //MARK: - 뷰에 추가
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let savedToken = UserDefaults.standard.string(forKey: "loginToken") {
+            print("저장된 토큰 값: \(savedToken)")
+        } else {
+            print("저장된 토큰이 없습니다.")
+        }
         
         self.view.backgroundColor = UIColor(named: "gray2")
         //현재 뷰에서는 tabBar 사용 안 함

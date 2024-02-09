@@ -107,21 +107,53 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
             config.background.backgroundColor = UIColor(named: "green")
             config.baseForegroundColor = .black
             let buttonAction = UIAction{ _ in
-                
                 let newRootViewController = MainTabBarController()
                 
-                // 애니메이션을 설정합니다.
-                let transition = CATransition()
-                transition.duration = 0.3
-                transition.type = CATransitionType.push
-                transition.subtype = CATransitionSubtype.fromRight
-                transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-                
-                // 애니메이션을 적용하고 루트 뷰 컨트롤러를 변경합니다.
-                if let window = UIApplication.shared.keyWindow {
-                    window.layer.add(transition, forKey: kCATransition)
-                    window.rootViewController = newRootViewController
+                guard let email = self.emailTextField.text, let password = self.pwTextField.text else {
+                    // title 또는 content가 nil이라면 에러 처리 또는 사용자에게 알림
+                    
+                    return
                 }
+                
+                MemberAPI.postLoginInfo(email: email, password: password) { result in
+                    switch result {
+                    case .success:
+                        print("API 호출 성공")
+                        
+                        //유저 데이터 받아와서 저장
+                        let jwtToken = UserDefaults.standard.string(forKey: "loginToken")
+
+                        MemberAPI.getUserInfo(jwtToken: jwtToken ?? " ") { result in
+                            switch result {
+                            case .success(let userData):
+                                // 받아온 데이터를 저장
+                                UserDefaults.standard.set(userData.email, forKey: "userEmail")
+                                UserDefaults.standard.set(userData.nickname, forKey: "userNickname")
+                            case .failure(let error):
+                                // 에러가 발생한 경우
+                                print("요청 실패:", error)
+                            }
+                        }
+                        
+                        // 애니메이션을 설정합니다.
+                        let transition = CATransition()
+                        transition.duration = 0.3
+                        transition.type = CATransitionType.push
+                        transition.subtype = CATransitionSubtype.fromRight
+                        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+                        
+                        // 애니메이션을 적용하고 루트 뷰 컨트롤러를 변경합니다.
+                        if let window = UIApplication.shared.keyWindow {
+                            window.layer.add(transition, forKey: kCATransition)
+                            window.rootViewController = newRootViewController
+                        }
+                        
+                    case .failure(let error):
+                        print("API 호출 실패: \(error.localizedDescription)")
+                        // 실패 시 처리할 내용 추가
+                    }
+                }
+
             }
         
             let button = UIButton(configuration: config, primaryAction: buttonAction)
@@ -182,17 +214,17 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
             self.homeatLogo.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 117),
             self.homeatLogo.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -118),
             self.homeatLogo.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 211),
-            self.homeatLogo.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -615),
+//            self.homeatLogo.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -615),
             
-            self.loginContainer.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 291),
+            self.loginContainer.topAnchor.constraint(equalTo: homeatLogo.bottomAnchor, constant: 55),
             self.loginContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             self.loginContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-            self.loginContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -76),
+//            self.loginContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -76),
             
-            self.Container.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 552),
-            self.Container.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 126),
-            self.Container.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -126),
-            self.Container.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -281)
+            self.Container.topAnchor.constraint(equalTo: self.loginContainer.topAnchor, constant: 261),
+            self.Container.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 120),
+            self.Container.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -120),
+//            self.Container.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -281)
             
         ])
     }
