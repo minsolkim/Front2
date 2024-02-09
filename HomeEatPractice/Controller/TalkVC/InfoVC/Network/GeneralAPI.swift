@@ -27,29 +27,29 @@ class GeneralAPI {
     }
 
     static func uploadImages(infoTalkID: Int, images: [UIImage], completion: @escaping (Result<Void, Error>) -> Void) {
-        let endpoint = "v1/infoTalk/upload/images/\(infoTalkID)"
-        let url = baseURL + endpoint
+            let endpoint = "v1/infoTalk/upload/images/\(infoTalkID)"
+            let url = baseURL + endpoint
 
-        let headers: HTTPHeaders = [
-            "Content-Type": "multipart/form-data"
-        ]
+            let headers: HTTPHeaders = [
+                "Content-Type": "multipart/form-data"
+            ]
 
-        AF.upload(multipartFormData: { multipartFormData in
-            for (index, image) in images.enumerated() {
-                guard let imageData = image.jpegData(compressionQuality: 0.2) else { return }
-                // "imgUrl" 키에 대한 배열 형식으로 이미지 데이터를 전송
-                multipartFormData.append(imageData, withName: "imgUrl", fileName: "image\(index).jpg", mimeType: "image/jpeg")
-            }
-        }, to: url, method: .post, headers: headers)
-        .validate()
-        .response { response in
-            switch response.result {
-            case .success:
-                completion(.success(()))
-            case .failure(let error):
-                completion(.failure(error))
+            AF.upload(multipartFormData: { multipartFormData in
+                for (index, image) in images.enumerated() {
+                    guard let imageData = image.jpegData(compressionQuality: 0.2) else { return }
+                    // "imgUrl" 키에 대한 배열 형식으로 이미지 데이터를 전송
+                    multipartFormData.append(imageData, withName: "imgUrl", fileName: "image\(index).jpg", mimeType: "image/jpeg")
+                }
+            }, to: url, method: .post, headers: headers)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .success:
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
-    }
-
 }
+

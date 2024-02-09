@@ -263,6 +263,7 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
 //            TagcollectionView.trailingAnchor.constraint(equalTo: tagImage.leadingAnchor,constant: 40),
 //            TagcollectionView.heightAnchor.constraint(equalToConstant: 40),
 //        ])
+//
         NSLayoutConstraint.activate([
                 tagButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 267),
                 tagButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
@@ -349,29 +350,28 @@ class InfoWritingViewController: UIViewController, UICollectionViewDelegateFlowL
         }
         
         GeneralAPI.saveInfoTalk(title: title, content: content, tags: selectedTags) { result in
-           switch result {
-           case .success(let infoTalk):
-               print("InfoTalk 저장 성공: \(infoTalk)")
-               print("title:\(title)")
-               print("content\(content)")
+                   switch result {
+                   case .success(let infoTalk):
+                       print("InfoTalk 저장 성공: \(infoTalk)")
+                       print("title:\(title)")
+                       print("content\(content)")
 
-               // 이미지 업로드를 수행합니다.
-               GeneralAPI.uploadImages(infoTalkID: infoTalk.id, images: self.selectedImages) { uploadResult in
-                   switch uploadResult {
-                   case .success:
-                       print("이미지 업로드 성공")
-                       // 성공 시 처리할 내용 추가
+                       // 이미지 업로드를 수행합니다.
+                       GeneralAPI.uploadImages(infoTalkID: infoTalk.id, images: self.selectedImages) { uploadResult in
+                           switch uploadResult {
+                           case .success:
+                               print("이미지 업로드 성공")
+                               // 성공 시 처리할 내용 추가
+                           case .failure(let error):
+                               print("이미지 업로드 실패: \(error.localizedDescription)")
+                               // 실패 시 처리할 내용 추가
+                           }
+                       }
                    case .failure(let error):
-                       print("이미지 업로드 실패: \(error.localizedDescription)")
+                       print("API 호출 실패: \(error.localizedDescription)")
                        // 실패 시 처리할 내용 추가
                    }
-               }
-           case .failure(let error):
-               print("API 호출 실패: \(error.localizedDescription)")
-               // 실패 시 처리할 내용 추가
-           }
-        }
-
+                }
     }
     //MARK: - 사진과 앨범 파트
     // 버튼 액션 함수

@@ -24,6 +24,8 @@
 		409AA3462B453F3B0096CDBB /* PayAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3452B453F3B0096CDBB /* PayAddViewController.swift */; };
 		409AA3482B467EFB0096CDBB /* PayAnalyzeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3472B467EFB0096CDBB /* PayAnalyzeViewController.swift */; };
 		409AA34A2B46815E0096CDBB /* PayCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3492B46815E0096CDBB /* PayCheckViewController.swift */; };
+		58279A6E2B763888009DCE96 /* MemberAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58279A6D2B763888009DCE96 /* MemberAPI.swift */; };
+		58279A702B7638A1009DCE96 /* MemberData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58279A6F2B7638A1009DCE96 /* MemberData.swift */; };
 		582A98A12B636EA0008F30CA /* cameraIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 582A98A02B636EA0008F30CA /* cameraIcon.pdf */; };
 		582A98A52B636F2F008F30CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98A42B636F2F008F30CA /* SceneDelegate.swift */; };
 		582A98C72B653C61008F30CA /* PasswordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98C62B653C61008F30CA /* PasswordEditViewController.swift */; };
@@ -103,6 +105,8 @@
 		409AA3452B453F3B0096CDBB /* PayAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayAddViewController.swift; sourceTree = "<group>"; };
 		409AA3472B467EFB0096CDBB /* PayAnalyzeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayAnalyzeViewController.swift; sourceTree = "<group>"; };
 		409AA3492B46815E0096CDBB /* PayCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayCheckViewController.swift; sourceTree = "<group>"; };
+		58279A6D2B763888009DCE96 /* MemberAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberAPI.swift; sourceTree = "<group>"; };
+		58279A6F2B7638A1009DCE96 /* MemberData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberData.swift; sourceTree = "<group>"; };
 		582A98A02B636EA0008F30CA /* cameraIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = cameraIcon.pdf; sourceTree = "<group>"; };
 		582A98A42B636F2F008F30CA /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		582A98C62B653C61008F30CA /* PasswordEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +233,15 @@
 			path = HomeEatPractice;
 			sourceTree = "<group>";
 		};
+		58279A6C2B76383D009DCE96 /* Network2 */ = {
+			isa = PBXGroup;
+			children = (
+				58279A6D2B763888009DCE96 /* MemberAPI.swift */,
+				58279A6F2B7638A1009DCE96 /* MemberData.swift */,
+			);
+			path = Network2;
+			sourceTree = "<group>";
+		};
 		582A98C82B663248008F30CA /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +255,7 @@
 		582A990B2B6F31C0008F30CA /* RegisterVC */ = {
 			isa = PBXGroup;
 			children = (
+				58279A6C2B76383D009DCE96 /* Network2 */,
 				582A990C2B6F31C0008F30CA /* AddLocationInfromViewController.swift */,
 				582A990D2B6F31C0008F30CA /* AddBirthInformViewController.swift */,
 				582A990E2B6F31C0008F30CA /* AddIncomeViewController.swift */,
@@ -643,6 +657,7 @@
 				588A09262B4E5BE200638D16 /* WriteViewController.swift in Sources */,
 				58A40D972B5FAC490053E302 /* MealPostViewController.swift in Sources */,
 				58A40D9B2B5FACAF0053E302 /* MealSource.swift in Sources */,
+				58279A702B7638A1009DCE96 /* MemberData.swift in Sources */,
 				58A40D9E2B5FF1560053E302 /* TabbarInfo.swift in Sources */,
 				58A40D802B5BEFC40053E302 /* CalendarCheckViewController.swift in Sources */,
 				582A98CC2B6632BB008F30CA /* GeneralAPI.swift in Sources */,
@@ -674,6 +689,7 @@
 				582A98CE2B678AD5008F30CA /* PhotoCollectionViewCell.swift in Sources */,
 				4060C4192B74B2EA0012F06D /* RecipeViewController.swift in Sources */,
 				582A992A2B6F31C0008F30CA /* AddSexViewController.swift in Sources */,
+				58279A6E2B763888009DCE96 /* MemberAPI.swift in Sources */,
 				582A99242B6F31C0008F30CA /* AddLocationInfromViewController.swift in Sources */,
 				40852A292B6F371300150395 /* FoodItemData.swift in Sources */,
 				409AA33C2B43A6B20096CDBB /* MainTabBarController.swift in Sources */,
