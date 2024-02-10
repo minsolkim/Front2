@@ -7,10 +7,12 @@
 
 import Foundation
 
+<<<<<<< HEAD
 struct ItemData: Encodable {
     let title: String
     let content: String
     let tags: [String]?
     let imgUrl: [String]?
-}
+=======
+
 

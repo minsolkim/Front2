@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 //게시글 화면
 class PostViewController: UIViewController {
     
@@ -81,7 +82,36 @@ class PostViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     } ()
-
+    //댓글 뷰
+    lazy var inputUIView: UIView = {
+        let inputview = UIView()
+        inputview.backgroundColor = UIColor.init(named: "gray4")
+        inputview.layer.cornerRadius = 10
+        inputview.clipsToBounds = true
+        inputview.translatesAutoresizingMaskIntoConstraints = false
+        return inputview
+    } ()
+    //하트 버튼
+    private let heartButton = UIButton().then {
+        
+        $0.setImage(UIImage(named: "Talk6"), for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    //댓글 입력 textfield
+    private let inputTextField = UITextField().then {
+        $0.placeholder = "댓글을 남겨보세요."
+        $0.font = UIFont.systemFont(ofSize: 16)
+        $0.textColor = UIColor(named: "font5")
+        $0.layer.cornerRadius = 25
+        $0.clipsToBounds = true
+        $0.backgroundColor = UIColor(named: "gray4")
+        $0.attributedPlaceholder = NSAttributedString(string: "댓글을 남겨보세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "font5") ?? UIColor.gray])
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: $0.frame.height))
+        $0.leftViewMode = .always
+        $0.layer.borderColor = UIColor.init(named: "font7")?.cgColor // 테두리 색상 설정
+        $0.layer.borderWidth = 1.0 // 테두리 두께 설정
+    }
     // MARK: - 탭바제거
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -119,6 +149,9 @@ class PostViewController: UIViewController {
         view.addSubview(complainLabel)
         view.addSubview(postTitleLabel)
         view.addSubview(postContentLabel)
+        view.addSubview(inputUIView)
+        inputUIView.addSubview(heartButton)
+        inputUIView.addSubview(inputTextField)
     }
     
     func configUI() {
@@ -148,8 +181,23 @@ class PostViewController: UIViewController {
             postTitleLabel.leadingAnchor.constraint(equalTo: circleView.leadingAnchor),
             
             postContentLabel.topAnchor.constraint(equalTo: postTitleLabel.bottomAnchor,constant: 8),
-            postContentLabel.leadingAnchor.constraint(equalTo: postTitleLabel.leadingAnchor)
+            postContentLabel.leadingAnchor.constraint(equalTo: postTitleLabel.leadingAnchor),
             
+            inputUIView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            inputUIView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            inputUIView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            inputUIView.heightAnchor.constraint(equalToConstant: 91),
+            
+            heartButton.topAnchor.constraint(equalTo: inputUIView.topAnchor,constant: 23),
+            heartButton.leadingAnchor.constraint(equalTo: inputUIView.leadingAnchor,constant: 21),
+            heartButton.bottomAnchor.constraint(equalTo: inputUIView.bottomAnchor,constant: -34),
+            heartButton.widthAnchor.constraint(equalToConstant: 25.2),
+            
+            
+            inputTextField.topAnchor.constraint(equalTo: inputUIView.topAnchor,constant: 13),
+            inputTextField.leadingAnchor.constraint(equalTo: heartButton.trailingAnchor,constant: 9),
+            inputTextField.trailingAnchor.constraint(equalTo: inputUIView.trailingAnchor,constant: -20),
+            inputTextField.bottomAnchor.constraint(equalTo: inputUIView.bottomAnchor,constant: -34),
         ])
     }
     //네비게이션 바 설정

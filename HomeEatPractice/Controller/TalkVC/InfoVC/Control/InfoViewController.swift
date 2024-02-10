@@ -8,7 +8,9 @@
 import UIKit
 import Then
 import SnapKit
+import Alamofire
 class InfoViewController: UIViewController {
+    var posts:[MyItem] = []
     var talkNavigationBarHiddenState: Bool = false
     //검색 뷰
     private let SearchView =  UIView().then {
@@ -79,14 +81,7 @@ class InfoViewController: UIViewController {
             // collectionView 설정
             return collectionView
     }()
-    var items: [MyItem] = [
-        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),
-        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),
-        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),
-        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),
-        MyItem(title: "게시글 제목", date: "11월 20일 24:08",content: "게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다.  게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. 게시글 내용이 들어갈 자리입니다. ",postImage: UIImage(named: "example1"),heartImage: UIImage(named: "Talk6"),heartLabel: "8",chatImage: UIImage(named: "Talk10"),chatLabel: "15"),
-
-        ]
+>>>>>>> KMS
  //정보토크
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,10 +89,52 @@ class InfoViewController: UIViewController {
         addSubView()
         configUI()
         tableView.reloadData()
-        
+        fetchDataFromServer()
         
     }
-   
+    func fetchDataFromServer() {
+        let endpoint = "v1/infoTalk/"
+        let url = GeneralAPI.baseURL + endpoint
+        
+        AF.request(url).responseJSON { [self] response in
+            switch response.result {
+            case .success(let value):
+                if let jsonArray = value as? [[String: Any]] {
+                    for json in jsonArray {
+                        if let myItem = self.parseMyItemFromJSON(json) {
+                            self.posts.append(myItem)
+                        }
+                    }
+                    self.tableView.reloadData() // 테이블 뷰 업데이트
+                }
+            case .failure(let error):
+                print("Error fetching data: \(error)")
+            }
+        }
+    }
+    // InfoViewController.swift 파일에 parseMyItemFromJSON 함수 추가
+    func parseMyItemFromJSON(_ json: [String: Any]) -> MyItem? {
+        guard let id = json["id"] as? Int,
+              let title = json["title"] as? String,
+              let createdAt = json["createdAt"] as? String,
+              let content = json["content"] as? String,
+              let love = json["love"] as? Int,
+              let view = json["view"] as? Int,
+              let commentNumber = json["commentNumber"] as? Int,
+              let save = json["save"] as? String,
+              let infoPicturesArray = json["infoPictures"] as? [[String: Any]],
+              let firstPicture = infoPicturesArray.first,
+              let imageUrl = firstPicture["url"] as? String else {
+            return nil
+        }
+        let infoPictures = infoPicturesArray.compactMap { $0["url"] as? String }
+        
+        return MyItem(id: id, title: title, createdAt: createdAt, content: content, love: love, view: view, commentNumber: commentNumber, save: save, infoPictures: infoPictures)
+    }
+    func displayDataOnCollectionView(_ myItem: MyItem) {
+        self.posts.append(myItem)
+    }
+
     func addSubView() {
         view.addSubview(SearchView)
         
@@ -228,32 +265,39 @@ extension InfoViewController {
     }
     
 }
+// InfoViewController.swift 파일에 UITableViewDataSource extension 수정
 extension InfoViewController: UITableViewDataSource {
-  func tableView(_ tableView: UITableView,
-                  numberOfRowsInSection section: Int) -> Int {
-      return items.count
-  }
-   
-  func tableView(_ tableView: UITableView,
-                  cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellOne.identifier, for: indexPath) as? TableViewCellOne else {
-                  return UITableViewCell()
-              }
-      //셀 클릭 시 배경색 바뀌는거 방지
-      cell.selectionStyle = .none
-      let item = items[indexPath.row]
-          cell.titleLabel.text = item.title
-          cell.dateLabel.text = item.date
-          cell.contentLabel.text = item.content
-          cell.PostImageView.image = item.postImage
-          cell.heartImage.image = item.heartImage
-          cell.heartLabel.text = item.heartLabel
-          cell.chatImage.image = item.chatImage
-          cell.chatLabel.text = item.chatLabel
-          return cell
-  }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count // 서버에서 받아온 데이터의 개수만큼 셀을 표시합니다.
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellOne.identifier, for: indexPath) as? TableViewCellOne else {
+            return UITableViewCell()
+        }
+        
+        let post = posts[indexPath.row]
+        cell.titleLabel.text = post.title
+        cell.dateLabel.text = post.createdAt
+        cell.contentLabel.text = post.content
+        cell.heartLabel.text = "\(post.love)"
+        cell.chatLabel.text = "\(post.commentNumber)"
+        
+        // 첫 번째 이미지 URL을 가져와서 설정합니다.
+        if let imageUrl = post.infoPictures.first {
+            // 이미지를 비동기적으로 가져오는 방법에 따라 구현
+            // 예시: Alamofire를 사용하여 이미지를 가져옵니다.
+            AF.request(imageUrl).responseData { response in
+                if let data = response.data {
+                    cell.PostImageView.image = UIImage(data: data)
+                }
+            }
+        }
+        
+        return cell
+    }
 }
+
 extension InfoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             print("cell click")

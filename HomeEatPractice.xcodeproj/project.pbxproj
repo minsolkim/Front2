@@ -10,6 +10,7 @@
 		2D8CFEB82B5A301000FDE2E5 /* HomeatIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */; };
 		2D8CFEB92B5A301000FDE2E5 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */; };
 		2D8CFEBA2B5A301000FDE2E5 /* HomeatLogo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */; };
+<<<<<<< HEAD
 		2DED524D2B74D60400FC2D77 /* AddLocationInfromViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DED52322B74D60400FC2D77 /* AddLocationInfromViewController.swift */; };
 		2DED524E2B74D60400FC2D77 /* AddBirthInformViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DED52332B74D60400FC2D77 /* AddBirthInformViewController.swift */; };
 		2DED524F2B74D60400FC2D77 /* AddIncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DED52342B74D60400FC2D77 /* AddIncomeViewController.swift */; };
@@ -58,6 +59,9 @@
 		4060C44E2B74D3C00012F06D /* SelectMangeUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4060C4372B74D3C00012F06D /* SelectMangeUnitViewController.swift */; };
 		4060C44F2B74D3C00012F06D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4060C4382B74D3C00012F06D /* RegisterViewController.swift */; };
 		4060C4522B74D46F0012F06D /* MealPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4060C4512B74D46F0012F06D /* MealPhotoCollectionViewCell.swift */; };
+=======
+		4060C4192B74B2EA0012F06D /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4060C4182B74B2EA0012F06D /* RecipeViewController.swift */; };
+>>>>>>> KMS
 		40852A292B6F371300150395 /* FoodItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40852A282B6F371300150395 /* FoodItemData.swift */; };
 		40852A2B2B6F374900150395 /* FoodGeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40852A2A2B6F374900150395 /* FoodGeneralAPI.swift */; };
 		409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3272B43A0470096CDBB /* AppDelegate.swift */; };
@@ -71,6 +75,8 @@
 		409AA3462B453F3B0096CDBB /* PayAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3452B453F3B0096CDBB /* PayAddViewController.swift */; };
 		409AA3482B467EFB0096CDBB /* PayAnalyzeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3472B467EFB0096CDBB /* PayAnalyzeViewController.swift */; };
 		409AA34A2B46815E0096CDBB /* PayCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AA3492B46815E0096CDBB /* PayCheckViewController.swift */; };
+		58279A6E2B763888009DCE96 /* MemberAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58279A6D2B763888009DCE96 /* MemberAPI.swift */; };
+		58279A702B7638A1009DCE96 /* MemberData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58279A6F2B7638A1009DCE96 /* MemberData.swift */; };
 		582A98A12B636EA0008F30CA /* cameraIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 582A98A02B636EA0008F30CA /* cameraIcon.pdf */; };
 		582A98A52B636F2F008F30CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98A42B636F2F008F30CA /* SceneDelegate.swift */; };
 		582A98C72B653C61008F30CA /* PasswordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98C62B653C61008F30CA /* PasswordEditViewController.swift */; };
@@ -80,6 +86,30 @@
 		582A98D02B68CCAE008F30CA /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98CF2B68CCAE008F30CA /* TagCollectionViewCell.swift */; };
 		582A98D22B6B7BB0008F30CA /* LeaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98D12B6B7BB0008F30CA /* LeaveViewController.swift */; };
 		582A98D42B6B819E008F30CA /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A98D32B6B819E008F30CA /* AnalysisViewController.swift */; };
+<<<<<<< HEAD
+=======
+		582A99242B6F31C0008F30CA /* AddLocationInfromViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A990C2B6F31C0008F30CA /* AddLocationInfromViewController.swift */; };
+		582A99252B6F31C0008F30CA /* AddBirthInformViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A990D2B6F31C0008F30CA /* AddBirthInformViewController.swift */; };
+		582A99262B6F31C0008F30CA /* AddIncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A990E2B6F31C0008F30CA /* AddIncomeViewController.swift */; };
+		582A99272B6F31C0008F30CA /* AddAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A990F2B6F31C0008F30CA /* AddAccountViewController.swift */; };
+		582A99282B6F31C0008F30CA /* BankCertifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99102B6F31C0008F30CA /* BankCertifyViewController.swift */; };
+		582A99292B6F31C0008F30CA /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99112B6F31C0008F30CA /* SearchLocationViewController.swift */; };
+		582A992A2B6F31C0008F30CA /* AddSexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99122B6F31C0008F30CA /* AddSexViewController.swift */; };
+		582A992B2B6F31C0008F30CA /* FindPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99132B6F31C0008F30CA /* FindPwViewController.swift */; };
+		582A992C2B6F31C0008F30CA /* RegisterSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99142B6F31C0008F30CA /* RegisterSelectViewController.swift */; };
+		582A992D2B6F31C0008F30CA /* RegisterDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99152B6F31C0008F30CA /* RegisterDoneViewController.swift */; };
+		582A992E2B6F31C0008F30CA /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99172B6F31C0008F30CA /* TermsOfUseViewController.swift */; };
+		582A992F2B6F31C0008F30CA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99192B6F31C0008F30CA /* MapViewController.swift */; };
+		582A99302B6F31C0008F30CA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A991B2B6F31C0008F30CA /* MapView.swift */; };
+		582A99312B6F31C0008F30CA /* MaptestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A991C2B6F31C0008F30CA /* MaptestViewController.swift */; };
+		582A99322B6F31C0008F30CA /* PwChangedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A991D2B6F31C0008F30CA /* PwChangedViewController.swift */; };
+		582A99332B6F31C0008F30CA /* AddBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A991E2B6F31C0008F30CA /* AddBudgetViewController.swift */; };
+		582A99342B6F31C0008F30CA /* CustomProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A991F2B6F31C0008F30CA /* CustomProgressViewController.swift */; };
+		582A99352B6F31C0008F30CA /* BankSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99202B6F31C0008F30CA /* BankSelectViewController.swift */; };
+		582A99362B6F31C0008F30CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99212B6F31C0008F30CA /* LoginViewController.swift */; };
+		582A99372B6F31C0008F30CA /* SelectMangeUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99222B6F31C0008F30CA /* SelectMangeUnitViewController.swift */; };
+		582A99382B6F31C0008F30CA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99232B6F31C0008F30CA /* RegisterViewController.swift */; };
+>>>>>>> KMS
 		582A993A2B6F89F5008F30CA /* TagPlusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A99392B6F89F5008F30CA /* TagPlusCollectionViewCell.swift */; };
 		582A993C2B6F8C70008F30CA /* TagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A993B2B6F8C70008F30CA /* TagItem.swift */; };
 		588A09262B4E5BE200638D16 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A09252B4E5BE200638D16 /* WriteViewController.swift */; };
@@ -90,6 +120,10 @@
 		58A1E7872B7351BF00C45CEA /* EmailEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A1E7862B7351BF00C45CEA /* EmailEditViewController.swift */; };
 		58A1E78A2B7351ED00C45CEA /* MonthMoneyEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A1E7892B7351ED00C45CEA /* MonthMoneyEditViewController.swift */; };
 		58A1E78D2B735D5400C45CEA /* FinalLeaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A1E78C2B735D5400C45CEA /* FinalLeaveViewController.swift */; };
+<<<<<<< HEAD
+=======
+		58A1E7912B760DF800C45CEA /* InfoTalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A1E7902B760DF800C45CEA /* InfoTalk.swift */; };
+>>>>>>> KMS
 		58A40D732B56AF190053E302 /* InfoWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D722B56AF190053E302 /* InfoWritingViewController.swift */; };
 		58A40D772B57DD730053E302 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D762B57DD730053E302 /* EditViewController.swift */; };
 		58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A40D782B5805520053E302 /* UIColor + Extension.swift */; };
@@ -112,6 +146,7 @@
 		2D8CFEB52B5A301000FDE2E5 /* HomeatIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatIcon.pdf; sourceTree = "<group>"; };
 		2D8CFEB62B5A301000FDE2E5 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		2D8CFEB72B5A301000FDE2E5 /* HomeatLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeatLogo.pdf; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		2DED52322B74D60400FC2D77 /* AddLocationInfromViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationInfromViewController.swift; sourceTree = "<group>"; };
 		2DED52332B74D60400FC2D77 /* AddBirthInformViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBirthInformViewController.swift; sourceTree = "<group>"; };
 		2DED52342B74D60400FC2D77 /* AddIncomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIncomeViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +195,9 @@
 		4060C4372B74D3C00012F06D /* SelectMangeUnitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMangeUnitViewController.swift; sourceTree = "<group>"; };
 		4060C4382B74D3C00012F06D /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4060C4512B74D46F0012F06D /* MealPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+=======
+		4060C4182B74B2EA0012F06D /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+>>>>>>> KMS
 		40852A282B6F371300150395 /* FoodItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemData.swift; sourceTree = "<group>"; };
 		40852A2A2B6F374900150395 /* FoodGeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGeneralAPI.swift; sourceTree = "<group>"; };
 		409AA3242B43A0470096CDBB /* HomeEatPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeEatPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +213,8 @@
 		409AA3452B453F3B0096CDBB /* PayAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayAddViewController.swift; sourceTree = "<group>"; };
 		409AA3472B467EFB0096CDBB /* PayAnalyzeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayAnalyzeViewController.swift; sourceTree = "<group>"; };
 		409AA3492B46815E0096CDBB /* PayCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayCheckViewController.swift; sourceTree = "<group>"; };
+		58279A6D2B763888009DCE96 /* MemberAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberAPI.swift; sourceTree = "<group>"; };
+		58279A6F2B7638A1009DCE96 /* MemberData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberData.swift; sourceTree = "<group>"; };
 		582A98A02B636EA0008F30CA /* cameraIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = cameraIcon.pdf; sourceTree = "<group>"; };
 		582A98A42B636F2F008F30CA /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		582A98C62B653C61008F30CA /* PasswordEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +224,30 @@
 		582A98CF2B68CCAE008F30CA /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		582A98D12B6B7BB0008F30CA /* LeaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveViewController.swift; sourceTree = "<group>"; };
 		582A98D32B6B819E008F30CA /* AnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		582A990C2B6F31C0008F30CA /* AddLocationInfromViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationInfromViewController.swift; sourceTree = "<group>"; };
+		582A990D2B6F31C0008F30CA /* AddBirthInformViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBirthInformViewController.swift; sourceTree = "<group>"; };
+		582A990E2B6F31C0008F30CA /* AddIncomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIncomeViewController.swift; sourceTree = "<group>"; };
+		582A990F2B6F31C0008F30CA /* AddAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountViewController.swift; sourceTree = "<group>"; };
+		582A99102B6F31C0008F30CA /* BankCertifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankCertifyViewController.swift; sourceTree = "<group>"; };
+		582A99112B6F31C0008F30CA /* SearchLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
+		582A99122B6F31C0008F30CA /* AddSexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSexViewController.swift; sourceTree = "<group>"; };
+		582A99132B6F31C0008F30CA /* FindPwViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPwViewController.swift; sourceTree = "<group>"; };
+		582A99142B6F31C0008F30CA /* RegisterSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterSelectViewController.swift; sourceTree = "<group>"; };
+		582A99152B6F31C0008F30CA /* RegisterDoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterDoneViewController.swift; sourceTree = "<group>"; };
+		582A99172B6F31C0008F30CA /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
+		582A99192B6F31C0008F30CA /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		582A991B2B6F31C0008F30CA /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		582A991C2B6F31C0008F30CA /* MaptestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaptestViewController.swift; sourceTree = "<group>"; };
+		582A991D2B6F31C0008F30CA /* PwChangedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PwChangedViewController.swift; sourceTree = "<group>"; };
+		582A991E2B6F31C0008F30CA /* AddBudgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBudgetViewController.swift; sourceTree = "<group>"; };
+		582A991F2B6F31C0008F30CA /* CustomProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomProgressViewController.swift; sourceTree = "<group>"; };
+		582A99202B6F31C0008F30CA /* BankSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankSelectViewController.swift; sourceTree = "<group>"; };
+		582A99212B6F31C0008F30CA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		582A99222B6F31C0008F30CA /* SelectMangeUnitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMangeUnitViewController.swift; sourceTree = "<group>"; };
+		582A99232B6F31C0008F30CA /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+>>>>>>> KMS
 		582A99392B6F89F5008F30CA /* TagPlusCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPlusCollectionViewCell.swift; sourceTree = "<group>"; };
 		582A993B2B6F8C70008F30CA /* TagItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagItem.swift; sourceTree = "<group>"; };
 		588A09252B4E5BE200638D16 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +258,10 @@
 		58A1E7862B7351BF00C45CEA /* EmailEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEditViewController.swift; sourceTree = "<group>"; };
 		58A1E7892B7351ED00C45CEA /* MonthMoneyEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthMoneyEditViewController.swift; sourceTree = "<group>"; };
 		58A1E78C2B735D5400C45CEA /* FinalLeaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalLeaveViewController.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		58A1E7902B760DF800C45CEA /* InfoTalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTalk.swift; sourceTree = "<group>"; };
+>>>>>>> KMS
 		58A40D722B56AF190053E302 /* InfoWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoWritingViewController.swift; sourceTree = "<group>"; };
 		58A40D762B57DD730053E302 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		58A40D782B5805520053E302 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
@@ -237,6 +305,7 @@
 			path = LaunchScreenImage;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		2DED52312B74D60400FC2D77 /* RegisterVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,6 +439,8 @@
 			path = MealCell;
 			sourceTree = "<group>";
 		};
+=======
+>>>>>>> KMS
 		40852A272B6F36F100150395 /* FoodNetwork */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +483,7 @@
 			path = HomeEatPractice;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		582A98C82B663248008F30CA /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -419,6 +491,78 @@
 				582A98CB2B6632BB008F30CA /* GeneralAPI.swift */,
 			);
 			path = Network;
+=======
+		58279A6C2B76383D009DCE96 /* Network2 */ = {
+			isa = PBXGroup;
+			children = (
+				58279A6D2B763888009DCE96 /* MemberAPI.swift */,
+				58279A6F2B7638A1009DCE96 /* MemberData.swift */,
+			);
+			path = Network2;
+			sourceTree = "<group>";
+		};
+		582A98C82B663248008F30CA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				582A98C92B66325D008F30CA /* ItemData.swift */,
+				582A98CB2B6632BB008F30CA /* GeneralAPI.swift */,
+				58A1E7902B760DF800C45CEA /* InfoTalk.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		582A990B2B6F31C0008F30CA /* RegisterVC */ = {
+			isa = PBXGroup;
+			children = (
+				58279A6C2B76383D009DCE96 /* Network2 */,
+				582A990C2B6F31C0008F30CA /* AddLocationInfromViewController.swift */,
+				582A990D2B6F31C0008F30CA /* AddBirthInformViewController.swift */,
+				582A990E2B6F31C0008F30CA /* AddIncomeViewController.swift */,
+				582A990F2B6F31C0008F30CA /* AddAccountViewController.swift */,
+				582A99102B6F31C0008F30CA /* BankCertifyViewController.swift */,
+				582A99112B6F31C0008F30CA /* SearchLocationViewController.swift */,
+				582A99122B6F31C0008F30CA /* AddSexViewController.swift */,
+				582A99132B6F31C0008F30CA /* FindPwViewController.swift */,
+				582A99142B6F31C0008F30CA /* RegisterSelectViewController.swift */,
+				582A99152B6F31C0008F30CA /* RegisterDoneViewController.swift */,
+				582A99162B6F31C0008F30CA /* PolicyVC */,
+				582A99182B6F31C0008F30CA /* MapVC */,
+				582A991D2B6F31C0008F30CA /* PwChangedViewController.swift */,
+				582A991E2B6F31C0008F30CA /* AddBudgetViewController.swift */,
+				582A991F2B6F31C0008F30CA /* CustomProgressViewController.swift */,
+				582A99202B6F31C0008F30CA /* BankSelectViewController.swift */,
+				582A99212B6F31C0008F30CA /* LoginViewController.swift */,
+				582A99222B6F31C0008F30CA /* SelectMangeUnitViewController.swift */,
+				582A99232B6F31C0008F30CA /* RegisterViewController.swift */,
+			);
+			path = RegisterVC;
+			sourceTree = "<group>";
+		};
+		582A99162B6F31C0008F30CA /* PolicyVC */ = {
+			isa = PBXGroup;
+			children = (
+				582A99172B6F31C0008F30CA /* TermsOfUseViewController.swift */,
+			);
+			path = PolicyVC;
+>>>>>>> KMS
+			sourceTree = "<group>";
+		};
+		582A99182B6F31C0008F30CA /* MapVC */ = {
+			isa = PBXGroup;
+			children = (
+				582A99192B6F31C0008F30CA /* MapViewController.swift */,
+				582A991A2B6F31C0008F30CA /* View */,
+				582A991C2B6F31C0008F30CA /* MaptestViewController.swift */,
+			);
+			path = MapVC;
+			sourceTree = "<group>";
+		};
+		582A991A2B6F31C0008F30CA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				582A991B2B6F31C0008F30CA /* MapView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		5875D9C92B5169D600F484DF /* MypageVC */ = {
@@ -443,7 +587,11 @@
 		588A09272B4E680400638D16 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				2DED52312B74D60400FC2D77 /* RegisterVC */,
+=======
+				582A990B2B6F31C0008F30CA /* RegisterVC */,
+>>>>>>> KMS
 				58A40D9C2B5FF13C0053E302 /* TabbarVC */,
 				58A40D832B5C04F40053E302 /* ReportVC */,
 				58A40D7A2B5BEF060053E302 /* PayCheckVC */,
@@ -566,7 +714,10 @@
 		58A40D882B5CEA530053E302 /* MealVC */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				4060C4502B74D4590012F06D /* MealCell */,
+=======
+>>>>>>> KMS
 				40852A272B6F36F100150395 /* FoodNetwork */,
 				58A40D932B5FABF60053E302 /* Model */,
 				58A40D922B5FABEB0053E302 /* Controller */,
@@ -769,6 +920,7 @@
 				4060C4402B74D3C00012F06D /* SearchLocationViewController.swift in Sources */,
 				4060C44A2B74D3C00012F06D /* AddBudgetViewController.swift in Sources */,
 				588A09302B4FF9A900638D16 /* MyItem.swift in Sources */,
+<<<<<<< HEAD
 				2DED52502B74D60400FC2D77 /* AddAccountViewController.swift in Sources */,
 				582A98A52B636F2F008F30CA /* SceneDelegate.swift in Sources */,
 				4060C44C2B74D3C00012F06D /* BankSelectViewController.swift in Sources */,
@@ -782,12 +934,22 @@
 				2DED525F2B74D60500FC2D77 /* CustomProgressViewController.swift in Sources */,
 				4060C4422B74D3C00012F06D /* FindPwViewController.swift in Sources */,
 				2DED525E2B74D60500FC2D77 /* AddBudgetViewController.swift in Sources */,
+=======
+				582A98A52B636F2F008F30CA /* SceneDelegate.swift in Sources */,
+				582A992B2B6F31C0008F30CA /* FindPwViewController.swift in Sources */,
+				582A99372B6F31C0008F30CA /* SelectMangeUnitViewController.swift in Sources */,
+				409AA3402B43E9640096CDBB /* CashViewController.swift in Sources */,
+				582A99352B6F31C0008F30CA /* BankSelectViewController.swift in Sources */,
+				588A09262B4E5BE200638D16 /* WriteViewController.swift in Sources */,
+>>>>>>> KMS
 				58A40D972B5FAC490053E302 /* MealPostViewController.swift in Sources */,
 				58A40D9B2B5FACAF0053E302 /* MealSource.swift in Sources */,
+				58279A702B7638A1009DCE96 /* MemberData.swift in Sources */,
 				58A40D9E2B5FF1560053E302 /* TabbarInfo.swift in Sources */,
 				2DED52612B74D60500FC2D77 /* LoginViewController.swift in Sources */,
 				58A40D802B5BEFC40053E302 /* CalendarCheckViewController.swift in Sources */,
 				582A98CC2B6632BB008F30CA /* GeneralAPI.swift in Sources */,
+<<<<<<< HEAD
 				4060C4432B74D3C00012F06D /* RegisterSelectViewController.swift in Sources */,
 				58A1E7872B7351BF00C45CEA /* EmailEditViewController.swift in Sources */,
 				409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */,
@@ -806,13 +968,37 @@
 				409AA3482B467EFB0096CDBB /* PayAnalyzeViewController.swift in Sources */,
 				2DED52562B74D60500FC2D77 /* FindPwViewController.swift in Sources */,
 				582A98CA2B66325D008F30CA /* ItemData.swift in Sources */,
+=======
+				58A1E7872B7351BF00C45CEA /* EmailEditViewController.swift in Sources */,
+				582A99342B6F31C0008F30CA /* CustomProgressViewController.swift in Sources */,
+				409AA3282B43A0470096CDBB /* AppDelegate.swift in Sources */,
+				58A1E78D2B735D5400C45CEA /* FinalLeaveViewController.swift in Sources */,
+				58A40D992B5FAC6A0053E302 /* MealWritingViewController.swift in Sources */,
+				58A1E78A2B7351ED00C45CEA /* MonthMoneyEditViewController.swift in Sources */,
+				582A99252B6F31C0008F30CA /* AddBirthInformViewController.swift in Sources */,
+				582A992C2B6F31C0008F30CA /* RegisterSelectViewController.swift in Sources */,
+				582A993C2B6F8C70008F30CA /* TagItem.swift in Sources */,
+				58A40D952B5FAC1B0053E302 /* MealViewCell.swift in Sources */,
+				582A993A2B6F89F5008F30CA /* TagPlusCollectionViewCell.swift in Sources */,
+				409AA3482B467EFB0096CDBB /* PayAnalyzeViewController.swift in Sources */,
+				582A98CA2B66325D008F30CA /* ItemData.swift in Sources */,
+				582A99292B6F31C0008F30CA /* SearchLocationViewController.swift in Sources */,
+>>>>>>> KMS
 				58A40D8E2B5D01F70053E302 /* WeekCashViewController.swift in Sources */,
+				582A99312B6F31C0008F30CA /* MaptestViewController.swift in Sources */,
 				582A98C72B653C61008F30CA /* PasswordEditViewController.swift in Sources */,
 				409AA3422B43E9760096CDBB /* TalkViewController.swift in Sources */,
+<<<<<<< HEAD
+=======
+				582A992E2B6F31C0008F30CA /* TermsOfUseViewController.swift in Sources */,
+>>>>>>> KMS
 				409AA34A2B46815E0096CDBB /* PayCheckViewController.swift in Sources */,
 				58A40D772B57DD730053E302 /* EditViewController.swift in Sources */,
 				409AA33E2B43E94B0096CDBB /* HomeViewController.swift in Sources */,
+				582A99362B6F31C0008F30CA /* LoginViewController.swift in Sources */,
+				582A99282B6F31C0008F30CA /* BankCertifyViewController.swift in Sources */,
 				58A40D792B5805520053E302 /* UIColor + Extension.swift in Sources */,
+<<<<<<< HEAD
 				4060C43B2B74D3C00012F06D /* AddIncomeViewController.swift in Sources */,
 				2DED52542B74D60500FC2D77 /* SearchLocationViewController.swift in Sources */,
 				582A98CE2B678AD5008F30CA /* PhotoCollectionViewCell.swift in Sources */,
@@ -828,16 +1014,35 @@
 				409AA33C2B43A6B20096CDBB /* MainTabBarController.swift in Sources */,
 				4060C44F2B74D3C00012F06D /* RegisterViewController.swift in Sources */,
 				2DED524F2B74D60400FC2D77 /* AddIncomeViewController.swift in Sources */,
+=======
+				582A98CE2B678AD5008F30CA /* PhotoCollectionViewCell.swift in Sources */,
+				4060C4192B74B2EA0012F06D /* RecipeViewController.swift in Sources */,
+				582A992A2B6F31C0008F30CA /* AddSexViewController.swift in Sources */,
+				58279A6E2B763888009DCE96 /* MemberAPI.swift in Sources */,
+				582A99242B6F31C0008F30CA /* AddLocationInfromViewController.swift in Sources */,
+				40852A292B6F371300150395 /* FoodItemData.swift in Sources */,
+				409AA33C2B43A6B20096CDBB /* MainTabBarController.swift in Sources */,
+>>>>>>> KMS
 				58A40D732B56AF190053E302 /* InfoWritingViewController.swift in Sources */,
+				582A99332B6F31C0008F30CA /* AddBudgetViewController.swift in Sources */,
 				588A09342B50EC5900638D16 /* PostViewController.swift in Sources */,
 				409AA3462B453F3B0096CDBB /* PayAddViewController.swift in Sources */,
+				582A992F2B6F31C0008F30CA /* MapViewController.swift in Sources */,
 				58A40DA02B6120970053E302 /* DeclareViewController.swift in Sources */,
 				40852A2B2B6F374900150395 /* FoodGeneralAPI.swift in Sources */,
 				582A98D42B6B819E008F30CA /* AnalysisViewController.swift in Sources */,
+<<<<<<< HEAD
 				2DED52592B74D60500FC2D77 /* TermsOfUseViewController.swift in Sources */,
 				4060C43E2B74D3C00012F06D /* MemberAPI.swift in Sources */,
 				58A40D852B5C05330053E302 /* CashCheckViewController.swift in Sources */,
 				4060C44D2B74D3C00012F06D /* LoginViewController.swift in Sources */,
+=======
+				582A99302B6F31C0008F30CA /* MapView.swift in Sources */,
+				58A40D852B5C05330053E302 /* CashCheckViewController.swift in Sources */,
+				582A99322B6F31C0008F30CA /* PwChangedViewController.swift in Sources */,
+				582A992D2B6F31C0008F30CA /* RegisterDoneViewController.swift in Sources */,
+				58A1E7912B760DF800C45CEA /* InfoTalk.swift in Sources */,
+>>>>>>> KMS
 				588A092D2B4FB9F200638D16 /* TableViewCellOne.swift in Sources */,
 				2DED52552B74D60500FC2D77 /* AddSexViewController.swift in Sources */,
 				2DED525C2B74D60500FC2D77 /* MaptestViewController.swift in Sources */,
@@ -845,6 +1050,7 @@
 				588A09292B4E6ED400638D16 /* InfoViewController.swift in Sources */,
 				2DED525D2B74D60500FC2D77 /* PwChangedViewController.swift in Sources */,
 				58A40D822B5C00D30053E302 /* TagPlusViewController.swift in Sources */,
+<<<<<<< HEAD
 				2DED52572B74D60500FC2D77 /* RegisterSelectViewController.swift in Sources */,
 				4060C43A2B74D3C00012F06D /* AddBirthInformViewController.swift in Sources */,
 				409AA3442B43E98A0096CDBB /* MyPageViewController.swift in Sources */,
@@ -856,8 +1062,16 @@
 				2DED525A2B74D60500FC2D77 /* MapViewController.swift in Sources */,
 				4060C44B2B74D3C00012F06D /* CustomProgressViewController.swift in Sources */,
 				4060C43F2B74D3C00012F06D /* MemberData.swift in Sources */,
+=======
+				409AA3442B43E98A0096CDBB /* MyPageViewController.swift in Sources */,
+				582A99272B6F31C0008F30CA /* AddAccountViewController.swift in Sources */,
+				582A99262B6F31C0008F30CA /* AddIncomeViewController.swift in Sources */,
+				582A98D22B6B7BB0008F30CA /* LeaveViewController.swift in Sources */,
+				582A98D02B68CCAE008F30CA /* TagCollectionViewCell.swift in Sources */,
+>>>>>>> KMS
 				58A40DA22B6120B70053E302 /* DeclareWriteViewController.swift in Sources */,
 				58A40D7E2B5BEFAA0053E302 /* StatisticsViewController.swift in Sources */,
+				582A99382B6F31C0008F30CA /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1014,7 +1228,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = ST.HomeEatPractice1;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = ST.HomeEatPractice2;
+>>>>>>> KMS
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1047,7 +1265,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = ST.HomeEatPractice1;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = ST.HomeEatPractice2;
+>>>>>>> KMS
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
