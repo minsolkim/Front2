@@ -5,28 +5,27 @@
 //  Created by 김민솔 on 2024/01/11.
 //
 
-import Foundation
-import UIKit
-
 struct MyItem {
-    let title: String //게시글 제목
-    let date: String //게시글 날짜
-    let content: String //게시글 내용
-    let postImage : UIImage? //게시글 사진
-    let heartImage : UIImage? //좋아요 이미지
-    let heartLabel : String //좋아요 개수
-    let chatImage : UIImage? //댓글 이미지
-    let chatLabel : String //댓글 개수 
-    
-    //초기화
-    init(title: String, date: String,content: String,postImage: UIImage?,heartImage: UIImage?, heartLabel: String, chatImage: UIImage?, chatLabel: String) {
+    let id: Int // 게시글 ID
+    let title: String // 게시글 제목
+    let createdAt: String // 게시글 작성일시
+    let content: String // 게시글 내용
+    let love: Int // 좋아요 개수
+    let view: Int // 조회수
+    let commentNumber: Int // 댓글 개수
+    let save: String // 저장 여부
+    let infoPictures: [String] // 게시글 사진 URL 배열
+
+    // 초기화
+    init(id: Int, title: String, createdAt: String, content: String, love: Int, view: Int, commentNumber: Int, save: String, infoPictures: [String]) {
+        self.id = id
         self.title = title
-        self.date = date
+        self.createdAt = createdAt
         self.content = content
-        self.postImage = postImage
-        self.heartImage = heartImage
-        self.heartLabel = heartLabel
-        self.chatImage = chatImage
-        self.chatLabel = chatLabel
+        self.love = love
+        self.view = view
+        self.commentNumber = commentNumber
+        self.save = save
+        self.infoPictures = infoPictures
     }
 }
